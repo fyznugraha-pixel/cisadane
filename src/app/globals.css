@@ -1,26 +1,366 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --river-night: #0d1b2a;
+  --river-deep: #060e16;
+  --river-black: #03070d;
+  --cisadane-teal: #1d6478;
+  --dragon-red: #c8281e;
+  --ornament-gold: #c8a03c;
+  --fire-orange: #e8823a;
+  --warm-white: #f5f0e8;
+  --muted-warm: rgba(245, 240, 232, 0.68);
+  --muted-soft: rgba(245, 240, 232, 0.42);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--river-night);
+  color: var(--warm-white);
+  overflow-x: hidden;
+  font-family: var(--font-body), sans-serif;
+}
+
+::selection {
+  background: var(--dragon-red);
+  color: var(--warm-white);
+}
+
+.font-display {
+  font-family: var(--font-display), serif;
+}
+
+.font-body {
+  font-family: var(--font-body), sans-serif;
+}
+
+.cisadane-bg {
+  background:
+    radial-gradient(circle at 16% 20%, rgba(200, 160, 60, 0.16), transparent 26%),
+    radial-gradient(circle at 82% 22%, rgba(200, 40, 30, 0.14), transparent 28%),
+    radial-gradient(circle at 50% 78%, rgba(29, 100, 120, 0.42), transparent 40%),
+    linear-gradient(180deg, #0d1b2a 0%, #071321 56%, #03070d 100%);
+}
+
+.hero-image-overlay {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(13, 27, 42, 0.88),
+      rgba(13, 27, 42, 0.56),
+      rgba(13, 27, 42, 0.82)
+    ),
+    linear-gradient(180deg, rgba(13, 27, 42, 0.25), rgba(3, 7, 13, 0.92));
+}
+
+.water-reflection {
+  background-image:
+    linear-gradient(90deg, transparent, rgba(245, 240, 232, 0.12), transparent),
+    linear-gradient(90deg, transparent, rgba(29, 100, 120, 0.32), transparent),
+    linear-gradient(90deg, transparent, rgba(200, 160, 60, 0.18), transparent),
+    linear-gradient(90deg, transparent, rgba(200, 40, 30, 0.16), transparent);
+  background-size: 420px 1px, 560px 1px, 720px 1px, 640px 1px;
+  background-position: 0 18%, 90px 42%, 170px 66%, 40px 84%;
+  animation: waterMove 13s linear infinite;
+}
+
+@keyframes waterMove {
+  from {
+    background-position: 0 18%, 90px 42%, 170px 66%, 40px 84%;
+  }
+
+  to {
+    background-position: 420px 18%, 650px 42%, 890px 66%, 680px 84%;
+  }
+}
+
+.wave-divider {
+  position: relative;
+  overflow: hidden;
+}
+
+.wave-divider::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent, rgba(29, 100, 120, 0.55), transparent),
+    linear-gradient(90deg, transparent, rgba(200, 160, 60, 0.24), transparent);
+  background-size: 360px 1px, 520px 1px;
+  background-position: 0 40%, 80px 65%;
+  animation: waterMove 14s linear infinite;
+}
+
+.cultural-texture {
+  background-image:
+    radial-gradient(rgba(245, 240, 232, 0.09) 0.7px, transparent 0.7px),
+    linear-gradient(
+      135deg,
+      rgba(200, 160, 60, 0.035) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(200, 160, 60, 0.035) 50%,
+      rgba(200, 160, 60, 0.035) 75%,
+      transparent 75%,
+      transparent
+    );
+  background-size: 14px 14px, 42px 42px;
+}
+
+.stage-light-gold {
+  background: linear-gradient(
+    180deg,
+    rgba(200, 160, 60, 0.24),
+    rgba(200, 160, 60, 0)
+  );
+  filter: blur(28px);
+}
+
+.stage-light-red {
+  background: linear-gradient(
+    180deg,
+    rgba(200, 40, 30, 0.22),
+    rgba(200, 40, 30, 0)
+  );
+  filter: blur(28px);
+}
+
+.dragon-scale {
+  background-image:
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(200, 160, 60, 0.18) 0 20%,
+      transparent 21%
+    ),
+    radial-gradient(
+      circle at 0% 100%,
+      rgba(200, 40, 30, 0.12) 0 18%,
+      transparent 19%
+    ),
+    radial-gradient(
+      circle at 100% 100%,
+      rgba(200, 40, 30, 0.12) 0 18%,
+      transparent 19%
+    );
+  background-size: 42px 42px;
+  opacity: 0.11;
+}
+
+.dragon-mark {
+  background: linear-gradient(135deg, var(--dragon-red), var(--fire-orange));
+  clip-path: polygon(
+    12% 0%,
+    100% 0%,
+    78% 22%,
+    100% 48%,
+    72% 48%,
+    88% 100%,
+    48% 66%,
+    18% 100%,
+    28% 56%,
+    0% 48%,
+    24% 26%
+  );
+}
+
+.gold-line {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(200, 160, 60, 0.9),
+    transparent
+  );
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.river-transition {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  line-height: 0;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.river-transition svg {
+  display: block;
+  width: 100%;
+  height: 220px;
+}
+
+.river-fill-main {
+  fill: #060e16;
+}
+
+.river-fill-reflection {
+  fill: url(#riverReflectionGradient);
+  opacity: 0.72;
+}
+
+.river-stroke-main {
+  fill: none;
+  stroke: rgba(29, 100, 120, 0.55);
+  stroke-width: 2;
+}
+
+.river-stroke-soft {
+  fill: none;
+  stroke: rgba(200, 160, 60, 0.18);
+  stroke-width: 1.5;
+}
+
+.river-glow {
+  filter: drop-shadow(0 0 18px rgba(29, 100, 120, 0.18));
+}
+
+/* =========================
+   REVEAL / EXPERIENCE UTILS
+========================= */
+
+.section-shell {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-inner {
+  position: relative;
+  z-index: 10;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.soft-river-glow {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 220px;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(29, 100, 120, 0.18), transparent 30%),
+    radial-gradient(circle at 70% 50%, rgba(200, 160, 60, 0.12), transparent 28%),
+    radial-gradient(circle at 90% 50%, rgba(200, 40, 30, 0.10), transparent 20%);
+  pointer-events: none;
+}
+
+.lantern-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.lantern-particles span {
+  position: absolute;
+  bottom: -40px;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(245, 240, 232, 0.65);
+  box-shadow: 0 0 16px rgba(200, 160, 60, 0.35);
+  animation: floatLantern linear infinite;
+  opacity: 0.5;
+}
+
+.lantern-particles span:nth-child(1) { left: 8%; animation-duration: 14s; animation-delay: 0s; }
+.lantern-particles span:nth-child(2) { left: 18%; animation-duration: 18s; animation-delay: 2s; }
+.lantern-particles span:nth-child(3) { left: 30%; animation-duration: 16s; animation-delay: 4s; }
+.lantern-particles span:nth-child(4) { left: 44%; animation-duration: 20s; animation-delay: 1s; }
+.lantern-particles span:nth-child(5) { left: 58%; animation-duration: 15s; animation-delay: 3s; }
+.lantern-particles span:nth-child(6) { left: 72%; animation-duration: 19s; animation-delay: 5s; }
+.lantern-particles span:nth-child(7) { left: 84%; animation-duration: 17s; animation-delay: 2s; }
+.lantern-particles span:nth-child(8) { left: 92%; animation-duration: 21s; animation-delay: 6s; }
+
+@keyframes floatLantern {
+  0% {
+    transform: translateY(0px) scale(0.9);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.55;
+  }
+  70% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-110vh) scale(1.15);
+    opacity: 0;
+  }
+}
+
+.river-transition {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  line-height: 0;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.river-transition svg {
+  display: block;
+  width: 100%;
+  height: 220px;
+}
+
+.river-fill-main {
+  fill: #060e16;
+}
+
+.river-fill-reflection {
+  fill: url(#riverReflectionGradient);
+  opacity: 0.72;
+}
+
+.river-stroke-main {
+  fill: none;
+  stroke: rgba(29, 100, 120, 0.55);
+  stroke-width: 2;
+}
+
+.river-stroke-soft {
+  fill: none;
+  stroke: rgba(200, 160, 60, 0.18);
+  stroke-width: 1.5;
+}
+
+.river-glow {
+  filter: drop-shadow(0 0 18px rgba(29, 100, 120, 0.18));
+}
+
+.section-card {
+  border: 1px solid rgba(200, 160, 60, 0.14);
+  background: rgba(6, 14, 22, 0.62);
+  backdrop-filter: blur(8px);
+}
+
+.section-title-line {
+  height: 1px;
+  width: 160px;
+  background: linear-gradient(90deg, rgba(29,100,120,0.9), rgba(200,160,60,0.85), transparent);
+}
+
+.hover-rise {
+  transition: transform 400ms ease, border-color 400ms ease, background 400ms ease, box-shadow 400ms ease;
+}
+
+.hover-rise:hover {
+  transform: translateY(-6px);
+  border-color: rgba(200, 160, 60, 0.34);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+}
+
+.image-dark-overlay {
+  background: linear-gradient(180deg, rgba(6,14,22,0.10), rgba(3,7,13,0.88));
 }
