@@ -8,7 +8,7 @@ export const siteConfig = {
   recognition: "Salah satu dari 125 event terbaik Indonesia",
   eyebrow: "Festival rakyat bertaraf nasional",
   description:
-    "Portal pengalaman Festival Cisadane 2026 — perayaan budaya sungai, perahu naga, panggung malam, kuliner lokal, cahaya festival, dan energi multikultural Kota Tangerang.",
+    "Portal pengalaman Festival Cisadane 2026. Perayaan budaya sungai, perahu naga, panggung malam, kuliner lokal, cahaya festival, dan energi multikultural Kota Tangerang.",
   cta: {
     primary: "Daftar Sekarang",
     secondary: "Jelajahi Festival",

@@ -1,33 +1,59 @@
 "use client";
 
+import { X } from "lucide-react";
+import { useState } from "react";
+
 export default function StickyRegisterBar() {
+  const [isVisible, setIsVisible] = useState(true);
+
+  if (!isVisible) return null;
+
   return (
-    <div className="fixed bottom-4 left-1/2 z-[60] w-[calc(100%-1.5rem)] max-w-3xl -translate-x-1/2 border border-[#C8A03C]/30 bg-[#060E16]/88 p-3 shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur-xl md:bottom-6 md:p-4">
-      <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-        <div>
-          <p className="text-[10px] font-black uppercase tracking-[0.24em] text-[#C8A03C]">
-            Festival Cisadane 2026
-          </p>
-          <p className="mt-1 text-sm text-[#F5F0E8]/70">
-            Siap bergabung sebagai pengunjung, UMKM, peserta perahu naga, atau kolaborator?
-          </p>
+    <aside className="fixed bottom-4 left-1/2 z-[70] w-[calc(100%-1.5rem)] max-w-5xl -translate-x-1/2 md:bottom-6">
+      <div className="relative overflow-hidden border border-[#C8A03C]/30 bg-[#060E16]/92 shadow-[0_20px_70px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="dragon-scale-overlay soft ornament-fade-center" />
+          <div className="tangerang-tenun-overlay ornament-fade-center" />
         </div>
 
-        <div className="flex gap-3">
-          <a
-            href="#highlights"
-            className="flex-1 border border-[#1D6478]/55 px-4 py-3 text-center text-xs font-black uppercase tracking-[0.16em] text-[#1D6478] transition hover:bg-[#1D6478] hover:text-[#F5F0E8] md:flex-none"
+        <div className="relative grid gap-4 p-4 md:grid-cols-[1fr_auto_36px] md:items-center md:gap-5 md:p-5">
+          <div className="pr-10 md:pr-0">
+            <p className="text-[10px] font-black uppercase tracking-[0.28em] text-[#C8A03C]">
+              Festival Cisadane 2026
+            </p>
+
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-[#F5F0E8]/70">
+              Siap bergabung sebagai pengunjung, UMKM, peserta perahu naga,
+              atau kolaborator?
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3 md:flex md:items-center">
+            <a
+              href="#highlights"
+              className="border border-[#1D6478]/65 px-4 py-3 text-center text-[11px] font-black uppercase tracking-[0.16em] text-[#78C5D6] transition hover:bg-[#1D6478] hover:text-[#F5F0E8] md:min-w-[150px]"
+            >
+              Lihat Atraksi
+            </a>
+
+            <a
+              href="#register"
+              className="bg-[#C8A03C] px-4 py-3 text-center text-[11px] font-black uppercase tracking-[0.16em] text-[#060E16] transition hover:bg-[#F5F0E8] md:min-w-[170px]"
+            >
+              Daftar Sekarang
+            </a>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setIsVisible(false)}
+            aria-label="Tutup sticky register bar"
+            className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center border border-[#F5F0E8]/10 bg-[#060E16]/70 text-[#F5F0E8]/50 transition hover:border-[#C8281E]/60 hover:bg-[#C8281E]/15 hover:text-[#F5F0E8] md:static md:h-9 md:w-9"
           >
-            Lihat Atraksi
-          </a>
-          <a
-            href="#register"
-            className="flex-1 bg-[#C8A03C] px-4 py-3 text-center text-xs font-black uppercase tracking-[0.16em] text-[#060E16] transition hover:bg-[#F5F0E8] md:flex-none"
-          >
-            Daftar Sekarang
-          </a>
+            <X size={15} />
+          </button>
         </div>
       </div>
-    </div>
+    </aside>
   );
 }
