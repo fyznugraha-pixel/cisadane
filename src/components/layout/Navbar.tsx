@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
 
 const navItems = [
   { label: "Cerita", href: "#about" },
@@ -12,6 +14,7 @@ const navItems = [
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 24);
@@ -22,26 +25,32 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const closeMenu = () => setIsOpen(false);
+
   return (
     <header
       className={`fixed left-0 top-0 z-50 w-full transition duration-500 ${
-        scrolled
-          ? "border-b border-[#C8A03C]/20 bg-[#060E16]/90 backdrop-blur-xl"
+        scrolled || isOpen
+          ? "border-b border-[#38BBCA]/20 bg-[#041020]/92 shadow-[0_18px_60px_rgba(0,0,0,0.25)] backdrop-blur-xl"
           : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5">
-        <a href="#" className="flex items-center gap-3">
-          <span className="dragon-mark h-9 w-9 shadow-[0_0_30px_rgba(200,40,30,0.45)]" />
-
-          <span className="flex flex-col leading-none">
-            <span className="font-display text-lg font-black uppercase tracking-[0.16em] text-[#F5F0E8]">
-              Cisadane
-            </span>
-            <span className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#C8A03C]">
-              River Festival
-            </span>
-          </span>
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:py-5">
+        <a
+          href="#"
+          onClick={closeMenu}
+          className="relative flex items-center gap-3"
+        >
+          <div className="relative h-12 w-[190px] md:h-14 md:w-[230px]">
+            <Image
+              src="/logo/logo.png"
+              alt="Festival Cisadane 2026"
+              fill
+              priority
+              sizes="230px"
+              className="object-contain object-left"
+            />
+          </div>
         </a>
 
         <div className="hidden items-center gap-8 lg:flex">
@@ -49,20 +58,67 @@ export default function Navbar() {
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-[#F5F0E8]/70 transition hover:text-[#C8A03C]"
+              className="group relative text-sm font-bold text-white/72 transition hover:text-[#FDB715]"
             >
-              {item.label}
+              <span>{item.label}</span>
+              <span className="absolute -bottom-2 left-0 h-[2px] w-0 bg-gradient-to-r from-[#FDB715] via-[#38BBCA] to-[#EC3A24] transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
         </div>
 
-        <a
-          href="#register"
-          className="border border-[#C8A03C]/70 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.18em] text-[#C8A03C] transition hover:bg-[#C8A03C] hover:text-[#060E16]"
+        <div className="hidden items-center gap-3 lg:flex">
+          <a
+            href="#register"
+            className="bg-[#FDB715] px-5 py-3 text-xs font-black uppercase tracking-[0.18em] text-[#041020] shadow-[5px_5px_0_rgba(56,187,202,0.75)] transition hover:-translate-y-0.5 hover:bg-white"
+          >
+            Daftar
+          </a>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setIsOpen((prev) => !prev)}
+          className="flex h-10 w-10 items-center justify-center border border-[#38BBCA]/35 bg-[#041020]/50 text-white transition hover:border-[#FDB715] hover:text-[#FDB715] lg:hidden"
+          aria-label="Toggle navigation menu"
         >
-          Daftar
-        </a>
+          {isOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
       </nav>
+
+      <div
+        className={`overflow-hidden border-t border-[#38BBCA]/10 bg-[#041020]/96 backdrop-blur-xl transition-all duration-500 lg:hidden ${
+          isOpen ? "max-h-[440px] opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="relative px-5 py-5">
+          <div className="pointer-events-none absolute inset-0">
+            <div className="kv-geometric-overlay opacity-80" />
+            <div className="tangerang-tenun-overlay ornament-fade-center" />
+          </div>
+
+          <div className="relative grid gap-2">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={closeMenu}
+                className="flex items-center justify-between border border-white/10 bg-white/[0.03] px-4 py-4 text-sm font-black uppercase tracking-[0.16em] text-white/76 transition hover:border-[#FDB715]/50 hover:bg-[#FDB715] hover:text-[#041020]"
+              >
+                {item.label}
+                <span className="h-2 w-2 bg-[#38BBCA]" />
+              </a>
+            ))}
+
+            <a
+              href="#register"
+              onClick={closeMenu}
+              className="mt-2 bg-[#FDB715] px-4 py-4 text-center text-sm font-black uppercase tracking-[0.18em] text-[#041020] shadow-[5px_5px_0_rgba(56,187,202,0.75)] transition hover:bg-white"
+            >
+              Daftar Sekarang
+            </a>
+          </div>
+        </div>
+      </div>
     </header>
   );
 }

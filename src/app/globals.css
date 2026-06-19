@@ -1,16 +1,36 @@
 @import "tailwindcss";
 
 :root {
-  --river-night: #0d1b2a;
-  --river-deep: #060e16;
-  --river-black: #03070d;
-  --cisadane-teal: #1d6478;
-  --dragon-red: #c8281e;
-  --ornament-gold: #c8a03c;
-  --fire-orange: #e8823a;
-  --warm-white: #f5f0e8;
-  --muted-warm: rgba(245, 240, 232, 0.68);
-  --muted-soft: rgba(245, 240, 232, 0.42);
+  /* =========================
+     FESTIVAL CISADANE 2026
+     OFFICIAL KEY VISUAL PALETTE
+  ========================= */
+
+  --kv-blue: #2654a4;
+  --kv-yellow: #fdb715;
+  --kv-orange: #f7951e;
+  --kv-teal: #0092b7;
+  --kv-cyan: #38bbca;
+  --kv-red: #ec3a24;
+  --kv-white: #ffffff;
+
+  /* Supporting colors */
+  --kv-blue-dark: #07152b;
+  --kv-blue-deep: #041020;
+  --kv-soft-white: rgba(255, 255, 255, 0.72);
+  --kv-muted-white: rgba(255, 255, 255, 0.46);
+
+  /* Compatibility aliases biar class lama tidak rusak */
+  --river-night: var(--kv-blue-dark);
+  --river-deep: var(--kv-blue-deep);
+  --river-black: #020815;
+  --cisadane-teal: var(--kv-teal);
+  --dragon-red: var(--kv-red);
+  --ornament-gold: var(--kv-yellow);
+  --fire-orange: var(--kv-orange);
+  --warm-white: var(--kv-white);
+  --muted-warm: rgba(255, 255, 255, 0.72);
+  --muted-soft: rgba(255, 255, 255, 0.46);
 }
 
 * {
@@ -23,62 +43,123 @@ html {
 
 body {
   margin: 0;
-  background: var(--river-night);
-  color: var(--warm-white);
   overflow-x: hidden;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(56, 187, 202, 0.16), transparent 30%),
+    radial-gradient(circle at 90% 20%, rgba(253, 183, 21, 0.12), transparent 28%),
+    linear-gradient(180deg, var(--kv-blue-dark), var(--kv-blue-deep));
+  color: var(--kv-white);
   font-family: var(--font-body), sans-serif;
 }
 
 ::selection {
-  background: var(--dragon-red);
-  color: var(--warm-white);
+  background: var(--kv-yellow);
+  color: var(--kv-blue-deep);
 }
 
 .font-display {
-  font-family: var(--font-display), serif;
+  font-family: var(--font-display), var(--font-body), sans-serif;
 }
 
 .font-body {
   font-family: var(--font-body), sans-serif;
 }
 
+.text-balance {
+  text-wrap: balance;
+}
+
+/* =========================
+   KEY VISUAL BACKGROUND
+========================= */
+
 .cisadane-bg {
   background:
-    radial-gradient(circle at 16% 20%, rgba(200, 160, 60, 0.16), transparent 26%),
-    radial-gradient(circle at 82% 22%, rgba(200, 40, 30, 0.14), transparent 28%),
-    radial-gradient(circle at 50% 78%, rgba(29, 100, 120, 0.42), transparent 40%),
-    linear-gradient(180deg, #0d1b2a 0%, #071321 56%, #03070d 100%);
+    radial-gradient(circle at 14% 18%, rgba(253, 183, 21, 0.22), transparent 26%),
+    radial-gradient(circle at 86% 18%, rgba(236, 58, 36, 0.18), transparent 26%),
+    radial-gradient(circle at 48% 72%, rgba(56, 187, 202, 0.34), transparent 42%),
+    linear-gradient(135deg, #07152b 0%, #082454 44%, #041020 100%);
 }
 
 .hero-image-overlay {
   background:
     linear-gradient(
       90deg,
-      rgba(13, 27, 42, 0.88),
-      rgba(13, 27, 42, 0.56),
-      rgba(13, 27, 42, 0.82)
+      rgba(7, 21, 43, 0.92),
+      rgba(38, 84, 164, 0.58),
+      rgba(7, 21, 43, 0.86)
     ),
-    linear-gradient(180deg, rgba(13, 27, 42, 0.25), rgba(3, 7, 13, 0.92));
+    linear-gradient(
+      180deg,
+      rgba(7, 21, 43, 0.18),
+      rgba(4, 16, 32, 0.92)
+    );
 }
+
+.cultural-texture {
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.12) 0.75px, transparent 0.75px),
+    linear-gradient(
+      135deg,
+      rgba(253, 183, 21, 0.055) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(253, 183, 21, 0.055) 50%,
+      rgba(253, 183, 21, 0.055) 75%,
+      transparent 75%,
+      transparent
+    );
+  background-size: 14px 14px, 48px 48px;
+}
+
+.kv-geometric-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image:
+    linear-gradient(90deg, rgba(253, 183, 21, 0.45) 0 18px, transparent 18px 52px),
+    linear-gradient(0deg, rgba(56, 187, 202, 0.42) 0 18px, transparent 18px 52px),
+    radial-gradient(circle at 100% 100%, rgba(236, 58, 36, 0.4) 0 16px, transparent 17px);
+  background-size: 96px 96px, 96px 96px, 96px 96px;
+  mix-blend-mode: soft-light;
+}
+
+.kv-block-pattern {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  background:
+    linear-gradient(90deg, transparent 0 40%, rgba(253, 183, 21, 0.45) 40% 58%, transparent 58%),
+    linear-gradient(0deg, transparent 0 42%, rgba(56, 187, 202, 0.42) 42% 60%, transparent 60%),
+    radial-gradient(circle at 30% 30%, rgba(236, 58, 36, 0.32) 0 12%, transparent 13%);
+  background-size: 120px 120px;
+}
+
+/* =========================
+   WATER / RIVER MOTION
+========================= */
 
 .water-reflection {
   background-image:
-    linear-gradient(90deg, transparent, rgba(245, 240, 232, 0.12), transparent),
-    linear-gradient(90deg, transparent, rgba(29, 100, 120, 0.32), transparent),
-    linear-gradient(90deg, transparent, rgba(200, 160, 60, 0.18), transparent),
-    linear-gradient(90deg, transparent, rgba(200, 40, 30, 0.16), transparent);
-  background-size: 420px 1px, 560px 1px, 720px 1px, 640px 1px;
-  background-position: 0 18%, 90px 42%, 170px 66%, 40px 84%;
+    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16), transparent),
+    linear-gradient(90deg, transparent, rgba(56, 187, 202, 0.38), transparent),
+    linear-gradient(90deg, transparent, rgba(253, 183, 21, 0.24), transparent),
+    linear-gradient(90deg, transparent, rgba(247, 149, 30, 0.2), transparent),
+    linear-gradient(90deg, transparent, rgba(236, 58, 36, 0.16), transparent);
+  background-size: 420px 1px, 560px 1px, 720px 1px, 640px 1px, 520px 1px;
+  background-position: 0 18%, 90px 42%, 170px 66%, 40px 84%, 240px 52%;
   animation: waterMove 13s linear infinite;
 }
 
 @keyframes waterMove {
   from {
-    background-position: 0 18%, 90px 42%, 170px 66%, 40px 84%;
+    background-position: 0 18%, 90px 42%, 170px 66%, 40px 84%, 240px 52%;
   }
 
   to {
-    background-position: 420px 18%, 650px 42%, 890px 66%, 680px 84%;
+    background-position: 420px 18%, 650px 42%, 890px 66%, 680px 84%, 760px 52%;
   }
 }
 
@@ -92,70 +173,82 @@ body {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, transparent, rgba(29, 100, 120, 0.55), transparent),
-    linear-gradient(90deg, transparent, rgba(200, 160, 60, 0.24), transparent);
+    linear-gradient(90deg, transparent, rgba(56, 187, 202, 0.52), transparent),
+    linear-gradient(90deg, transparent, rgba(253, 183, 21, 0.28), transparent);
   background-size: 360px 1px, 520px 1px;
   background-position: 0 40%, 80px 65%;
   animation: waterMove 14s linear infinite;
 }
 
-.cultural-texture {
-  background-image:
-    radial-gradient(rgba(245, 240, 232, 0.09) 0.7px, transparent 0.7px),
-    linear-gradient(
-      135deg,
-      rgba(200, 160, 60, 0.035) 25%,
-      transparent 25%,
-      transparent 50%,
-      rgba(200, 160, 60, 0.035) 50%,
-      rgba(200, 160, 60, 0.035) 75%,
-      transparent 75%,
-      transparent
-    );
-  background-size: 14px 14px, 42px 42px;
-}
+/* =========================
+   LIGHTING SYSTEM
+========================= */
 
 .stage-light-gold {
   background: linear-gradient(
     180deg,
-    rgba(200, 160, 60, 0.24),
-    rgba(200, 160, 60, 0)
+    rgba(253, 183, 21, 0.34),
+    rgba(253, 183, 21, 0)
   );
-  filter: blur(28px);
+  filter: blur(30px);
 }
 
 .stage-light-red {
   background: linear-gradient(
     180deg,
-    rgba(200, 40, 30, 0.22),
-    rgba(200, 40, 30, 0)
+    rgba(236, 58, 36, 0.28),
+    rgba(236, 58, 36, 0)
   );
-  filter: blur(28px);
+  filter: blur(30px);
 }
+
+.stage-light-cyan {
+  background: linear-gradient(
+    180deg,
+    rgba(56, 187, 202, 0.28),
+    rgba(56, 187, 202, 0)
+  );
+  filter: blur(30px);
+}
+
+.soft-river-glow {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 220px;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(56, 187, 202, 0.18), transparent 30%),
+    radial-gradient(circle at 70% 50%, rgba(253, 183, 21, 0.16), transparent 28%),
+    radial-gradient(circle at 90% 50%, rgba(236, 58, 36, 0.12), transparent 20%);
+  pointer-events: none;
+}
+
+/* =========================
+   LOGO / DRAGON / GEOMETRIC MARK
+========================= */
 
 .dragon-scale {
   background-image:
     radial-gradient(
       circle at 50% 100%,
-      rgba(200, 160, 60, 0.18) 0 20%,
+      rgba(253, 183, 21, 0.18) 0 20%,
       transparent 21%
     ),
     radial-gradient(
       circle at 0% 100%,
-      rgba(200, 40, 30, 0.12) 0 18%,
+      rgba(56, 187, 202, 0.13) 0 18%,
       transparent 19%
     ),
     radial-gradient(
       circle at 100% 100%,
-      rgba(200, 40, 30, 0.12) 0 18%,
+      rgba(236, 58, 36, 0.12) 0 18%,
       transparent 19%
     );
   background-size: 42px 42px;
-  opacity: 0.11;
+  opacity: 0.1;
 }
 
 .dragon-mark {
-  background: linear-gradient(135deg, var(--dragon-red), var(--fire-orange));
+  background: linear-gradient(135deg, var(--kv-red), var(--kv-orange));
   clip-path: polygon(
     12% 0%,
     100% 0%,
@@ -171,19 +264,48 @@ body {
   );
 }
 
+.kv-symbol {
+  position: relative;
+  width: 44px;
+  height: 44px;
+}
+
+.kv-symbol::before,
+.kv-symbol::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.kv-symbol::before {
+  background:
+    linear-gradient(var(--kv-yellow), var(--kv-yellow)) left top / 48% 48% no-repeat,
+    linear-gradient(var(--kv-cyan), var(--kv-cyan)) right top / 48% 48% no-repeat,
+    linear-gradient(var(--kv-orange), var(--kv-orange)) left bottom / 48% 48% no-repeat,
+    linear-gradient(var(--kv-teal), var(--kv-teal)) right bottom / 48% 48% no-repeat;
+  border-radius: 0 0 40% 0;
+}
+
+.kv-symbol::after {
+  background: var(--kv-blue);
+  clip-path: circle(36% at 50% 50%);
+  opacity: 0.95;
+}
+
 .gold-line {
   height: 1px;
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(200, 160, 60, 0.9),
+    rgba(253, 183, 21, 0.95),
+    rgba(56, 187, 202, 0.7),
     transparent
   );
 }
 
-.text-balance {
-  text-wrap: balance;
-}
+/* =========================
+   RIVER SECTION DIVIDER
+========================= */
 
 .river-transition {
   position: absolute;
@@ -202,32 +324,32 @@ body {
 }
 
 .river-fill-main {
-  fill: #060e16;
+  fill: #041020;
 }
 
 .river-fill-reflection {
   fill: url(#riverReflectionGradient);
-  opacity: 0.72;
+  opacity: 0.76;
 }
 
 .river-stroke-main {
   fill: none;
-  stroke: rgba(29, 100, 120, 0.55);
+  stroke: rgba(56, 187, 202, 0.62);
   stroke-width: 2;
 }
 
 .river-stroke-soft {
   fill: none;
-  stroke: rgba(200, 160, 60, 0.18);
+  stroke: rgba(253, 183, 21, 0.28);
   stroke-width: 1.5;
 }
 
 .river-glow {
-  filter: drop-shadow(0 0 18px rgba(29, 100, 120, 0.18));
+  filter: drop-shadow(0 0 18px rgba(56, 187, 202, 0.2));
 }
 
 /* =========================
-   REVEAL / EXPERIENCE UTILS
+   SECTION SYSTEM
 ========================= */
 
 .section-shell {
@@ -242,20 +364,54 @@ body {
   margin: 0 auto;
 }
 
-.soft-river-glow {
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 220px;
+.section-card {
+  border: 1px solid rgba(56, 187, 202, 0.18);
   background:
-    radial-gradient(circle at 20% 50%, rgba(29, 100, 120, 0.18), transparent 30%),
-    radial-gradient(circle at 70% 50%, rgba(200, 160, 60, 0.12), transparent 28%),
-    radial-gradient(circle at 90% 50%, rgba(200, 40, 30, 0.10), transparent 20%);
-  pointer-events: none;
+    linear-gradient(135deg, rgba(38, 84, 164, 0.2), rgba(4, 16, 32, 0.72)),
+    rgba(4, 16, 32, 0.64);
+  backdrop-filter: blur(8px);
 }
+
+.section-title-line {
+  height: 2px;
+  width: 160px;
+  background: linear-gradient(
+    90deg,
+    rgba(38, 84, 164, 0.95),
+    rgba(253, 183, 21, 0.95),
+    rgba(56, 187, 202, 0.75),
+    transparent
+  );
+}
+
+.hover-rise {
+  transition:
+    transform 400ms ease,
+    border-color 400ms ease,
+    background 400ms ease,
+    box-shadow 400ms ease;
+}
+
+.hover-rise:hover {
+  transform: translateY(-6px);
+  border-color: rgba(253, 183, 21, 0.44);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.22);
+}
+
+.image-dark-overlay {
+  background:
+    linear-gradient(180deg, rgba(4, 16, 32, 0.06), rgba(4, 16, 32, 0.9)),
+    linear-gradient(90deg, rgba(38, 84, 164, 0.24), rgba(0, 146, 183, 0.1));
+}
+
+/* =========================
+   FLOATING PARTICLES
+========================= */
 
 .lantern-particles {
   position: absolute;
   inset: 0;
+  z-index: 5;
   pointer-events: none;
   overflow: hidden;
 }
@@ -263,110 +419,92 @@ body {
 .lantern-particles span {
   position: absolute;
   bottom: -40px;
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 999px;
-  background: rgba(245, 240, 232, 0.65);
-  box-shadow: 0 0 16px rgba(200, 160, 60, 0.35);
+  background: rgba(253, 183, 21, 0.76);
+  box-shadow:
+    0 0 16px rgba(253, 183, 21, 0.44),
+    0 0 30px rgba(56, 187, 202, 0.16);
   animation: floatLantern linear infinite;
-  opacity: 0.5;
+  opacity: 0.52;
 }
 
-.lantern-particles span:nth-child(1) { left: 8%; animation-duration: 14s; animation-delay: 0s; }
-.lantern-particles span:nth-child(2) { left: 18%; animation-duration: 18s; animation-delay: 2s; }
-.lantern-particles span:nth-child(3) { left: 30%; animation-duration: 16s; animation-delay: 4s; }
-.lantern-particles span:nth-child(4) { left: 44%; animation-duration: 20s; animation-delay: 1s; }
-.lantern-particles span:nth-child(5) { left: 58%; animation-duration: 15s; animation-delay: 3s; }
-.lantern-particles span:nth-child(6) { left: 72%; animation-duration: 19s; animation-delay: 5s; }
-.lantern-particles span:nth-child(7) { left: 84%; animation-duration: 17s; animation-delay: 2s; }
-.lantern-particles span:nth-child(8) { left: 92%; animation-duration: 21s; animation-delay: 6s; }
+.lantern-particles span:nth-child(1) {
+  left: 8%;
+  animation-duration: 14s;
+  animation-delay: 0s;
+}
+
+.lantern-particles span:nth-child(2) {
+  left: 18%;
+  animation-duration: 18s;
+  animation-delay: 2s;
+  background: rgba(56, 187, 202, 0.72);
+}
+
+.lantern-particles span:nth-child(3) {
+  left: 30%;
+  animation-duration: 16s;
+  animation-delay: 4s;
+}
+
+.lantern-particles span:nth-child(4) {
+  left: 44%;
+  animation-duration: 20s;
+  animation-delay: 1s;
+  background: rgba(247, 149, 30, 0.72);
+}
+
+.lantern-particles span:nth-child(5) {
+  left: 58%;
+  animation-duration: 15s;
+  animation-delay: 3s;
+}
+
+.lantern-particles span:nth-child(6) {
+  left: 72%;
+  animation-duration: 19s;
+  animation-delay: 5s;
+  background: rgba(56, 187, 202, 0.72);
+}
+
+.lantern-particles span:nth-child(7) {
+  left: 84%;
+  animation-duration: 17s;
+  animation-delay: 2s;
+  background: rgba(236, 58, 36, 0.68);
+}
+
+.lantern-particles span:nth-child(8) {
+  left: 92%;
+  animation-duration: 21s;
+  animation-delay: 6s;
+}
 
 @keyframes floatLantern {
   0% {
     transform: translateY(0px) scale(0.9);
     opacity: 0;
   }
+
   10% {
     opacity: 0.55;
   }
+
   70% {
-    opacity: 0.4;
+    opacity: 0.38;
   }
+
   100% {
-    transform: translateY(-110vh) scale(1.15);
+    transform: translateY(-110vh) scale(1.16);
     opacity: 0;
   }
 }
 
-.river-transition {
-  position: absolute;
-  left: 0;
-  bottom: -1px;
-  width: 100%;
-  line-height: 0;
-  z-index: 30;
-  pointer-events: none;
-}
-
-.river-transition svg {
-  display: block;
-  width: 100%;
-  height: 220px;
-}
-
-.river-fill-main {
-  fill: #060e16;
-}
-
-.river-fill-reflection {
-  fill: url(#riverReflectionGradient);
-  opacity: 0.72;
-}
-
-.river-stroke-main {
-  fill: none;
-  stroke: rgba(29, 100, 120, 0.55);
-  stroke-width: 2;
-}
-
-.river-stroke-soft {
-  fill: none;
-  stroke: rgba(200, 160, 60, 0.18);
-  stroke-width: 1.5;
-}
-
-.river-glow {
-  filter: drop-shadow(0 0 18px rgba(29, 100, 120, 0.18));
-}
-
-.section-card {
-  border: 1px solid rgba(200, 160, 60, 0.14);
-  background: rgba(6, 14, 22, 0.62);
-  backdrop-filter: blur(8px);
-}
-
-.section-title-line {
-  height: 1px;
-  width: 160px;
-  background: linear-gradient(90deg, rgba(29,100,120,0.9), rgba(200,160,60,0.85), transparent);
-}
-
-.hover-rise {
-  transition: transform 400ms ease, border-color 400ms ease, background 400ms ease, box-shadow 400ms ease;
-}
-
-.hover-rise:hover {
-  transform: translateY(-6px);
-  border-color: rgba(200, 160, 60, 0.34);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
-}
-
-.image-dark-overlay {
-  background: linear-gradient(180deg, rgba(6,14,22,0.10), rgba(3,7,13,0.88));
-}
-
 /* =========================
    FESTIVAL ORNAMENT SYSTEM
+   Dragon boat + Tangerang texture
 ========================= */
 
 .dragon-scale-overlay {
@@ -375,9 +513,9 @@ body {
   pointer-events: none;
   opacity: 0.08;
   background-image:
-    radial-gradient(circle at 50% 100%, rgba(200, 160, 60, 0.22) 0 22%, transparent 23%),
-    radial-gradient(circle at 0% 100%, rgba(200, 40, 30, 0.16) 0 18%, transparent 19%),
-    radial-gradient(circle at 100% 100%, rgba(29, 100, 120, 0.16) 0 18%, transparent 19%);
+    radial-gradient(circle at 50% 100%, rgba(253, 183, 21, 0.24) 0 22%, transparent 23%),
+    radial-gradient(circle at 0% 100%, rgba(56, 187, 202, 0.18) 0 18%, transparent 19%),
+    radial-gradient(circle at 100% 100%, rgba(236, 58, 36, 0.16) 0 18%, transparent 19%);
   background-size: 52px 52px;
   background-position: 0 0, 0 0, 26px 0;
 }
@@ -392,10 +530,10 @@ body {
 
 .dragon-head-corner {
   position: absolute;
-  width: 180px;
-  height: 180px;
+  width: 190px;
+  height: 190px;
   pointer-events: none;
-  opacity: 0.08;
+  opacity: 0.075;
   filter: blur(0.2px);
 }
 
@@ -405,9 +543,10 @@ body {
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(200, 160, 60, 0.55),
-    rgba(200, 40, 30, 0.32),
-    rgba(29, 100, 120, 0.24)
+    rgba(253, 183, 21, 0.62),
+    rgba(247, 149, 30, 0.42),
+    rgba(236, 58, 36, 0.36),
+    rgba(56, 187, 202, 0.3)
   );
   clip-path: polygon(
     10% 20%,
@@ -443,7 +582,7 @@ body {
   top: 50%;
   right: 0;
   transform: translateY(-50%) rotate(18deg);
-  opacity: 0.06;
+  opacity: 0.055;
 }
 
 .tangerang-batik-overlay {
@@ -452,10 +591,10 @@ body {
   pointer-events: none;
   opacity: 0.06;
   background-image:
-    radial-gradient(circle at 25% 25%, rgba(200, 160, 60, 0.18) 1px, transparent 1.2px),
-    radial-gradient(circle at 75% 75%, rgba(245, 240, 232, 0.12) 1px, transparent 1.2px),
-    linear-gradient(45deg, rgba(200, 160, 60, 0.06) 25%, transparent 25%, transparent 50%, rgba(200, 160, 60, 0.06) 50%, rgba(200, 160, 60, 0.06) 75%, transparent 75%, transparent),
-    linear-gradient(-45deg, rgba(29, 100, 120, 0.05) 25%, transparent 25%, transparent 50%, rgba(29, 100, 120, 0.05) 50%, rgba(29, 100, 120, 0.05) 75%, transparent 75%, transparent);
+    radial-gradient(circle at 25% 25%, rgba(253, 183, 21, 0.2) 1px, transparent 1.2px),
+    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.12) 1px, transparent 1.2px),
+    linear-gradient(45deg, rgba(56, 187, 202, 0.07) 25%, transparent 25%, transparent 50%, rgba(56, 187, 202, 0.07) 50%, rgba(56, 187, 202, 0.07) 75%, transparent 75%, transparent),
+    linear-gradient(-45deg, rgba(253, 183, 21, 0.06) 25%, transparent 25%, transparent 50%, rgba(253, 183, 21, 0.06) 50%, rgba(253, 183, 21, 0.06) 75%, transparent 75%, transparent);
   background-size: 18px 18px, 18px 18px, 56px 56px, 56px 56px;
   mix-blend-mode: soft-light;
 }
@@ -468,15 +607,15 @@ body {
   background-image:
     repeating-linear-gradient(
       90deg,
-      rgba(200, 160, 60, 0.08) 0px,
-      rgba(200, 160, 60, 0.08) 1px,
+      rgba(253, 183, 21, 0.09) 0px,
+      rgba(253, 183, 21, 0.09) 1px,
       transparent 1px,
       transparent 12px
     ),
     repeating-linear-gradient(
       0deg,
-      rgba(29, 100, 120, 0.07) 0px,
-      rgba(29, 100, 120, 0.07) 1px,
+      rgba(56, 187, 202, 0.08) 0px,
+      rgba(56, 187, 202, 0.08) 1px,
       transparent 1px,
       transparent 12px
     );
@@ -496,4 +635,22 @@ body {
 .ornament-fade-center {
   mask-image: radial-gradient(circle at center, black 0%, black 55%, transparent 100%);
   -webkit-mask-image: radial-gradient(circle at center, black 0%, black 55%, transparent 100%);
+}
+
+/* =========================
+   ACCESSIBILITY
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
