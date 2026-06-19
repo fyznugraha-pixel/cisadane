@@ -19,44 +19,44 @@ export type AccessInfo = {
 
 export const eventHighlights: EventHighlight[] = [
   {
-    title: "Perahu Naga",
+    title: "Dragon Boat Racing",
     description:
-      "Ikon seremonial Festival Cisadane yang menghidupkan tradisi sungai dan energi kompetisi rakyat.",
+      "The ceremonial icon of Festival Cisadane, reviving ancient river traditions and the unyielding spirit of communal competition.",
     image: "/images/highlights/dragon-boat.jpg",
     accent: "red",
   },
   {
-    title: "Panggung Terapung",
+    title: "Floating Night Stage",
     description:
-      "Pertunjukan malam dengan cahaya panggung, musik, tari, dan refleksi lampu di permukaan sungai.",
+      "A mesmerising evening spectacle featuring theatrical lighting, live music, and traditional dance reflected upon the river's surface.",
     image: "/images/highlights/floating-stage.jpg",
     accent: "teal",
   },
   {
     title: "Projection Mapping",
     description:
-      "Atraksi visual yang mengubah ruang festival menjadi pengalaman cahaya dan cerita.",
+      "A visual masterpiece that transforms the festival grounds into an immersive journey of light, architecture, and storytelling.",
     image: "/images/highlights/projection-mapping.jpg",
     accent: "gold",
   },
   {
-    title: "Tari Tradisional",
+    title: "Traditional Dance",
     description:
-      "Pertemuan budaya Tionghoa, Betawi, Sunda, dan identitas multikultural Kota Tangerang.",
+      "A graceful celebration of the harmonious encounter between Chinese, Betawi, and Sundanese cultures, showcasing the true multicultural identity of Tangerang.",
     image: "/images/highlights/traditional-dance.jpg",
     accent: "orange",
   },
   {
-    title: "Konser Malam",
+    title: "Evening Concert",
     description:
-      "Musik, crowd, dan atmosfer festival rakyat yang hidup di tepian Cisadane.",
+      "Immerse yourself in the rhythm, the crowd, and the vibrant atmosphere of a folk festival roaring to life by the Cisadane banks.",
     image: "/images/highlights/night-concert.jpg",
     accent: "gold",
   },
   {
-    title: "Kembang Api",
+    title: "Grand Fireworks",
     description:
-      "Momen puncak yang memperkuat rasa seremoni dan kemeriahan festival.",
+      "The culminating moment of celebration, painting the night sky to honour our shared heritage and festivities.",
     image: "/images/highlights/fireworks.jpg",
     accent: "red",
   },
@@ -65,26 +65,26 @@ export const eventHighlights: EventHighlight[] = [
 export const registrationCategories: RegistrationCategory[] = [
   {
     id: "visitor",
-    title: "Pengunjung Umum",
-    description: "Untuk masyarakat yang ingin hadir menikmati festival.",
+    title: "General Visitor",
+    description: "For those wishing to attend and immerse themselves in the festival experience.",
     image: "/images/register/visitor.jpg",
   },
   {
     id: "tenant",
-    title: "UMKM / Booth Tenant",
-    description: "Untuk pelaku usaha, kuliner, fesyen, kriya, dan produk lokal.",
+    title: "Merchant & Artisan Booth",
+    description: "For local enterprises, culinary vendors, fashion creators, and artisans.",
     image: "/images/register/tenant.jpg",
   },
   {
     id: "dragon_boat",
-    title: "Peserta Perahu Naga",
-    description: "Untuk komunitas atau tim yang mengikuti agenda perahu naga.",
+    title: "Dragon Boat Team",
+    description: "For communities and athletic teams participating in the dragon boat race.",
     image: "/images/register/dragon-boat-team.jpg",
   },
   {
     id: "collaborator",
-    title: "Kolaborator",
-    description: "Untuk sponsor, media, komunitas, institusi, dan partner festival.",
+    title: "Festival Collaborator",
+    description: "For sponsors, media partners, institutions, and community collaborators.",
     image: "/images/register/collaborator.jpg",
   },
 ];
@@ -92,19 +92,19 @@ export const registrationCategories: RegistrationCategory[] = [
 export const accessInfo: AccessInfo[] = [
   {
     title: "Trans Tangerang",
-    description: "Akses transportasi kota menuju kawasan festival.",
+    description: "The primary city transport access to the festival grounds.",
   },
   {
-    title: "Bandara Soekarno-Hatta",
-    description: "Gerbang utama wisatawan luar kota dan mancanegara.",
+    title: "Soekarno-Hatta Airport",
+    description: "The main gateway for out-of-town and international visitors.",
   },
   {
-    title: "Ojek & Taksi Online",
-    description: "Alternatif drop-off menuju area tepian Sungai Cisadane.",
+    title: "Ride-Hailing & Taxis",
+    description: "Convenient alternative drop-off points directly to the riverbanks.",
   },
   {
-    title: "Panduan Parkir",
-    description: "Informasi titik parkir akan diumumkan setelah venue final.",
+    title: "Parking Guidance",
+    description: "Parking points will be announced closer to the event date.",
   },
 ];
 

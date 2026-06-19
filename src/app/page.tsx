@@ -23,24 +23,24 @@ const accentMap: Record<EventHighlight["accent"], string> = {
 
 const experienceReasons = [
   {
-    title: "Ritual Sungai yang Ikonik",
+    title: "Iconic River Ritual",
     description:
-      "Perahu naga, refleksi cahaya air, dan panggung malam menghadirkan pengalaman yang tidak terasa seperti festival biasa.",
+      "Dragon boats, water reflections, and a floating night stage create a sensory experience unlike any ordinary festival.",
   },
   {
-    title: "Budaya Multikultural Tangerang",
+    title: "Multicultural Heart",
     description:
-      "Festival ini mempertemukan unsur Tionghoa, Betawi, dan Sunda dalam satu ruang publik yang hangat dan hidup.",
+      "Witness the beautiful convergence of Chinese, Betawi, and Sundanese traditions in one warm, vibrant public space.",
   },
   {
-    title: "Atraksi Malam yang Sinematik",
+    title: "Cinematic Attractions",
     description:
-      "Projection mapping, musik, pertunjukan tari, dan cahaya panggung menciptakan momen visual yang memorable.",
+      "From projection mapping to traditional choreography and stage lights, every moment is designed to be unforgettable.",
   },
   {
-    title: "Ruang Untuk Semua",
+    title: "A Space for Everyone",
     description:
-      "Mulai dari pengunjung umum, keluarga, UMKM, komunitas, hingga kolaborator. Semua punya tempat di festival ini.",
+      "Whether you are a cultural enthusiast, a family, a local artisan, or a collaborator, you have a place here.",
   },
 ];
 
@@ -63,18 +63,19 @@ export default function Home() {
         <div className="section-inner grid gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div>
             <SectionHeading
-              eyebrow="Warisan Sungai"
-              title={`Festival Rakyat\nBertaraf Nasional`}
+              eyebrow="River Heritage"
+              title={`A National Celebration\nof the People`}
             />
           </div>
 
           <Reveal delay={0.16}>
             <div className="border-l border-[#1D6478]/55 pl-8">
               <p className="text-xl leading-10 text-[#F5F0E8]/78">
-                Festival Cisadane adalah perayaan budaya sungai yang hidup di
-                tepian Kota Tangerang. Identitasnya datang dari aliran air,
-                perahu naga, panggung malam, kuliner rakyat, dan pertemuan
-                budaya Tionghoa, Betawi, serta Sunda.
+                Festival Cisadane is a vibrant celebration of river heritage brought
+                to life along the banks of Tangerang City. Its identity flows directly
+                from the water, bringing together the adrenaline of dragon boat racing,
+                illuminating night stages, authentic folk culinary traditions, and the
+                harmonious convergence of Chinese, Betawi, and Sundanese cultures.
               </p>
 
               <div className="mt-8 inline-flex border border-[#C8A03C]/40 bg-[#C8A03C]/10 px-5 py-3 text-sm font-bold uppercase tracking-[0.2em] text-[#C8A03C]">
@@ -98,9 +99,9 @@ export default function Home() {
 
         <div className="section-inner">
           <SectionHeading
-            eyebrow="Atraksi & Pertunjukan"
-            title={`Cahaya Festival\nDi Atas Air`}
-            description="Section ini harus jadi pemicu scroll kuat. Begitu user masuk sini, mereka langsung lihat alasan kenapa Festival Cisadane layak dikunjungi."
+            eyebrow="Attractions & Performances"
+            title={`Festival Lights\nUpon the Water`}
+            description="Discover the spectacular events that make Festival Cisadane an unforgettable destination for cultural enthusiasts and families alike."
           />
 
           <div className="mt-14 grid gap-px overflow-hidden border border-[#C8A03C]/20 bg-[#C8A03C]/20 md:grid-cols-2 lg:grid-cols-3">
@@ -149,13 +150,12 @@ export default function Home() {
 
         <div className="section-inner">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <SectionHeading eyebrow="Talent Preview" title={`Lineup\nAkan Hadir`} />
+            <SectionHeading eyebrow="Talent Preview" title={`Upcoming\nPerformances`} />
 
             <Reveal delay={0.16}>
               <p className="max-w-xl text-lg leading-8 text-[#F5F0E8]/60">
-                Section ini masih preview. Mau nambahin efek visual misteri untuk
-                talent yang belum dikonfirmasi, jangan tampilin sebagai jadwal
-                resmi.
+                Prepare for an extraordinary lineup of national and local artists.
+                Stay tuned as we reveal the performers who will light up the floating stage this year.
               </p>
             </Reveal>
           </div>
@@ -199,8 +199,8 @@ export default function Home() {
         <div className="section-inner">
           <SectionHeading
             eyebrow="Why Visit"
-            title={`Kenapa Orang Harus\nDatang ke Sini?`}
-            description="Section ini sangat penting untuk nurunin bounce rate, karena user butuh alasan emosional dan rasional untuk lanjut scroll atau klik daftar."
+            title={`Experience the Magic\nof Cisadane`}
+            description="Join thousands of visitors in witnessing a cultural phenomenon where ancient heritage meets spectacular modern celebrations."
           />
 
           <div className="mt-14 grid gap-4 md:grid-cols-2">
@@ -237,9 +237,9 @@ export default function Home() {
 
         <div className="section-inner">
           <SectionHeading
-            eyebrow="Form Registrasi"
-            title={`Pilih Cara\nBergabung`}
-            description="Kategori registrasi dibuat visual agar user cepat ngerti jalur masuknya. Ini lebih engaging dibanding dropdown biasa."
+            eyebrow="Registration Portal"
+            title={`Choose Your Path\nto Join`}
+            description="Discover how you can be a part of Festival Cisadane 2026. Select your category to begin the registration process."
           />
 
           <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -269,9 +269,7 @@ export default function Home() {
 
           <Reveal delay={0.18}>
             <div className="mt-8 border border-[#C8A03C]/25 bg-[#060E16]/45 p-6 text-[#F5F0E8]/58">
-              Status: registrasi belum dibuka. Setelah form final siap, section
-              ini dikembangkan menjadi multi-step: kategori → data personal →
-              kebutuhan → konfirmasi.
+              Status: Registration is currently closed. Once opened, this portal will guide you through a seamless multi-step process including category selection, personal details, requirements, and confirmation.
             </div>
           </Reveal>
         </div>
@@ -288,29 +286,26 @@ export default function Home() {
         <SectionOrnaments tenun dragonBottomLeft />
 
         <div className="section-inner grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-          <Reveal>
-            <div className="min-h-[420px] border border-[#1D6478]/45 bg-[#060E16]">
-              <div className="flex h-full min-h-[420px] items-center justify-center p-8 text-center">
-                <div>
+          <Reveal className="h-full">
+            <div className="flex h-full min-h-[420px] flex-col items-center justify-center border border-[#1D6478]/45 bg-[#060E16] p-8 text-center">
+              <div>
                   <p className="text-xs font-black uppercase tracking-[0.3em] text-[#1D6478]">
                     Dark Map Placeholder
                   </p>
 
                   <h3 className="font-display mt-4 text-4xl font-black uppercase text-[#F5F0E8]">
-                    Tepian Sungai Cisadane
+                    The Banks of the Cisadane River
                   </h3>
 
                   <p className="mt-4 max-w-md text-[#F5F0E8]/55">
-                    Embedded map akan masuk setelah titik venue dan akses resmi
-                    sudah final.
+                    The official embedded map will be available once the venue layout and access points are finalised.
                   </p>
                 </div>
               </div>
-            </div>
           </Reveal>
 
           <div>
-            <SectionHeading eyebrow="Map & Akses" title={`Menuju\nCisadane`} />
+            <SectionHeading eyebrow="Map & Accessibility" title={`Journey to\nCisadane`} />
 
             <div className="mt-10 grid gap-4">
               {accessInfo.map((item, index) => (

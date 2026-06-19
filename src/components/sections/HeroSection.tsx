@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { ArrowRight, CalendarDays, MapPin, Sparkles } from "lucide-react";
 import { siteConfig } from "@/data/site";
 
@@ -88,17 +89,7 @@ export default function HeroSection() {
       <div className="relative z-10 mx-auto grid min-h-screen max-w-7xl items-center gap-12 px-5 pb-40 pt-32 md:pt-36 lg:grid-cols-[0.95fr_0.85fr] lg:pt-32">
         {/* LEFT CONTENT */}
         <div className="max-w-4xl">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="bg-[#EC3A24] px-4 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-white shadow-[6px_6px_0_rgba(253,183,21,0.85)] md:text-xs">
-              {siteConfig.badge}
-            </span>
-
-            <span className="border border-[#38BBCA]/40 bg-[#2654A4]/35 px-4 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-[#FDB715] md:text-xs">
-              {siteConfig.recognition}
-            </span>
-          </div>
-
-          <p className="mt-9 text-xs font-black uppercase tracking-[0.42em] text-white/68 md:text-sm">
+          <p className="text-xs font-black uppercase tracking-[0.42em] text-white/68 md:text-sm">
             {siteConfig.eyebrow}
           </p>
 
@@ -204,7 +195,7 @@ export default function HeroSection() {
 
                 <div className="border border-white/15 bg-[#041020]/45 px-4 py-3 backdrop-blur-sm">
                   <p className="text-[10px] font-black uppercase tracking-[0.26em] text-[#FDB715]">
-                    Key Visual
+                    Visual Identity
                   </p>
                   <p className="mt-1 text-sm font-bold text-white/76">
                     Festival Cisadane 2026
@@ -247,29 +238,26 @@ export default function HeroSection() {
                 </h2>
 
                 <p className="mt-5 max-w-md text-sm font-medium leading-7 text-white/68">
-                  Perahu naga, panggung malam, cahaya air, kuliner rakyat, dan
-                  energi multikultural dalam satu festival sungai.
+                  Experience the adrenaline of dragon boat racing, captivating
+                  night performances, water reflections, folk culinary delights,
+                  and multicultural energy united in one grand river festival.
                 </p>
 
-                <div className="mt-6 grid grid-cols-3 gap-px bg-[#38BBCA]/30">
-                  <div className="bg-[#041020]/88 p-4">
-                    <p className="text-3xl font-black text-[#FDB715]">5</p>
-                    <p className="mt-1 text-[10px] font-black uppercase tracking-[0.18em] text-white/45">
-                      Hari
-                    </p>
+                <div className="mt-6 flex items-center gap-4 border-l-4 border-[#FDB715] bg-[#041020]/88 p-4">
+                  <div className="relative h-20 w-20 shrink-0">
+                    <Image
+                      src="/logo/ken.png"
+                      alt="Karisma Event Nusantara"
+                      fill
+                      className="object-contain"
+                    />
                   </div>
-
-                  <div className="bg-[#041020]/88 p-4">
-                    <p className="text-3xl font-black text-[#FDB715]">125</p>
-                    <p className="mt-1 text-[10px] font-black uppercase tracking-[0.18em] text-white/45">
-                      KEN
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-[0.08em] text-[#FDB715]">
+                      {siteConfig.badge}
                     </p>
-                  </div>
-
-                  <div className="bg-[#041020]/88 p-4">
-                    <p className="text-3xl font-black text-[#FDB715]">2026</p>
-                    <p className="mt-1 text-[10px] font-black uppercase tracking-[0.18em] text-white/45">
-                      Event
+                    <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.12em] text-white/68">
+                      {siteConfig.recognition}
                     </p>
                   </div>
                 </div>
@@ -279,10 +267,10 @@ export default function HeroSection() {
 
           <div className="absolute -bottom-8 left-10 border border-[#38BBCA]/45 bg-[#0092B7]/75 px-5 py-4 backdrop-blur-sm">
             <p className="text-[10px] font-black uppercase tracking-[0.24em] text-[#FDB715]">
-              Atmosfer
+              Atmosphere
             </p>
             <p className="mt-1 text-sm font-bold text-white/78">
-              Cerah, geometris, sungai, budaya, dan festival rakyat.
+              Radiant, geometric, river currents, living culture, and folk festivities.
             </p>
           </div>
         </div>

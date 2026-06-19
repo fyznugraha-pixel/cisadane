@@ -23,8 +23,8 @@ export default function StickyRegisterBar() {
             </p>
 
             <p className="mt-2 max-w-2xl text-sm leading-6 text-[#F5F0E8]/70">
-              Siap bergabung sebagai pengunjung, UMKM, peserta perahu naga,
-              atau kolaborator?
+              Ready to join as a visitor, merchant, dragon boat team, or
+              collaborator?
             </p>
           </div>
 
@@ -33,21 +33,21 @@ export default function StickyRegisterBar() {
               href="#highlights"
               className="border border-[#1D6478]/65 px-4 py-3 text-center text-[11px] font-black uppercase tracking-[0.16em] text-[#78C5D6] transition hover:bg-[#1D6478] hover:text-[#F5F0E8] md:min-w-[150px]"
             >
-              Lihat Atraksi
+              View Highlights
             </a>
 
             <a
               href="#register"
               className="bg-[#C8A03C] px-4 py-3 text-center text-[11px] font-black uppercase tracking-[0.16em] text-[#060E16] transition hover:bg-[#F5F0E8] md:min-w-[170px]"
             >
-              Daftar Sekarang
+              Register Now
             </a>
           </div>
 
           <button
             type="button"
             onClick={() => setIsVisible(false)}
-            aria-label="Tutup sticky register bar"
+            aria-label="Close sticky register bar"
             className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center border border-[#F5F0E8]/10 bg-[#060E16]/70 text-[#F5F0E8]/50 transition hover:border-[#C8281E]/60 hover:bg-[#C8281E]/15 hover:text-[#F5F0E8] md:static md:h-9 md:w-9"
           >
             <X size={15} />

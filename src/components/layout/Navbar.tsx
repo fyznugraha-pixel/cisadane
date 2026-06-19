@@ -5,11 +5,11 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const navItems = [
-  { label: "Cerita", href: "#about" },
-  { label: "Atraksi", href: "#highlights" },
-  { label: "Lineup", href: "#lineup" },
-  { label: "Registrasi", href: "#register" },
-  { label: "Lokasi", href: "#location" },
+  { label: "The Story", href: "#about" },
+  { label: "Highlights", href: "#highlights" },
+  { label: "Performers", href: "#lineup" },
+  { label: "Registration", href: "#register" },
+  { label: "Getting Here", href: "#location" },
 ];
 
 export default function Navbar() {
@@ -29,11 +29,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed left-0 top-0 z-50 w-full transition duration-500 ${
-        scrolled || isOpen
+      className={`fixed left-0 top-0 z-50 w-full transition duration-500 ${scrolled || isOpen
           ? "border-b border-[#38BBCA]/20 bg-[#041020]/92 shadow-[0_18px_60px_rgba(0,0,0,0.25)] backdrop-blur-xl"
           : "bg-transparent"
-      }`}
+        }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:py-5">
         <a
@@ -71,7 +70,7 @@ export default function Navbar() {
             href="#register"
             className="bg-[#FDB715] px-5 py-3 text-xs font-black uppercase tracking-[0.18em] text-[#041020] shadow-[5px_5px_0_rgba(56,187,202,0.75)] transition hover:-translate-y-0.5 hover:bg-white"
           >
-            Daftar
+            Register Now
           </a>
         </div>
 
@@ -86,9 +85,8 @@ export default function Navbar() {
       </nav>
 
       <div
-        className={`overflow-hidden border-t border-[#38BBCA]/10 bg-[#041020]/96 backdrop-blur-xl transition-all duration-500 lg:hidden ${
-          isOpen ? "max-h-[440px] opacity-100" : "max-h-0 opacity-0"
-        }`}
+        className={`overflow-hidden border-t border-[#38BBCA]/10 bg-[#041020]/96 backdrop-blur-xl transition-all duration-500 lg:hidden ${isOpen ? "max-h-[440px] opacity-100" : "max-h-0 opacity-0"
+          }`}
       >
         <div className="relative px-5 py-5">
           <div className="pointer-events-none absolute inset-0">
@@ -114,7 +112,7 @@ export default function Navbar() {
               onClick={closeMenu}
               className="mt-2 bg-[#FDB715] px-4 py-4 text-center text-sm font-black uppercase tracking-[0.18em] text-[#041020] shadow-[5px_5px_0_rgba(56,187,202,0.75)] transition hover:bg-white"
             >
-              Daftar Sekarang
+              Register Now
             </a>
           </div>
         </div>
