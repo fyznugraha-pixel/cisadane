@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 export const runtime = 'edge';
 
 export async function GET(request: Request) {
-  const videoUrl = "https://tu3nqofhiakzxz6q.private.blob.vercel-storage.com/CISADANE%202026-LANDSCAPE-1920%20X%201080-mp4_.mp4";
+  const videoUrl = "https://hdatfdhcxpx7z8g5.public.blob.vercel-storage.com/CISADANE%202026-LANDSCAPE-1920%20X%201080-mp4_.mp4";
   const token = process.env.BLOB_READ_WRITE_TOKEN;
 
   if (!token) {

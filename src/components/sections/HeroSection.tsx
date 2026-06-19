@@ -75,7 +75,7 @@ export default function HeroSection({
 
       {/* Official KV atmosphere */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#FDFBF7] via-white/90 to-[#FDFBF7]/80" />
-      <div className="absolute inset-0 bg-white/30 backdrop-blur-[2px]" />
+      <div className="absolute inset-0 bg-white/40" />
       <div className="kv-geometric-overlay absolute inset-0" />
       <div className="kv-block-pattern absolute inset-0" />
       <div className="cultural-texture absolute inset-0 opacity-20" />
@@ -243,7 +243,7 @@ export default function HeroSection({
                 
                 <video
                   ref={videoRef}
-                  src="/api/video"
+                  src="https://hdatfdhcxpx7z8g5.public.blob.vercel-storage.com/CISADANE%202026-LANDSCAPE-1920%20X%201080-mp4_.mp4"
                   autoPlay
                   muted={isMuted}
                   loop
