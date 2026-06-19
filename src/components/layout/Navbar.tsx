@@ -37,12 +37,14 @@ export default function Navbar({
 
   return (
     <header
-      className={`fixed left-0 top-0 z-50 w-full transition duration-500 ${scrolled || isOpen
-          ? "border-b border-[#38BBCA]/20 bg-[#041020]/92 shadow-[0_18px_60px_rgba(0,0,0,0.25)] backdrop-blur-xl"
+      className={`fixed top-0 z-50 w-full transition-all duration-500 ${scrolled || isOpen
+          ? "border-b border-[#2654A4]/10 bg-white/95 shadow-md backdrop-blur-xl"
           : "bg-transparent"
         }`}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:py-5">
+      <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-[#2654A4] via-[#38BBCA] via-[#FDB715] to-[#EC3A24]" />
+
+      <nav className="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-4 md:px-8">
         <a
           href={`/${lang}`}
           onClick={closeMenu}
@@ -60,31 +62,36 @@ export default function Navbar({
           </div>
         </a>
 
-        <div className="hidden items-center gap-8 lg:flex">
+        {/* CENTER NAV LINKS */}
+        <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-6 xl:gap-10">
           {dict.items.map((item) => (
             <a
               key={item.href}
               href={`/${lang}${item.href}`}
-              className="group relative text-sm font-bold text-white/72 transition hover:text-[#FDB715]"
+              className="group relative px-2 py-4 text-[10px] font-black uppercase tracking-[0.2em] text-[#041020]/80 transition hover:text-[#2654A4] lg:text-[11px]"
             >
               <span>{item.label}</span>
-              <span className="absolute -bottom-2 left-0 h-[2px] w-0 bg-gradient-to-r from-[#FDB715] via-[#38BBCA] to-[#EC3A24] transition-all duration-300 group-hover:w-full" />
+              {item.href === "/" && (
+                <span className="absolute bottom-3 left-2 h-1 w-6 bg-[#EC3A24]" />
+              )}
+              <span className="absolute bottom-3 left-2 h-1 w-0 bg-[#2654A4] transition-all duration-300 group-hover:w-6" />
             </a>
           ))}
         </div>
 
-        <div className="hidden items-center gap-4 lg:flex">
-          <div className="flex items-center text-xs font-bold uppercase tracking-widest text-white/60">
+        {/* RIGHT ACTIONS */}
+        <div className="hidden items-center lg:flex">
+          <div className="mr-6 flex items-center text-[10px] font-bold uppercase tracking-widest text-[#041020]/60">
             <a
               href="/en"
-              className={`px-2 transition hover:text-white ${lang === "en" ? "text-white" : ""}`}
+              className={`px-2 transition hover:text-[#2654A4] ${lang === "en" ? "text-[#2654A4]" : ""}`}
             >
               EN
             </a>
             <span>|</span>
             <a
               href="/id"
-              className={`px-2 transition hover:text-white ${lang === "id" ? "text-white" : ""}`}
+              className={`px-2 transition hover:text-[#2654A4] ${lang === "id" ? "text-[#2654A4]" : ""}`}
             >
               ID
             </a>
@@ -92,24 +99,24 @@ export default function Navbar({
 
           <a
             href={`/${lang}#register`}
-            className="bg-[#FDB715] px-5 py-3 text-xs font-black uppercase tracking-[0.18em] text-[#041020] shadow-[5px_5px_0_rgba(56,187,202,0.75)] transition hover:-translate-y-0.5 hover:bg-white"
+            className="bg-[#FDB715] px-6 py-3.5 text-[11px] font-black uppercase tracking-[0.18em] text-[#041020] shadow-[5px_5px_0_rgba(38,84,164,0.3)] transition hover:-translate-y-0.5 hover:bg-[#2654A4] hover:text-white"
           >
             {dict.registerBtn}
           </a>
         </div>
 
         <div className="flex items-center gap-4 lg:hidden">
-          <div className="flex items-center text-[10px] font-bold uppercase tracking-widest text-white/60">
+          <div className="flex items-center text-[10px] font-bold uppercase tracking-widest text-[#041020]/60">
             <a
               href="/en"
-              className={`px-2 transition hover:text-white ${lang === "en" ? "text-white" : ""}`}
+              className={`px-2 transition hover:text-[#2654A4] ${lang === "en" ? "text-[#2654A4]" : ""}`}
             >
               EN
             </a>
             <span>|</span>
             <a
               href="/id"
-              className={`px-2 transition hover:text-white ${lang === "id" ? "text-white" : ""}`}
+              className={`px-2 transition hover:text-[#2654A4] ${lang === "id" ? "text-[#2654A4]" : ""}`}
             >
               ID
             </a>
@@ -118,7 +125,7 @@ export default function Navbar({
           <button
             type="button"
             onClick={() => setIsOpen((prev) => !prev)}
-            className="flex h-10 w-10 items-center justify-center border border-[#38BBCA]/35 bg-[#041020]/50 text-white transition hover:border-[#FDB715] hover:text-[#FDB715]"
+            className="flex h-10 w-10 items-center justify-center border border-[#2654A4]/20 bg-white/50 text-[#041020] transition hover:border-[#2654A4] hover:text-[#2654A4]"
             aria-label="Toggle navigation menu"
           >
             {isOpen ? <X size={20} /> : <Menu size={20} />}
@@ -127,25 +134,19 @@ export default function Navbar({
       </nav>
 
       <div
-        className={`overflow-hidden border-t border-[#38BBCA]/10 bg-[#041020]/96 backdrop-blur-xl transition-all duration-500 lg:hidden ${isOpen ? "max-h-[440px] opacity-100" : "max-h-0 opacity-0"
+        className={`overflow-hidden border-t border-[#2654A4]/10 bg-white/95 backdrop-blur-xl transition-all duration-500 lg:hidden ${isOpen ? "max-h-[440px] opacity-100" : "max-h-0 opacity-0"
           }`}
       >
         <div className="relative px-5 py-5">
-          <div className="pointer-events-none absolute inset-0">
-            <div className="kv-geometric-overlay opacity-80" />
-            <div className="tangerang-tenun-overlay ornament-fade-center" />
-          </div>
-
           <div className="relative grid gap-2">
             {dict.items.map((item) => (
               <a
                 key={item.href}
                 href={`/${lang}${item.href}`}
-                onClick={closeMenu}
-                className="flex items-center justify-between border border-white/10 bg-white/[0.03] px-4 py-4 text-sm font-black uppercase tracking-[0.16em] text-white/76 transition hover:border-[#FDB715]/50 hover:bg-[#FDB715] hover:text-[#041020]"
+                onClick={() => setIsOpen(false)}
+                className="group flex items-center justify-between border-b border-[#2654A4]/5 px-4 py-4 text-xs font-black uppercase tracking-[0.2em] text-[#041020]/80 transition hover:bg-[#2654A4]/5 hover:text-[#2654A4]"
               >
                 {item.label}
-                <span className="h-2 w-2 bg-[#38BBCA]" />
               </a>
             ))}
 

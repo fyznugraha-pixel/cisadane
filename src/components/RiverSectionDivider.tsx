@@ -1,29 +1,40 @@
 export default function RiverSectionDivider({
   flip = false,
   className = "",
+  theme = "dark",
 }: {
   flip?: boolean;
   className?: string;
+  theme?: "light" | "dark";
 }) {
+  const isLightWave = theme === "light";
+  const glowClass = isLightWave
+    ? "drop-shadow-[0_0_18px_rgba(253,251,247,0.4)]"
+    : "drop-shadow-[0_0_18px_rgba(56,187,202,0.2)]";
+
   return (
     <div
       className={`river-transition ${className} ${flip ? "rotate-180" : ""}`}
       aria-hidden="true"
     >
-      <svg viewBox="0 0 1440 220" preserveAspectRatio="none" className="river-glow">
-        <defs>
-          <linearGradient id="riverReflectionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="rgba(29,100,120,0.34)" />
-            <stop offset="35%" stopColor="rgba(245,240,232,0.10)" />
-            <stop offset="65%" stopColor="rgba(232,130,58,0.12)" />
-            <stop offset="100%" stopColor="rgba(29,100,120,0.28)" />
-          </linearGradient>
-        </defs>
+      <svg viewBox="0 0 1440 220" preserveAspectRatio="none" className={glowClass}>
+        {!isLightWave && (
+          <defs>
+            <linearGradient id="riverReflectionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="rgba(38,84,164,0.15)" />
+              <stop offset="35%" stopColor="rgba(56,187,202,0.15)" />
+              <stop offset="65%" stopColor="rgba(253,183,21,0.15)" />
+              <stop offset="100%" stopColor="rgba(236,58,36,0.15)" />
+            </linearGradient>
+          </defs>
+        )}
 
-        <path
-          className="river-fill-reflection"
-          d="M0,70 C120,108 240,146 360,140 C480,134 600,82 720,78 C840,74 960,124 1080,136 C1200,148 1320,126 1440,94 L1440,220 L0,220 Z"
-        />
+        {!isLightWave && (
+          <path
+            className="river-fill-reflection"
+            d="M0,70 C120,108 240,146 360,140 C480,134 600,82 720,78 C840,74 960,124 1080,136 C1200,148 1320,126 1440,94 L1440,220 L0,220 Z"
+          />
+        )}
 
         <path
           className="river-fill-main"

@@ -1,11 +1,14 @@
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import HeroSection from "@/components/sections/HeroSection";
+import EditorialGallery from "@/components/sections/EditorialGallery";
 import Reveal from "@/components/Reveal";
 import RiverSectionDivider from "@/components/RiverSectionDivider";
 import SectionHeading from "@/components/SectionHeading";
 import SectionOrnaments from "@/components/SectionOrnaments";
 import StickyRegisterBar from "@/components/StickyRegisterBar";
+import MapWrapper from "@/components/MapWrapper";
+import TactlinkSupportSection from "@/components/TactlinkSupportSection";
 import { getDictionary } from "@/i18n/dictionaries";
 
 const accentMap: Record<"red" | "gold" | "teal" | "orange", string> = {
@@ -21,19 +24,17 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
   const dict = getDictionary(lang);
 
   return (
-    <main className="bg-[#0D1B2A]">
-      <Navbar dict={dict.navbar} lang={lang} />
+    <main className="relative bg-[#FDFBF7] text-[#041020] min-h-screen">
+      
+      <div className="relative z-10">
+        <Navbar dict={dict.navbar} lang={lang} />
       <HeroSection dict={dict.site} heroExp={dict.heroExperience} lang={lang} />
 
       <section
         id="about"
-        className="section-shell relative -mt-24 px-5 pb-28 pt-40"
+        className="section-shell relative px-5 pb-36 pt-28"
       >
-        <div className="absolute inset-0 bg-[#060E16]" />
-        <div className="absolute left-0 top-0 h-28 w-full bg-gradient-to-b from-[#060E16]/0 via-[#060E16]/55 to-[#060E16]" />
-        <div className="cultural-texture absolute inset-0 opacity-20" />
-
-        <SectionOrnaments dragonScale="soft" batik dragonTopRight />
+        <SectionOrnaments dragonScale="soft" dragonTopRight shapes="mixed" lights="left" />
 
         <div className="section-inner grid gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div>
@@ -44,60 +45,61 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
           </div>
 
           <Reveal delay={0.16}>
-            <div className="border-l border-[#1D6478]/55 pl-8">
-              <p className="text-xl leading-10 text-[#F5F0E8]/78">
+            <div className="border-l border-[#2654A4]/20 pl-8">
+              <p className="text-xl leading-10 text-[#041020]/80">
                 {dict.about.description}
               </p>
 
-              <div className="mt-8 inline-flex border border-[#C8A03C]/40 bg-[#C8A03C]/10 px-5 py-3 text-sm font-bold uppercase tracking-[0.2em] text-[#C8A03C]">
+              <div className="mt-8 inline-flex border border-[#2654A4]/20 bg-[#2654A4]/5 px-5 py-3 text-sm font-bold uppercase tracking-[0.2em] text-[#2654A4]">
                 {dict.site.badge}
               </div>
             </div>
           </Reveal>
         </div>
 
-        <div className="soft-river-glow" />
-        <RiverSectionDivider />
+        {/* Organic river transition into the blue section */}
+        <RiverSectionDivider className="text-[#2654A4]" />
       </section>
 
       <section
         id="highlights"
-        className="section-shell relative -mt-16 px-5 pb-28 pt-32"
+        className="section-shell relative bg-[#2654A4] text-[#FDFBF7] px-5 pb-36 pt-20"
       >
-        <div className="absolute inset-0 bg-[#0D1B2A]" />
-
-        <SectionOrnaments dragonScale="strong" tenun />
+        <SectionOrnaments dragonScale="strong" shapes="sparkles" lights="right" theme="dark" />
 
         <div className="section-inner">
           <SectionHeading
             eyebrow={dict.highlights.eyebrow}
             title={dict.highlights.title}
             description={dict.highlights.description}
+            theme="dark"
           />
 
-          <div className="mt-14 grid gap-px overflow-hidden border border-[#C8A03C]/20 bg-[#C8A03C]/20 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid gap-4 lg:grid-cols-3">
             {dict.highlights.items.map((item, index) => (
               <Reveal key={item.title} delay={index * 0.06}>
-                <article className="group relative min-h-[420px] overflow-hidden bg-[#060E16]">
-                  <div
-                    className="absolute inset-0 bg-cover bg-center opacity-52 transition duration-700 group-hover:scale-105 group-hover:opacity-72"
-                    style={{ backgroundImage: `url('${item.image}')` }}
-                  />
+                <article className="group flex flex-col h-full min-h-[460px] overflow-hidden bg-[#FDFBF7] shadow-lg rounded-2xl border border-[#2654A4]/15 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#FDFBF7]/10">
+                  {/* 60% Top Image Area */}
+                  <div className="relative h-[260px] w-full shrink-0 overflow-hidden bg-[#041020]">
+                    <div
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                      style={{ backgroundImage: `url('${item.image}')` }}
+                    />
+                  </div>
 
-                  <div className="image-dark-overlay absolute inset-0" />
-
-                  <div
-                    className={`absolute bottom-0 left-0 h-1/2 w-full bg-gradient-to-t ${
-                      accentMap[item.accent]
-                    } to-transparent opacity-0 transition duration-700 group-hover:opacity-75`}
-                  />
-
-                  <div className="relative z-10 flex h-full min-h-[420px] flex-col justify-end p-7">
-                    <h3 className="font-display text-4xl font-black uppercase leading-none text-[#C8A03C]">
+                  {/* 40% Bottom Text Area */}
+                  <div className="relative flex flex-1 flex-col p-7 bg-[#FDFBF7]">
+                    <div
+                      className={`absolute top-0 left-0 h-1.5 w-full bg-gradient-to-r ${
+                        accentMap[item.accent]
+                      } to-[#2654A4]`}
+                    />
+                    
+                    <h3 className="font-display text-[22px] font-black uppercase leading-tight text-[#2654A4]">
                       {item.title}
                     </h3>
 
-                    <p className="mt-5 leading-8 text-[#F5F0E8]/72">
+                    <p className="mt-3 text-sm font-medium leading-relaxed text-[#041020]/80">
                       {item.description}
                     </p>
                   </div>
@@ -107,24 +109,22 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
           </div>
         </div>
 
-        <RiverSectionDivider />
+        {/* Organic river transition into the cream section */}
+        <RiverSectionDivider className="text-[#FDFBF7]" theme="light" />
       </section>
 
       <section
         id="lineup"
-        className="section-shell relative -mt-16 px-5 pb-28 pt-32"
+        className="section-shell relative px-5 pb-36 pt-20"
       >
-        <div className="absolute inset-0 bg-[#060E16]" />
-        <div className="dragon-scale absolute inset-0" />
-
-        <SectionOrnaments batik dragonTopRight dragonBottomLeft />
+        <SectionOrnaments dragonTopRight dragonBottomLeft shapes="petals" lights="both" />
 
         <div className="section-inner">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <SectionHeading eyebrow={dict.performers.eyebrow} title={dict.performers.title} />
 
             <Reveal delay={0.16}>
-              <p className="max-w-xl text-lg leading-8 text-[#F5F0E8]/60">
+              <p className="max-w-xl text-lg leading-8 text-[#041020]/75">
                 {dict.performers.description}
               </p>
             </Reveal>
@@ -133,17 +133,17 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
           <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {dict.performers.talent.map((name, index) => (
               <Reveal key={name} delay={index * 0.05}>
-                <div className="hover-rise relative min-h-[220px] overflow-hidden border border-[#F5F0E8]/10 bg-[#0D1B2A]">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#1D6478]/30 via-[#060E16] to-[#C8281E]/20" />
-                  <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-transparent via-[#F5F0E8]/7 to-transparent" />
+                <div className="hover-rise relative min-h-[220px] overflow-hidden border border-[#2654A4]/10 bg-white shadow-sm">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#38BBCA]/10 via-transparent to-[#EC3A24]/5" />
+                  <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-transparent via-[#2654A4]/5 to-transparent" />
 
                   <div className="relative flex h-full min-h-[220px] items-end p-6">
                     <div>
-                      <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#C8A03C]">
+                      <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#EC3A24]">
                         {dict.performers.previewPrefix} {String(index + 1).padStart(2, "0")}
                       </p>
 
-                      <h3 className="mt-3 text-2xl font-extrabold text-[#F5F0E8]">
+                      <h3 className="mt-3 text-2xl font-extrabold text-[#2654A4]">
                         {name}
                       </h3>
                     </div>
@@ -154,38 +154,37 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
           </div>
         </div>
 
-        <RiverSectionDivider />
+        {/* Organic river transition into the blue section */}
+        <RiverSectionDivider className="text-[#2654A4]" />
       </section>
 
       <section
         id="why-visit"
-        className="section-shell relative -mt-16 px-5 pb-28 pt-32"
+        className="section-shell relative bg-[#2654A4] text-[#FDFBF7] px-5 pb-36 pt-20"
       >
-        <div className="absolute inset-0 bg-[#0D1B2A]" />
-        <div className="cultural-texture absolute inset-0 opacity-20" />
-
-        <SectionOrnaments batik tenun dragonCenterRight />
+        <SectionOrnaments dragonCenterRight shapes="mixed" lights="center" theme="dark" />
 
         <div className="section-inner">
           <SectionHeading
             eyebrow={dict.whyVisit.eyebrow}
             title={dict.whyVisit.title}
             description={dict.whyVisit.description}
+            theme="dark"
           />
 
           <div className="mt-14 grid gap-4 md:grid-cols-2">
             {dict.whyVisit.reasons.map((item, index) => (
-              <Reveal key={item.title} delay={index * 0.08}>
-                <div className="section-card hover-rise p-7">
-                  <p className="text-xs font-black uppercase tracking-[0.24em] text-[#C8A03C]">
+              <Reveal key={item.title} delay={index * 0.08} className="h-full">
+                <div className="section-card flex flex-col h-full hover-rise bg-[#FDFBF7] border border-[#2654A4]/10 shadow-sm p-7">
+                  <p className="text-xs font-black uppercase tracking-[0.24em] text-[#EC3A24]">
                     {dict.whyVisit.reasonPrefix} {String(index + 1).padStart(2, "0")}
                   </p>
 
-                  <h3 className="font-display mt-4 text-3xl font-black uppercase leading-none text-[#F5F0E8]">
+                  <h3 className="font-display mt-4 text-[26px] md:text-3xl font-black uppercase leading-tight text-[#2654A4]">
                     {item.title}
                   </h3>
 
-                  <p className="mt-5 leading-8 text-[#F5F0E8]/68">
+                  <p className="mt-5 leading-relaxed text-[#041020]/80">
                     {item.description}
                   </p>
                 </div>
@@ -194,16 +193,17 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
           </div>
         </div>
 
-        <RiverSectionDivider />
+        {/* Organic river transition into the cream section */}
+        <RiverSectionDivider className="text-[#FDFBF7]" theme="light" />
       </section>
+
+      {/* <EditorialGallery dict={dict.gallery} /> */}
 
       <section
         id="register"
-        className="section-shell relative -mt-16 px-5 pb-28 pt-32"
+        className="section-shell relative px-5 pb-36 pt-20"
       >
-        <div className="absolute inset-0 bg-[#132233]" />
-
-        <SectionOrnaments dragonScale="soft" tenun />
+        <SectionOrnaments dragonScale="soft" tenun shapes="squares" lights="left" />
 
         <div className="section-inner">
           <SectionHeading
@@ -214,21 +214,25 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
 
           <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {dict.register.categories.map((category, index) => (
-              <Reveal key={category.id} delay={index * 0.06}>
-                <button className="hover-rise group relative min-h-[260px] overflow-hidden border border-[#1D6478]/55 bg-[#0D1B2A] text-left">
-                  <div
-                    className="absolute inset-0 bg-cover bg-center opacity-28 transition duration-700 group-hover:scale-105 group-hover:opacity-45"
-                    style={{ backgroundImage: `url('${category.image}')` }}
-                  />
+              <Reveal key={category.id} delay={index * 0.06} className="h-full">
+                <button className="hover-rise group flex flex-col h-full w-full overflow-hidden border border-[#2654A4]/15 bg-white shadow-lg rounded-2xl text-left transition-all duration-500 hover:-translate-y-2 hover:shadow-xl">
+                  {/* 60% Top Image Area */}
+                  <div className="relative h-[220px] w-full shrink-0 overflow-hidden bg-[#041020]">
+                    <div
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                      style={{ backgroundImage: `url('${category.image}')` }}
+                    />
+                  </div>
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#03070D] via-[#0D1B2A]/76 to-transparent" />
-
-                  <div className="relative flex min-h-[260px] flex-col justify-end p-6">
-                    <h3 className="font-display text-3xl font-black uppercase leading-none text-[#C8A03C]">
+                  {/* 40% Bottom Text Area */}
+                  <div className="relative flex flex-1 flex-col p-6 bg-[#FDFBF7]">
+                    <div className="absolute top-0 left-0 h-1.5 w-full bg-gradient-to-r from-[#FDB715] to-[#EC3A24]" />
+                    
+                    <h3 className="font-display text-[22px] font-black uppercase leading-tight text-[#2654A4]">
                       {category.title}
                     </h3>
 
-                    <p className="mt-4 text-sm leading-7 text-[#F5F0E8]/68">
+                    <p className="mt-3 text-sm font-medium leading-relaxed text-[#041020]/80">
                       {category.description}
                     </p>
                   </div>
@@ -238,54 +242,39 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
           </div>
 
           <Reveal delay={0.18}>
-            <div className="mt-8 border border-[#C8A03C]/25 bg-[#060E16]/45 p-6 text-[#F5F0E8]/58">
+            <div className="mt-8 border border-[#FDB715]/40 bg-[#FDB715]/10 p-6 text-[#041020]/80">
               {dict.register.statusBox}
             </div>
           </Reveal>
         </div>
 
-        <RiverSectionDivider />
+        {/* Organic river transition into the blue section */}
+        <RiverSectionDivider className="text-[#2654A4]" />
       </section>
 
       <section
         id="location"
-        className="section-shell relative -mt-16 px-5 pb-32 pt-32"
+        className="section-shell relative bg-[#2654A4] text-[#FDFBF7] px-5 pb-36 pt-20"
       >
-        <div className="absolute inset-0 bg-[#0D1B2A]" />
-
-        <SectionOrnaments tenun dragonBottomLeft />
+        <SectionOrnaments tenun dragonBottomLeft shapes="sparkles" lights="right" theme="dark" />
 
         <div className="section-inner grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <Reveal className="h-full">
-            <div className="flex h-full min-h-[420px] flex-col items-center justify-center border border-[#1D6478]/45 bg-[#060E16] p-8 text-center">
-              <div>
-                  <p className="text-xs font-black uppercase tracking-[0.3em] text-[#1D6478]">
-                    {dict.location.mapPlaceholder}
-                  </p>
-
-                  <h3 className="font-display mt-4 text-4xl font-black uppercase text-[#F5F0E8]">
-                    {dict.location.mapTitle}
-                  </h3>
-
-                  <p className="mt-4 max-w-md text-[#F5F0E8]/55">
-                    {dict.location.mapDesc}
-                  </p>
-                </div>
-              </div>
+            <MapWrapper />
           </Reveal>
 
           <div>
-            <SectionHeading eyebrow={dict.location.eyebrow} title={dict.location.title} />
+            <SectionHeading eyebrow={dict.location.eyebrow} title={dict.location.title} theme="dark" />
 
             <div className="mt-10 grid gap-4">
               {dict.location.accessInfo.map((item, index) => (
                 <Reveal key={item.title} delay={index * 0.06}>
-                  <div className="section-card hover-rise p-5">
-                    <h3 className="text-lg font-extrabold text-[#F5F0E8]">
+                  <div className="section-card hover-rise bg-[#FDFBF7] border border-[#2654A4]/10 p-6">
+                    <h3 className="text-lg font-black uppercase text-[#2654A4]">
                       {item.title}
                     </h3>
 
-                    <p className="mt-2 leading-7 text-[#F5F0E8]/58">
+                    <p className="mt-2 text-sm leading-relaxed text-[#041020]/80">
                       {item.description}
                     </p>
                   </div>
@@ -294,10 +283,16 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
             </div>
           </div>
         </div>
+
+        {/* Organic river transition into the footer/tactlink section */}
+        <RiverSectionDivider className="text-[#F9F7F1]" theme="light" />
       </section>
 
+      <TactlinkSupportSection />
+      
       <Footer dict={dict} />
       <StickyRegisterBar dict={dict.stickyBar} lang={lang} />
+      </div>
     </main>
   );
 }

@@ -44,11 +44,12 @@ html {
 body {
   margin: 0;
   overflow-x: hidden;
-  background:
-    radial-gradient(circle at 10% 10%, rgba(56, 187, 202, 0.16), transparent 30%),
-    radial-gradient(circle at 90% 20%, rgba(253, 183, 21, 0.12), transparent 28%),
-    linear-gradient(180deg, var(--kv-blue-dark), var(--kv-blue-deep));
-  color: var(--kv-white);
+  background: #FDFBF7;
+  background-image:
+    radial-gradient(circle at 10% 10%, rgba(56, 187, 202, 0.06), transparent 40%),
+    radial-gradient(circle at 90% 20%, rgba(253, 183, 21, 0.04), transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(236, 58, 36, 0.03), transparent 40%);
+  color: var(--kv-blue-deep);
   font-family: var(--font-body), sans-serif;
 }
 
@@ -75,10 +76,10 @@ body {
 
 .cisadane-bg {
   background:
-    radial-gradient(circle at 14% 18%, rgba(253, 183, 21, 0.22), transparent 26%),
-    radial-gradient(circle at 86% 18%, rgba(236, 58, 36, 0.18), transparent 26%),
-    radial-gradient(circle at 48% 72%, rgba(56, 187, 202, 0.34), transparent 42%),
-    linear-gradient(135deg, #07152b 0%, #082454 44%, #041020 100%);
+    radial-gradient(circle at 14% 18%, rgba(253, 183, 21, 0.12), transparent 35%),
+    radial-gradient(circle at 86% 18%, rgba(236, 58, 36, 0.08), transparent 35%),
+    radial-gradient(circle at 48% 72%, rgba(56, 187, 202, 0.15), transparent 50%),
+    linear-gradient(135deg, #FDFBF7 0%, #F5F2EA 44%, #EFEBE0 100%);
 }
 
 .hero-image-overlay {
@@ -98,14 +99,14 @@ body {
 
 .cultural-texture {
   background-image:
-    radial-gradient(rgba(255, 255, 255, 0.12) 0.75px, transparent 0.75px),
+    radial-gradient(rgba(38, 84, 164, 0.1) 0.75px, transparent 0.75px),
     linear-gradient(
       135deg,
-      rgba(253, 183, 21, 0.055) 25%,
+      rgba(253, 183, 21, 0.08) 25%,
       transparent 25%,
       transparent 50%,
-      rgba(253, 183, 21, 0.055) 50%,
-      rgba(253, 183, 21, 0.055) 75%,
+      rgba(253, 183, 21, 0.08) 50%,
+      rgba(253, 183, 21, 0.08) 75%,
       transparent 75%,
       transparent
     );
@@ -230,21 +231,21 @@ body {
   background-image:
     radial-gradient(
       circle at 50% 100%,
-      rgba(253, 183, 21, 0.18) 0 20%,
+      rgba(38, 84, 164, 0.15) 0 20%,
       transparent 21%
     ),
     radial-gradient(
       circle at 0% 100%,
-      rgba(56, 187, 202, 0.13) 0 18%,
+      rgba(56, 187, 202, 0.15) 0 18%,
       transparent 19%
     ),
     radial-gradient(
       circle at 100% 100%,
-      rgba(236, 58, 36, 0.12) 0 18%,
+      rgba(253, 183, 21, 0.15) 0 18%,
       transparent 19%
     );
   background-size: 42px 42px;
-  opacity: 0.1;
+  opacity: 0.6;
 }
 
 .dragon-mark {
@@ -320,11 +321,11 @@ body {
 .river-transition svg {
   display: block;
   width: 100%;
-  height: 220px;
+  height: 120px;
 }
 
 .river-fill-main {
-  fill: #041020;
+  fill: currentColor;
 }
 
 .river-fill-reflection {
@@ -365,11 +366,10 @@ body {
 }
 
 .section-card {
-  border: 1px solid rgba(56, 187, 202, 0.18);
-  background:
-    linear-gradient(135deg, rgba(38, 84, 164, 0.2), rgba(4, 16, 32, 0.72)),
-    rgba(4, 16, 32, 0.64);
-  backdrop-filter: blur(8px);
+  border: 1px solid rgba(38, 84, 164, 0.1);
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(38, 84, 164, 0.04);
 }
 
 .section-title-line {
@@ -394,8 +394,8 @@ body {
 
 .hover-rise:hover {
   transform: translateY(-6px);
-  border-color: rgba(253, 183, 21, 0.44);
-  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.22);
+  border-color: rgba(38, 84, 164, 0.3);
+  box-shadow: 0 24px 48px rgba(38, 84, 164, 0.12);
 }
 
 .image-dark-overlay {
@@ -589,37 +589,74 @@ body {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.06;
+  opacity: 0.15;
   background-image:
-    radial-gradient(circle at 25% 25%, rgba(253, 183, 21, 0.2) 1px, transparent 1.2px),
-    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.12) 1px, transparent 1.2px),
-    linear-gradient(45deg, rgba(56, 187, 202, 0.07) 25%, transparent 25%, transparent 50%, rgba(56, 187, 202, 0.07) 50%, rgba(56, 187, 202, 0.07) 75%, transparent 75%, transparent),
-    linear-gradient(-45deg, rgba(253, 183, 21, 0.06) 25%, transparent 25%, transparent 50%, rgba(253, 183, 21, 0.06) 50%, rgba(253, 183, 21, 0.06) 75%, transparent 75%, transparent);
+    radial-gradient(circle at 25% 25%, rgba(253, 183, 21, 0.8) 1.5px, transparent 1.8px),
+    radial-gradient(circle at 75% 75%, rgba(38, 84, 164, 0.6) 1.5px, transparent 1.8px),
+    linear-gradient(45deg, rgba(56, 187, 202, 0.25) 25%, transparent 25%, transparent 50%, rgba(56, 187, 202, 0.25) 50%, rgba(56, 187, 202, 0.25) 75%, transparent 75%, transparent),
+    linear-gradient(-45deg, rgba(38, 84, 164, 0.15) 25%, transparent 25%, transparent 50%, rgba(38, 84, 164, 0.15) 50%, rgba(38, 84, 164, 0.15) 75%, transparent 75%, transparent);
   background-size: 18px 18px, 18px 18px, 56px 56px, 56px 56px;
-  mix-blend-mode: soft-light;
+  mix-blend-mode: multiply;
 }
 
 .tangerang-tenun-overlay {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.05;
+  opacity: 0.15;
   background-image:
     repeating-linear-gradient(
       90deg,
-      rgba(253, 183, 21, 0.09) 0px,
-      rgba(253, 183, 21, 0.09) 1px,
+      rgba(253, 183, 21, 0.18) 0px,
+      rgba(253, 183, 21, 0.18) 1px,
       transparent 1px,
       transparent 12px
     ),
     repeating-linear-gradient(
       0deg,
-      rgba(56, 187, 202, 0.08) 0px,
-      rgba(56, 187, 202, 0.08) 1px,
+      rgba(38, 84, 164, 0.15) 0px,
+      rgba(38, 84, 164, 0.15) 1px,
       transparent 1px,
       transparent 12px
     );
-  mix-blend-mode: soft-light;
+  mix-blend-mode: multiply;
+}
+
+.tangerang-batik-overlay-light {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.15;
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(253, 251, 247, 0.6) 1.5px, transparent 1.8px),
+    radial-gradient(circle at 75% 75%, rgba(253, 251, 247, 0.4) 1.5px, transparent 1.8px),
+    linear-gradient(45deg, rgba(253, 251, 247, 0.1) 25%, transparent 25%, transparent 50%, rgba(253, 251, 247, 0.1) 50%, rgba(253, 251, 247, 0.1) 75%, transparent 75%, transparent),
+    linear-gradient(-45deg, rgba(253, 251, 247, 0.05) 25%, transparent 25%, transparent 50%, rgba(253, 251, 247, 0.05) 50%, rgba(253, 251, 247, 0.05) 75%, transparent 75%, transparent);
+  background-size: 18px 18px, 18px 18px, 56px 56px, 56px 56px;
+  mix-blend-mode: overlay;
+}
+
+.tangerang-tenun-overlay-light {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.15;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      rgba(253, 251, 247, 0.12) 0px,
+      rgba(253, 251, 247, 0.12) 1px,
+      transparent 1px,
+      transparent 12px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(253, 251, 247, 0.08) 0px,
+      rgba(253, 251, 247, 0.08) 1px,
+      transparent 1px,
+      transparent 12px
+    );
+  mix-blend-mode: overlay;
 }
 
 .ornament-fade-top {
@@ -640,6 +677,15 @@ body {
 /* =========================
    ACCESSIBILITY
 ========================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   html {
