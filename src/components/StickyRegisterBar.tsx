@@ -2,8 +2,15 @@
 
 import { X } from "lucide-react";
 import { useState } from "react";
+import type { Dictionary } from "@/i18n/dictionaries";
 
-export default function StickyRegisterBar() {
+export default function StickyRegisterBar({
+  dict,
+  lang,
+}: {
+  dict: Dictionary["stickyBar"];
+  lang: string;
+}) {
   const [isVisible, setIsVisible] = useState(true);
 
   if (!isVisible) return null;
@@ -19,35 +26,34 @@ export default function StickyRegisterBar() {
         <div className="relative grid gap-4 p-4 md:grid-cols-[1fr_auto_36px] md:items-center md:gap-5 md:p-5">
           <div className="pr-10 md:pr-0">
             <p className="text-[10px] font-black uppercase tracking-[0.28em] text-[#C8A03C]">
-              Festival Cisadane 2026
+              {dict.title}
             </p>
 
             <p className="mt-2 max-w-2xl text-sm leading-6 text-[#F5F0E8]/70">
-              Ready to join as a visitor, merchant, dragon boat team, or
-              collaborator?
+              {dict.description}
             </p>
           </div>
 
           <div className="grid grid-cols-2 gap-3 md:flex md:items-center">
             <a
-              href="#highlights"
+              href={`/${lang}#highlights`}
               className="border border-[#1D6478]/65 px-4 py-3 text-center text-[11px] font-black uppercase tracking-[0.16em] text-[#78C5D6] transition hover:bg-[#1D6478] hover:text-[#F5F0E8] md:min-w-[150px]"
             >
-              View Highlights
+              {dict.viewHighlights}
             </a>
 
             <a
-              href="#register"
+              href={`/${lang}#register`}
               className="bg-[#C8A03C] px-4 py-3 text-center text-[11px] font-black uppercase tracking-[0.16em] text-[#060E16] transition hover:bg-[#F5F0E8] md:min-w-[170px]"
             >
-              Register Now
+              {dict.registerNow}
             </a>
           </div>
 
           <button
             type="button"
             onClick={() => setIsVisible(false)}
-            aria-label="Close sticky register bar"
+            aria-label={dict.closeLabel}
             className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center border border-[#F5F0E8]/10 bg-[#060E16]/70 text-[#F5F0E8]/50 transition hover:border-[#C8281E]/60 hover:bg-[#C8281E]/15 hover:text-[#F5F0E8] md:static md:h-9 md:w-9"
           >
             <X size={15} />

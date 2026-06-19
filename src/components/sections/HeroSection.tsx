@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ArrowRight, CalendarDays, MapPin, Sparkles } from "lucide-react";
-import { siteConfig } from "@/data/site";
+import type { Dictionary } from "@/i18n/dictionaries";
 
 type TimeLeft = {
   days: number;
@@ -12,8 +12,8 @@ type TimeLeft = {
   seconds: number;
 };
 
-function getTimeLeft(): TimeLeft {
-  const target = new Date(siteConfig.startDate).getTime();
+function getTimeLeft(startDate: string): TimeLeft {
+  const target = new Date(startDate).getTime();
   const now = new Date().getTime();
   const distance = Math.max(target - now, 0);
 
@@ -25,18 +25,31 @@ function getTimeLeft(): TimeLeft {
   };
 }
 
-export default function HeroSection() {
-  const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
+export default function HeroSection({
+  dict,
+  heroExp,
+  lang,
+}: {
+  dict: Dictionary["site"];
+  heroExp: Dictionary["heroExperience"];
+  lang: string;
+}) {
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
   useEffect(() => {
-    setTimeLeft(getTimeLeft());
+    setTimeLeft(getTimeLeft(dict.startDate));
 
     const timer = setInterval(() => {
-      setTimeLeft(getTimeLeft());
+      setTimeLeft(getTimeLeft(dict.startDate));
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [dict.startDate]);
 
   const countdown = [
     { label: "Hari", value: timeLeft?.days },
@@ -90,7 +103,7 @@ export default function HeroSection() {
         {/* LEFT CONTENT */}
         <div className="max-w-4xl">
           <p className="text-xs font-black uppercase tracking-[0.42em] text-white/68 md:text-sm">
-            {siteConfig.eyebrow}
+            {dict.eyebrow}
           </p>
 
           <h1 className="mt-4 max-w-5xl text-balance text-5xl font-black uppercase leading-[0.88] tracking-[-0.06em] text-white md:text-7xl lg:text-[104px]">
@@ -115,18 +128,34 @@ export default function HeroSection() {
           </p>
 
           <p className="mt-5 max-w-2xl text-base font-medium leading-8 text-white/76 md:text-lg">
-            {siteConfig.description}
+            {dict.description}
           </p>
 
-          <div className="mt-7 flex flex-wrap gap-3 text-sm font-semibold text-white/78">
-            <div className="flex items-center gap-2 border border-[#FDB715]/35 bg-[#07152B]/55 px-4 py-2">
-              <CalendarDays size={16} className="text-[#FDB715]" />
-              {siteConfig.date}
-            </div>
+          <div className="mt-12 flex flex-wrap gap-5">
+            <a
+              href={`/${lang}#register`}
+              className="group flex items-center gap-3 bg-[#FDB715] px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#041020] shadow-[6px_6px_0_rgba(56,187,202,0.75)] transition hover:-translate-y-0.5 hover:bg-white md:text-sm"
+            >
+              <span>{dict.cta.primary}</span>
+              <ArrowRight size={18} className="transition group-hover:translate-x-1" />
+            </a>
 
-            <div className="flex items-center gap-2 border border-[#38BBCA]/45 bg-[#07152B]/55 px-4 py-2">
-              <MapPin size={16} className="text-[#38BBCA]" />
-              {siteConfig.location}
+            <a
+              href={`/${lang}#about`}
+              className="group flex items-center gap-3 border border-white/20 bg-white/5 px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-white backdrop-blur-sm transition hover:bg-white/10 md:text-sm"
+            >
+              <span>{dict.cta.secondary}</span>
+            </a>
+          </div>
+
+          <div className="mt-16 flex flex-wrap items-center gap-x-8 gap-y-4">
+            <div className="flex items-center gap-3 text-white/78">
+              <CalendarDays size={20} className="text-[#FDB715]" />
+              <span className="text-sm font-bold tracking-wide">{dict.date}</span>
+            </div>
+            <div className="flex items-center gap-3 text-white/78">
+              <MapPin size={20} className="text-[#38BBCA]" />
+              <span className="text-sm font-bold tracking-wide">{dict.location}</span>
             </div>
           </div>
 
@@ -147,23 +176,6 @@ export default function HeroSection() {
                 </div>
               </div>
             ))}
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-4">
-            <a
-              href="#register"
-              className="inline-flex items-center gap-3 bg-[#FDB715] px-6 py-3 text-xs font-black uppercase tracking-[0.18em] text-[#041020] shadow-[6px_6px_0_rgba(56,187,202,0.75)] transition hover:-translate-y-1 hover:bg-white md:px-7 md:py-4 md:text-sm"
-            >
-              {siteConfig.cta.primary}
-              <ArrowRight size={18} />
-            </a>
-
-            <a
-              href="#highlights"
-              className="inline-flex items-center gap-3 border border-[#F7951E]/80 bg-[#041020]/30 px-6 py-3 text-xs font-black uppercase tracking-[0.18em] text-[#F7951E] transition hover:-translate-y-1 hover:bg-[#F7951E] hover:text-[#041020] md:px-7 md:py-4 md:text-sm"
-            >
-              {siteConfig.cta.secondary}
-            </a>
           </div>
         </div>
 
@@ -218,29 +230,25 @@ export default function HeroSection() {
               <div className="absolute bottom-0 left-0 right-0 h-[52%] bg-gradient-to-t from-[#041020] via-[#041020]/86 to-transparent" />
 
               <div className="absolute bottom-8 left-7 right-7">
-                <div className="mb-5 inline-flex items-center gap-2 bg-[#EC3A24] px-4 py-2 text-[10px] font-black uppercase tracking-[0.24em] text-white">
-                  <Sparkles size={14} />
-                  Festival Experience
+                <div className="flex items-center gap-2">
+                  <div className="flex h-5 w-5 items-center justify-center bg-[#FDB715]">
+                    <Sparkles size={12} className="text-[#041020]" />
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-[0.18em] text-[#FDB715]">
+                    {heroExp.badge}
+                  </span>
                 </div>
 
-                <h2 className="text-5xl font-black uppercase leading-[0.86] tracking-[-0.05em] text-white">
-                  Dragon Boat
+                <h2 className="mt-4 text-3xl font-black uppercase leading-[0.95] tracking-tight text-white lg:text-[42px]">
+                  {heroExp.titleLine1}
                   <br />
-                  <span
-                    className="text-[#FDB715]"
-                    style={{
-                      textShadow:
-                        "3px 3px 0 #38BBCA, 6px 6px 0 rgba(38,84,164,0.9)",
-                    }}
-                  >
-                    River Stage
+                  <span className="text-[#FDB715]" style={{ textShadow: "0 0 20px rgba(253,183,21,0.4)" }}>
+                    {heroExp.titleLine2}
                   </span>
                 </h2>
 
                 <p className="mt-5 max-w-md text-sm font-medium leading-7 text-white/68">
-                  Experience the adrenaline of dragon boat racing, captivating
-                  night performances, water reflections, folk culinary delights,
-                  and multicultural energy united in one grand river festival.
+                  {heroExp.description}
                 </p>
 
                 <div className="mt-6 flex items-center gap-4 border-l-4 border-[#FDB715] bg-[#041020]/88 p-4">
@@ -254,10 +262,10 @@ export default function HeroSection() {
                   </div>
                   <div>
                     <p className="text-xs font-black uppercase tracking-[0.08em] text-[#FDB715]">
-                      {siteConfig.badge}
+                      {dict.badge}
                     </p>
                     <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.12em] text-white/68">
-                      {siteConfig.recognition}
+                      {dict.recognition}
                     </p>
                   </div>
                 </div>
@@ -267,10 +275,10 @@ export default function HeroSection() {
 
           <div className="absolute -bottom-8 left-10 border border-[#38BBCA]/45 bg-[#0092B7]/75 px-5 py-4 backdrop-blur-sm">
             <p className="text-[10px] font-black uppercase tracking-[0.24em] text-[#FDB715]">
-              Atmosphere
+              {dict.atmosphere}
             </p>
             <p className="mt-1 text-sm font-bold text-white/78">
-              Radiant, geometric, river currents, living culture, and folk festivities.
+              {dict.atmosphereDesc}
             </p>
           </div>
         </div>

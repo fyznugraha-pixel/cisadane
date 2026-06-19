@@ -12,7 +12,15 @@ const navItems = [
   { label: "Getting Here", href: "#location" },
 ];
 
-export default function Navbar() {
+import type { Dictionary } from "@/i18n/dictionaries";
+
+export default function Navbar({
+  dict,
+  lang,
+}: {
+  dict: Dictionary["navbar"];
+  lang: string;
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -36,7 +44,7 @@ export default function Navbar() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:py-5">
         <a
-          href="#"
+          href={`/${lang}`}
           onClick={closeMenu}
           className="relative flex items-center gap-3"
         >
@@ -53,10 +61,10 @@ export default function Navbar() {
         </a>
 
         <div className="hidden items-center gap-8 lg:flex">
-          {navItems.map((item) => (
+          {dict.items.map((item) => (
             <a
               key={item.href}
-              href={item.href}
+              href={`/${lang}${item.href}`}
               className="group relative text-sm font-bold text-white/72 transition hover:text-[#FDB715]"
             >
               <span>{item.label}</span>
@@ -65,23 +73,57 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-4 lg:flex">
+          <div className="flex items-center text-xs font-bold uppercase tracking-widest text-white/60">
+            <a
+              href="/en"
+              className={`px-2 transition hover:text-white ${lang === "en" ? "text-white" : ""}`}
+            >
+              EN
+            </a>
+            <span>|</span>
+            <a
+              href="/id"
+              className={`px-2 transition hover:text-white ${lang === "id" ? "text-white" : ""}`}
+            >
+              ID
+            </a>
+          </div>
+
           <a
-            href="#register"
+            href={`/${lang}#register`}
             className="bg-[#FDB715] px-5 py-3 text-xs font-black uppercase tracking-[0.18em] text-[#041020] shadow-[5px_5px_0_rgba(56,187,202,0.75)] transition hover:-translate-y-0.5 hover:bg-white"
           >
-            Register Now
+            {dict.registerBtn}
           </a>
         </div>
 
-        <button
-          type="button"
-          onClick={() => setIsOpen((prev) => !prev)}
-          className="flex h-10 w-10 items-center justify-center border border-[#38BBCA]/35 bg-[#041020]/50 text-white transition hover:border-[#FDB715] hover:text-[#FDB715] lg:hidden"
-          aria-label="Toggle navigation menu"
-        >
-          {isOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        <div className="flex items-center gap-4 lg:hidden">
+          <div className="flex items-center text-[10px] font-bold uppercase tracking-widest text-white/60">
+            <a
+              href="/en"
+              className={`px-2 transition hover:text-white ${lang === "en" ? "text-white" : ""}`}
+            >
+              EN
+            </a>
+            <span>|</span>
+            <a
+              href="/id"
+              className={`px-2 transition hover:text-white ${lang === "id" ? "text-white" : ""}`}
+            >
+              ID
+            </a>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setIsOpen((prev) => !prev)}
+            className="flex h-10 w-10 items-center justify-center border border-[#38BBCA]/35 bg-[#041020]/50 text-white transition hover:border-[#FDB715] hover:text-[#FDB715]"
+            aria-label="Toggle navigation menu"
+          >
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </nav>
 
       <div
@@ -95,10 +137,10 @@ export default function Navbar() {
           </div>
 
           <div className="relative grid gap-2">
-            {navItems.map((item) => (
+            {dict.items.map((item) => (
               <a
                 key={item.href}
-                href={item.href}
+                href={`/${lang}${item.href}`}
                 onClick={closeMenu}
                 className="flex items-center justify-between border border-white/10 bg-white/[0.03] px-4 py-4 text-sm font-black uppercase tracking-[0.16em] text-white/76 transition hover:border-[#FDB715]/50 hover:bg-[#FDB715] hover:text-[#041020]"
               >
@@ -108,11 +150,11 @@ export default function Navbar() {
             ))}
 
             <a
-              href="#register"
+              href={`/${lang}#register`}
               onClick={closeMenu}
               className="mt-2 bg-[#FDB715] px-4 py-4 text-center text-sm font-black uppercase tracking-[0.18em] text-[#041020] shadow-[5px_5px_0_rgba(56,187,202,0.75)] transition hover:bg-white"
             >
-              Register Now
+              {dict.registerBtn}
             </a>
           </div>
         </div>

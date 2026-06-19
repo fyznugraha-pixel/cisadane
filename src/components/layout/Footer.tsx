@@ -1,7 +1,7 @@
-import { siteConfig } from "@/data/site";
+import type { Dictionary } from "@/i18n/dictionaries";
 import Image from "next/image";
 
-export default function Footer() {
+export default function Footer({ dict }: { dict: Dictionary }) {
   return (
     <footer className="relative overflow-hidden border-t border-[#C8A03C]/15 bg-[#060E16] px-5 py-12">
       <div className="wave-divider absolute left-0 top-0 h-px w-full" />
@@ -21,15 +21,13 @@ export default function Footer() {
           </div>
 
           <p className="mt-4 max-w-xl leading-7 text-[#F5F0E8]/42">
-            The official portal for Festival Cisadane 2026. A tribute to the
-            river's nightscape, dragon boat heritage, luminous stages, and the
-            multicultural spirit of Tangerang.
+            {dict.footer.description}
           </p>
         </div>
 
         <div className="text-sm text-[#F5F0E8]/42 md:text-right">
-          <p className="text-[#C8A03C]">{siteConfig.tagline}</p>
-          <p className="mt-2">© 2026 Festival Cisadane. All rights reserved.</p>
+          <p className="text-[#C8A03C]">{dict.site.tagline}</p>
+          <p className="mt-2">{dict.footer.copyright}</p>
         </div>
       </div>
     </footer>

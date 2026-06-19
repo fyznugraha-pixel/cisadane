@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 
 const poppinsDisplay = Poppins({
   variable: "--font-display",
@@ -49,15 +49,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+export default async function RootLayout(props: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ lang: string }>;
 }>) {
+  const params = await props.params;
   return (
-    <html lang="id">
+    <html lang={params.lang}>
       <body className={`${poppinsDisplay.variable} ${poppinsBody.variable}`}>
-        {children}
+        {props.children}
       </body>
     </html>
   );
