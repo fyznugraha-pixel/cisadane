@@ -1,8 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
-import { ArrowRight, CalendarDays, MapPin, Sparkles } from "lucide-react";
+import { ArrowRight, CalendarDays, MapPin, Sparkles, Volume2, VolumeX } from "lucide-react";
+
+declare global {
+  interface Window {
+    onYouTubeIframeAPIReady: () => void;
+    YT: any;
+  }
+}
 import type { Dictionary } from "@/i18n/dictionaries";
 import RiverSectionDivider from "@/components/RiverSectionDivider";
 
@@ -42,6 +49,67 @@ export default function HeroSection({
     seconds: 0,
   });
 
+  const [isMuted, setIsMuted] = useState(true);
+  const playerRef = useRef<any>(null);
+
+  useEffect(() => {
+    // Load YouTube API script
+    if (!window.YT) {
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName("script")[0];
+      if (firstScriptTag?.parentNode) {
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      } else {
+        document.head.appendChild(tag);
+      }
+
+      window.onYouTubeIframeAPIReady = () => {
+        initPlayer();
+      };
+    } else {
+      initPlayer();
+    }
+
+    function initPlayer() {
+      playerRef.current = new window.YT.Player("youtube-player", {
+        videoId: "PivUmEuNqJA",
+        playerVars: {
+          autoplay: 1,
+          mute: 1,
+          controls: 0,
+          showinfo: 0,
+          rel: 0,
+          loop: 1,
+          playlist: "PivUmEuNqJA",
+          modestbranding: 1,
+          playsinline: 1,
+        },
+        events: {
+          onReady: (event: any) => {
+            event.target.playVideo();
+          },
+          onStateChange: (event: any) => {
+            if (event.data === window.YT.PlayerState.ENDED) {
+              event.target.playVideo(); // Fallback loop
+            }
+          },
+        },
+      });
+    }
+  }, []);
+
+  const toggleMute = () => {
+    if (playerRef.current && playerRef.current.unMute) {
+      if (isMuted) {
+        playerRef.current.unMute();
+        setIsMuted(false);
+      } else {
+        playerRef.current.mute();
+        setIsMuted(true);
+      }
+    }
+  };
 
   useEffect(() => {
     setTimeLeft(getTimeLeft(dict.startDate));
@@ -238,15 +306,22 @@ export default function HeroSection({
               <div className="group/video relative aspect-video w-full overflow-hidden bg-white">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#2654A4] via-[#38BBCA] to-[#FDB715] opacity-10 blur-xl" />
                 
-                <iframe
-                  src="https://www.youtube.com/embed/PivUmEuNqJA?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=PivUmEuNqJA&modestbranding=1&playsinline=1"
-                  allow="autoplay; encrypted-media"
-                  allowFullScreen
+                <div
+                  id="youtube-player"
                   className="pointer-events-none absolute inset-0 h-[120%] w-[120%] -translate-x-[10%] -translate-y-[10%] object-cover object-center transition-transform duration-[1200ms] ease-out group-hover/video:scale-[1.03]"
                   style={{
                     animation: "fadeIn 600ms ease-in-out forwards",
                   }}
                 />
+
+                {/* Audio Toggle Button */}
+                <button
+                  onClick={toggleMute}
+                  className="absolute bottom-4 right-4 z-30 flex h-10 w-10 items-center justify-center rounded-full bg-white/80 text-[#2654A4] shadow-sm backdrop-blur-md transition hover:bg-[#FDB715] hover:text-[#041020] md:bottom-6 md:right-6"
+                  aria-label="Toggle video sound"
+                >
+                  {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+                </button>
               </div>
 
               {/* BOTTOM: Aesthetic Filler Space */}
