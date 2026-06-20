@@ -244,34 +244,34 @@ export default function HeroSection({
                 <div className="absolute inset-0 bg-gradient-to-br from-[#2654A4] via-[#38BBCA] to-[#FDB715] opacity-10 blur-xl" />
                 
                 {isMounted && (
-                  <div 
-                    className="pointer-events-none absolute inset-0 z-0 h-[120%] w-[120%] -translate-x-[10%] -translate-y-[10%] transition-transform duration-[1200ms] ease-out group-hover/video:scale-[1.03]"
+                  <ReactPlayer
+                    url="https://www.youtube.com/watch?v=PivUmEuNqJA"
+                    playing
+                    muted={isMuted}
+                    loop
+                    width="120%"
+                    height="120%"
+                    className="pointer-events-none transition-transform duration-[1200ms] ease-out group-hover/video:scale-[1.03]"
                     style={{
+                      position: 'absolute',
+                      top: '-10%',
+                      left: '-10%',
                       animation: "fadeIn 600ms ease-in-out forwards",
                     }}
-                  >
-                    <ReactPlayer
-                      url="https://www.youtube.com/watch?v=PivUmEuNqJA"
-                      playing
-                      muted={isMuted}
-                      loop
-                      width="100%"
-                      height="100%"
-                      // @ts-expect-error - react-player types are outdated
-                      config={{
-                        youtube: {
-                          playerVars: {
-                            controls: 0,
-                            showinfo: 0,
-                            rel: 0,
-                            modestbranding: 1,
-                            playsinline: 1,
-                            disablekb: 1,
-                          },
+                    // @ts-expect-error - react-player types are outdated
+                    config={{
+                      youtube: {
+                        playerVars: {
+                          controls: 0,
+                          showinfo: 0,
+                          rel: 0,
+                          modestbranding: 1,
+                          playsinline: 1,
+                          disablekb: 1,
                         },
-                      }}
-                    />
-                  </div>
+                      },
+                    }}
+                  />
                 )}
 
                 {/* Audio Toggle Button */}
