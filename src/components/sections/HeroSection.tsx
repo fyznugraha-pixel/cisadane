@@ -262,7 +262,7 @@ export default function HeroSection({
                             playsinline: 1
                           }
                         }
-                      }}
+                      } as any}
                     />
                   )}
                 </div>
