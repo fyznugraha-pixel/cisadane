@@ -130,7 +130,7 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
             </Reveal>
           </div>
 
-          <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {dict.performers.talent.map((name, index) => (
               <Reveal key={name} delay={index * 0.05}>
                 <div className="hover-rise relative min-h-[220px] overflow-hidden border border-[#2654A4]/10 bg-white shadow-sm">

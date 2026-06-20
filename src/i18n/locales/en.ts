@@ -7,12 +7,11 @@ export const en = {
     location: "The Banks of Cisadane River",
     badge: "Karisma Event Nusantara 2026",
     recognition: "Top 125 Best National Events",
-    eyebrow: "A National Cultural Celebration",
-    description:
-      "Experience the vibrant spirit of Tangerang. A magnificent celebration of river traditions, adrenaline-filled dragon boat races, illuminating night stages, authentic local culinary delights, and the city's rich multicultural heritage.",
+    eyebrow: "Tangerang's Cultural Heritage Celebration",
+    description: "Join Tangerang's biggest annual festival from July 22–26, 2026. Experience intense dragon boat races, nighttime floating stage performances, local food markets, and rich cultural diversity along the banks of the Cisadane River.",
     cta: {
-      primary: "Register Now",
-      secondary: "Explore the Festival",
+      primary: "Join the Festival",
+      secondary: "Explore Attractions",
     },
     visualIdentity: "Visual Identity",
     atmosphere: "Atmosphere",
@@ -26,12 +25,12 @@ export const en = {
       { label: "Registration", href: "#register" },
       { label: "Getting Here", href: "#location" },
     ],
-    registerBtn: "Register Now",
+    registerBtn: "Join the Festival",
   },
   about: {
-    eyebrow: "River Heritage",
+    eyebrow: "The Cisadane Festival Story",
     title: "A National Celebration\nof the People",
-    description: "Festival Cisadane is a vibrant celebration of river heritage brought to life along the banks of Tangerang City. Its identity flows directly from the water, bringing together the adrenaline of dragon boat racing, illuminating night stages, authentic folk culinary traditions, and the harmonious convergence of Chinese, Betawi, and Sundanese cultures.",
+    description: "Celebrating diversity and community creativity along the riverbanks. The Cisadane Festival is an official annual event by the Tangerang City Government, recognized as one of the top 125 events in the 2026 Karisma Event Nusantara (KEN). The festival serves as a harmonious meeting ground for the Chinese, Betawi, and Sundanese cultures that have coexisted here for generations. Beyond the festivities, it is a tangible commitment to preserving the Cisadane River and empowering the local community.",
   },
   highlights: {
     eyebrow: "Attractions & Performances",
@@ -40,46 +39,46 @@ export const en = {
     items: [
       {
         title: "Dragon Boat Racing",
-        description: "The ceremonial icon of Festival Cisadane, reviving ancient river traditions and the unyielding spirit of communal competition.",
+        description: "Watch adrenaline-pumping traditional rowing competitions. Top teams from Makassar, Salatiga, Bone, and Bogor will battle for the championship on the river course.",
         image: "/images/highlights/cs2.jpg",
         accent: "red" as const,
       },
       {
-        title: "Floating Night Stage",
-        description: "A mesmerising evening spectacle featuring theatrical lighting, live music, and traditional dance reflected upon the river's surface.",
+        title: "Floating Stage",
+        description: "Enjoy nighttime art and music performances on a 15x20 meter floating stage, fully equipped with spectacular lighting.",
         image: "/images/highlights/cs6.jpg",
         accent: "teal" as const,
       },
       {
-        title: "Lion Dance Performance",
-        description: "An energetic display of cultural convergence, bringing the heart of the festival to life with breathtaking acrobatics.",
+        title: "Barongsai & Cultural Performances",
+        description: "Appreciate Tangerang's multicultural wealth through dynamic Barongsai (Lion Dance) and various cross-cultural art forms.",
         image: "/images/highlights/cs9.jpg",
         accent: "gold" as const,
       },
       {
-        title: "Traditional Dance",
-        description: "A graceful celebration of the harmonious encounter between Chinese, Betawi, and Sundanese cultures, showcasing the true multicultural identity of Tangerang.",
+        title: "Creative Dance & Traditional Choreography",
+        description: "Experience the massive visual choreography of the Tifo Reveal and stunning creative dances that will captivate thousands of attendees.",
         image: "/images/highlights/cs7.jpg",
         accent: "orange" as const,
       },
       {
-        title: "Evening Concert",
-        description: "Immerse yourself in the rhythm, the crowd, and the vibrant atmosphere of a folk festival roaring to life by the Cisadane banks.",
+        title: "Night Stage (Concert)",
+        description: "End your day by singing along with your favorite musicians and bands across multiple genres on the festival's main stage.",
         image: "/images/highlights/cs5.jpg",
         accent: "gold" as const,
       },
       {
-        title: "Grand Opening Ceremony",
-        description: "The magnificent inauguration marking the beginning of Tangerang's grandest heritage celebration and lighting up the riverbanks.",
+        title: "Opening Ceremony",
+        description: "A grand opening ceremony featuring acrobatic Water Flying Jet Dance and 3D Projection Mapping visuals directly on the water's surface.",
         image: "/images/highlights/cs1.jpg",
         accent: "red" as const,
       },
     ]
   },
   performers: {
-    eyebrow: "Talent Preview",
+    eyebrow: "Night Stage Lineup",
     title: "Upcoming\nPerformances",
-    description: "Prepare for an extraordinary lineup of national and local artists. Stay tuned as we reveal the performers who will light up the floating stage this year.",
+    description: "The following musicians are currently on our wishlist and have not been finalized.",
     previewPrefix: "Preview",
     talent: [
       "Perunggu",
@@ -90,86 +89,88 @@ export const en = {
       "Nadin Amizah",
       "Bernadya",
       "Sal Priadi",
+      "Bilal Indrajaya",
+      "Kangen Band"
     ]
   },
   whyVisit: {
-    eyebrow: "Why Visit",
+    eyebrow: "Why You Should Visit",
     title: "Experience the Magic\nof Cisadane",
-    description: "Join thousands of visitors in witnessing a cultural phenomenon where ancient heritage meets spectacular modern celebrations.",
+    description: "Four reasons why the Cisadane Festival is a must-attend event this year.",
     reasonPrefix: "Reason",
     reasons: [
       {
-        title: "Iconic River Ritual",
-        description: "Dragon boats, water reflections, and a floating night stage create a sensory experience unlike any ordinary festival.",
+        title: "Iconic Dragon Boats",
+        description: "Watch a national-scale dragon boat racing competition live. This iconic tradition is always the main highlight of the festival every year.",
       },
       {
-        title: "Multicultural Heart",
-        description: "Witness the beautiful convergence of Chinese, Betawi, and Sundanese traditions in one warm, vibrant public space.",
+        title: "Floating Stage Experience",
+        description: "Experience live concerts and art performances from a stage built directly on the river. Supported by projection mapping technology, the night shows truly come to life.",
       },
       {
-        title: "Cinematic Attractions",
-        description: "From projection mapping to traditional choreography and stage lights, every moment is designed to be unforgettable.",
+        title: "Local Culinary & Market",
+        description: "Explore hundreds of booths in the Local Market District. Taste authentic Tangerang street food and support products made by local small businesses.",
       },
       {
-        title: "A Space for Everyone",
-        description: "Whether you are a cultural enthusiast, a family, a local artisan, or a collaborator, you have a place here.",
+        title: "Inclusive for Everyone",
+        description: "This festival is designed for everyone to enjoy. It offers fun rides for families, entertainment for general visitors, and networking opportunities for businesses.",
       },
     ]
   },
   register: {
-    eyebrow: "Registration Portal",
+    eyebrow: "Registration Information",
     title: "Choose Your Path\nto Join",
     description: "Discover how you can be a part of Festival Cisadane 2026. Select your category to begin the registration process.",
-    statusBox: "Status: Registration is currently closed. Once opened, this portal will guide you through a seamless multi-step process including category selection, personal details, requirements, and confirmation.",
+    statusBox: "Status: Registration is currently closed. Keep an eye on this page for schedule updates.",
     categories: [
       {
         id: "visitor",
-        title: "Guest of Honour",
-        description: "For those who wish to attend, immerse in the festival's warmth, and witness the greatest cultural night unfold.",
+        title: "General Visitors",
+        description: "Get your admission tickets to access the exhibition zones, culinary bazaars, and the main stage area.",
         image: "/images/highlights/cs8.jpg",
       },
       {
         id: "tenant",
-        title: "Creators & Merchants",
-        description: "A stage for entrepreneurs, artisans, and culinary talents to share their finest creations with thousands of eyes.",
+        title: "Local Businesses & SMEs",
+        description: "Rent a retail space in the Local Market District. Dozens of booths ranging from 2x2 to 3x3 meters are available.",
         image: "/images/highlights/cs4.jpg",
       },
       {
         id: "dragon_boat",
         title: "Dragon Boat Teams",
-        description: "A call for river conquerors—communities and athletes ready to carve their names in the sacred racing tradition.",
+        description: "Register your rowing team to compete on the national course and fight for the annual championship trophy.",
         image: "/images/highlights/cs3.jpg",
       },
       {
         id: "collaborator",
-        title: "Partnerships",
-        description: "A meeting ground for institutions, media partners, and benefactors wishing to help preserve the flame of this proud tradition.",
+        title: "Partners & Sponsors",
+        description: "Collaborate with our festival to reach tens of thousands of attendees while actively supporting cultural preservation.",
         image: "/images/highlights/cs10.jpg",
       },
     ]
   },
   location: {
-    eyebrow: "Map & Accessibility",
+    eyebrow: "Getting Here",
     title: "Journey to\nCisadane",
     mapPlaceholder: "Dark Map Placeholder",
     mapTitle: "The Banks of the Cisadane River",
-    mapDesc: "The official embedded map will be available once the venue layout and access points are finalised.",
+    mapDesc: "Routes and public transportation options to easily reach the festival grounds.",
     accessInfo: [
       {
-        title: "Trans Tangerang",
-        description: "The primary city transport access to the festival grounds.",
+        title: "City Public Transport",
+        description: "Use the Trans Tangerang bus, Jawara Bus, or Si Benteng transit managed by the Tangerang City Transportation Agency for local city routes.",
       },
       {
-        title: "Soekarno-Hatta Airport",
-        description: "The main gateway for out-of-town and international visitors.",
+        title: "Airport & Train Access",
+        description: "From out of town, arrive at Soekarno-Hatta International Airport or take the commuter train to Tangerang Station, followed by local transport.",
       },
       {
-        title: "Ride-Hailing & Taxis",
-        description: "Convenient alternative drop-off points directly to the riverbanks.",
+        title: "Ride-Hailing Apps",
+        description: "Reach the festival grounds easily using popular ride-hailing services like Gojek, Grab, or Maxim.",
       },
       {
-        title: "Parking Guidance",
-        description: "Parking points will be announced closer to the event date.",
+        title: "Parking Guidelines",
+        description: "Information regarding official parking areas for private vehicles will be announced closer to the event date.",
       },
     ]
   },
@@ -191,20 +192,20 @@ export const en = {
     ]
   },
   footer: {
-    description: "The official portal for Festival Cisadane 2026. A tribute to the river's nightscape, dragon boat heritage, luminous stages, and the multicultural spirit of Tangerang.",
-    copyright: "© 2026 Festival Cisadane. All rights reserved.",
+    description: "The Cisadane Festival is an annual celebration of cultural preservation, sports, and creative economy along the Cisadane River. Organized by the Tangerang City Government and supported by the 2026 Karisma Event Nusantara.",
+    copyright: "© 2026 Tangerang City Government. Organized by Auliacorp. All Rights Reserved.",
   },
   stickyBar: {
     title: "Festival Cisadane 2026",
-    description: "Ready to join as a visitor, merchant, dragon boat team, or collaborator?",
-    viewHighlights: "View Highlights",
-    registerNow: "Register Now",
+    description: "An invitation to celebrate our cultural heritage and grow together. Are you ready to take part?",
+    viewHighlights: "Explore Attractions",
+    registerNow: "Join the Festival",
     closeLabel: "Close sticky register bar",
   },
   heroExperience: {
     badge: "Festival Experience",
     titleLine1: "Dragon Boat",
-    titleLine2: "River Stage",
+    titleLine2: "Competition",
     description: "Experience the adrenaline of dragon boat racing, captivating night performances, water reflections, folk culinary delights, and multicultural energy united in one grand river festival.",
   }
 };

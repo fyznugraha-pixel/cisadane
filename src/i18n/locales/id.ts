@@ -9,12 +9,11 @@ export const id: Dictionary = {
     location: "Tepian Sungai Cisadane, Tangerang",
     badge: "Karisma Event Nusantara 2026",
     recognition: "Top 125 Event Nasional Terbaik",
-    eyebrow: "Perayaan Warisan Budaya Nasional",
-    description:
-      "Sebuah perayaan yang lahir dari aliran sungai, tumbuh bersama denyut nadi masyarakat, dan terus menghidupkan warisan budaya Tangerang dari generasi ke generasi.",
+    eyebrow: "Perayaan Warisan Budaya Kota Tangerang",
+    description: "Bergabunglah dalam festival tahunan terbesar di Tangerang pada 22–26 Juli 2026. Nikmati sengitnya kompetisi perahu naga, pertunjukan panggung malam di atas air, bazar kuliner, dan kekayaan ragam budaya di sepanjang tepian Sungai Cisadane.",
     cta: {
-      primary: "Hadir & Saksikan",
-      secondary: "Jelajahi Ceritanya",
+      primary: "Hadir & Bergabung",
+      secondary: "Jelajahi Atraksi",
     },
     visualIdentity: "Identitas Visual",
     atmosphere: "Atmosfer",
@@ -31,9 +30,9 @@ export const id: Dictionary = {
     registerBtn: "Hadir & Bergabung",
   },
   about: {
-    eyebrow: "Jejak Sejarah",
+    eyebrow: "Cerita Festival Cisadane",
     title: "Satu Sungai,\nRibuan Kisah",
-    description: "Lebih dari sekadar perayaan tahunan, Festival Cisadane adalah monumen yang hidup. Ruang di mana denyut nadi identitas Kota Tangerang berdetak, mempertemukan tradisi Tionghoa, Betawi, dan Sunda dalam satu aliran harmoni. Ini adalah simbol perjalanan masyarakat yang merawat warisan, namun tak pernah takut untuk terus melangkah maju.",
+    description: "Merayakan keberagaman dan kreativitas masyarakat di tepian sungai. Festival Cisadane adalah acara tahunan resmi dari Pemerintah Kota Tangerang yang berhasil masuk dalam daftar 125 event terbaik Karisma Event Nusantara (KEN) 2026. Festival ini menjadi ruang pertemuan harmonis bagi budaya Tionghoa, Betawi, dan Sunda yang telah lama hidup berdampingan. Lebih dari sekadar perayaan, acara ini adalah komitmen nyata untuk terus melestarikan Sungai Cisadane dan memberdayakan komunitas lokal.",
   },
   highlights: {
     eyebrow: "Atraksi & Pertunjukan",
@@ -42,46 +41,46 @@ export const id: Dictionary = {
     items: [
       {
         title: "Balap Perahu Naga",
-        description: "Dentuman genderang mengiringi laju perahu naga yang membelah arus Cisadane, menghadirkan tradisi yang telah diwariskan lintas generasi.",
+        description: "Saksikan kompetisi dayung tradisional yang memacu adrenalin. Tim-tim tangguh dari Makassar, Salatiga, Bone, dan Bogor siap memperebutkan piala di lintasan sungai.",
         image: "/images/highlights/cs2.jpg",
         accent: "red" as const,
       },
       {
         title: "Panggung Terapung",
-        description: "Ketika cahaya teatrikal, alunan musik magis, dan keindahan ritme budaya berpadu merdu di atas tenangnya air sungai.",
+        description: "Nikmati pertunjukan seni dan musik malam hari di atas panggung air berukuran 15x20 meter, lengkap dengan tata cahaya yang spektakuler.",
         image: "/images/highlights/cs6.jpg",
         accent: "teal" as const,
       },
       {
         title: "Atraksi Barongsai",
-        description: "Lompatan energik Barongsai, sebuah simbol sejati dari konvergensi multikultural yang memeriahkan jantung kota.",
+        description: "Apresiasi kekayaan multikultural Tangerang melalui pertunjukan Barongsai yang lincah dan ragam kesenian lintas budaya lainnya.",
         image: "/images/highlights/cs9.jpg",
         accent: "gold" as const,
       },
       {
         title: "Koreografi Tradisional",
-        description: "Sebuah penghormatan anggun bagi konvergensi budaya Tionghoa, Betawi, dan Sunda, merayakan keberagaman yang menjadi akar kota ini.",
+        description: "Meriahkan suasana dengan atraksi Tifo Reveal berupa koreografi visual massal dan berbagai tarian kreasi yang memukau ribuan pengunjung.",
         image: "/images/highlights/cs7.jpg",
         accent: "orange" as const,
       },
       {
-        title: "Semarak Panggung Malam",
-        description: "Hanyutkan diri Anda dalam ritme elegan dan gemuruh perayaan, merayakan semangat kehidupan sebuah kota yang tak pernah tidur.",
+        title: "Panggung Malam",
+        description: "Tutup hari Anda dengan bernyanyi bersama musisi dan band favorit dari berbagai genre di panggung utama festival.",
         image: "/images/highlights/cs5.jpg",
         accent: "gold" as const,
       },
       {
         title: "Seremoni Pembukaan",
-        description: "Momen peresmian yang meriah, menandai dimulainya perayaan agung warisan budaya sungai terbesar di Tangerang.",
+        description: "Upacara pembukaan meriah yang menampilkan atraksi akrobatik Water Flying Jet Dance dan tata visual Projection Mapping 3D di permukaan air.",
         image: "/images/highlights/cs1.jpg",
         accent: "red" as const,
       },
     ]
   },
   performers: {
-    eyebrow: "Seniman & Pencerita",
+    eyebrow: "Penampil Panggung Malam",
     title: "Gema Melodi\nDari Tepian",
-    description: "Nantikan kehadiran deretan musisi dan talenta luar biasa yang akan mengiringi malam perayaan, memadukan pesona suara masa kini dengan gaung warisan masa lalu.",
+    description: "Daftar musisi berikut masih dalam tahap konfirmasi (wishlist) dan belum final.",
     previewPrefix: "Seniman",
     talent: [
       "Perunggu",
@@ -92,60 +91,62 @@ export const id: Dictionary = {
       "Nadin Amizah",
       "Bernadya",
       "Sal Priadi",
+      "Bilal Indrajaya",
+      "Kangen Band"
     ]
   },
   whyVisit: {
-    eyebrow: "Panggilan Perayaan",
+    eyebrow: "Alasan Mengunjungi Festival",
     title: "Lebih Dari\nSekadar Perayaan",
-    description: "Festival Cisadane memanggil Anda untuk bukan sekadar menjadi penonton, melainkan menjadi bagian tak terpisahkan dari sejarah yang terus mengalir.",
+    description: "Empat hal yang membuat Festival Cisadane patut Anda datangi tahun ini.",
     reasonPrefix: "Esensi",
     reasons: [
       {
-        title: "Simbol Kehidupan Kota",
-        description: "Rasakan pengalaman magis saat ribuan pendar lampu memantul di permukaan air, menghidupkan kembali roh sungai sebagai pusat kehidupan masyarakat.",
+        title: "Tradisi Perahu Naga",
+        description: "Saksikan langsung lomba balap perahu naga berskala nasional. Kompetisi ini adalah tradisi ikonik yang selalu menjadi pusat perhatian setiap tahunnya.",
       },
       {
-        title: "Pertemuan Lintas Budaya",
-        description: "Saksikan keindahan toleransi yang sejati, tempat pusaka dari berbagai akar budaya dirayakan dalam satu ruang pelukan yang hangat.",
+        title: "Panggung di Atas Air",
+        description: "Rasakan pengalaman menonton konser dan seni pertunjukan dari panggung terapung. Didukung teknologi projection mapping, pertunjukan malam hari menjadi lebih hidup.",
       },
       {
-        title: "Tontonan Bernilai Seni",
-        description: "Setiap sudut dirancang untuk memukau—dari arsitektur panggung terapung hingga tata gerak yang menceritakan perjalanan panjang kota ini.",
+        title: "Kuliner & UMKM Lokal",
+        description: "Jelajahi ratusan booth di zona Local Market District. Nikmati beragam makanan khas Tangerang dan dukung produk-produk unggulan dari pelaku usaha menengah.",
       },
       {
-        title: "Undangan Untuk Bertumbuh",
-        description: "Ruang perjumpaan di mana keluarga, kreator, dan generasi masa depan bertemu untuk merawat asa masa lalu sekaligus menatap hari esok.",
+        title: "Inklusif untuk Semua",
+        description: "Festival ini dirancang untuk dinikmati oleh siapa saja. Tersedia wahana bermain anak untuk keluarga, hiburan bagi umum, dan peluang bagi para pelaku usaha.",
       },
     ]
   },
   register: {
-    eyebrow: "Jalur Pendaftaran",
+    eyebrow: "Informasi Registrasi",
     title: "Ambil Bagian Dalam\nSejarah Ini",
     description: "Perayaan agung ini tak akan utuh tanpa kehadiran Anda. Lengkapi informasi berikut untuk turut merajut benang sejarah di Festival Cisadane 2026.",
-    statusBox: "Status: Pintu registrasi tengah dipersiapkan. Saat waktunya tiba, portal ini akan menyambut Anda melalui alur pendaftaran elegan yang dirancang khusus untuk pengunjung, mitra, dan kolaborator.",
+    statusBox: "Status: Pendaftaran saat ini belum dibuka. Pantau terus halaman ini untuk pembaruan jadwal.",
     categories: [
       {
         id: "visitor",
-        title: "Tamu Kehormatan",
-        description: "Bagi Anda yang ingin hadir, merasakan kehangatan festival, dan menjadi saksi dari malam kebudayaan terbesar ini.",
+        title: "Pengunjung Umum",
+        description: "Dapatkan tiket masuk untuk mengakses area pameran, bazar kuliner, dan area panggung utama.",
         image: "/images/highlights/cs8.jpg",
       },
       {
         id: "tenant",
-        title: "Kreator & Saudagar Loka",
-        description: "Panggung bagi wirausaha, perajin kriya, dan talenta kuliner untuk membagikan karya terbaiknya kepada ribuan mata.",
+        title: "Pelaku Usaha & UMKM",
+        description: "Sewa area berjualan di Local Market District. Tersedia ragam tenda (booth) mulai dari ukuran 2x2 meter hingga 3x3 meter.",
         image: "/images/highlights/cs4.jpg",
       },
       {
         id: "dragon_boat",
-        title: "Pejuang Arus Naga",
-        description: "Panggilan bagi para penakluk arus—komunitas dan atlet yang siap mengukir nama dalam tradisi balap perahu yang sakral.",
+        title: "Tim Perahu Naga",
+        description: "Daftarkan tim dayung Anda untuk bertanding di lintasan nasional dan memperebutkan piala tahunan.",
         image: "/images/highlights/cs3.jpg",
       },
       {
         id: "collaborator",
-        title: "Sinergi Kemitraan",
-        description: "Ruang pertemuan bagi institusi, mitra media, dan dermawan yang berkeinginan turut merawat nyala tradisi kebanggaan ini.",
+        title: "Mitra & Sponsor",
+        description: "Jalin kerja sama dengan festival kami untuk menjangkau puluhan ribu audiens sekaligus mendukung pelestarian budaya daerah.",
         image: "/images/highlights/cs10.jpg",
       },
     ]
@@ -155,23 +156,23 @@ export const id: Dictionary = {
     title: "Berpadu Di\nJantung Kota",
     mapPlaceholder: "Tempat Peta Interaktif",
     mapTitle: "Tepian Sungai Cisadane",
-    mapDesc: "Peta kawasan festival yang artistik sedang dipersiapkan untuk memandu langkah Anda menuju titik pusat perayaan.",
+    mapDesc: "Rute dan pilihan transportasi publik untuk mencapai area festival dengan mudah.",
     accessInfo: [
       {
-        title: "Jalur Trans Tangerang",
-        description: "Akses transportasi publik di dalam kota yang terintegrasi dan membawa Anda langsung ke jantung perayaan.",
+        title: "Transportasi Kota",
+        description: "Gunakan layanan Bus Trans Tangerang, Bus Jawara, atau angkutan Si Benteng yang dikelola langsung oleh Dishub Kota Tangerang untuk rute dalam kota.",
       },
       {
-        title: "Gerbang Soekarno-Hatta",
-        description: "Pintu kedatangan utama yang bersiap menyambut hangat para penikmat budaya dari seluruh penjuru negeri maupun dunia.",
+        title: "Bandara & Kereta Api",
+        description: "Dari luar kota, Anda bisa terbang ke Bandara Internasional Soekarno-Hatta atau menggunakan KRL menuju Stasiun Tangerang, lalu dilanjutkan dengan transportasi lokal.",
       },
       {
-        title: "Kendaraan Daring",
-        description: "Pilihan titik perhentian strategis yang dirancang agar Anda dapat langsung membaur dalam semarak area tepian sungai.",
+        title: "Transportasi Online",
+        description: "Akses lokasi festival dengan praktis menggunakan layanan ojek dan taksi online seperti Gojek, Grab, atau Maxim.",
       },
       {
-        title: "Panduan Area Berhenti",
-        description: "Pemetaan area parkir dan kedatangan sedang dirancang untuk memastikan kenyamanan langkah Anda tanpa hambatan.",
+        title: "Panduan Parkir",
+        description: "Informasi mengenai titik-titik parkir resmi untuk kendaraan pribadi akan diumumkan mendekati hari pelaksanaan.",
       },
     ]
   },
@@ -193,20 +194,20 @@ export const id: Dictionary = {
     ]
   },
   footer: {
-    description: "Portal resmi Festival Cisadane 2026. Sebuah dedikasi untuk merawat warisan yang hidup, menghidupkan keindahan malam di tepian sungai, dan merayakan semangat masyarakat yang terus bertumbuh bersama arus zaman.",
-    copyright: "© 2026 Festival Cisadane. Seluruh kisah dan tradisi dilindungi secara resmi.",
+    description: "Festival Cisadane adalah perayaan tahunan pelestarian budaya, olahraga, dan ekonomi kreatif di sepanjang Sungai Cisadane. Diselenggarakan oleh Pemerintah Kota Tangerang dan didukung oleh Karisma Event Nusantara 2026.",
+    copyright: "© 2026 Pemerintah Kota Tangerang. Dilaksanakan oleh Auliacorp. Semua Hak Dilindungi.",
   },
   stickyBar: {
     title: "Festival Cisadane 2026",
-    description: "Sebuah undangan untuk merayakan warisan dan bertumbuh bersama. Siapkah Anda mengambil bagian di dalamnya?",
+    description: "Sebuah undangan untuk merayakan warisan budaya dan bertumbuh bersama. Siap mengambil bagian di dalamnya?",
     viewHighlights: "Jelajahi Atraksi",
     registerNow: "Hadir & Bergabung",
     closeLabel: "Tutup panel pendaftaran cepat",
   },
   heroExperience: {
     badge: "Detak Festival",
-    titleLine1: "Gemuruh Arus",
-    titleLine2: "Pesona Malam",
+    titleLine1: "Kompetisi",
+    titleLine2: "Perahu Naga",
     description: "Perpaduan memukau antara tradisi luhur perahu naga, panggung yang berpijar megah di atas air, dan energi masyarakat yang merayakan kebhinekaan dalam satu napas yang sama.",
   }
 };
