@@ -243,7 +243,7 @@ export default function HeroSection({
                 
                 <video
                   ref={videoRef}
-                  src="https://hdatfdhcxpx7z8g5.public.blob.vercel-storage.com/CISADANE%202026-LANDSCAPE-1920%20X%201080-mp4_.mp4"
+                  src="/api/video"
                   autoPlay
                   muted={isMuted}
                   loop
