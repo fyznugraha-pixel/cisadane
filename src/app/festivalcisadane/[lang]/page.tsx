@@ -6,7 +6,7 @@ import Reveal from "@/components/Reveal";
 import RiverSectionDivider from "@/components/RiverSectionDivider";
 import SectionHeading from "@/components/SectionHeading";
 import SectionOrnaments from "@/components/SectionOrnaments";
-// import StickyRegisterBar from "@/components/StickyRegisterBar";
+import StickyRegisterBar from "@/components/StickyRegisterBar";
 import MapWrapper from "@/components/MapWrapper";
 import TactlinkSupportSection from "@/components/TactlinkSupportSection";
 import { getDictionary } from "@/i18n/dictionaries";
