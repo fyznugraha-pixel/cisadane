@@ -244,30 +244,33 @@ export default function HeroSection({
                 <div className="absolute inset-0 bg-gradient-to-br from-[#2654A4] via-[#38BBCA] to-[#FDB715] opacity-10 blur-xl" />
                 
                 {isMounted && (
-                  <ReactPlayer
-                    url="https://www.youtube.com/watch?v=PivUmEuNqJA"
-                    playing
-                    muted={isMuted}
-                    loop
-                    width="120%"
-                    height="120%"
-                    className="pointer-events-none absolute inset-0 -translate-x-[10%] -translate-y-[10%] transition-transform duration-[1200ms] ease-out group-hover/video:scale-[1.03]"
+                  <div 
+                    className="pointer-events-none absolute inset-0 z-0 h-[120%] w-[120%] -translate-x-[10%] -translate-y-[10%] transition-transform duration-[1200ms] ease-out group-hover/video:scale-[1.03]"
                     style={{
                       animation: "fadeIn 600ms ease-in-out forwards",
                     }}
-                    config={{
-                      youtube: {
-                        playerVars: {
-                          controls: 0,
-                          showinfo: 0,
-                          rel: 0,
-                          modestbranding: 1,
-                          playsinline: 1,
-                          disablekb: 1,
+                  >
+                    <ReactPlayer
+                      url="https://www.youtube.com/watch?v=PivUmEuNqJA"
+                      playing
+                      muted={isMuted}
+                      loop
+                      width="100%"
+                      height="100%"
+                      config={{
+                        youtube: {
+                          playerVars: {
+                            controls: 0,
+                            showinfo: 0,
+                            rel: 0,
+                            modestbranding: 1,
+                            playsinline: 1,
+                            disablekb: 1,
+                          },
                         },
-                      },
-                    }}
-                  />
+                      }}
+                    />
+                  </div>
                 )}
 
                 {/* Audio Toggle Button */}
