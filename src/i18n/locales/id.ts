@@ -206,8 +206,8 @@ export const id: Dictionary = {
   },
   heroExperience: {
     badge: "Detak Festival",
-    titleLine1: "Kompetisi",
-    titleLine2: "Perahu Naga",
-    description: "Perpaduan memukau antara tradisi luhur perahu naga, panggung yang berpijar megah di atas air, dan energi masyarakat yang merayakan kebhinekaan dalam satu napas yang sama.",
+    titleLine1: "Kilas Balik",
+    titleLine2: "Kemeriahan",
+    description: "Saksikan kembali tawa, sorak sorai, dan energi luar biasa dari ribuan pengunjung yang menyatu dalam perayaan budaya terbesar di tepian Sungai Cisadane.",
   }
 };

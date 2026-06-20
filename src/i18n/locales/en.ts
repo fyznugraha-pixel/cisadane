@@ -204,9 +204,9 @@ export const en = {
   },
   heroExperience: {
     badge: "Festival Experience",
-    titleLine1: "Dragon Boat",
-    titleLine2: "Competition",
-    description: "Experience the adrenaline of dragon boat racing, captivating night performances, water reflections, folk culinary delights, and multicultural energy united in one grand river festival.",
+    titleLine1: "Flashback",
+    titleLine2: "Moments",
+    description: "Relive the laughter, cheers, and incredible energy of thousands of visitors uniting in the biggest cultural celebration on the banks of the Cisadane River.",
   }
 };
 
