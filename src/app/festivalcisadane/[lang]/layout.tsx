@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "../../globals.css";
-
+import { Analytics } from "@vercel/analytics/react";
 const poppinsDisplay = Poppins({
   variable: "--font-display",
   subsets: ["latin"],
@@ -58,6 +58,7 @@ export default async function RootLayout(props: Readonly<{
     <html lang={params.lang}>
       <body className={`${poppinsDisplay.variable} ${poppinsBody.variable}`}>
         {props.children}
+        <Analytics />
       </body>
     </html>
   );
