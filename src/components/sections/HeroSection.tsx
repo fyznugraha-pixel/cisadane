@@ -244,9 +244,8 @@ export default function HeroSection({
                 
                 <div className="pointer-events-none absolute inset-0 h-[120%] w-[120%] -translate-x-[10%] -translate-y-[10%] transition-transform duration-[1200ms] ease-out group-hover/video:scale-[1.03]">
                   {isMounted && (
-                    // @ts-expect-error - ReactPlayer types are currently incompatible with React 19 / Next.js 15
                     <ReactPlayer
-                      url="https://www.youtube.com/watch?v=PivUmEuNqJA"
+                      src="https://www.youtube.com/watch?v=PivUmEuNqJA"
                       playing={true}
                       loop={true}
                       muted={isMuted}
@@ -255,15 +254,13 @@ export default function HeroSection({
                       style={{ animation: "fadeIn 600ms ease-in-out forwards" }}
                       config={{
                         youtube: {
-                          playerVars: { 
-                            controls: 0,
-                            showinfo: 0,
-                            rel: 0,
-                            modestbranding: 1,
-                            playsinline: 1
-                          }
+                          controls: 0,
+                          showinfo: 0,
+                          rel: 0,
+                          modestbranding: 1,
+                          playsinline: 1
                         }
-                      } as any}
+                      }}
                     />
                   )}
                 </div>
