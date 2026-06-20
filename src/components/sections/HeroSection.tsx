@@ -258,7 +258,6 @@ export default function HeroSection({
                       left: '-10%',
                       animation: "fadeIn 600ms ease-in-out forwards",
                     }}
-                    // @ts-expect-error - react-player types are outdated
                     config={{
                       youtube: {
                         playerVars: {
@@ -269,7 +268,7 @@ export default function HeroSection({
                           playsinline: 1,
                           disablekb: 1,
                         },
-                      },
+                      } as any,
                     }}
                   />
                 )}
