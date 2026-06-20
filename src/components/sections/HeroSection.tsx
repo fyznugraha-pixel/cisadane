@@ -306,6 +306,22 @@ export default function HeroSection({
               <div className="group/video relative aspect-video w-full overflow-hidden bg-white">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#2654A4] via-[#38BBCA] to-[#FDB715] opacity-10 blur-xl" />
                 
+                {/* Title Overlay for Aftermovie */}
+                <div className="pointer-events-none absolute left-4 top-4 z-20 max-w-[85%] rounded-lg bg-[#041020]/60 px-4 py-3 backdrop-blur-md border border-white/10 shadow-xl md:left-6 md:top-6 transition-opacity duration-500">
+                  <div className="flex items-center gap-2">
+                    <span className="relative flex h-2.5 w-2.5">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#EC3A24] opacity-75"></span>
+                      <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#EC3A24]"></span>
+                    </span>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-white/90">
+                      Flashback 2025
+                    </span>
+                  </div>
+                  <h3 className="mt-1 text-sm font-bold leading-tight text-white shadow-black drop-shadow-md">
+                    Kemeriahan Festival Cisadane Tahun Lalu
+                  </h3>
+                </div>
+                
                 <div
                   id="youtube-player"
                   className="pointer-events-none absolute inset-0 h-[120%] w-[120%] -translate-x-[10%] -translate-y-[10%] object-cover object-center transition-transform duration-[1200ms] ease-out group-hover/video:scale-[1.03]"
