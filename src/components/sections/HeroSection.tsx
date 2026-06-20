@@ -307,17 +307,17 @@ export default function HeroSection({
                 <div className="absolute inset-0 bg-gradient-to-br from-[#2654A4] via-[#38BBCA] to-[#FDB715] opacity-10 blur-xl" />
                 
                 {/* Title Overlay for Aftermovie */}
-                <div className="pointer-events-none absolute left-4 top-4 z-20 max-w-[85%] rounded-lg bg-[#041020]/60 px-4 py-3 backdrop-blur-md border border-white/10 shadow-xl md:left-6 md:top-6 transition-opacity duration-500">
-                  <div className="flex items-center gap-2">
-                    <span className="relative flex h-2.5 w-2.5">
+                <div className="pointer-events-none absolute left-3 top-3 z-20 max-w-[70%] rounded bg-black/40 px-3 py-2 backdrop-blur-sm md:left-4 md:top-4 transition-opacity duration-500">
+                  <div className="flex items-center gap-1.5">
+                    <span className="relative flex h-1.5 w-1.5">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#EC3A24] opacity-75"></span>
-                      <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#EC3A24]"></span>
+                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#EC3A24]"></span>
                     </span>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-white/90">
+                    <span className="text-[8px] font-bold uppercase tracking-wider text-white/80">
                       Flashback 2025
                     </span>
                   </div>
-                  <h3 className="mt-1 text-sm font-bold leading-tight text-white shadow-black drop-shadow-md">
+                  <h3 className="mt-0.5 text-[10px] md:text-xs font-semibold leading-tight text-white drop-shadow-md">
                     Kemeriahan Festival Cisadane Tahun Lalu
                   </h3>
                 </div>
