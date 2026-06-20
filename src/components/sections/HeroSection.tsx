@@ -239,7 +239,7 @@ export default function HeroSection({
                 <div className="absolute inset-0 bg-gradient-to-br from-[#2654A4] via-[#38BBCA] to-[#FDB715] opacity-10 blur-xl" />
                 
                 <iframe
-                  src="https://www.youtube.com/embed/nvA7amTozlI?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=nvA7amTozlI&modestbranding=1&playsinline=1"
+                  src="https://www.youtube.com/embed/PivUmEuNqJA?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=PivUmEuNqJA&modestbranding=1&playsinline=1"
                   allow="autoplay; encrypted-media"
                   allowFullScreen
                   className="pointer-events-none absolute inset-0 h-[120%] w-[120%] -translate-x-[10%] -translate-y-[10%] object-cover object-center transition-transform duration-[1200ms] ease-out group-hover/video:scale-[1.03]"
