@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ArrowRight, CalendarDays, MapPin, Sparkles, Volume2, VolumeX } from "lucide-react";
-import ReactPlayer from "react-player/youtube";
+import ReactPlayer from "react-player";
 import type { Dictionary } from "@/i18n/dictionaries";
 import RiverSectionDivider from "@/components/RiverSectionDivider";
 
