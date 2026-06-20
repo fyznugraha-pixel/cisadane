@@ -6,7 +6,7 @@ import Reveal from "@/components/Reveal";
 import RiverSectionDivider from "@/components/RiverSectionDivider";
 import SectionHeading from "@/components/SectionHeading";
 import SectionOrnaments from "@/components/SectionOrnaments";
-import StickyRegisterBar from "@/components/StickyRegisterBar";
+// import StickyRegisterBar from "@/components/StickyRegisterBar";
 import MapWrapper from "@/components/MapWrapper";
 import TactlinkSupportSection from "@/components/TactlinkSupportSection";
 import { getDictionary } from "@/i18n/dictionaries";
@@ -291,7 +291,7 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
       <TactlinkSupportSection />
       
       <Footer dict={dict} />
-      <StickyRegisterBar dict={dict.stickyBar} lang={lang} />
+      {/* <StickyRegisterBar dict={dict.stickyBar} lang={lang} /> */}
       </div>
     </main>
   );
