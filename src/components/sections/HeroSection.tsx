@@ -257,6 +257,7 @@ export default function HeroSection({
                       loop
                       width="100%"
                       height="100%"
+                      // @ts-expect-error - react-player types are outdated
                       config={{
                         youtube: {
                           playerVars: {
