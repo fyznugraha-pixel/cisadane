@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ArrowRight, CalendarDays, MapPin, Sparkles, Volume2, VolumeX } from "lucide-react";
-import ReactPlayer from "react-player";
+import ReactPlayer from "react-player/youtube";
 import type { Dictionary } from "@/i18n/dictionaries";
 import RiverSectionDivider from "@/components/RiverSectionDivider";
 
@@ -46,9 +46,10 @@ export default function HeroSection({
   const [isMuted, setIsMuted] = useState(true);
   const [isMounted, setIsMounted] = useState(false);
 
+
   useEffect(() => {
-    setIsMounted(true);
     setTimeLeft(getTimeLeft(dict.startDate));
+    setIsMounted(true);
 
     const timer = setInterval(() => {
       setTimeLeft(getTimeLeft(dict.startDate));
@@ -242,26 +243,32 @@ export default function HeroSection({
               <div className="group/video relative aspect-video w-full overflow-hidden bg-white">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#2654A4] via-[#38BBCA] to-[#FDB715] opacity-10 blur-xl" />
                 
-                <div className="pointer-events-none absolute inset-0 h-[120%] w-[120%] -translate-x-[10%] -translate-y-[10%] transition-transform duration-[1200ms] ease-out group-hover/video:scale-[1.03]">
-                  {isMounted && (
-                    <ReactPlayer
-                      src="https://www.youtube.com/watch?v=PivUmEuNqJA"
-                      playing={true}
-                      loop={true}
-                      muted={isMuted}
-                      controls={false}
-                      playsinline={true}
-                      width="100%"
-                      height="100%"
-                      style={{ animation: "fadeIn 600ms ease-in-out forwards" }}
-                      config={{
-                        youtube: {
-                          rel: 0
-                        }
-                      }}
-                    />
-                  )}
-                </div>
+                {isMounted && (
+                  <ReactPlayer
+                    url="https://www.youtube.com/watch?v=PivUmEuNqJA"
+                    playing
+                    muted={isMuted}
+                    loop
+                    width="120%"
+                    height="120%"
+                    className="pointer-events-none absolute inset-0 -translate-x-[10%] -translate-y-[10%] transition-transform duration-[1200ms] ease-out group-hover/video:scale-[1.03]"
+                    style={{
+                      animation: "fadeIn 600ms ease-in-out forwards",
+                    }}
+                    config={{
+                      youtube: {
+                        playerVars: {
+                          controls: 0,
+                          showinfo: 0,
+                          rel: 0,
+                          modestbranding: 1,
+                          playsinline: 1,
+                          disablekb: 1,
+                        },
+                      },
+                    }}
+                  />
+                )}
 
                 {/* Audio Toggle Button */}
                 <button
