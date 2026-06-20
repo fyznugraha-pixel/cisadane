@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { ArrowRight, CalendarDays, MapPin, Sparkles, Volume2, VolumeX } from "lucide-react";
-import ReactPlayer from "react-player";
+import { ArrowRight, CalendarDays, MapPin, Sparkles } from "lucide-react";
 import type { Dictionary } from "@/i18n/dictionaries";
 import RiverSectionDivider from "@/components/RiverSectionDivider";
 
@@ -43,13 +42,9 @@ export default function HeroSection({
     seconds: 0,
   });
 
-  const [isMuted, setIsMuted] = useState(true);
-  const [isMounted, setIsMounted] = useState(false);
-
 
   useEffect(() => {
     setTimeLeft(getTimeLeft(dict.startDate));
-    setIsMounted(true);
 
     const timer = setInterval(() => {
       setTimeLeft(getTimeLeft(dict.startDate));
@@ -243,44 +238,15 @@ export default function HeroSection({
               <div className="group/video relative aspect-video w-full overflow-hidden bg-white">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#2654A4] via-[#38BBCA] to-[#FDB715] opacity-10 blur-xl" />
                 
-                {isMounted && (
-                  <ReactPlayer
-                    url="https://www.youtube.com/watch?v=PivUmEuNqJA"
-                    playing
-                    muted={isMuted}
-                    loop
-                    width="120%"
-                    height="120%"
-                    className="pointer-events-none transition-transform duration-[1200ms] ease-out group-hover/video:scale-[1.03]"
-                    style={{
-                      position: 'absolute',
-                      top: '-10%',
-                      left: '-10%',
-                      animation: "fadeIn 600ms ease-in-out forwards",
-                    }}
-                    config={{
-                      youtube: {
-                        playerVars: {
-                          controls: 0,
-                          showinfo: 0,
-                          rel: 0,
-                          modestbranding: 1,
-                          playsinline: 1,
-                          disablekb: 1,
-                        },
-                      } as any,
-                    }}
-                  />
-                )}
-
-                {/* Audio Toggle Button */}
-                <button
-                  onClick={() => setIsMuted(!isMuted)}
-                  className="absolute bottom-4 right-4 z-30 flex h-10 w-10 items-center justify-center rounded-full bg-white/80 text-[#2654A4] shadow-sm backdrop-blur-md transition hover:bg-[#FDB715] hover:text-[#041020] md:bottom-6 md:right-6"
-                  aria-label="Toggle video sound"
-                >
-                  {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
-                </button>
+                <iframe
+                  src="https://www.youtube.com/embed/PivUmEuNqJA?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=PivUmEuNqJA&modestbranding=1&playsinline=1"
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                  className="pointer-events-none absolute inset-0 h-[120%] w-[120%] -translate-x-[10%] -translate-y-[10%] object-cover object-center transition-transform duration-[1200ms] ease-out group-hover/video:scale-[1.03]"
+                  style={{
+                    animation: "fadeIn 600ms ease-in-out forwards",
+                  }}
+                />
               </div>
 
               {/* BOTTOM: Aesthetic Filler Space */}
