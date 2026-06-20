@@ -249,16 +249,14 @@ export default function HeroSection({
                       playing={true}
                       loop={true}
                       muted={isMuted}
+                      controls={false}
+                      playsinline={true}
                       width="100%"
                       height="100%"
                       style={{ animation: "fadeIn 600ms ease-in-out forwards" }}
                       config={{
                         youtube: {
-                          controls: 0,
-                          showinfo: 0,
-                          rel: 0,
-                          modestbranding: 1,
-                          playsinline: 1
+                          rel: 0
                         }
                       }}
                     />
