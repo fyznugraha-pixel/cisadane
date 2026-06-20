@@ -244,6 +244,7 @@ export default function HeroSection({
                 
                 <div className="pointer-events-none absolute inset-0 h-[120%] w-[120%] -translate-x-[10%] -translate-y-[10%] transition-transform duration-[1200ms] ease-out group-hover/video:scale-[1.03]">
                   {isMounted && (
+                    // @ts-expect-error - ReactPlayer types are currently incompatible with React 19 / Next.js 15
                     <ReactPlayer
                       url="https://www.youtube.com/watch?v=PivUmEuNqJA"
                       playing={true}
