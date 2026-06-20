@@ -155,7 +155,7 @@ export default function HeroSection({
 
           <div className="mt-12 flex flex-wrap gap-5">
             <a
-              href={`/${lang}#register`}
+              href={`/festivalcisadane/${lang}#register`}
               className="group flex items-center gap-3 bg-[#FDB715] px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#041020] shadow-[6px_6px_0_rgba(56,187,202,0.75)] transition hover:-translate-y-0.5 hover:bg-white md:text-sm"
             >
               <span>{dict.cta.primary}</span>
@@ -163,7 +163,7 @@ export default function HeroSection({
             </a>
 
             <a
-              href={`/${lang}#about`}
+              href={`/festivalcisadane/${lang}#about`}
               className="group flex items-center gap-3 border border-[#2654A4]/30 bg-[#2654A4]/5 px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#2654A4] backdrop-blur-sm transition hover:bg-[#2654A4]/10 md:text-sm"
             >
               <span>{dict.cta.secondary}</span>

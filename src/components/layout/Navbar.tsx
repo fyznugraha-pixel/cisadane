@@ -46,7 +46,7 @@ export default function Navbar({
 
       <nav className="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-4 md:px-8">
         <a
-          href={`/${lang}`}
+          href={`/festivalcisadane/${lang}`}
           onClick={closeMenu}
           className="relative flex items-center gap-3"
         >
@@ -67,7 +67,7 @@ export default function Navbar({
           {dict.items.map((item) => (
             <a
               key={item.href}
-              href={`/${lang}${item.href}`}
+              href={`/festivalcisadane/${lang}${item.href}`}
               className="group relative px-2 py-4 text-[10px] font-black uppercase tracking-[0.2em] text-[#041020]/80 transition hover:text-[#2654A4] lg:text-[11px]"
             >
               <span>{item.label}</span>
@@ -83,14 +83,14 @@ export default function Navbar({
         <div className="hidden items-center lg:flex">
           <div className="mr-6 flex items-center text-[10px] font-bold uppercase tracking-widest text-[#041020]/60">
             <a
-              href="/en"
+              href="/festivalcisadane/en"
               className={`px-2 transition hover:text-[#2654A4] ${lang === "en" ? "text-[#2654A4]" : ""}`}
             >
               EN
             </a>
             <span>|</span>
             <a
-              href="/id"
+              href="/festivalcisadane/id"
               className={`px-2 transition hover:text-[#2654A4] ${lang === "id" ? "text-[#2654A4]" : ""}`}
             >
               ID
@@ -98,7 +98,7 @@ export default function Navbar({
           </div>
 
           <a
-            href={`/${lang}#register`}
+            href={`/festivalcisadane/${lang}#register`}
             className="bg-[#FDB715] px-6 py-3.5 text-[11px] font-black uppercase tracking-[0.18em] text-[#041020] shadow-[5px_5px_0_rgba(38,84,164,0.3)] transition hover:-translate-y-0.5 hover:bg-[#2654A4] hover:text-white"
           >
             {dict.registerBtn}
@@ -108,14 +108,14 @@ export default function Navbar({
         <div className="flex items-center gap-4 lg:hidden">
           <div className="flex items-center text-[10px] font-bold uppercase tracking-widest text-[#041020]/60">
             <a
-              href="/en"
+              href="/festivalcisadane/en"
               className={`px-2 transition hover:text-[#2654A4] ${lang === "en" ? "text-[#2654A4]" : ""}`}
             >
               EN
             </a>
             <span>|</span>
             <a
-              href="/id"
+              href="/festivalcisadane/id"
               className={`px-2 transition hover:text-[#2654A4] ${lang === "id" ? "text-[#2654A4]" : ""}`}
             >
               ID
@@ -142,7 +142,7 @@ export default function Navbar({
             {dict.items.map((item) => (
               <a
                 key={item.href}
-                href={`/${lang}${item.href}`}
+                href={`/festivalcisadane/${lang}${item.href}`}
                 onClick={() => setIsOpen(false)}
                 className="group flex items-center justify-between border-b border-[#2654A4]/5 px-4 py-4 text-xs font-black uppercase tracking-[0.2em] text-[#041020]/80 transition hover:bg-[#2654A4]/5 hover:text-[#2654A4]"
               >
@@ -151,7 +151,7 @@ export default function Navbar({
             ))}
 
             <a
-              href={`/${lang}#register`}
+              href={`/festivalcisadane/${lang}#register`}
               onClick={closeMenu}
               className="mt-2 bg-[#FDB715] px-4 py-4 text-center text-sm font-black uppercase tracking-[0.18em] text-[#041020] shadow-[5px_5px_0_rgba(56,187,202,0.75)] transition hover:bg-white"
             >
