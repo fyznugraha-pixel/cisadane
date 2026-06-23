@@ -10,8 +10,20 @@ export async function GET(request: Request) {
   }
 
   try {
+    // We need to bypass RLS to read all visitors, so we try to use the Service Role Key if provided.
+    // Otherwise, we use the regular client (which will return empty array if RLS is on and blocks it).
+    const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!;
+    const adminSupabase = supabase; // Fallback to regular client
+    
+    // Create a new client specifically with the service key if we have it
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+    const { createClient } = require('@supabase/supabase-js');
+    const db = process.env.SUPABASE_SERVICE_ROLE_KEY 
+      ? createClient(supabaseUrl, process.env.SUPABASE_SERVICE_ROLE_KEY) 
+      : supabase;
+
     // Fetch visitors data, ordered by created_at descending
-    const { data, error } = await supabase
+    const { data, error } = await db
       .from("visitors")
       .select("*")
       .order("created_at", { ascending: false });
