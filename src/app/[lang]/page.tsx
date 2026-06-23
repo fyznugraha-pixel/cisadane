@@ -83,7 +83,7 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
                   <div className="relative h-[260px] w-full shrink-0 overflow-hidden bg-[#041020]">
                     <div
                       className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                      style={{ backgroundImage: `url('${item.image}')` }}
+                      style={{ backgroundImage: `url('/festivalcisadane${item.image}')` }}
                     />
                   </div>
 
@@ -220,7 +220,7 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
                   <div className="relative h-[220px] w-full shrink-0 overflow-hidden bg-[#041020]">
                     <div
                       className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                      style={{ backgroundImage: `url('${category.image}')` }}
+                      style={{ backgroundImage: `url('/festivalcisadane${category.image}')` }}
                     />
                   </div>
 

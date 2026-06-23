@@ -135,7 +135,7 @@ export default function HeroSection({
       <div
         className="absolute inset-0 bg-cover bg-center opacity-30"
         style={{
-          backgroundImage: "url('/images/cisadane-hero.jpg')",
+          backgroundImage: "url('/festivalcisadane/images/cisadane-hero.jpg')",
         }}
       />
 
