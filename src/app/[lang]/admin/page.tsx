@@ -29,7 +29,7 @@ export default function AdminDashboard() {
     setErrorMsg("");
 
     try {
-      const res = await fetch("/api/admin/visitors", {
+      const res = await fetch("/festivalcisadane/api/admin/visitors", {
         headers: {
           Authorization: `Bearer ${pwd}`,
         },
