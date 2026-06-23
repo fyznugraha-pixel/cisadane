@@ -2,45 +2,38 @@
 
 import { useState } from "react";
 import Reveal from "@/components/Reveal";
+import { supabase } from "@/lib/supabase";
 
 export default function RegisterForm({ dict }: { dict: any }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    phone: "",
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     setErrorMsg("");
 
-    try {
-      const res = await fetch("/festivalcisadane/api/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+    const formData = new FormData(e.currentTarget);
+    const fullName = formData.get("fullName") as string;
+    const email = formData.get("email") as string;
+    const phone = formData.get("phone") as string;
 
-      const data = await res.json();
+    const { error } = await supabase.from("visitors").insert([
+      {
+        full_name: fullName,
+        email: email,
+        phone: phone,
+      },
+    ]);
 
-      if (!res.ok) {
-        throw new Error(data.error || "Failed to register");
-      }
+    setIsLoading(false);
 
+    if (error) {
+      setErrorMsg("Terjadi kesalahan saat menyimpan data. Silakan coba lagi.");
+      console.error(error);
+    } else {
       setIsSubmitted(true);
-    } catch (err: any) {
-      setErrorMsg(err.message);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -88,8 +81,7 @@ export default function RegisterForm({ dict }: { dict: any }) {
               <input
                 type="text"
                 id="fullName"
-                value={formData.fullName}
-                onChange={handleChange}
+                name="fullName"
                 required
                 className="w-full border-b-2 border-[#2654A4]/20 bg-[#FDFBF7] px-4 py-3 text-[#041020] transition focus:border-[#FDB715] focus:outline-none focus:ring-0"
                 placeholder={dict.fullName}
@@ -106,8 +98,7 @@ export default function RegisterForm({ dict }: { dict: any }) {
               <input
                 type="email"
                 id="email"
-                value={formData.email}
-                onChange={handleChange}
+                name="email"
                 required
                 className="w-full border-b-2 border-[#2654A4]/20 bg-[#FDFBF7] px-4 py-3 text-[#041020] transition focus:border-[#FDB715] focus:outline-none focus:ring-0"
                 placeholder="email@example.com"
@@ -124,8 +115,7 @@ export default function RegisterForm({ dict }: { dict: any }) {
               <input
                 type="tel"
                 id="phone"
-                value={formData.phone}
-                onChange={handleChange}
+                name="phone"
                 required
                 className="w-full border-b-2 border-[#2654A4]/20 bg-[#FDFBF7] px-4 py-3 text-[#041020] transition focus:border-[#FDB715] focus:outline-none focus:ring-0"
                 placeholder="+62 812 3456 7890"
@@ -133,7 +123,7 @@ export default function RegisterForm({ dict }: { dict: any }) {
             </div>
 
             {errorMsg && (
-              <div className="rounded border border-[#EC3A24]/40 bg-[#EC3A24]/10 p-3 text-sm font-medium text-[#EC3A24]">
+              <div className="rounded-md bg-red-50 p-4 text-sm text-red-600">
                 {errorMsg}
               </div>
             )}
@@ -142,7 +132,7 @@ export default function RegisterForm({ dict }: { dict: any }) {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-[#FDB715] px-8 py-4 text-center font-black uppercase tracking-[0.18em] text-[#041020] shadow-[5px_5px_0_rgba(38,84,164,0.3)] transition hover:-translate-y-1 hover:bg-[#2654A4] hover:text-white hover:shadow-[5px_5px_0_rgba(253,183,21,0.5)] disabled:opacity-70 disabled:hover:translate-y-0"
+                className="w-full bg-[#FDB715] px-8 py-4 text-center font-black uppercase tracking-[0.18em] text-[#041020] shadow-[5px_5px_0_rgba(38,84,164,0.3)] transition hover:-translate-y-1 hover:bg-[#2654A4] hover:text-white hover:shadow-[5px_5px_0_rgba(253,183,21,0.5)] disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:bg-[#FDB715] disabled:hover:text-[#041020]"
               >
                 {isLoading ? "Memproses..." : dict.submit}
               </button>
