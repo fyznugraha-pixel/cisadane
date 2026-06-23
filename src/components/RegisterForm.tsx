@@ -5,10 +5,43 @@ import Reveal from "@/components/Reveal";
 
 export default function RegisterForm({ dict }: { dict: any }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    setIsLoading(true);
+    setErrorMsg("");
+
+    try {
+      const res = await fetch("/festivalcisadane/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to register");
+      }
+
+      setIsSubmitted(true);
+    } catch (err: any) {
+      setErrorMsg(err.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (isSubmitted) {
@@ -55,6 +88,8 @@ export default function RegisterForm({ dict }: { dict: any }) {
               <input
                 type="text"
                 id="fullName"
+                value={formData.fullName}
+                onChange={handleChange}
                 required
                 className="w-full border-b-2 border-[#2654A4]/20 bg-[#FDFBF7] px-4 py-3 text-[#041020] transition focus:border-[#FDB715] focus:outline-none focus:ring-0"
                 placeholder={dict.fullName}
@@ -71,6 +106,8 @@ export default function RegisterForm({ dict }: { dict: any }) {
               <input
                 type="email"
                 id="email"
+                value={formData.email}
+                onChange={handleChange}
                 required
                 className="w-full border-b-2 border-[#2654A4]/20 bg-[#FDFBF7] px-4 py-3 text-[#041020] transition focus:border-[#FDB715] focus:outline-none focus:ring-0"
                 placeholder="email@example.com"
@@ -87,18 +124,27 @@ export default function RegisterForm({ dict }: { dict: any }) {
               <input
                 type="tel"
                 id="phone"
+                value={formData.phone}
+                onChange={handleChange}
                 required
                 className="w-full border-b-2 border-[#2654A4]/20 bg-[#FDFBF7] px-4 py-3 text-[#041020] transition focus:border-[#FDB715] focus:outline-none focus:ring-0"
                 placeholder="+62 812 3456 7890"
               />
             </div>
 
+            {errorMsg && (
+              <div className="rounded border border-[#EC3A24]/40 bg-[#EC3A24]/10 p-3 text-sm font-medium text-[#EC3A24]">
+                {errorMsg}
+              </div>
+            )}
+
             <div className="pt-4">
               <button
                 type="submit"
-                className="w-full bg-[#FDB715] px-8 py-4 text-center font-black uppercase tracking-[0.18em] text-[#041020] shadow-[5px_5px_0_rgba(38,84,164,0.3)] transition hover:-translate-y-1 hover:bg-[#2654A4] hover:text-white hover:shadow-[5px_5px_0_rgba(253,183,21,0.5)]"
+                disabled={isLoading}
+                className="w-full bg-[#FDB715] px-8 py-4 text-center font-black uppercase tracking-[0.18em] text-[#041020] shadow-[5px_5px_0_rgba(38,84,164,0.3)] transition hover:-translate-y-1 hover:bg-[#2654A4] hover:text-white hover:shadow-[5px_5px_0_rgba(253,183,21,0.5)] disabled:opacity-70 disabled:hover:translate-y-0"
               >
-                {dict.submit}
+                {isLoading ? "Memproses..." : dict.submit}
               </button>
             </div>
           </div>
