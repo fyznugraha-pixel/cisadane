@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from "react";
 import * as XLSX from "xlsx";
-import { Download, Lock, Users, LogOut } from "lucide-react";
+import { Download, Lock, Users, LogOut, Eye, EyeOff } from "lucide-react";
 
 export default function AdminDashboard() {
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -113,15 +114,23 @@ export default function AdminDashboard() {
             }}
             className="flex flex-col gap-4"
           >
-            <div>
+            <div className="relative">
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="Kata Sandi Admin"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-xl border border-[#2654A4]/20 bg-[#FDFBF7] px-4 py-3 text-[#041020] transition focus:border-[#FDB715] focus:outline-none focus:ring-2 focus:ring-[#FDB715]/50"
+                className="w-full rounded-xl border border-[#2654A4]/20 bg-[#FDFBF7] px-4 py-3 pr-12 text-[#041020] transition focus:border-[#FDB715] focus:outline-none focus:ring-2 focus:ring-[#FDB715]/50"
                 required
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-0 flex items-center px-4 text-[#041020]/40 hover:text-[#041020]/70"
+                aria-label={showPassword ? "Sembunyikan kata sandi" : "Tampilkan kata sandi"}
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
             </div>
 
             {errorMsg && (
