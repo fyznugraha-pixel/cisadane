@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
@@ -45,8 +46,8 @@ export default function Navbar({
       <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-[#2654A4] via-[#38BBCA] via-[#FDB715] to-[#EC3A24]" />
 
       <nav className="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-4 md:px-8">
-        <a
-          href={`/festivalcisadane/${lang}`}
+        <Link
+          href={`/${lang}`}
           onClick={closeMenu}
           className="relative flex items-center gap-3"
         >
@@ -60,14 +61,14 @@ export default function Navbar({
               className="object-contain object-left"
             />
           </div>
-        </a>
+        </Link>
 
         {/* CENTER NAV LINKS */}
         <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-6 xl:gap-10">
           {dict.items.map((item) => (
-            <a
+            <Link
               key={item.href}
-              href={`/festivalcisadane/${lang}${item.href}`}
+              href={`/${lang}${item.href}`}
               className="group relative px-2 py-4 text-[10px] font-black uppercase tracking-[0.2em] text-[#041020]/80 transition hover:text-[#2654A4] lg:text-[11px]"
             >
               <span>{item.label}</span>
@@ -75,51 +76,51 @@ export default function Navbar({
                 <span className="absolute bottom-3 left-2 h-1 w-6 bg-[#EC3A24]" />
               )}
               <span className="absolute bottom-3 left-2 h-1 w-0 bg-[#2654A4] transition-all duration-300 group-hover:w-6" />
-            </a>
+            </Link>
           ))}
         </div>
 
         {/* RIGHT ACTIONS */}
         <div className="hidden items-center lg:flex">
           <div className="mr-6 flex items-center text-[10px] font-bold uppercase tracking-widest text-[#041020]/60">
-            <a
-              href="/festivalcisadane/en"
+            <Link
+              href="/en"
               className={`px-2 transition hover:text-[#2654A4] ${lang === "en" ? "text-[#2654A4]" : ""}`}
             >
               EN
-            </a>
+            </Link>
             <span>|</span>
-            <a
-              href="/festivalcisadane/id"
+            <Link
+              href="/id"
               className={`px-2 transition hover:text-[#2654A4] ${lang === "id" ? "text-[#2654A4]" : ""}`}
             >
               ID
-            </a>
+            </Link>
           </div>
 
-          <a
-            href={`/festivalcisadane/${lang}#register`}
+          <Link
+            href={`/${lang}#register`}
             className="bg-[#FDB715] px-6 py-3.5 text-[11px] font-black uppercase tracking-[0.18em] text-[#041020] shadow-[5px_5px_0_rgba(38,84,164,0.3)] transition hover:-translate-y-0.5 hover:bg-[#2654A4] hover:text-white"
           >
             {dict.registerBtn}
-          </a>
+          </Link>
         </div>
 
         <div className="flex items-center gap-4 lg:hidden">
           <div className="flex items-center text-[10px] font-bold uppercase tracking-widest text-[#041020]/60">
-            <a
-              href="/festivalcisadane/en"
+            <Link
+              href="/en"
               className={`px-2 transition hover:text-[#2654A4] ${lang === "en" ? "text-[#2654A4]" : ""}`}
             >
               EN
-            </a>
+            </Link>
             <span>|</span>
-            <a
-              href="/festivalcisadane/id"
+            <Link
+              href="/id"
               className={`px-2 transition hover:text-[#2654A4] ${lang === "id" ? "text-[#2654A4]" : ""}`}
             >
               ID
-            </a>
+            </Link>
           </div>
 
           <button
@@ -140,23 +141,23 @@ export default function Navbar({
         <div className="relative px-5 py-5">
           <div className="relative grid gap-2">
             {dict.items.map((item) => (
-              <a
+              <Link
                 key={item.href}
-                href={`/festivalcisadane/${lang}${item.href}`}
+                href={`/${lang}${item.href}`}
                 onClick={() => setIsOpen(false)}
                 className="group flex items-center justify-between border-b border-[#2654A4]/5 px-4 py-4 text-xs font-black uppercase tracking-[0.2em] text-[#041020]/80 transition hover:bg-[#2654A4]/5 hover:text-[#2654A4]"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
 
-            <a
-              href={`/festivalcisadane/${lang}#register`}
+            <Link
+              href={`/${lang}#register`}
               onClick={closeMenu}
               className="mt-2 bg-[#FDB715] px-4 py-4 text-center text-sm font-black uppercase tracking-[0.18em] text-[#041020] shadow-[5px_5px_0_rgba(56,187,202,0.75)] transition hover:bg-white"
             >
               {dict.registerBtn}
-            </a>
+            </Link>
           </div>
         </div>
       </div>

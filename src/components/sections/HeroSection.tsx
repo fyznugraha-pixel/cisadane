@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, CalendarDays, MapPin, Sparkles, Volume2, VolumeX } from "lucide-react";
 
 declare global {
@@ -219,20 +220,20 @@ export default function HeroSection({
           </p>
 
           <div className="mt-12 flex flex-wrap gap-5">
-            <a
-              href={`/festivalcisadane/${lang}#register`}
+            <Link
+              href={`/${lang}#register`}
               className="group flex items-center gap-3 bg-[#FDB715] px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#041020] shadow-[6px_6px_0_rgba(56,187,202,0.75)] transition hover:-translate-y-0.5 hover:bg-white md:text-sm"
             >
               <span>{dict.cta.primary}</span>
               <ArrowRight size={18} className="transition group-hover:translate-x-1" />
-            </a>
+            </Link>
 
-            <a
-              href={`/festivalcisadane/${lang}#about`}
+            <Link
+              href={`/${lang}#about`}
               className="group flex items-center gap-3 border border-[#2654A4]/30 bg-[#2654A4]/5 px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#2654A4] backdrop-blur-sm transition hover:bg-[#2654A4]/10 md:text-sm"
             >
               <span>{dict.cta.secondary}</span>
-            </a>
+            </Link>
           </div>
 
           <div className="mt-16 flex flex-wrap items-center gap-x-8 gap-y-4">

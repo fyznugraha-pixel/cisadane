@@ -2,6 +2,7 @@
 
 import { X } from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
 import type { Dictionary } from "@/i18n/dictionaries";
 
 export default function StickyRegisterBar({
@@ -35,19 +36,19 @@ export default function StickyRegisterBar({
           </div>
 
           <div className="grid grid-cols-2 gap-3 md:flex md:items-center">
-            <a
-              href={`/festivalcisadane/${lang}#highlights`}
+            <Link
+              href={`/${lang}#highlights`}
               className="border border-[#2654A4]/30 px-4 py-3 text-center text-[11px] font-black uppercase tracking-[0.16em] text-[#2654A4] transition hover:bg-[#2654A4] hover:text-white md:min-w-[150px]"
             >
               {dict.viewHighlights}
-            </a>
+            </Link>
 
-            <a
-              href={`/festivalcisadane/${lang}#register`}
+            <Link
+              href={`/${lang}#register`}
               className="bg-[#FDB715] px-4 py-3 text-center text-[11px] font-black uppercase tracking-[0.16em] text-[#041020] shadow-[3px_3px_0_rgba(38,84,164,0.2)] transition hover:bg-[#2654A4] hover:text-white md:min-w-[170px]"
             >
               {dict.registerNow}
-            </a>
+            </Link>
           </div>
 
           <button
