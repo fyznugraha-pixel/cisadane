@@ -10,6 +10,7 @@ import StickyRegisterBar from "@/components/StickyRegisterBar";
 import MapWrapper from "@/components/MapWrapper";
 import TactlinkSupportSection from "@/components/TactlinkSupportSection";
 import { getDictionary } from "@/i18n/dictionaries";
+import RegisterForm from "@/components/RegisterForm";
 
 const accentMap: Record<"red" | "gold" | "teal" | "orange", string> = {
   red: "from-[#C8281E]/70",
@@ -212,33 +213,8 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
             description={dict.register.description}
           />
 
-          <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {dict.register.categories.map((category, index) => (
-              <Reveal key={category.id} delay={index * 0.06} className="h-full">
-                <button className="hover-rise group flex flex-col h-full w-full overflow-hidden border border-[#2654A4]/15 bg-white shadow-lg rounded-2xl text-left transition-all duration-500 hover:-translate-y-2 hover:shadow-xl">
-                  {/* 60% Top Image Area */}
-                  <div className="relative h-[220px] w-full shrink-0 overflow-hidden bg-[#041020]">
-                    <div
-                      className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                      style={{ backgroundImage: `url('/festivalcisadane${category.image}')` }}
-                    />
-                  </div>
-
-                  {/* 40% Bottom Text Area */}
-                  <div className="relative flex flex-1 flex-col p-6 bg-[#FDFBF7]">
-                    <div className="absolute top-0 left-0 h-1.5 w-full bg-gradient-to-r from-[#FDB715] to-[#EC3A24]" />
-                    
-                    <h3 className="font-display text-[22px] font-black uppercase leading-tight text-[#2654A4]">
-                      {category.title}
-                    </h3>
-
-                    <p className="mt-3 text-sm font-medium leading-relaxed text-[#041020]/80">
-                      {category.description}
-                    </p>
-                  </div>
-                </button>
-              </Reveal>
-            ))}
+          <div className="mt-14">
+            <RegisterForm dict={dict.register.form} />
           </div>
 
           <Reveal delay={0.18}>

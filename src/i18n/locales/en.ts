@@ -120,34 +120,15 @@ export const en = {
   register: {
     eyebrow: "Registration Information",
     title: "Choose Your Path\nto Join",
-    description: "Discover how you can be a part of Festival Cisadane 2026. Select your category to begin the registration process.",
-    statusBox: "Status: Registration is currently closed. Keep an eye on this page for schedule updates.",
-    categories: [
-      {
-        id: "visitor",
-        title: "General Visitors",
-        description: "Get your admission tickets to access the exhibition zones, culinary bazaars, and the main stage area.",
-        image: "/images/highlights/cs8.jpg",
-      },
-      {
-        id: "tenant",
-        title: "Local Businesses & SMEs",
-        description: "Rent a retail space in the Local Market District. Dozens of booths ranging from 2x2 to 3x3 meters are available.",
-        image: "/images/highlights/cs4.jpg",
-      },
-      {
-        id: "dragon_boat",
-        title: "Dragon Boat Teams",
-        description: "Register your rowing team to compete on the national course and fight for the annual championship trophy.",
-        image: "/images/highlights/cs3.jpg",
-      },
-      {
-        id: "collaborator",
-        title: "Partners & Sponsors",
-        description: "Collaborate with our festival to reach tens of thousands of attendees while actively supporting cultural preservation.",
-        image: "/images/highlights/cs10.jpg",
-      },
-    ]
+    description: "Discover how you can be a part of Festival Cisadane 2026. Please fill out the information below to register as a visitor.",
+    statusBox: "Visitor registration is now open. See you at the Cisadane riverbanks!",
+    form: {
+      fullName: "Full Name",
+      email: "Email Address",
+      phone: "Phone Number",
+      submit: "Join Now",
+      success: "Thank you! Your registration has been successful.",
+    }
   },
   location: {
     eyebrow: "Getting Here",

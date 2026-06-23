@@ -122,34 +122,15 @@ export const id: Dictionary = {
   register: {
     eyebrow: "Informasi Registrasi",
     title: "Ambil Bagian Dalam\nSejarah Ini",
-    description: "Perayaan agung ini tak akan utuh tanpa kehadiran Anda. Lengkapi informasi berikut untuk turut merajut benang sejarah di Festival Cisadane 2026.",
-    statusBox: "Status: Pendaftaran saat ini belum dibuka. Pantau terus halaman ini untuk pembaruan jadwal.",
-    categories: [
-      {
-        id: "visitor",
-        title: "Pengunjung Umum",
-        description: "Dapatkan tiket masuk untuk mengakses area pameran, bazar kuliner, dan area panggung utama.",
-        image: "/images/highlights/cs8.jpg",
-      },
-      {
-        id: "tenant",
-        title: "Pelaku Usaha & UMKM",
-        description: "Sewa area berjualan di Local Market District. Tersedia ragam tenda (booth) mulai dari ukuran 2x2 meter hingga 3x3 meter.",
-        image: "/images/highlights/cs4.jpg",
-      },
-      {
-        id: "dragon_boat",
-        title: "Tim Perahu Naga",
-        description: "Daftarkan tim dayung Anda untuk bertanding di lintasan nasional dan memperebutkan piala tahunan.",
-        image: "/images/highlights/cs3.jpg",
-      },
-      {
-        id: "collaborator",
-        title: "Mitra & Sponsor",
-        description: "Jalin kerja sama dengan festival kami untuk menjangkau puluhan ribu audiens sekaligus mendukung pelestarian budaya daerah.",
-        image: "/images/highlights/cs10.jpg",
-      },
-    ]
+    description: "Perayaan agung ini tak akan utuh tanpa kehadiran Anda. Lengkapi informasi berikut untuk turut merajut benang sejarah di Festival Cisadane 2026 sebagai pengunjung.",
+    statusBox: "Pendaftaran pengunjung telah dibuka. Sampai jumpa di tepian Cisadane!",
+    form: {
+      fullName: "Nama Lengkap",
+      email: "Alamat Email",
+      phone: "Nomor Handphone",
+      submit: "Daftar Sekarang",
+      success: "Terima kasih! Registrasi Anda telah berhasil.",
+    }
   },
   location: {
     eyebrow: "Akses Menuju Lokasi",
