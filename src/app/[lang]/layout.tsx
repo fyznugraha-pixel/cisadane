@@ -55,8 +55,8 @@ export default async function RootLayout(props: Readonly<{
 }>) {
   const params = await props.params;
   return (
-    <html lang={params.lang}>
-      <body className={`${poppinsDisplay.variable} ${poppinsBody.variable}`}>
+    <html lang={params.lang} suppressHydrationWarning>
+      <body className={`${poppinsDisplay.variable} ${poppinsBody.variable}`} suppressHydrationWarning>
         {props.children}
         <Analytics />
       </body>
