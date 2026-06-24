@@ -124,9 +124,9 @@ export default function AdminDashboard() {
       });
 
       // Style data cells
-      row.eachCell((cell) => {
+      row.eachCell((cell, colNumber) => {
         cell.font = { name: "Arial", size: 11 };
-        cell.alignment = { vertical: "middle", horizontal: cell.col === 1 ? "center" : "left" };
+        cell.alignment = { vertical: "middle", horizontal: colNumber === 1 ? "center" : "left" };
         cell.border = {
           top: { style: "thin", color: { argb: "FFDDDDDD" } },
           left: { style: "thin", color: { argb: "FFDDDDDD" } },
