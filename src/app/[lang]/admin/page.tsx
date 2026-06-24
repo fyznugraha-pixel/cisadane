@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import * as XLSX from "xlsx";
+import ExcelJS from "exceljs";
+import { saveAs } from "file-saver";
 import { Download, Lock, Users, LogOut, Eye, EyeOff } from "lucide-react";
 
 export default function AdminDashboard() {
@@ -59,37 +60,97 @@ export default function AdminDashboard() {
     sessionStorage.removeItem("admin_password");
   };
 
-  const handleExportExcel = () => {
+  const handleExportExcel = async () => {
     if (visitors.length === 0) return;
 
-    // Prepare data for Excel
-    const dataForExport = visitors.map((v, i) => ({
-      No: i + 1,
-      "Nama Lengkap": v.full_name,
-      Email: v.email,
-      "Nomor HP": v.phone,
-      "Tanggal Daftar": new Date(v.created_at).toLocaleString("id-ID", {
-        dateStyle: "medium",
-        timeStyle: "short",
-      }),
-    }));
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet("Data Pengunjung");
 
-    // Create a workbook and a worksheet
-    const worksheet = XLSX.utils.json_to_sheet(dataForExport);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Visitors");
+    // Add Title
+    worksheet.mergeCells("A1:E1");
+    const titleCell = worksheet.getCell("A1");
+    titleCell.value = "DATA PENDAFTAR FESTIVAL CISADANE 2026";
+    titleCell.font = { name: "Arial", size: 16, bold: true, color: { argb: "FF2654A4" } };
+    titleCell.alignment = { vertical: "middle", horizontal: "center" };
+    
+    // Add subtitle / date generated
+    worksheet.mergeCells("A2:E2");
+    const subTitleCell = worksheet.getCell("A2");
+    subTitleCell.value = `Diunduh pada: ${new Date().toLocaleString("id-ID")}`;
+    subTitleCell.font = { name: "Arial", size: 10, italic: true, color: { argb: "FF666666" } };
+    subTitleCell.alignment = { vertical: "middle", horizontal: "center" };
 
-    // Adjust column widths
-    worksheet["!cols"] = [
-      { wch: 5 }, // No
-      { wch: 30 }, // Nama
-      { wch: 35 }, // Email
-      { wch: 20 }, // Phone
-      { wch: 25 }, // Tanggal
+    worksheet.addRow([]); // Empty row
+
+    // Define columns
+    worksheet.columns = [
+      { header: "No", key: "no", width: 8 },
+      { header: "Nama Lengkap", key: "nama", width: 35 },
+      { header: "Email", key: "email", width: 40 },
+      { header: "Nomor HP", key: "hp", width: 25 },
+      { header: "Tanggal Daftar", key: "tanggal", width: 30 },
     ];
 
-    // Download the file
-    XLSX.writeFile(workbook, "Data_Pengunjung_Cisadane.xlsx");
+    // Style the header row
+    const headerRow = worksheet.getRow(4);
+    headerRow.eachCell((cell) => {
+      cell.fill = {
+        type: "pattern",
+        pattern: "solid",
+        fgColor: { argb: "FF2654A4" }, // Blue background
+      };
+      cell.font = { color: { argb: "FFFFFFFF" }, bold: true, name: "Arial" };
+      cell.alignment = { vertical: "middle", horizontal: "center" };
+      cell.border = {
+        top: { style: "thin" },
+        left: { style: "thin" },
+        bottom: { style: "thin" },
+        right: { style: "thin" },
+      };
+    });
+    headerRow.height = 30;
+
+    // Add data rows
+    visitors.forEach((v, index) => {
+      const row = worksheet.addRow({
+        no: index + 1,
+        nama: v.full_name,
+        email: v.email,
+        hp: v.phone,
+        tanggal: new Date(v.created_at).toLocaleString("id-ID", {
+          dateStyle: "medium",
+          timeStyle: "short",
+        }),
+      });
+
+      // Style data cells
+      row.eachCell((cell) => {
+        cell.font = { name: "Arial", size: 11 };
+        cell.alignment = { vertical: "middle", horizontal: cell.col === 1 ? "center" : "left" };
+        cell.border = {
+          top: { style: "thin", color: { argb: "FFDDDDDD" } },
+          left: { style: "thin", color: { argb: "FFDDDDDD" } },
+          bottom: { style: "thin", color: { argb: "FFDDDDDD" } },
+          right: { style: "thin", color: { argb: "FFDDDDDD" } },
+        };
+      });
+      
+      // Alternating row colors
+      if (index % 2 === 1) {
+        row.eachCell((cell) => {
+          cell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: "FFF9F7F1" } };
+        });
+      }
+      row.height = 25;
+    });
+
+    // Freeze header
+    worksheet.views = [{ state: "frozen", ySplit: 4 }];
+
+    // Generate blob and download
+    const buffer = await workbook.xlsx.writeBuffer();
+    const blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+    saveAs(blob, "Data_Pengunjung_Cisadane.xlsx");
   };
 
   // If not authenticated, show login screen
