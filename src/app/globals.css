@@ -419,8 +419,8 @@ body {
 .lantern-particles span {
   position: absolute;
   bottom: -40px;
-  width: 7px;
-  height: 7px;
+  width: 24px;
+  height: 24px;
   border-radius: 999px;
   background: rgba(253, 183, 21, 0.76);
   box-shadow:
