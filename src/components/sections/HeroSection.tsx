@@ -136,7 +136,7 @@ export default function HeroSection({
       <div
         className="absolute inset-0 bg-cover bg-center opacity-30"
         style={{
-          backgroundImage: `url('${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/images/highlights/cs1.jpg')`,
+          backgroundImage: `url('${assetPath("/images/highlights/cs1.jpg")}')`,
         }}
       />
 
