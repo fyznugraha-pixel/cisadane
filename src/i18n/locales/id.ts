@@ -83,16 +83,13 @@ export const id: Dictionary = {
     description: "Daftar musisi berikut masih dalam tahap konfirmasi (wishlist) dan belum final.",
     previewPrefix: "Seniman",
     talent: [
-      "Perunggu",
-      "Happy Asmara",
-      "Ada Band",
-      "The Changcuters",
-      "Barasuara",
-      "Nadin Amizah",
-      "Bernadya",
-      "Sal Priadi",
-      "Bilal Indrajaya",
-      "Kangen Band"
+      { name: "Feel Koplo", image: "/artis/feel-koplo.jpeg" },
+      { name: "Samsaka" },
+      { name: "ziepross" },
+      { name: "VOC" },
+      { name: "The Mora" },
+      { name: "Star Koplo" },
+      { name: "pasmatik 18" }
     ]
   },
   whyVisit: {

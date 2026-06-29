@@ -10,6 +10,7 @@ import StickyRegisterBar from "@/components/StickyRegisterBar";
 import MapWrapper from "@/components/MapWrapper";
 import TactlinkSupportSection from "@/components/TactlinkSupportSection";
 import { getDictionary } from "@/i18n/dictionaries";
+import { assetPath } from "@/lib/asset-path";
 
 const accentMap: Record<"red" | "gold" | "teal" | "orange", string> = {
   red: "from-[#C8281E]/70",
@@ -130,21 +131,33 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
             </Reveal>
           </div>
 
-          <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {dict.performers.talent.map((name, index) => (
-              <Reveal key={name} delay={index * 0.05}>
+          <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {dict.performers.talent.map((talentItem: any, index: number) => (
+              <Reveal key={talentItem.name} delay={index * 0.05}>
                 <div className="hover-rise relative min-h-[220px] overflow-hidden border border-[#2654A4]/10 bg-white shadow-sm">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#38BBCA]/10 via-transparent to-[#EC3A24]/5" />
-                  <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-transparent via-[#2654A4]/5 to-transparent" />
+                  {talentItem.image ? (
+                    <div 
+                      className="absolute inset-0 bg-cover bg-center" 
+                      style={{ backgroundImage: `url('${assetPath(talentItem.image)}')` }}
+                    />
+                  ) : (
+                    <>
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#38BBCA]/10 via-transparent to-[#EC3A24]/5" />
+                      <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-transparent via-[#2654A4]/5 to-transparent" />
+                    </>
+                  )}
+                  {talentItem.image && (
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#041020]/90 via-[#041020]/30 to-transparent" />
+                  )}
 
                   <div className="relative flex h-full min-h-[220px] items-end p-6">
                     <div>
-                      <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#EC3A24]">
+                      <p className={`text-xs font-bold uppercase tracking-[0.22em] ${talentItem.image ? "text-[#FDB715]" : "text-[#EC3A24]"}`}>
                         {dict.performers.previewPrefix} {String(index + 1).padStart(2, "0")}
                       </p>
 
-                      <h3 className="mt-3 text-2xl font-extrabold text-[#2654A4]">
-                        {name}
+                      <h3 className={`mt-3 text-2xl font-extrabold ${talentItem.image ? "text-white" : "text-[#2654A4]"}`}>
+                        {talentItem.name}
                       </h3>
                     </div>
                   </div>

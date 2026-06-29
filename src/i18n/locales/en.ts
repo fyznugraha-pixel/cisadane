@@ -81,16 +81,13 @@ export const en = {
     description: "The following musicians are currently on our wishlist and have not been finalized.",
     previewPrefix: "Preview",
     talent: [
-      "Perunggu",
-      "Happy Asmara",
-      "Ada Band",
-      "The Changcuters",
-      "Barasuara",
-      "Nadin Amizah",
-      "Bernadya",
-      "Sal Priadi",
-      "Bilal Indrajaya",
-      "Kangen Band"
+      { name: "Feel Koplo", image: "/artis/feel-koplo.jpeg" },
+      { name: "Samsaka" },
+      { name: "ziepross" },
+      { name: "VOC" },
+      { name: "The Mora" },
+      { name: "Star Koplo" },
+      { name: "pasmatik 18" }
     ]
   },
   whyVisit: {
