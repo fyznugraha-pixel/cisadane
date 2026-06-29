@@ -81,13 +81,13 @@ export const en = {
     description: "The following musicians are currently on our wishlist and have not been finalized.",
     previewPrefix: "Lineup",
     talent: [
-      { name: "Feel Koplo", image: "/artis/feel-koplo.jpeg" },
       { name: "Samsaka" },
       { name: "ziepross" },
       { name: "VOC" },
       { name: "The Mora" },
       { name: "Star Koplo" },
-      { name: "pasmatik 18" }
+      { name: "pasmatik 18" },
+      { name: "Feel Koplo" }
     ]
   },
   whyVisit: {

@@ -83,13 +83,13 @@ export const id: Dictionary = {
     description: "Daftar musisi berikut masih dalam tahap konfirmasi (wishlist) dan belum final.",
     previewPrefix: "Lineup",
     talent: [
-      { name: "Feel Koplo", image: "/artis/feel-koplo.jpeg" },
       { name: "Samsaka" },
       { name: "ziepross" },
       { name: "VOC" },
       { name: "The Mora" },
       { name: "Star Koplo" },
-      { name: "pasmatik 18" }
+      { name: "pasmatik 18" },
+      { name: "Feel Koplo" }
     ]
   },
   whyVisit: {
