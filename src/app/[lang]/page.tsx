@@ -121,20 +121,14 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
         <SectionOrnaments dragonTopRight dragonBottomLeft shapes="petals" lights="both" />
 
         <div className="section-inner">
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-center text-center">
             <SectionHeading eyebrow={dict.performers.eyebrow} title={dict.performers.title} />
-
-            <Reveal delay={0.16}>
-              <p className="max-w-xl text-lg leading-8 text-[#041020]/75">
-                {dict.performers.description}
-              </p>
-            </Reveal>
           </div>
 
-          <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 flex flex-wrap justify-center gap-4">
             {dict.performers.talent.map((talentItem: any, index: number) => (
-              <Reveal key={talentItem.name} delay={index * 0.05}>
-                <div className="hover-rise relative min-h-[220px] overflow-hidden border border-[#2654A4]/10 bg-white shadow-sm">
+              <Reveal key={talentItem.name} delay={index * 0.05} className="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]">
+                <div className="hover-rise relative h-full min-h-[220px] w-full overflow-hidden border border-[#2654A4]/10 bg-white shadow-sm">
                   {talentItem.image ? (
                     <div 
                       className="absolute inset-0 bg-cover bg-center" 

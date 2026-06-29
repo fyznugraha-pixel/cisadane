@@ -80,7 +80,6 @@ export const id: Dictionary = {
   performers: {
     eyebrow: "Penampil Panggung Malam",
     title: "Gema Melodi\nDari Tepian",
-    description: "Daftar musisi berikut masih dalam tahap konfirmasi (wishlist) dan belum final.",
     previewPrefix: "Lineup",
     talent: [
       { name: "Samsaka" },

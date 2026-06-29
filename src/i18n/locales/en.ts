@@ -78,7 +78,6 @@ export const en = {
   performers: {
     eyebrow: "Night Stage Lineup",
     title: "Upcoming\nPerformances",
-    description: "The following musicians are currently on our wishlist and have not been finalized.",
     previewPrefix: "Lineup",
     talent: [
       { name: "Samsaka" },
