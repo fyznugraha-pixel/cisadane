@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/festivalcisadane/id",
+      "permanent": false
+    }
+  ]
+}
