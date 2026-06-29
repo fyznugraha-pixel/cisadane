@@ -81,7 +81,7 @@ export const id: Dictionary = {
     eyebrow: "Penampil Panggung Malam",
     title: "Gema Melodi\nDari Tepian",
     description: "Daftar musisi berikut masih dalam tahap konfirmasi (wishlist) dan belum final.",
-    previewPrefix: "Seniman",
+    previewPrefix: "Lineup",
     talent: [
       { name: "Feel Koplo", image: "/artis/feel-koplo.jpeg" },
       { name: "Samsaka" },

@@ -79,7 +79,7 @@ export const en = {
     eyebrow: "Night Stage Lineup",
     title: "Upcoming\nPerformances",
     description: "The following musicians are currently on our wishlist and have not been finalized.",
-    previewPrefix: "Preview",
+    previewPrefix: "Lineup",
     talent: [
       { name: "Feel Koplo", image: "/artis/feel-koplo.jpeg" },
       { name: "Samsaka" },
