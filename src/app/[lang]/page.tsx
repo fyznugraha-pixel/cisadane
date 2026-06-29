@@ -122,7 +122,7 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
 
         <div className="section-inner">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-center text-center">
-            <SectionHeading eyebrow={dict.performers.eyebrow} title={dict.performers.title} />
+            <SectionHeading eyebrow={dict.performers.eyebrow} title={dict.performers.title} align="center" />
           </div>
 
           <div className="mt-14 flex flex-wrap justify-center gap-4">
