@@ -1,5 +1,6 @@
 import type { Dictionary } from "@/i18n/dictionaries";
 import Image from "next/image";
+import { assetPath } from "@/lib/asset-path";
 
 function InstagramIcon({ size = 24 }: { size?: number }) {
   return (
@@ -30,7 +31,7 @@ export default function Footer({ dict }: { dict: Dictionary }) {
           <div className="max-w-md">
             <div className="relative h-14 w-[240px] md:h-16 md:w-[280px]">
               <Image
-                src="/logo/logo.png"
+                src={assetPath("/logo/logo.png")}
                 alt="Festival Cisadane 2026 Logo"
                 fill
                 sizes="(max-width: 768px) 240px, 280px"

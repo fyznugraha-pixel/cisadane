@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { assetPath } from "@/lib/asset-path";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
@@ -53,7 +54,7 @@ export default function Navbar({
         >
           <div className="relative h-12 w-[190px] md:h-14 md:w-[230px]">
             <Image
-              src="/logo/logo.png"
+              src={assetPath("/logo/logo.png")}
               alt="Festival Cisadane 2026"
               fill
               priority

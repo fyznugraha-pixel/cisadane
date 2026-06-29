@@ -1,11 +1,6 @@
 import Image from "next/image";
 import { ExternalLink, Globe2 } from "lucide-react";
-
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-
-function assetPath(path: string) {
-  return `${basePath}${path}`;
-}
+import { assetPath } from "@/lib/asset-path";
 
 const tactlinkLinks = {
   website: "https://tactlink.com",

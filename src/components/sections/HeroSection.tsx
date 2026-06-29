@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
+import { assetPath } from "@/lib/asset-path";
 import Link from "next/link";
 import { ArrowRight, CalendarDays, MapPin, Sparkles, Volume2, VolumeX } from "lucide-react";
 
@@ -135,7 +136,7 @@ export default function HeroSection({
       <div
         className="absolute inset-0 bg-cover bg-center opacity-30"
         style={{
-          backgroundImage: "url('/festivalcisadane/images/cisadane-hero.jpg')",
+          backgroundImage: `url('${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/images/highlights/cs1.jpg')`,
         }}
       />
 
@@ -175,7 +176,7 @@ export default function HeroSection({
         <div className="w-full overflow-x-auto px-5 pb-2 md:overflow-x-visible md:px-12 md:pb-0">
           <div className="flex w-max min-w-full items-center justify-start md:w-full md:justify-center">
             <Image
-              src="/patnership/all-logo.png"
+              src={assetPath("/patnership/all-logo.png")}
               alt="Partnership Logos"
               width={1200}
               height={160}
@@ -284,7 +285,7 @@ export default function HeroSection({
                 <div className="flex items-center gap-4">
                   <div className="relative h-12 w-12 shrink-0">
                     <Image
-                      src="/logo/ken.png"
+                      src={assetPath("/logo/ken.png")}
                       alt="Karisma Event Nusantara"
                       fill
                       className="object-contain"

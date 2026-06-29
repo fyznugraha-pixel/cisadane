@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { assetPath } from "@/lib/asset-path";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import type { Dictionary } from "@/i18n/dictionaries";
@@ -107,7 +108,7 @@ function GalleryItem({ photo }: { photo: { src: string; caption: string } }) {
   return (
     <div className="group relative h-full w-full overflow-hidden rounded-[24px] bg-white border border-[#2654A4]/10 shadow-sm transition-shadow hover:shadow-xl">
       <Image
-        src={photo.src}
+        src={assetPath(photo.src)}
         alt={photo.caption}
         fill
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
