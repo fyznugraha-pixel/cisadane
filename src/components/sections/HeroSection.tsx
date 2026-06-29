@@ -172,15 +172,38 @@ export default function HeroSection({
       </div>
 
       {/* Full-width Partnership Logos */}
-      <div className="relative z-20 mx-auto w-full max-w-[1440px] pt-24 md:pt-28">
-        <div className="w-full overflow-x-auto px-5 pb-2 md:overflow-x-visible md:px-12 md:pb-0">
-          <div className="flex w-max min-w-full items-center justify-start md:w-full md:justify-center">
+      <div className="relative z-20 mx-auto w-full max-w-[1440px] pt-24 md:pt-28 overflow-hidden">
+        {/* Mobile Marquee */}
+        <div className="flex w-full md:hidden">
+          <div className="flex w-max min-w-full animate-marquee items-center gap-8">
             <Image
               src={assetPath("/patnership/all-logo.png")}
               alt="Partnership Logos"
               width={1200}
               height={160}
-              className="h-10 w-auto max-w-none object-contain md:h-16 md:w-full"
+              className="h-10 w-auto max-w-none object-contain"
+              priority
+            />
+            <Image
+              src={assetPath("/patnership/all-logo.png")}
+              alt="Partnership Logos"
+              width={1200}
+              height={160}
+              className="h-10 w-auto max-w-none object-contain"
+              priority
+            />
+          </div>
+        </div>
+
+        {/* Desktop Centered */}
+        <div className="hidden md:block w-full px-12">
+          <div className="flex w-full items-center justify-center">
+            <Image
+              src={assetPath("/patnership/all-logo.png")}
+              alt="Partnership Logos"
+              width={1200}
+              height={160}
+              className="h-16 w-full max-w-none object-contain"
               priority
             />
           </div>
@@ -222,7 +245,7 @@ export default function HeroSection({
 
           <div className="mt-12 flex flex-wrap gap-5">
             <Link
-              href={`/${lang}#register`}
+              href={`/${lang}/register`}
               className="group flex items-center gap-3 bg-[#FDB715] px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#041020] shadow-[6px_6px_0_rgba(56,187,202,0.75)] transition hover:-translate-y-0.5 hover:bg-white md:text-sm"
             >
               <span>{dict.cta.primary}</span>

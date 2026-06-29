@@ -24,7 +24,7 @@ export const id: Dictionary = {
       { label: "Kisah", href: "#about" },
       { label: "Atraksi", href: "#highlights" },
       { label: "Penampil", href: "#lineup" },
-      { label: "Registrasi", href: "#register" },
+      { label: "Registrasi", href: "/register" },
       { label: "Akses", href: "#location" },
     ],
     registerBtn: "Hadir & Bergabung",
@@ -128,6 +128,14 @@ export const id: Dictionary = {
       fullName: "Nama Lengkap",
       email: "Alamat Email",
       phone: "Nomor Handphone",
+      category: "Kategori Pengunjung",
+      categories: {
+        general: "Masyarakat Umum",
+        student: "Pelajar/Mahasiswa",
+        community: "Komunitas",
+        media: "Media/Pers"
+      },
+      tnc: "Saya menyetujui bahwa data registrasi saya dapat digunakan untuk keperluan registrasi, verifikasi akses acara, dan komunikasi terkait Festival Cisadane 2026.",
       submit: "Daftar Sekarang",
       success: "Terima kasih! Registrasi Anda telah berhasil.",
     }

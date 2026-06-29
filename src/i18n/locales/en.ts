@@ -22,7 +22,7 @@ export const en = {
       { label: "The Story", href: "#about" },
       { label: "Highlights", href: "#highlights" },
       { label: "Performers", href: "#lineup" },
-      { label: "Registration", href: "#register" },
+      { label: "Registration", href: "/register" },
       { label: "Getting Here", href: "#location" },
     ],
     registerBtn: "Join the Festival",
@@ -126,6 +126,14 @@ export const en = {
       fullName: "Full Name",
       email: "Email Address",
       phone: "Phone Number",
+      category: "Visitor Category",
+      categories: {
+        general: "General Public",
+        student: "Student",
+        community: "Community",
+        media: "Media"
+      },
+      tnc: "I agree that my registration data can be used for registration purposes, event access verification, and communications related to Festival Cisadane 2026.",
       submit: "Join Now",
       success: "Thank you! Your registration has been successful.",
     }

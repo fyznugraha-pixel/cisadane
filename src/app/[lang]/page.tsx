@@ -10,7 +10,6 @@ import StickyRegisterBar from "@/components/StickyRegisterBar";
 import MapWrapper from "@/components/MapWrapper";
 import TactlinkSupportSection from "@/components/TactlinkSupportSection";
 import { getDictionary } from "@/i18n/dictionaries";
-import RegisterForm from "@/components/RegisterForm";
 
 const accentMap: Record<"red" | "gold" | "teal" | "orange", string> = {
   red: "from-[#C8281E]/70",
@@ -235,33 +234,6 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
 
       <TactlinkSupportSection />
       
-      <section
-        id="register"
-        className="section-shell relative px-5 pb-36 pt-20"
-      >
-        <SectionOrnaments dragonScale="soft" tenun shapes="squares" lights="left" />
-
-        <div className="section-inner">
-          <SectionHeading
-            eyebrow={dict.register.eyebrow}
-            title={dict.register.title}
-            description={dict.register.description}
-          />
-
-          <div className="mt-14">
-            <RegisterForm dict={dict.register.form} />
-          </div>
-
-          <Reveal delay={0.18}>
-            <div className="mt-8 border border-[#FDB715]/40 bg-[#FDB715]/10 p-6 text-[#041020]/80">
-              {dict.register.statusBox}
-            </div>
-          </Reveal>
-        </div>
-
-        {/* Organic river transition into the footer/tactlink section */}
-        <RiverSectionDivider className="text-[#F9F7F1]" theme="light" />
-      </section>
 
       <Footer dict={dict} />
       {/* <StickyRegisterBar dict={dict.stickyBar} lang={lang} /> */}

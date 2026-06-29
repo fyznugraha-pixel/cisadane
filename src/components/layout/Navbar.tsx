@@ -100,7 +100,7 @@ export default function Navbar({
           </div>
 
           <Link
-            href={`/${lang}#register`}
+            href={`/${lang}/register`}
             className="bg-[#FDB715] px-6 py-3.5 text-[11px] font-black uppercase tracking-[0.18em] text-[#041020] shadow-[5px_5px_0_rgba(38,84,164,0.3)] transition hover:-translate-y-0.5 hover:bg-[#2654A4] hover:text-white"
           >
             {dict.registerBtn}
@@ -153,7 +153,7 @@ export default function Navbar({
             ))}
 
             <Link
-              href={`/${lang}#register`}
+              href={`/${lang}/register`}
               onClick={closeMenu}
               className="mt-2 bg-[#FDB715] px-4 py-4 text-center text-sm font-black uppercase tracking-[0.18em] text-[#041020] shadow-[5px_5px_0_rgba(56,187,202,0.75)] transition hover:bg-white"
             >

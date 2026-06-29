@@ -44,7 +44,7 @@ export default function StickyRegisterBar({
             </Link>
 
             <Link
-              href={`/${lang}#register`}
+              href={`/${lang}/register`}
               className="bg-[#FDB715] px-4 py-3 text-center text-[11px] font-black uppercase tracking-[0.16em] text-[#041020] shadow-[3px_3px_0_rgba(38,84,164,0.2)] transition hover:bg-[#2654A4] hover:text-white md:min-w-[170px]"
             >
               {dict.registerNow}

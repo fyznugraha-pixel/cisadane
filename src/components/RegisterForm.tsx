@@ -1,13 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Reveal from "@/components/Reveal";
 import { supabase } from "@/lib/supabase";
+import { ChevronDown, Check } from "lucide-react";
 
 export default function RegisterForm({ dict }: { dict: any }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [tncAccepted, setTncAccepted] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsCategoryOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -18,12 +33,14 @@ export default function RegisterForm({ dict }: { dict: any }) {
     const fullName = formData.get("fullName") as string;
     const email = formData.get("email") as string;
     const phone = formData.get("phone") as string;
+    const category = formData.get("category") as string;
 
     const { error } = await supabase.from("visitors").insert([
       {
         full_name: fullName,
         email: email,
         phone: phone,
+        category: category,
       },
     ]);
 
@@ -122,11 +139,98 @@ export default function RegisterForm({ dict }: { dict: any }) {
               />
             </div>
 
+            <div ref={dropdownRef} className="relative">
+              <label
+                className="mb-2 block text-sm font-bold text-[#041020]/80"
+              >
+                {dict.category} <span className="text-[#EC3A24]">*</span>
+              </label>
+              
+              {/* Visually hidden text input for native validation */}
+              <input 
+                type="text" 
+                name="category" 
+                value={selectedCategory} 
+                onChange={() => {}} 
+                required 
+                className="absolute bottom-0 left-1/2 h-0 w-0 opacity-0" 
+              />
+              
+              <button
+                type="button"
+                onClick={() => setIsCategoryOpen(!isCategoryOpen)}
+                className="flex w-full items-center justify-between border-b-2 border-[#2654A4]/20 bg-[#FDFBF7] px-4 py-3 text-[#041020] transition focus:border-[#FDB715] focus:outline-none focus:ring-0"
+              >
+                <span className={selectedCategory ? "text-[#041020]" : "text-[#041020]/50"}>
+                  {selectedCategory 
+                    ? dict.categories[selectedCategory as keyof typeof dict.categories] 
+                    : `-- ${dict.category} --`}
+                </span>
+                <ChevronDown
+                  size={18}
+                  className={`text-[#2654A4] transition-transform duration-300 ${isCategoryOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+
+              {isCategoryOpen && (
+                <div className="absolute left-0 z-50 mt-1 w-full overflow-hidden rounded-md border border-[#2654A4]/15 bg-white shadow-lg">
+                  {["general", "student", "community", "media"].map((cat) => (
+                    <button
+                      key={cat}
+                      type="button"
+                      onClick={() => {
+                        setSelectedCategory(cat);
+                        setIsCategoryOpen(false);
+                      }}
+                      className="flex w-full items-center justify-between px-4 py-3 text-left text-sm text-[#041020] transition hover:bg-[#FDB715]/10 hover:text-[#2654A4]"
+                    >
+                      {dict.categories[cat as keyof typeof dict.categories]}
+                      {selectedCategory === cat && (
+                        <Check size={16} className="text-[#2654A4]" />
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
             {errorMsg && (
               <div className="rounded-md bg-red-50 p-4 text-sm text-red-600">
                 {errorMsg}
               </div>
             )}
+
+            <div className="flex items-start gap-3 pt-2">
+              <div className="flex h-5 items-center">
+                <button
+                  type="button"
+                  role="checkbox"
+                  aria-checked={tncAccepted}
+                  onClick={() => setTncAccepted(!tncAccepted)}
+                  className={`flex h-5 w-5 items-center justify-center border transition ${
+                    tncAccepted
+                      ? "border-[#2654A4] bg-[#2654A4]"
+                      : "border-[#2654A4]/30 bg-white hover:border-[#2654A4]"
+                  }`}
+                >
+                  {tncAccepted && <Check size={14} className="text-white" />}
+                </button>
+                {/* Visually hidden input to ensure required validation works natively */}
+                <input 
+                  type="checkbox" 
+                  className="absolute opacity-0 h-0 w-0" 
+                  checked={tncAccepted} 
+                  required 
+                  readOnly 
+                />
+              </div>
+              <label 
+                className="cursor-pointer text-xs leading-relaxed text-[#041020]/70 select-none"
+                onClick={() => setTncAccepted(!tncAccepted)}
+              >
+                {dict.tnc} <span className="text-[#EC3A24]">*</span>
+              </label>
+            </div>
 
             <div className="pt-4">
               <button
