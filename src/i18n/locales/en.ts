@@ -86,7 +86,7 @@ export const en = {
       { name: "The Mora" },
       { name: "Star Koplo" },
       { name: "pasmatik 18" },
-      { name: "Feel Koplo" }
+      { name: "TBA" }
     ]
   },
   whyVisit: {
