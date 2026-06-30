@@ -9,6 +9,7 @@ import SectionOrnaments from "@/components/SectionOrnaments";
 import StickyRegisterBar from "@/components/StickyRegisterBar";
 import MapWrapper from "@/components/MapWrapper";
 import TactlinkSupportSection from "@/components/TactlinkSupportSection";
+import WaterBubbles from "@/components/WaterBubbles";
 import { getDictionary } from "@/i18n/dictionaries";
 import { assetPath } from "@/lib/asset-path";
 
@@ -35,6 +36,7 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
         id="about"
         className="section-shell relative px-5 pb-36 pt-28"
       >
+        <WaterBubbles theme="light" />
         <SectionOrnaments dragonScale="soft" dragonTopRight shapes="mixed" lights="left" />
 
         <div className="section-inner grid gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
@@ -66,6 +68,7 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
         id="highlights"
         className="section-shell relative bg-[#2654A4] text-[#FDFBF7] px-5 pb-36 pt-20"
       >
+        <WaterBubbles theme="dark" />
         <SectionOrnaments dragonScale="strong" shapes="sparkles" lights="right" theme="dark" />
 
         <div className="section-inner">
@@ -118,6 +121,7 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
         id="lineup"
         className="section-shell relative px-5 pb-36 pt-20"
       >
+        <WaterBubbles theme="light" />
         <SectionOrnaments dragonTopRight dragonBottomLeft shapes="petals" lights="both" />
 
         <div className="section-inner">
@@ -169,6 +173,7 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
         id="why-visit"
         className="section-shell relative bg-[#2654A4] text-[#FDFBF7] px-5 pb-36 pt-20"
       >
+        <WaterBubbles theme="dark" />
         <SectionOrnaments dragonCenterRight shapes="mixed" lights="center" theme="dark" />
 
         <div className="section-inner">
@@ -210,6 +215,7 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
         id="location"
         className="section-shell relative bg-[#FDFBF7] text-[#041020] px-5 pb-36 pt-20"
       >
+        <WaterBubbles theme="light" />
         <SectionOrnaments tenun dragonBottomLeft shapes="sparkles" lights="right" theme="light" />
 
         <div className="section-inner grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">

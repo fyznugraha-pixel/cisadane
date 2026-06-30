@@ -1,6 +1,7 @@
 import type { Dictionary } from "@/i18n/dictionaries";
 import Image from "next/image";
 import { assetPath } from "@/lib/asset-path";
+import WaterBubbles from "@/components/WaterBubbles";
 
 function InstagramIcon({ size = 24 }: { size?: number }) {
   return (
@@ -25,7 +26,8 @@ function InstagramIcon({ size = 24 }: { size?: number }) {
 export default function Footer({ dict }: { dict: Dictionary }) {
   return (
     <footer className="relative overflow-hidden border-t border-[#2654A4]/15 bg-[#F9F7F1] px-5 pb-8 pt-12 md:pb-10 md:pt-16">
-      <div className="mx-auto max-w-7xl">
+      <WaterBubbles theme="light" />
+      <div className="mx-auto max-w-7xl relative z-10">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
           {/* Left Column */}
           <div className="max-w-md">
@@ -59,7 +61,12 @@ export default function Footer({ dict }: { dict: Dictionary }) {
           {/* Right Column */}
           <div className="lg:text-right">
             <h3 className="font-display max-w-[400px] text-3xl font-black uppercase leading-tight text-[#2654A4] lg:max-w-[480px] lg:text-4xl">
-              {dict.site.tagline}
+              {dict.site.tagline.split("Growing Courage").map((part, i, arr) => (
+                <span key={i}>
+                  {part}
+                  {i < arr.length - 1 && <span className="text-[#EC3A24]">Growing Courage</span>}
+                </span>
+              ))}
             </h3>
           </div>
         </div>
