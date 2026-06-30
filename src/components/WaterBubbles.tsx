@@ -44,7 +44,7 @@ export default function WaterBubbles({
     for (let i = 0; i < bubbleCount; i++) {
       newBubbles.push({
         id: i,
-        size: Math.floor(Math.random() * 14) + 8, // 8px to 22px (reduced size even more)
+        size: Math.floor(Math.random() * 8) + 4, // 4px to 11px (very small)
         left: Math.random() * 100,
         duration: Math.random() * 12 + 8, // 8s to 20s
         delay: Math.random() * 8,
