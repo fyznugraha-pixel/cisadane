@@ -56,13 +56,13 @@ export default function Fireworks({ isExpired }: { isExpired: boolean }) {
           this.friction = 0.995;
         } else {
           const angle = Math.random() * Math.PI * 2;
-          const speed = Math.random() * 10 + 4;
+          const speed = Math.random() * 16 + 6; // HUGE spread
           this.velocity = {
             x: Math.cos(angle) * speed,
             y: Math.sin(angle) * speed
           };
           this.gravity = 0.05;
-          this.friction = 0.94;
+          this.friction = 0.95; // Less friction so they travel further
         }
         this.alpha = 1;
       }
@@ -72,7 +72,7 @@ export default function Fireworks({ isExpired }: { isExpired: boolean }) {
         ctx.save();
         ctx.globalAlpha = this.alpha;
         ctx.beginPath();
-        // Draw trail
+        // Draw trail for rockets only (particles handled in batch)
         if (this.history.length > 0) {
           ctx.moveTo(this.history[0].x, this.history[0].y);
           for (let i = 1; i < this.history.length; i++) {
@@ -80,21 +80,21 @@ export default function Fireworks({ isExpired }: { isExpired: boolean }) {
           }
           ctx.lineTo(this.x, this.y);
           ctx.strokeStyle = this.color;
-          ctx.lineWidth = this.isRocket ? 4 : 3;
+          ctx.lineWidth = 4;
           ctx.lineCap = "round";
           ctx.stroke();
-        } else {
-          ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
-          ctx.fillStyle = this.color;
-          ctx.fill();
+        } else if (!this.isRocket) {
+           // handled in batch
         }
         ctx.restore();
       }
 
       update() {
-        this.history.push({ x: this.x, y: this.y });
-        if (this.history.length > (this.isRocket ? 8 : 4)) { // Reduce trail length for performance
-          this.history.shift();
+        if (this.isRocket) {
+          this.history.push({ x: this.x, y: this.y });
+          if (this.history.length > 10) { 
+            this.history.shift();
+          }
         }
 
         this.velocity.x *= this.friction;
@@ -104,7 +104,7 @@ export default function Fireworks({ isExpired }: { isExpired: boolean }) {
         this.y += this.velocity.y;
         
         if (!this.isRocket) {
-          this.alpha -= 0.012; // Faster fade out to reduce particle count on screen
+          this.alpha -= 0.007; // Fade out very slowly for massive radius
         }
       }
     }
@@ -113,8 +113,8 @@ export default function Fireworks({ isExpired }: { isExpired: boolean }) {
     let particles: Particle[] = [];
 
     const shootRocket = () => {
-      // Limit total particles on screen to prevent lag
-      if (particles.length > 300) return;
+      // Very high limit, essentially unconstrained but safe
+      if (particles.length > 2000) return;
       
       const x = Math.random() * (width * 0.8) + (width * 0.1);
       const y = height;
@@ -131,8 +131,8 @@ export default function Fireworks({ isExpired }: { isExpired: boolean }) {
 
       rockets.forEach((rocket, index) => {
         if (rocket.velocity.y >= -1.0) {
-          // Explode with fewer particles for performance
-          for (let i = 0; i < 40; i++) {
+          // Explode with lots of particles again!
+          for (let i = 0; i < 80; i++) {
             particles.push(new Particle(rocket.x, rocket.y, rocket.color));
           }
           rockets.splice(index, 1);
@@ -142,23 +142,35 @@ export default function Fireworks({ isExpired }: { isExpired: boolean }) {
         }
       });
 
+      // Batch drawing explosion particles for massive performance boost
+      ctx.save();
       particles.forEach((particle, index) => {
         if (particle.alpha <= 0) {
           particles.splice(index, 1);
         } else {
           particle.update();
-          particle.draw();
+          ctx.globalAlpha = particle.alpha;
+          ctx.beginPath();
+          // Draw simple fast line based on velocity instead of heavy history array
+          ctx.moveTo(particle.x - particle.velocity.x * 2, particle.y - particle.velocity.y * 2);
+          ctx.lineTo(particle.x, particle.y);
+          ctx.strokeStyle = particle.color;
+          ctx.lineWidth = 2;
+          ctx.lineCap = "round";
+          ctx.stroke();
         }
       });
+      ctx.restore();
     };
 
     animate();
-    rocketInterval = setInterval(shootRocket, 500); // Shoot less frequently
+    rocketInterval = setInterval(shootRocket, 300); // 3 rockets per second
     
-    // Initial massive burst (reduced)
-    setTimeout(shootRocket, 100);
-    setTimeout(shootRocket, 300);
-    setTimeout(shootRocket, 500);
+    // Initial burst
+    setTimeout(shootRocket, 50);
+    setTimeout(shootRocket, 150);
+    setTimeout(shootRocket, 250);
+    setTimeout(shootRocket, 350);
 
     // Stop shooting after 15 seconds
     setTimeout(() => {
