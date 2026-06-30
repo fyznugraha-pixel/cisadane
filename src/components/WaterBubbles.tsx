@@ -60,7 +60,6 @@ export default function WaterBubbles({ theme = "light" }: { theme?: "light" | "d
             width: b.size,
             height: b.size,
             left: `${b.left}%`,
-            bottom: -100,
             animation: `bubbleRise ${b.duration}s ease-in ${b.delay}s infinite`,
           }}
         />
