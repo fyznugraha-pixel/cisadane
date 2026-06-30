@@ -139,7 +139,7 @@ export default function HeroSection({
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-[#FDFBF7]">
-      <Fireworks isExpired={true} />
+      <Fireworks isExpired={isExpired} />
       {/* Real image */}
       <div
         className="absolute inset-0 bg-cover bg-center opacity-30"
