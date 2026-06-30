@@ -68,15 +68,6 @@ export default function Footer({ dict }: { dict: Dictionary }) {
               ))}
             </h3>
 
-            <div className="mt-8 lg:mt-auto pt-8">
-              <Image
-                src={assetPath("/logo/aset4.png")}
-                alt="Festival Asset"
-                width={160}
-                height={160}
-                className="object-contain"
-              />
-            </div>
           </div>
         </div>
 
