@@ -238,6 +238,8 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
           </div>
         </div>
 
+        {/* Organic river transition into the footer/tactlink section */}
+        <RiverSectionDivider className="text-[#2654A4]" theme="dark" />
       </section>
 
       <TactlinkSupportSection />

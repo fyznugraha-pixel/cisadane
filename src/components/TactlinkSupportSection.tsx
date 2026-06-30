@@ -90,9 +90,9 @@ function PlayStoreBadge() {
 
 export default function TactlinkSupportSection() {
   return (
-    <section className="relative px-5 py-8 md:py-10 text-[#041020]">
-      <div className="mx-auto max-w-[1140px] relative z-10">
-        <div className="relative overflow-hidden rounded-[2rem] border border-white/60 bg-white/40 backdrop-blur-xl px-8 py-8 shadow-[0_16px_40px_rgba(38,84,164,0.08)] md:px-10 md:py-10 lg:px-12 lg:py-10">
+    <section className="relative px-5 py-8 md:py-10 bg-[#2654A4]">
+      <div className="mx-auto max-w-[1140px] relative z-10 text-[#041020]">
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/60 bg-white/60 backdrop-blur-xl px-8 py-8 shadow-[0_16px_40px_rgba(38,84,164,0.08)] md:px-10 md:py-10 lg:px-12 lg:py-10">
           {/* Subtle liquid reflection */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-transparent to-white/20 pointer-events-none" />
           
