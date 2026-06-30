@@ -14,7 +14,13 @@ export default function Fireworks({ isExpired }: { isExpired: boolean }) {
 
     const duration = 15 * 1000;
     const animationEnd = Date.now() + duration;
-    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 100 };
+    const defaults = { 
+      startVelocity: 30, 
+      spread: 360, 
+      ticks: 60, 
+      zIndex: 100,
+      colors: ['#2654A4', '#38BBCA', '#FDB715', '#EC3A24', '#ffffff'] // Tema Cisadane
+    };
 
     function randomInRange(min: number, max: number) {
       return Math.random() * (max - min) + min;
