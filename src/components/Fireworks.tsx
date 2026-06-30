@@ -93,7 +93,7 @@ export default function Fireworks({ isExpired }: { isExpired: boolean }) {
 
       update() {
         this.history.push({ x: this.x, y: this.y });
-        if (this.history.length > (this.isRocket ? 12 : 8)) {
+        if (this.history.length > (this.isRocket ? 8 : 4)) { // Reduce trail length for performance
           this.history.shift();
         }
 
@@ -104,7 +104,7 @@ export default function Fireworks({ isExpired }: { isExpired: boolean }) {
         this.y += this.velocity.y;
         
         if (!this.isRocket) {
-          this.alpha -= 0.008;
+          this.alpha -= 0.012; // Faster fade out to reduce particle count on screen
         }
       }
     }
@@ -113,6 +113,9 @@ export default function Fireworks({ isExpired }: { isExpired: boolean }) {
     let particles: Particle[] = [];
 
     const shootRocket = () => {
+      // Limit total particles on screen to prevent lag
+      if (particles.length > 300) return;
+      
       const x = Math.random() * (width * 0.8) + (width * 0.1);
       const y = height;
       const color = colors[Math.floor(Math.random() * colors.length)];
@@ -127,9 +130,9 @@ export default function Fireworks({ isExpired }: { isExpired: boolean }) {
       ctx.clearRect(0, 0, width, height);
 
       rockets.forEach((rocket, index) => {
-        if (rocket.velocity.y >= -1.0) { // When it slows down at the peak (lower threshold since gravity is lower)
-          // Explode with MORE particles
-          for (let i = 0; i < 100; i++) {
+        if (rocket.velocity.y >= -1.0) {
+          // Explode with fewer particles for performance
+          for (let i = 0; i < 40; i++) {
             particles.push(new Particle(rocket.x, rocket.y, rocket.color));
           }
           rockets.splice(index, 1);
@@ -150,14 +153,12 @@ export default function Fireworks({ isExpired }: { isExpired: boolean }) {
     };
 
     animate();
-    rocketInterval = setInterval(shootRocket, 200); // Shoot every 200ms (5 per second!)
+    rocketInterval = setInterval(shootRocket, 500); // Shoot less frequently
     
-    // Initial massive burst
-    setTimeout(shootRocket, 50);
-    setTimeout(shootRocket, 150);
-    setTimeout(shootRocket, 250);
-    setTimeout(shootRocket, 350);
-    setTimeout(shootRocket, 450);
+    // Initial massive burst (reduced)
+    setTimeout(shootRocket, 100);
+    setTimeout(shootRocket, 300);
+    setTimeout(shootRocket, 500);
 
     // Stop shooting after 15 seconds
     setTimeout(() => {
