@@ -49,20 +49,20 @@ export default function Fireworks({ isExpired }: { isExpired: boolean }) {
         
         if (isRocket) {
           this.velocity = {
-            x: (Math.random() - 0.5) * 3,
-            y: Math.random() * -4 - 10
+            x: (Math.random() - 0.5) * 2,
+            y: Math.random() * -3 - 8 // Slower vertical velocity
           };
-          this.gravity = 0.15;
-          this.friction = 0.99;
+          this.gravity = 0.08; // Lower gravity for floatier feel
+          this.friction = 0.995;
         } else {
           const angle = Math.random() * Math.PI * 2;
-          const speed = Math.random() * 6 + 2;
+          const speed = Math.random() * 10 + 4; // Much faster initial explosion speed (bigger spread)
           this.velocity = {
             x: Math.cos(angle) * speed,
             y: Math.sin(angle) * speed
           };
-          this.gravity = 0.1;
-          this.friction = 0.95;
+          this.gravity = 0.05; // Less gravity on explosion
+          this.friction = 0.94; // Higher friction so they slow down rapidly but spread wide first
         }
         this.alpha = 1;
       }
@@ -80,7 +80,7 @@ export default function Fireworks({ isExpired }: { isExpired: boolean }) {
           }
           ctx.lineTo(this.x, this.y);
           ctx.strokeStyle = this.color;
-          ctx.lineWidth = this.isRocket ? 3 : 2;
+          ctx.lineWidth = this.isRocket ? 4 : 3; // Thicker lines for bigger impact
           ctx.lineCap = "round";
           ctx.stroke();
         } else {
@@ -93,7 +93,7 @@ export default function Fireworks({ isExpired }: { isExpired: boolean }) {
 
       update() {
         this.history.push({ x: this.x, y: this.y });
-        if (this.history.length > (this.isRocket ? 8 : 5)) {
+        if (this.history.length > (this.isRocket ? 12 : 8)) { // Longer trails
           this.history.shift();
         }
 
@@ -104,7 +104,7 @@ export default function Fireworks({ isExpired }: { isExpired: boolean }) {
         this.y += this.velocity.y;
         
         if (!this.isRocket) {
-          this.alpha -= 0.015;
+          this.alpha -= 0.008; // Slower fade out = bigger visible explosion radius
         }
       }
     }
@@ -127,9 +127,9 @@ export default function Fireworks({ isExpired }: { isExpired: boolean }) {
       ctx.clearRect(0, 0, width, height);
 
       rockets.forEach((rocket, index) => {
-        if (rocket.velocity.y >= -2) { // When it slows down at the peak
-          // Explode
-          for (let i = 0; i < 50; i++) {
+        if (rocket.velocity.y >= -1.5) { // When it slows down at the peak
+          // Explode with MORE particles
+          for (let i = 0; i < 100; i++) {
             particles.push(new Particle(rocket.x, rocket.y, rocket.color));
           }
           rockets.splice(index, 1);
