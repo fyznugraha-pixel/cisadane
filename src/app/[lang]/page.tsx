@@ -199,6 +199,9 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
             ))}
           </div>
         </div>
+
+        {/* Organic river transition into the next light section */}
+        <RiverSectionDivider className="text-[#FDFBF7]" theme="light" />
       </section>
 
       {/* <EditorialGallery dict={dict.gallery} /> */}
