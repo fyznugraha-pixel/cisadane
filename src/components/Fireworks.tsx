@@ -56,13 +56,13 @@ export default function Fireworks({ isExpired }: { isExpired: boolean }) {
           this.friction = 0.995;
         } else {
           const angle = Math.random() * Math.PI * 2;
-          const speed = Math.random() * 16 + 6; // HUGE spread
+          const speed = Math.random() * 4 + 2; // Much slower and floaty
           this.velocity = {
             x: Math.cos(angle) * speed,
             y: Math.sin(angle) * speed
           };
-          this.gravity = 0.05;
-          this.friction = 0.95; // Less friction so they travel further
+          this.gravity = 0.02; // Very little gravity so they float
+          this.friction = 0.98; // High friction retention so they glide smoothly
         }
         this.alpha = 1;
       }
@@ -104,7 +104,7 @@ export default function Fireworks({ isExpired }: { isExpired: boolean }) {
         this.y += this.velocity.y;
         
         if (!this.isRocket) {
-          this.alpha -= 0.007; // Fade out very slowly for massive radius
+          this.alpha -= 0.005; // Fade out extremely slowly for massive floaty radius
         }
       }
     }
