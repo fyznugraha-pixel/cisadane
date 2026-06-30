@@ -13,7 +13,6 @@ import WaterBubbles from "@/components/WaterBubbles";
 import { getDictionary } from "@/i18n/dictionaries";
 import { assetPath } from "@/lib/asset-path";
 import { MoveRight } from "lucide-react";
-import { MoveRight } from "lucide-react";
 
 const accentMap: Record<"red" | "gold" | "teal" | "orange", string> = {
   red: "from-[#C8281E]/70",
