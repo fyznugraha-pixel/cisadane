@@ -11,7 +11,15 @@ type Bubble = {
   colorClass: string;
 };
 
-export default function WaterBubbles({ theme = "light", hasWaveBottom = false }: { theme?: "light" | "dark", hasWaveBottom?: boolean }) {
+export default function WaterBubbles({ 
+  theme = "light", 
+  hasWaveBottom = false,
+  hasWaveTop = false
+}: { 
+  theme?: "light" | "dark", 
+  hasWaveBottom?: boolean,
+  hasWaveTop?: boolean
+}) {
   const [bubbles, setBubbles] = useState<Bubble[]>([]);
 
   useEffect(() => {
@@ -36,7 +44,7 @@ export default function WaterBubbles({ theme = "light", hasWaveBottom = false }:
     for (let i = 0; i < bubbleCount; i++) {
       newBubbles.push({
         id: i,
-        size: Math.floor(Math.random() * 20) + 10, // 10px to 30px (reduced size)
+        size: Math.floor(Math.random() * 14) + 8, // 8px to 22px (reduced size even more)
         left: Math.random() * 100,
         duration: Math.random() * 12 + 8, // 8s to 20s
         delay: Math.random() * 8,
@@ -51,7 +59,7 @@ export default function WaterBubbles({ theme = "light", hasWaveBottom = false }:
   if (bubbles.length === 0) return null;
 
   return (
-    <div className={`pointer-events-none absolute top-0 left-0 right-0 ${hasWaveBottom ? '-bottom-[220px]' : 'bottom-0'} overflow-hidden z-0`}>
+    <div className={`pointer-events-none absolute left-0 right-0 ${hasWaveTop ? '-top-[120px]' : 'top-0'} ${hasWaveBottom ? '-bottom-[220px]' : 'bottom-0'} overflow-hidden z-0`}>
       {bubbles.map((b) => (
         <div
           key={b.id}
