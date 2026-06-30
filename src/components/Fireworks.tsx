@@ -4,13 +4,9 @@ import { useEffect, useState } from "react";
 import confetti from "canvas-confetti";
 
 export default function Fireworks({ isExpired }: { isExpired: boolean }) {
-  const [hasFired, setHasFired] = useState(false);
-
   useEffect(() => {
-    // Only fire once when the countdown expires
-    if (!isExpired || hasFired) return;
-
-    setHasFired(true);
+    // Only fire when the countdown expires
+    if (!isExpired) return;
 
     const duration = 15 * 1000;
     const animationEnd = Date.now() + duration;
@@ -48,7 +44,7 @@ export default function Fireworks({ isExpired }: { isExpired: boolean }) {
     }, 250);
 
     return () => clearInterval(interval);
-  }, [isExpired, hasFired]);
+  }, [isExpired]);
 
   return null;
 }
