@@ -59,8 +59,8 @@ export default function Footer({ dict }: { dict: Dictionary }) {
           </div>
 
           {/* Right Column */}
-          <div className="lg:text-right">
-            <h3 className="font-display max-w-[400px] text-3xl font-black uppercase leading-tight text-[#2654A4] lg:max-w-[480px] lg:text-4xl">
+          <div className="flex flex-col items-start lg:items-end justify-between">
+            <h3 className="font-display max-w-[400px] text-3xl font-black uppercase leading-tight text-[#2654A4] lg:max-w-[480px] lg:text-4xl lg:text-right">
               {dict.site.tagline.split("Growing Courage").map((part, i, arr) => (
                 <span key={i}>
                   {part}
@@ -68,22 +68,22 @@ export default function Footer({ dict }: { dict: Dictionary }) {
                 </span>
               ))}
             </h3>
+
+            <div className="mt-8 lg:mt-auto pt-8">
+              <Image
+                src={assetPath("/logo/aset4.png")}
+                alt="Festival Asset"
+                width={160}
+                height={160}
+                className="object-contain"
+              />
+            </div>
           </div>
         </div>
 
         {/* Bottom Copyright */}
-        <div className="mt-12 flex flex-col items-center justify-center border-t border-[#2654A4]/10 pt-8 text-center text-sm font-medium text-[#041020]/50 md:flex-row md:justify-between md:text-left">
+        <div className="mt-6 flex flex-col items-center justify-center border-t border-[#2654A4]/10 pt-8 text-center text-sm font-medium text-[#041020]/50 md:flex-row md:justify-between md:text-left">
           <p>{dict.footer.copyright}</p>
-
-          <div className="mt-6 md:mt-0">
-            <Image
-              src={assetPath("/logo/aset4.png")}
-              alt="Festival Asset"
-              width={140}
-              height={45}
-              className="object-contain opacity-80 mix-blend-multiply"
-            />
-          </div>
         </div>
       </div>
     </footer>

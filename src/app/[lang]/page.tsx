@@ -216,7 +216,7 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
         className="section-shell relative bg-[#FDFBF7] text-[#041020] px-5 pb-36 pt-20"
       >
         <WaterBubbles theme="light" />
-        <SectionOrnaments tenun dragonBottomLeft shapes="sparkles" lights="right" theme="light" />
+        <SectionOrnaments dragonScale="soft" tenun dragonBottomLeft shapes="sparkles" lights="right" theme="light" />
 
         <div className="section-inner grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <Reveal className="h-full">

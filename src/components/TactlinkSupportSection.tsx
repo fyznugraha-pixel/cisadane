@@ -94,6 +94,7 @@ export default function TactlinkSupportSection() {
   return (
     <section className="relative px-5 pb-56 pt-20 bg-[#2654A4]">
       <WaterBubbles theme="dark" />
+      <div className="dragon-scale-overlay strong z-0" />
       <div className="mx-auto max-w-[1140px] relative z-10 text-[#041020]">
         <div className="relative overflow-hidden rounded-[2rem] border border-white/60 bg-white/60 backdrop-blur-xl px-8 py-8 shadow-[0_16px_40px_rgba(38,84,164,0.08)] md:px-10 md:py-10 lg:px-12 lg:py-10">
           {/* Subtle liquid reflection */}

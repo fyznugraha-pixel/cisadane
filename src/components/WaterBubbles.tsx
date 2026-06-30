@@ -21,14 +21,14 @@ export default function WaterBubbles({ theme = "light" }: { theme?: "light" | "d
 
     // Light theme (cerah): biru air & putih bening
     const lightColors = [
-      "bg-[#38BBCA]/15 border border-[#38BBCA]/30",
-      "bg-white/40 border border-white/60"
+      "bg-[#38BBCA]/30 border border-[#38BBCA]/50",
+      "bg-white/60 border border-[#38BBCA]/20 shadow-sm"
     ];
     
     // Dark theme (biru): putih bening seperti gelembung asli
     const darkColors = [
-      "bg-white/10 border border-white/30",
-      "bg-white/20 border border-white/40"
+      "bg-white/15 border border-white/40",
+      "bg-white/25 border border-white/50"
     ];
     
     const colors = theme === "light" ? lightColors : darkColors;
