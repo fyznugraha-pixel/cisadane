@@ -205,9 +205,9 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
 
       <section
         id="location"
-        className="section-shell relative bg-[#2654A4] text-[#FDFBF7] px-5 pb-36 pt-20"
+        className="section-shell relative bg-[#FDFBF7] text-[#041020] px-5 pb-36 pt-20"
       >
-        <SectionOrnaments tenun dragonBottomLeft shapes="sparkles" lights="right" theme="dark" />
+        <SectionOrnaments tenun dragonBottomLeft shapes="sparkles" lights="right" theme="light" />
 
         <div className="section-inner grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <Reveal className="h-full">
@@ -215,12 +215,12 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
           </Reveal>
 
           <div>
-            <SectionHeading eyebrow={dict.location.eyebrow} title={dict.location.title} theme="dark" />
+            <SectionHeading eyebrow={dict.location.eyebrow} title={dict.location.title} theme="light" />
 
             <div className="mt-10 grid gap-4">
               {dict.location.accessInfo.map((item, index) => (
                 <Reveal key={item.title} delay={index * 0.06}>
-                  <div className="section-card hover-rise bg-[#FDFBF7] border border-[#2654A4]/10 p-6">
+                  <div className="section-card hover-rise bg-white border border-[#2654A4]/10 p-6">
                     <h3 className="text-lg font-black uppercase text-[#2654A4]">
                       {item.title}
                     </h3>
@@ -235,8 +235,6 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
           </div>
         </div>
 
-        {/* Organic river transition into the footer/tactlink section */}
-        <RiverSectionDivider className="text-[#F9F7F1]" theme="light" />
       </section>
 
       <TactlinkSupportSection />
