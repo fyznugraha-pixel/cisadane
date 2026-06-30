@@ -74,6 +74,16 @@ export default function Footer({ dict }: { dict: Dictionary }) {
         {/* Bottom Copyright */}
         <div className="mt-12 flex flex-col items-center justify-center border-t border-[#2654A4]/10 pt-8 text-center text-sm font-medium text-[#041020]/50 md:flex-row md:justify-between md:text-left">
           <p>{dict.footer.copyright}</p>
+
+          <div className="mt-6 md:mt-0">
+            <Image
+              src={assetPath("/logo/aset4.png")}
+              alt="Festival Asset"
+              width={140}
+              height={45}
+              className="object-contain opacity-80 mix-blend-multiply"
+            />
+          </div>
         </div>
       </div>
     </footer>
