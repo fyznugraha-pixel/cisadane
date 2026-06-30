@@ -29,9 +29,7 @@ export default function SectionHeading({
         </h2>
       </Reveal>
 
-      <Reveal delay={0.14}>
-        <div className={`mt-6 ${isCenter ? "mx-auto" : ""} h-[3px] w-48 bg-gradient-to-r from-[#2654A4] to-[#38BBCA]`} />
-      </Reveal>
+
 
       {description ? (
         <Reveal delay={0.2}>
