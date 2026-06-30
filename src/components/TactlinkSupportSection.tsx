@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ExternalLink, Globe2 } from "lucide-react";
 import { assetPath } from "@/lib/asset-path";
+import RiverSectionDivider from "@/components/RiverSectionDivider";
 
 const tactlinkLinks = {
   website: "https://tactlink.com",
@@ -90,7 +91,7 @@ function PlayStoreBadge() {
 
 export default function TactlinkSupportSection() {
   return (
-    <section className="relative px-5 py-8 md:py-10 bg-[#2654A4]">
+    <section className="relative px-5 pb-36 pt-20 bg-[#2654A4]">
       <div className="mx-auto max-w-[1140px] relative z-10 text-[#041020]">
         <div className="relative overflow-hidden rounded-[2rem] border border-white/60 bg-white/60 backdrop-blur-xl px-8 py-8 shadow-[0_16px_40px_rgba(38,84,164,0.08)] md:px-10 md:py-10 lg:px-12 lg:py-10">
           {/* Subtle liquid reflection */}
@@ -178,6 +179,8 @@ export default function TactlinkSupportSection() {
           </div>
         </div>
       </div>
+
+      <RiverSectionDivider className="text-[#F9F7F1]" theme="light" />
     </section>
   );
 }
