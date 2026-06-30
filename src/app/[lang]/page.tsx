@@ -12,6 +12,8 @@ import TactlinkSupportSection from "@/components/TactlinkSupportSection";
 import WaterBubbles from "@/components/WaterBubbles";
 import { getDictionary } from "@/i18n/dictionaries";
 import { assetPath } from "@/lib/asset-path";
+import { MoveRight } from "lucide-react";
+import { MoveRight } from "lucide-react";
 
 const accentMap: Record<"red" | "gold" | "teal" | "orange", string> = {
   red: "from-[#C8281E]/70",
@@ -111,6 +113,11 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
               </Reveal>
             ))}
           </div>
+
+          <div className="mt-6 flex items-center justify-center gap-3 text-white/50 lg:hidden animate-pulse">
+            <span className="text-[10px] font-black uppercase tracking-[0.2em]">Geser</span>
+            <MoveRight size={16} />
+          </div>
         </div>
 
         {/* Organic river transition into the cream section */}
@@ -163,6 +170,11 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
               </Reveal>
             ))}
           </div>
+
+          <div className="mt-6 flex items-center justify-center gap-3 text-[#041020]/40 sm:hidden animate-pulse">
+            <span className="text-[10px] font-black uppercase tracking-[0.2em]">Geser</span>
+            <MoveRight size={16} />
+          </div>
         </div>
 
         {/* Organic river transition into the blue section */}
@@ -202,6 +214,11 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
                 </div>
               </Reveal>
             ))}
+          </div>
+
+          <div className="mt-6 flex items-center justify-center gap-3 text-white/50 md:hidden animate-pulse">
+            <span className="text-[10px] font-black uppercase tracking-[0.2em]">Geser</span>
+            <MoveRight size={16} />
           </div>
         </div>
 
