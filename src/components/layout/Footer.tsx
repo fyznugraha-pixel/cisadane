@@ -26,7 +26,6 @@ function InstagramIcon({ size = 24 }: { size?: number }) {
 export default function Footer({ dict }: { dict: Dictionary }) {
   return (
     <footer className="relative overflow-hidden border-t border-[#2654A4]/15 bg-[#F9F7F1] px-5 pb-8 pt-12 md:pb-10 md:pt-16">
-      <WaterBubbles theme="light" />
       <div className="mx-auto max-w-7xl relative z-10">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
           {/* Left Column */}
