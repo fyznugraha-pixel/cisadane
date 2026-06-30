@@ -1,50 +1,178 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import confetti from "canvas-confetti";
+import { useEffect, useRef } from "react";
 
 export default function Fireworks({ isExpired }: { isExpired: boolean }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
   useEffect(() => {
-    // Only fire when the countdown expires
     if (!isExpired) return;
 
-    const duration = 15 * 1000;
-    const animationEnd = Date.now() + duration;
-    const defaults = { 
-      startVelocity: 30, 
-      spread: 360, 
-      ticks: 60, 
-      zIndex: 100,
-      colors: ['#2654A4', '#38BBCA', '#FDB715', '#EC3A24', '#ffffff'] // Tema Cisadane
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+
+    const handleResize = () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
     };
+    window.addEventListener("resize", handleResize);
 
-    function randomInRange(min: number, max: number) {
-      return Math.random() * (max - min) + min;
-    }
+    const colors = ['#2654A4', '#38BBCA', '#FDB715', '#EC3A24', '#ffffff'];
 
-    const interval: any = setInterval(function () {
-      const timeLeft = animationEnd - Date.now();
+    class Particle {
+      x: number;
+      y: number;
+      color: string;
+      velocity: { x: number; y: number };
+      alpha: number;
+      friction: number;
+      gravity: number;
+      history: {x: number, y: number}[];
+      isRocket: boolean;
 
-      if (timeLeft <= 0) {
-        return clearInterval(interval);
+      constructor(x: number, y: number, color: string, isRocket: boolean = false) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.isRocket = isRocket;
+        this.history = [];
+        
+        if (isRocket) {
+          this.velocity = {
+            x: (Math.random() - 0.5) * 3,
+            y: Math.random() * -4 - 10
+          };
+          this.gravity = 0.15;
+          this.friction = 0.99;
+        } else {
+          const angle = Math.random() * Math.PI * 2;
+          const speed = Math.random() * 6 + 2;
+          this.velocity = {
+            x: Math.cos(angle) * speed,
+            y: Math.sin(angle) * speed
+          };
+          this.gravity = 0.1;
+          this.friction = 0.95;
+        }
+        this.alpha = 1;
       }
 
-      const particleCount = 50 * (timeLeft / duration);
-      // since particles fall down, start a bit higher than random
-      confetti({
-        ...defaults,
-        particleCount,
-        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
-      });
-      confetti({
-        ...defaults,
-        particleCount,
-        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
-      });
-    }, 250);
+      draw() {
+        if (!ctx) return;
+        ctx.save();
+        ctx.globalAlpha = this.alpha;
+        ctx.beginPath();
+        // Draw trail
+        if (this.history.length > 0) {
+          ctx.moveTo(this.history[0].x, this.history[0].y);
+          for (let i = 1; i < this.history.length; i++) {
+            ctx.lineTo(this.history[i].x, this.history[i].y);
+          }
+          ctx.lineTo(this.x, this.y);
+          ctx.strokeStyle = this.color;
+          ctx.lineWidth = this.isRocket ? 3 : 2;
+          ctx.lineCap = "round";
+          ctx.stroke();
+        } else {
+          ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+          ctx.fillStyle = this.color;
+          ctx.fill();
+        }
+        ctx.restore();
+      }
 
-    return () => clearInterval(interval);
+      update() {
+        this.history.push({ x: this.x, y: this.y });
+        if (this.history.length > (this.isRocket ? 8 : 5)) {
+          this.history.shift();
+        }
+
+        this.velocity.x *= this.friction;
+        this.velocity.y *= this.friction;
+        this.velocity.y += this.gravity;
+        this.x += this.velocity.x;
+        this.y += this.velocity.y;
+        
+        if (!this.isRocket) {
+          this.alpha -= 0.015;
+        }
+      }
+    }
+
+    let rockets: Particle[] = [];
+    let particles: Particle[] = [];
+
+    const shootRocket = () => {
+      const x = Math.random() * (width * 0.8) + (width * 0.1);
+      const y = height;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      rockets.push(new Particle(x, y, color, true));
+    };
+
+    let animationFrameId: number;
+    let rocketInterval: any;
+
+    const animate = () => {
+      animationFrameId = requestAnimationFrame(animate);
+      ctx.clearRect(0, 0, width, height);
+
+      rockets.forEach((rocket, index) => {
+        if (rocket.velocity.y >= -2) { // When it slows down at the peak
+          // Explode
+          for (let i = 0; i < 50; i++) {
+            particles.push(new Particle(rocket.x, rocket.y, rocket.color));
+          }
+          rockets.splice(index, 1);
+        } else {
+          rocket.update();
+          rocket.draw();
+        }
+      });
+
+      particles.forEach((particle, index) => {
+        if (particle.alpha <= 0) {
+          particles.splice(index, 1);
+        } else {
+          particle.update();
+          particle.draw();
+        }
+      });
+    };
+
+    animate();
+    rocketInterval = setInterval(shootRocket, 600);
+    
+    // Initial burst
+    setTimeout(shootRocket, 100);
+    setTimeout(shootRocket, 400);
+
+    // Stop shooting after 15 seconds
+    setTimeout(() => {
+      clearInterval(rocketInterval);
+    }, 15000);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      cancelAnimationFrame(animationFrameId);
+      clearInterval(rocketInterval);
+    };
   }, [isExpired]);
 
-  return null;
+  return (
+    <canvas
+      ref={canvasRef}
+      className="pointer-events-none fixed inset-0 z-[100] h-full w-full"
+      style={{ opacity: isExpired ? 1 : 0 }}
+    />
+  );
 }
