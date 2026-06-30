@@ -83,7 +83,7 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
 
           <div className="mt-14 flex snap-x snap-mandatory overflow-x-auto pb-8 gap-4 lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0 hide-scrollbar">
             {dict.highlights.items.map((item, index) => (
-              <Reveal key={item.title} delay={index * 0.06} className="w-[85vw] shrink-0 snap-center lg:w-auto lg:shrink h-full">
+              <Reveal key={item.title} delay={index * 0.06} y={0} className="w-[85vw] shrink-0 snap-center lg:w-auto lg:shrink h-full">
                 <article className="group flex flex-col h-full min-h-[460px] overflow-hidden bg-[#FDFBF7] shadow-lg rounded-2xl border border-[#2654A4]/15 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#FDFBF7]/10">
                   {/* 60% Top Image Area */}
                   <div className="relative h-[260px] w-full shrink-0 overflow-hidden bg-[#041020]">
@@ -138,7 +138,7 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
 
           <div className="mt-14 flex snap-x snap-mandatory overflow-x-auto pb-8 gap-4 sm:flex-wrap sm:justify-center sm:overflow-visible sm:pb-0 hide-scrollbar">
             {dict.performers.talent.map((talentItem: any, index: number) => (
-              <Reveal key={talentItem.name} delay={index * 0.05} className="w-[85vw] shrink-0 snap-center sm:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]">
+              <Reveal key={talentItem.name} delay={index * 0.05} y={0} className="w-[85vw] shrink-0 snap-center sm:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]">
                 <div className="hover-rise relative h-full min-h-[220px] w-full overflow-hidden border border-[#2654A4]/10 bg-white shadow-sm">
                   {talentItem.image ? (
                     <div 
@@ -198,7 +198,7 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
 
           <div className="mt-14 flex snap-x snap-mandatory overflow-x-auto pb-8 gap-4 md:grid md:grid-cols-2 md:overflow-visible md:pb-0 hide-scrollbar">
             {dict.whyVisit.reasons.map((item, index) => (
-              <Reveal key={item.title} delay={index * 0.08} className="w-[85vw] shrink-0 snap-center md:w-auto md:shrink h-full">
+              <Reveal key={item.title} delay={index * 0.08} y={0} className="w-[85vw] shrink-0 snap-center md:w-auto md:shrink h-full">
                 <div className="section-card flex flex-col h-full hover-rise bg-[#FDFBF7] border border-[#2654A4]/10 shadow-sm p-7">
                   <p className="text-xs font-black uppercase tracking-[0.24em] text-[#EC3A24]">
                     {dict.whyVisit.reasonPrefix} {String(index + 1).padStart(2, "0")}
