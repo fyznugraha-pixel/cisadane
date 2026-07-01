@@ -142,20 +142,16 @@ export const en = {
     mapDesc: "Routes and public transportation options to easily reach the festival grounds.",
     accessInfo: [
       {
-        title: "City Public Transport",
-        description: "Use the Trans Tangerang bus, Jawara Bus, or Si Benteng transit managed by the Tangerang City Transportation Agency for local city routes.",
+        title: "Trans Tangerang, Jawara & Si Benteng Buses",
+        description: "The main alternative transportation to the festival area. Collaborator: Tangerang City Transportation Agency.",
       },
       {
-        title: "Airport & Train Access",
-        description: "From out of town, arrive at Soekarno-Hatta International Airport or take the commuter train to Tangerang Station, followed by local transport.",
+        title: "Airport & Train Station",
+        description: "Soekarno-Hatta Airport, Train Stations, and Toll Roads serve as the main gateways to Tangerang City.",
       },
       {
-        title: "Ride-Hailing Apps",
-        description: "Reach the festival grounds easily using popular ride-hailing services like Gojek, Grab, or Maxim.",
-      },
-      {
-        title: "Parking Guidelines",
-        description: "Information regarding official parking areas for private vehicles will be announced closer to the event date.",
+        title: "Ride-Hailing Services",
+        description: "Gojek, Grab, Maxim, and other ride-hailing partners support accessibility to the festival.",
       },
     ]
   },
@@ -192,6 +188,67 @@ export const en = {
     titleLine1: "Flashback",
     titleLine2: "Moments",
     description: "Relive the laughter, cheers, and incredible energy of thousands of visitors uniting in the biggest cultural celebration on the banks of the Cisadane River.",
+  },
+  objectives: {
+    eyebrow: "Core Goals",
+    title: "Festival Objectives",
+    items: [
+      {
+        title: "Culture & Tourism",
+        description: "Promoting local culture and tourism in Tangerang City"
+      },
+      {
+        title: "Preserving Traditions",
+        description: "Preserving arts and traditions developing along the banks of the Cisadane River"
+      },
+      {
+        title: "Regional Economic Growth & MSME Empowerment",
+        description: "Empowering local MSMEs and improving the city's and community's economy"
+      },
+      {
+        title: "Environmental Sustainability",
+        description: "Fostering community awareness to maintain the sustainability of the Cisadane River"
+      }
+    ]
+  },
+  strategy: {
+    eyebrow: "Collaboration Strategy",
+    title: "Pentahelix Collaboration & 3A Approach",
+    description: "Cisadane Festival 2026 implements the Pentahelix Collaboration to form a systematic and integrated activity framework with the 3A Approach.",
+    pillars: [
+      { title: "Accessibility", items: ["Easy transport: Trans Tangerang", "Jawara Bus", "Trains", "Airport"] },
+      { title: "Amenities", items: ["Food facilities", "Family areas", "Hotel discounts", "City tours"] },
+      { title: "Attractions", items: ["Cultural stages", "Competitions", "Spectacular shows"] }
+    ],
+    helix: [
+      { name: "Government", desc: "Issuing regulations and support for the event." },
+      { name: "Academics", desc: "Providing research and science-based solutions for event sustainability and tech exhibitions." },
+      { name: "Business", desc: "Providing resources and support in eco-friendly products, financing, and infrastructure." },
+      { name: "Media", desc: "Promoting the event and disseminating sustainability information to the wider public." },
+      { name: "Community & Public", desc: "Encouraging active participation in education and sustainability management during the event." }
+    ]
+  },
+  smartGreen: {
+    eyebrow: "Future Innovations",
+    title: "Smart & Green Event Innovations",
+    items: [
+      {
+        title: "Zero Carbon Event",
+        description: "Through tree planting programs and various eco-friendly actions, Cisadane Festival 2026 seeks to reduce carbon emissions while preserving the Cisadane River area. This initiative is part of a commitment to realize a sustainable, educational festival with a positive impact on the environment and society."
+      },
+      {
+        title: "CCTV Counting Event",
+        description: "Implementation of AI-based CCTV Crowd Counting technology to monitor and count the number of visitors in real-time. The generated data provides accurate analytical insights as a basis for event evaluation, performance measurement, and safer, more effective crowd management."
+      },
+      {
+        title: "Real-Time Economic Impact Tracking",
+        description: "Automation of Transaction Tracking and Event Economic Turnover. Replacing manual post-event survey methods with digital financial analytics integration to measure regional economic contributions instantaneously.",
+        subItems: [
+          { title: "QRIS & POS System Integration", desc: "All MSME, culinary, merchandise, and ticket transactions are automatically recorded in a centralized system." },
+          { title: "Social Return on Investment (SROI)", desc: "Comprehensive measurement of social and economic impacts, including benefits for the community, MSMEs, tourism, and multiplier effects." }
+        ]
+      }
+    ]
   }
 };
 

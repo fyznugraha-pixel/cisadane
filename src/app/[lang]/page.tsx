@@ -6,6 +6,9 @@ import Reveal from "@/components/Reveal";
 import RiverSectionDivider from "@/components/RiverSectionDivider";
 import SectionHeading from "@/components/SectionHeading";
 import SectionOrnaments from "@/components/SectionOrnaments";
+import ObjectivesSection from "@/components/sections/ObjectivesSection";
+import PentahelixSection from "@/components/sections/PentahelixSection";
+import SmartInnovationsSection from "@/components/sections/SmartInnovationsSection";
 import StickyRegisterBar from "@/components/StickyRegisterBar";
 import MapWrapper from "@/components/MapWrapper";
 import TactlinkSupportSection from "@/components/TactlinkSupportSection";
@@ -60,10 +63,10 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
             </div>
           </Reveal>
         </div>
-
-        {/* Organic river transition into the blue section */}
-        <RiverSectionDivider className="text-[#2654A4]" />
       </section>
+
+      <ObjectivesSection dict={dict} />
+      <PentahelixSection dict={dict} />
 
       <section
         id="highlights"
@@ -224,6 +227,8 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
         {/* Organic river transition into the next light section */}
         <RiverSectionDivider className="text-[#FDFBF7]" theme="light" />
       </section>
+
+      <SmartInnovationsSection dict={dict} />
 
       {/* <EditorialGallery dict={dict.gallery} /> */}
 

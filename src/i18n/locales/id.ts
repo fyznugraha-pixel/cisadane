@@ -144,20 +144,16 @@ export const id: Dictionary = {
     mapDesc: "Rute dan pilihan transportasi publik untuk mencapai area festival dengan mudah.",
     accessInfo: [
       {
-        title: "Transportasi Kota",
-        description: "Gunakan layanan Bus Trans Tangerang, Bus Jawara, atau angkutan Si Benteng yang dikelola langsung oleh Dishub Kota Tangerang untuk rute dalam kota.",
+        title: "Trans Tangerang, Bus Jawara & Si Benteng",
+        description: "Alternatif utama transportasi menuju area festival. Kolaborator: Dishub Kota Tangerang",
       },
       {
         title: "Bandara & Kereta Api",
-        description: "Dari luar kota, Anda bisa terbang ke Bandara Internasional Soekarno-Hatta atau menggunakan KRL menuju Stasiun Tangerang, lalu dilanjutkan dengan transportasi lokal.",
+        description: "Bandara Soekarno-Hatta, Stasiun Kereta, dan Jalan Tol menjadi gerbang utama menuju Kota Tangerang.",
       },
       {
-        title: "Transportasi Online",
-        description: "Akses lokasi festival dengan praktis menggunakan layanan ojek dan taksi online seperti Gojek, Grab, atau Maxim.",
-      },
-      {
-        title: "Panduan Parkir",
-        description: "Informasi mengenai titik-titik parkir resmi untuk kendaraan pribadi akan diumumkan mendekati hari pelaksanaan.",
+        title: "Travel, Ojek & Taksi Online",
+        description: "Gojek, Grab, Maxim, dan mitra transportasi online lainnya mendukung aksesibilitas menuju festival.",
       },
     ]
   },
@@ -194,5 +190,66 @@ export const id: Dictionary = {
     titleLine1: "Kilas Balik",
     titleLine2: "Kemeriahan",
     description: "Saksikan kembali tawa, sorak sorai, dan energi luar biasa dari ribuan pengunjung yang menyatu dalam perayaan budaya terbesar di tepian Sungai Cisadane.",
+  },
+  objectives: {
+    eyebrow: "Tujuan Utama",
+    title: "Objektif Festival",
+    items: [
+      {
+        title: "Budaya & Pariwisata",
+        description: "Mempromosikan kebudayaan lokal dan pariwisata Kota Tangerang",
+      },
+      {
+        title: "Melestarikan Tradisi",
+        description: "Melestarikan seni dan tradisi yang berkembang di bantaran Sungai Cisadane",
+      },
+      {
+        title: "Peningkatan Ekonomi Daerah dan Pemberdayaan UMKM",
+        description: "Memberdayakan UMKM lokal dan meningkatkan Ekonomi Kota dan Masyarakat",
+      },
+      {
+        title: "Kelestarian Lingkungan",
+        description: "Menumbuhkan kesadaran masyarakat menjaga kelestarian Sungai Cisadane",
+      }
+    ]
+  },
+  strategy: {
+    eyebrow: "Strategi Kolaborasi",
+    title: "Kolaborasi Pentahelix & Pendekatan 3A",
+    description: "Festival Cisadane 2026 mengimplementasikan Kolaborasi Pentahelix untuk membentuk kerangka kegiatan yang sistematis dan terpadu dengan Pendekatan 3A.",
+    pillars: [
+      { title: "Aksesibilitas", items: ["Transportasi mudah: Trans Tangerang", "Bus Jawara", "Kereta", "Bandara"] },
+      { title: "Amenitas", items: ["Fasilitas makanan", "Area keluarga", "Diskon hotel", "City tour"] },
+      { title: "Atraksi", items: ["Panggung budaya", "Kompetisi", "Pertunjukan spektakuler"] }
+    ],
+    helix: [
+      { name: "Pemerintah", desc: "Mengeluarkan regulasi dan dukungan terhadap event." },
+      { name: "Akademisi", desc: "Memberikan riset dan solusi berbasis ilmu pengetahuan untuk keberlanjutan acara serta pameran teknologi." },
+      { name: "Bisnis", desc: "Menyediakan sumber daya dan dukungan dalam hal produk ramah lingkungan, pembiayaan dan infrastruktur." },
+      { name: "Media", desc: "Mempromosikan acara dan menyebarkan informasi keberlanjutan kepada masyarakat luas." },
+      { name: "Komunitas & Masyarakat", desc: "Mendorong partisipasi aktif dalam edukasi dan pengelolaan keberlanjutan selama acara." }
+    ]
+  },
+  smartGreen: {
+    eyebrow: "Inovasi Masa Depan",
+    title: "Smart & Green Event Innovations",
+    items: [
+      {
+        title: "Zero Carbon Event",
+        description: "Melalui program penanaman pohon dan berbagai aksi ramah lingkungan, Festival Cisadane 2026 berupaya mengurangi emisi karbon sekaligus menjaga kelestarian kawasan Sungai Cisadane. Inisiatif ini menjadi bagian dari komitmen mewujudkan festival yang berkelanjutan, edukatif, dan memberikan dampak positif bagi lingkungan serta masyarakat."
+      },
+      {
+        title: "CCTV Counting Event",
+        description: "Implementasi teknologi AI berbasis CCTV Crowd Counting pada Festival Cisadane 2026 untuk memantau dan menghitung jumlah pengunjung secara real-time. Data yang dihasilkan memberikan insight analitik yang akurat sebagai dasar evaluasi penyelenggaraan acara, pengukuran performa event, serta pengelolaan kerumunan yang lebih aman dan efektif."
+      },
+      {
+        title: "Real-Time Economic Impact Tracking",
+        description: "Automasi Pelacakan Transaksi dan Perputaran Ekonomi Event. Menggantikan metode survei manual pasca event dengan integrasi analitik keuangan digital untuk mengukur kontribusi ekonomi daerah secara seketika.",
+        subItems: [
+          { title: "Integrasi QRIS & POS System", desc: "Seluruh transaksi UMKM, kuliner, merchandise, hingga tiket tercatat otomatis dalam satu sistem terpusat melalui integrasi QRIS dan POS." },
+          { title: "Social Return on Investment (SROI)", desc: "Pengukuran dampak sosial dan ekonomi secara komprehensif, mencakup nilai manfaat bagi masyarakat, UMKM, pariwisata, serta multiplier effect terhadap ekonomi lokal." }
+        ]
+      }
+    ]
   }
 };
