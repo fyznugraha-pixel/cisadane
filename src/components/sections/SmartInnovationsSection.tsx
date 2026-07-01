@@ -2,6 +2,7 @@ import React from "react";
 import { Leaf, Camera, TrendingUp, BarChart, QrCode } from "lucide-react";
 import SectionHeading from "../SectionHeading";
 import Reveal from "../Reveal";
+import RiverSectionDivider from "../RiverSectionDivider";
 import { Dictionary } from "@/i18n/dictionaries";
 import Image from "next/image";
 
@@ -35,12 +36,13 @@ export default function SmartInnovationsSection({ dict }: { dict: Dictionary }) 
   ];
 
   return (
-    <section className="section-shell relative px-5 pb-36 pt-20 bg-white">
+    <section className="section-shell relative px-5 pb-36 pt-20 bg-[#2654A4] text-[#FDFBF7]">
       <div className="section-inner">
         <SectionHeading
           eyebrow={dict.smartGreen.eyebrow}
           title={dict.smartGreen.title}
           align="left"
+          theme="dark"
         />
 
         <div className="mt-14 flex flex-col gap-12">
@@ -127,6 +129,9 @@ export default function SmartInnovationsSection({ dict }: { dict: Dictionary }) 
           )}
         </div>
       </div>
+      
+      {/* Organic river transition into the light section */}
+      <RiverSectionDivider className="text-[#FDFBF7]" theme="light" />
     </section>
   );
 }

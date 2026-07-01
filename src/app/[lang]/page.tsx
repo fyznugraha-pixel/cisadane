@@ -68,17 +68,17 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
 
       <section
         id="highlights"
-        className="section-shell relative bg-[#2654A4] text-[#FDFBF7] px-5 pb-36 pt-20"
+        className="section-shell relative bg-[#FDFBF7] text-[#041020] px-5 pb-36 pt-20"
       >
-        <WaterBubbles theme="dark" hasWaveBottom={true} hasWaveTop={true} />
-        <SectionOrnaments dragonScale="strong" shapes="sparkles" lights="right" theme="dark" />
+        <WaterBubbles theme="light" hasWaveBottom={true} hasWaveTop={true} />
+        <SectionOrnaments dragonScale="strong" shapes="sparkles" lights="right" theme="light" />
 
         <div className="section-inner">
           <SectionHeading
             eyebrow={dict.highlights.eyebrow}
             title={dict.highlights.title}
             description={dict.highlights.description}
-            theme="dark"
+            theme="light"
           />
 
           <div className="mt-14 flex snap-x snap-mandatory overflow-x-auto pb-8 gap-4 lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0 hide-scrollbar">
@@ -120,20 +120,20 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
           </div>
         </div>
 
-        {/* Organic river transition into the cream section */}
-        <RiverSectionDivider className="text-[#FDFBF7]" theme="light" />
+        {/* Organic river transition into the blue section */}
+        <RiverSectionDivider className="text-[#2654A4]" />
       </section>
 
       <section
         id="lineup"
-        className="section-shell relative px-5 pb-36 pt-20"
+        className="section-shell relative bg-[#2654A4] text-[#FDFBF7] px-5 pb-36 pt-20"
       >
-        <WaterBubbles theme="light" hasWaveBottom={true} hasWaveTop={true} />
-        <SectionOrnaments dragonTopRight dragonBottomLeft shapes="petals" lights="both" />
+        <WaterBubbles theme="dark" hasWaveBottom={true} hasWaveTop={true} />
+        <SectionOrnaments dragonTopRight dragonBottomLeft shapes="petals" lights="both" theme="dark" />
 
         <div className="section-inner">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-center text-center">
-            <SectionHeading eyebrow={dict.performers.eyebrow} title={dict.performers.title} align="center" />
+            <SectionHeading eyebrow={dict.performers.eyebrow} title={dict.performers.title} align="center" theme="dark" />
           </div>
 
           <div className="mt-14 flex snap-x snap-mandatory overflow-x-auto pb-8 gap-4 sm:flex-wrap sm:justify-center sm:overflow-visible sm:pb-0 hide-scrollbar">
@@ -177,29 +177,29 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
           </div>
         </div>
 
-        {/* Organic river transition into the blue section */}
-        <RiverSectionDivider className="text-[#2654A4]" />
+        {/* Organic river transition into the light section */}
+        <RiverSectionDivider className="text-[#FDFBF7]" theme="light" />
       </section>
 
       <section
         id="why-visit"
-        className="section-shell relative bg-[#2654A4] text-[#FDFBF7] px-5 pb-36 pt-20"
+        className="section-shell relative bg-[#FDFBF7] text-[#041020] px-5 pb-36 pt-20"
       >
-        <WaterBubbles theme="dark" hasWaveBottom={true} hasWaveTop={true} />
-        <SectionOrnaments dragonCenterRight shapes="mixed" lights="center" theme="dark" />
+        <WaterBubbles theme="light" hasWaveBottom={true} hasWaveTop={true} />
+        <SectionOrnaments dragonCenterRight shapes="mixed" lights="center" theme="light" />
 
         <div className="section-inner">
           <SectionHeading
             eyebrow={dict.whyVisit.eyebrow}
             title={dict.whyVisit.title}
             description={dict.whyVisit.description}
-            theme="dark"
+            theme="light"
           />
 
           <div className="mt-14 flex snap-x snap-mandatory overflow-x-auto pb-8 gap-4 md:grid md:grid-cols-2 md:overflow-visible md:pb-0 hide-scrollbar">
             {dict.whyVisit.reasons.map((item, index) => (
               <Reveal key={item.title} delay={index * 0.08} y={0} className="w-[85vw] shrink-0 snap-center md:w-auto md:shrink h-full">
-                <div className="section-card flex flex-col h-full hover-rise bg-[#FDFBF7] border border-[#2654A4]/10 shadow-sm p-7">
+                <div className="section-card flex flex-col h-full hover-rise bg-white border border-[#2654A4]/10 shadow-sm p-7">
                   <p className="text-xs font-black uppercase tracking-[0.24em] text-[#EC3A24]">
                     {dict.whyVisit.reasonPrefix} {String(index + 1).padStart(2, "0")}
                   </p>
@@ -216,14 +216,14 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
             ))}
           </div>
 
-          <div className="mt-6 flex items-center justify-center gap-3 text-white/50 md:hidden animate-pulse">
+          <div className="mt-6 flex items-center justify-center gap-3 text-[#041020]/40 md:hidden animate-pulse">
             <span className="text-[10px] font-black uppercase tracking-[0.2em]">Geser</span>
             <MoveRight size={16} />
           </div>
         </div>
 
-        {/* Organic river transition into the next light section */}
-        <RiverSectionDivider className="text-[#FDFBF7]" theme="light" />
+        {/* Organic river transition into the blue section */}
+        <RiverSectionDivider className="text-[#2654A4]" />
       </section>
 
       <SmartInnovationsSection dict={dict} />
