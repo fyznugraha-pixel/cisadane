@@ -4,6 +4,7 @@ import SectionHeading from "../SectionHeading";
 import Reveal from "../Reveal";
 import RiverSectionDivider from "../RiverSectionDivider";
 import { Dictionary } from "@/i18n/dictionaries";
+import { assetPath } from "@/lib/asset-path";
 import Image from "next/image";
 
 export default function SmartInnovationsSection({ dict }: { dict: Dictionary }) {

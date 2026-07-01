@@ -9,7 +9,7 @@ export default function ObjectivesSection({ dict }: { dict: Dictionary }) {
   const icons = [User, Scroll, Store, Waves];
 
   return (
-    <section className="section-shell relative px-5 pb-24 pt-20 bg-[#2654A4] text-[#FDFBF7]">
+    <section className="section-shell relative px-5 pb-36 pt-20 bg-[#2654A4] text-[#FDFBF7]">
       <div className="section-inner">
         <SectionHeading
           eyebrow={dict.objectives.eyebrow}
