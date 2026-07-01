@@ -19,19 +19,19 @@ export default function SmartInnovationsSection({ dict }: { dict: Dictionary }) 
       icon: Leaf,
       iconColor: "text-green-600",
       iconBg: "bg-green-100",
-      image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80",
+      image: "/smart-green/zero_carbon.png",
     },
     {
       icon: Camera,
       iconColor: "text-blue-600",
       iconBg: "bg-blue-100",
-      image: "https://images.unsplash.com/photo-1517646458010-ea6bd9f4a75f?w=800&q=80",
+      image: "/smart-green/cctv_crowd.png",
     },
     {
       icon: TrendingUp,
       iconColor: "text-emerald-600",
       iconBg: "bg-emerald-100",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+      image: "/smart-green/economic_dashboard.png",
     }
   ];
 
