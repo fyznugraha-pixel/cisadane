@@ -63,7 +63,7 @@ export default function SmartInnovationsSection({ dict }: { dict: Dictionary }) 
                     </div>
                     <div className="relative h-48 md:h-64 w-full bg-slate-100">
                       <Image 
-                        src={asset.image}
+                        src={assetPath(asset.image)}
                         alt={item.title}
                         fill
                         className="object-cover"
@@ -103,8 +103,18 @@ export default function SmartInnovationsSection({ dict }: { dict: Dictionary }) 
                     <div className="space-y-6">
                       {innovations[2].subItems?.map((sub, idx) => (
                         <div key={idx} className="flex gap-4">
-                          <div className="mt-1">
-                            {idx === 0 ? <QrCode size={20} className="text-[#38BBCA]" /> : <BarChart size={20} className="text-[#FDB715]" />}
+                          <div className="mt-1 flex-shrink-0">
+                            {idx === 0 ? (
+                              <Image 
+                                src={assetPath("/logo/qris.png")} 
+                                alt="QRIS" 
+                                width={48} 
+                                height={20} 
+                                className="object-contain h-5 w-auto" 
+                              />
+                            ) : (
+                              <BarChart size={20} className="text-[#FDB715]" />
+                            )}
                           </div>
                           <div>
                             <h5 className="font-bold text-[#041020] mb-1">{sub.title}</h5>
@@ -118,7 +128,7 @@ export default function SmartInnovationsSection({ dict }: { dict: Dictionary }) 
                   {/* Dashboard Image Side */}
                   <div className="relative h-64 lg:h-auto bg-slate-100 hidden md:block">
                      <Image 
-                        src={visualAssets[2].image}
+                        src={assetPath(visualAssets[2].image)}
                         alt={innovations[2].title}
                         fill
                         className="object-cover"
