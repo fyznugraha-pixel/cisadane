@@ -2,6 +2,7 @@ import React from "react";
 import { User, Scroll, Store, Waves } from "lucide-react";
 import SectionHeading from "../SectionHeading";
 import Reveal from "../Reveal";
+import RiverSectionDivider from "../RiverSectionDivider";
 import { Dictionary } from "@/i18n/dictionaries";
 
 export default function ObjectivesSection({ dict }: { dict: Dictionary }) {
@@ -37,6 +38,9 @@ export default function ObjectivesSection({ dict }: { dict: Dictionary }) {
           })}
         </div>
       </div>
+
+      {/* Organic river transition into the blue section */}
+      <RiverSectionDivider className="text-[#2654A4]" />
     </section>
   );
 }

@@ -7,7 +7,6 @@ import RiverSectionDivider from "@/components/RiverSectionDivider";
 import SectionHeading from "@/components/SectionHeading";
 import SectionOrnaments from "@/components/SectionOrnaments";
 import ObjectivesSection from "@/components/sections/ObjectivesSection";
-import PentahelixSection from "@/components/sections/PentahelixSection";
 import SmartInnovationsSection from "@/components/sections/SmartInnovationsSection";
 import StickyRegisterBar from "@/components/StickyRegisterBar";
 import MapWrapper from "@/components/MapWrapper";
@@ -66,7 +65,6 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
       </section>
 
       <ObjectivesSection dict={dict} />
-      <PentahelixSection dict={dict} />
 
       <section
         id="highlights"
