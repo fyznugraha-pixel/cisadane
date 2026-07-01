@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Reveal from "@/components/Reveal";
 import { supabase } from "@/lib/supabase";
-import { ChevronDown, Check, User, Mail, Phone, Hash, Loader2, Sparkles, AlertCircle } from "lucide-react";
+import { ChevronDown, Check, User, Mail, Phone, Hash, Loader2, AlertCircle } from "lucide-react";
 
 export default function RegisterForm({ dict }: { dict: any }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -58,10 +58,6 @@ export default function RegisterForm({ dict }: { dict: any }) {
     return (
       <Reveal>
         <div className="mx-auto max-w-xl overflow-hidden rounded-[2.5rem] border border-[#2654A4]/10 bg-white/90 p-12 text-center shadow-[0_20px_60px_-15px_rgba(38,84,164,0.1)] backdrop-blur-xl relative">
-          {/* Confetti / Sparkles decoration */}
-          <div className="absolute top-8 left-8 text-[#FDB715]/30 animate-pulse"><Sparkles size={32} /></div>
-          <div className="absolute bottom-12 right-12 text-[#38BBCA]/30 animate-pulse delay-150"><Sparkles size={40} /></div>
-          
           <div className="relative mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-[#2654A4] to-[#38BBCA] shadow-xl">
             <div className="absolute inset-0 rounded-full bg-white opacity-20 animate-ping" />
             <Check className="h-10 w-10 text-white relative z-10" strokeWidth={3} />
@@ -273,7 +269,6 @@ export default function RegisterForm({ dict }: { dict: any }) {
                   ) : (
                     <>
                       <span className="tracking-widest uppercase text-sm">{dict.submit}</span>
-                      <Sparkles size={18} className="opacity-70 transition-transform group-hover:scale-125" />
                     </>
                   )}
                 </div>
