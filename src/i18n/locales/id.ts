@@ -144,16 +144,20 @@ export const id: Dictionary = {
     mapDesc: "Rute dan pilihan transportasi publik untuk mencapai area festival dengan mudah.",
     accessInfo: [
       {
-        title: "Trans Tangerang, Bus Jawara & Si Benteng",
-        description: "Alternatif utama transportasi menuju area festival. Kolaborator: Dishub Kota Tangerang",
+        title: "Transportasi Umum",
+        description: "Gunakan layanan bus Trans Kota Tangerang (Ayo) atau angkot Si Benteng yang beroperasi di berbagai rute strategis, turun langsung di sekitar jembatan kaca atau alun-alun.",
       },
       {
         title: "Bandara & Kereta Api",
-        description: "Bandara Soekarno-Hatta, Stasiun Kereta, dan Jalan Tol menjadi gerbang utama menuju Kota Tangerang.",
+        description: "Dari luar kota, Anda bisa terbang ke Bandara Internasional Soekarno-Hatta atau menggunakan KRL menuju Stasiun Tangerang, lalu dilanjutkan dengan transportasi lokal.",
       },
       {
-        title: "Travel, Ojek & Taksi Online",
-        description: "Gojek, Grab, Maxim, dan mitra transportasi online lainnya mendukung aksesibilitas menuju festival.",
+        title: "Transportasi Online",
+        description: "Akses lokasi festival dengan praktis menggunakan layanan ojek dan taksi online seperti Gojek, Grab, atau Maxim.",
+      },
+      {
+        title: "Panduan Parkir",
+        description: "Informasi mengenai titik-titik parkir resmi untuk kendaraan pribadi akan diumumkan mendekati hari pelaksanaan.",
       },
     ]
   },

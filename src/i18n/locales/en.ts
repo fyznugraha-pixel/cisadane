@@ -142,16 +142,20 @@ export const en = {
     mapDesc: "Routes and public transportation options to easily reach the festival grounds.",
     accessInfo: [
       {
-        title: "Trans Tangerang, Jawara & Si Benteng Buses",
-        description: "The main alternative transportation to the festival area. Collaborator: Tangerang City Transportation Agency.",
+        title: "Public Transportation",
+        description: "Use the Trans Tangerang (Ayo) bus service or Si Benteng minivans operating on various strategic routes, dropping you directly near the glass bridge or the city square.",
       },
       {
         title: "Airport & Train Station",
-        description: "Soekarno-Hatta Airport, Train Stations, and Toll Roads serve as the main gateways to Tangerang City.",
+        description: "From out of town, arrive at Soekarno-Hatta International Airport or take the commuter train to Tangerang Station, followed by local transport.",
       },
       {
-        title: "Ride-Hailing Services",
-        description: "Gojek, Grab, Maxim, and other ride-hailing partners support accessibility to the festival.",
+        title: "Ride-Hailing Apps",
+        description: "Reach the festival grounds easily using popular ride-hailing services like Gojek, Grab, or Maxim.",
+      },
+      {
+        title: "Parking Guidelines",
+        description: "Information regarding official parking areas for private vehicles will be announced closer to the event date.",
       },
     ]
   },
