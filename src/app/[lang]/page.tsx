@@ -62,6 +62,9 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
             </div>
           </Reveal>
         </div>
+
+        {/* Organic river transition into the blue section */}
+        <RiverSectionDivider className="text-[#2654A4]" />
       </section>
 
       <ObjectivesSection dict={dict} />
