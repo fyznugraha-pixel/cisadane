@@ -39,7 +39,7 @@ export default function MediaPartnersSection() {
   return (
     <section
       id="media-partners"
-      className="section-shell relative bg-[#FDFBF7] text-[#041020] px-5 pb-24 pt-16 overflow-hidden"
+      className="section-shell relative bg-[#FDFBF7] text-[#041020] px-5 pb-36 pt-20 overflow-hidden"
     >
 
       <div className="section-inner">
