@@ -312,9 +312,14 @@ export default function HeroSection({
             <div className="group relative flex flex-col w-full overflow-hidden rounded-xl bg-white border border-[#2654A4]/10 shadow-inner">
               
               {/* TOP: Full-width KEN Nomination Banner */}
-              <div className="relative flex items-center justify-between border-b border-[#2654A4]/10 bg-gradient-to-r from-white to-[#FDFBF7] px-6 py-5">
+              <a 
+                href="https://kemenpar.go.id/berita/ken-kembali-digelar-ini-dia-125-event-terpilih-unggulan-2026" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="relative flex items-center justify-between border-b border-[#2654A4]/10 bg-gradient-to-r from-white to-[#FDFBF7] px-6 py-5 transition-colors hover:from-[#FDFBF7] hover:to-[#F5F2EA] cursor-pointer group/ken"
+              >
                 <div className="flex items-center gap-4">
-                  <div className="relative h-14 w-14 shrink-0 drop-shadow-sm">
+                  <div className="relative h-14 w-14 shrink-0 drop-shadow-sm transition-transform group-hover/ken:scale-110">
                     <Image
                       src={assetPath("/logo/ken.png")}
                       alt="Karisma Event Nusantara"
@@ -332,8 +337,8 @@ export default function HeroSection({
                   </div>
                 </div>
                 {/* Decorative element on the right */}
-                <div className="hidden h-8 w-8 shrink-0 rounded-full border-[3px] border-[#38BBCA]/40 lg:block" />
-              </div>
+                <div className="hidden h-8 w-8 shrink-0 rounded-full border-[3px] border-[#38BBCA]/40 lg:block transition-colors group-hover/ken:border-[#EC3A24]/60" />
+              </a>
 
               {/* MIDDLE: True 16:9 Video Container without cropping */}
               <div className="group/video relative aspect-video w-full overflow-hidden bg-white">

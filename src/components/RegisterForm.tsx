@@ -14,6 +14,8 @@ export default function RegisterForm({ dict }: { dict: any }) {
   const [tncAccepted, setTncAccepted] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  const isRegistrationOpen = false; // Set to true to open registration
+
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -53,6 +55,23 @@ export default function RegisterForm({ dict }: { dict: any }) {
       setIsSubmitted(true);
     }
   };
+
+  if (!isRegistrationOpen) {
+    return (
+      <Reveal>
+        <div className="mx-auto max-w-xl overflow-hidden rounded-[2.5rem] border border-[#2654A4]/10 bg-white/90 p-12 text-center shadow-[0_20px_60px_-15px_rgba(38,84,164,0.1)] backdrop-blur-xl relative">
+          <div className="relative mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-[#2654A4] to-[#38BBCA] shadow-xl">
+            <div className="absolute inset-0 rounded-full bg-white opacity-20 animate-pulse" />
+            <AlertCircle className="h-10 w-10 text-white relative z-10" strokeWidth={2.5} />
+          </div>
+          <h3 className="mb-4 text-3xl font-black text-[#2654A4] tracking-tight">Segera Hadir</h3>
+          <p className="text-[#041020]/70 leading-relaxed text-lg max-w-md mx-auto">
+            Mohon maaf, pendaftaran umum Festival Cisadane 2026 saat ini belum dibuka. Pantau terus informasi selanjutnya!
+          </p>
+        </div>
+      </Reveal>
+    );
+  }
 
   if (isSubmitted) {
     return (
