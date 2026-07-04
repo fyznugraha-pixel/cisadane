@@ -45,7 +45,7 @@ export default function SponsorsSection({ dict }: { dict?: any }) {
             <div className="absolute top-0 left-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#2654A4] to-transparent z-10 pointer-events-none" />
             <div className="absolute top-0 right-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#2654A4] to-transparent z-10 pointer-events-none" />
 
-            <div className="flex animate-marquee hover:[animation-play-state:paused] whitespace-nowrap items-center gap-8 md:gap-16 py-4">
+            <div className="flex animate-marquee hover:[animation-play-state:paused] active:[animation-play-state:paused] whitespace-nowrap items-center gap-8 md:gap-16 py-4">
               {marqueeItems.map((sponsor, index) => (
                 <div
                   key={index}

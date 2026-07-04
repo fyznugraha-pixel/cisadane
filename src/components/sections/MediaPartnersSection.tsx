@@ -22,7 +22,6 @@ export default function MediaPartnersSection() {
       id="media-partners"
       className="section-shell relative bg-[#FDFBF7] text-[#041020] px-5 pb-24 pt-16 overflow-hidden"
     >
-      <SectionOrnaments dragonScale="soft" batik theme="light" />
 
       <div className="section-inner">
         <Reveal>
@@ -40,7 +39,7 @@ export default function MediaPartnersSection() {
             <div className="absolute top-0 left-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#FDFBF7] to-transparent z-10 pointer-events-none" />
             <div className="absolute top-0 right-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#FDFBF7] to-transparent z-10 pointer-events-none" />
 
-            <div className="flex animate-marquee hover:[animation-play-state:paused] whitespace-nowrap items-center gap-6 md:gap-10 py-2">
+            <div className="flex animate-marquee hover:[animation-play-state:paused] active:[animation-play-state:paused] whitespace-nowrap items-center gap-6 md:gap-10 py-2">
               {marqueeItems.map((partner, index) => (
                 <div
                   key={index}
