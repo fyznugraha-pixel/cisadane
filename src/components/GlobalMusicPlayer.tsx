@@ -15,8 +15,13 @@ export default function GlobalMusicPlayer() {
 
   useEffect(() => {
     setIsMounted(true);
-    controls.start({ x: 0, opacity: 1, transition: { type: "spring", damping: 20, stiffness: 100, delay: 1 } });
-  }, [controls]);
+  }, []);
+
+  useEffect(() => {
+    if (isMounted) {
+      controls.start({ x: 0, y: "-50%", opacity: 1, transition: { type: "spring", damping: 20, stiffness: 100, delay: 1 } });
+    }
+  }, [isMounted, controls]);
 
   const togglePlay = () => {
     if (audioRef.current) {
