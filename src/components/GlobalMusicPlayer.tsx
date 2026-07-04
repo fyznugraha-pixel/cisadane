@@ -8,20 +8,9 @@ import { assetPath } from "@/lib/asset-path";
 export default function GlobalMusicPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const dragControls = useDragControls();
   const controls = useAnimation();
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (isMounted) {
-      controls.start({ x: 0, y: "-50%", opacity: 1, transition: { type: "spring", damping: 20, stiffness: 100, delay: 1 } });
-    }
-  }, [isMounted, controls]);
 
   const togglePlay = () => {
     if (audioRef.current) {
@@ -47,8 +36,6 @@ export default function GlobalMusicPlayer() {
     }
   };
 
-  if (!isMounted) return null;
-
   return (
     <>
       <audio
@@ -65,7 +52,7 @@ export default function GlobalMusicPlayer() {
         dragElastic={0.1}
         onDragEnd={handleDragEnd}
         className="fixed top-1/2 right-6 z-[9999] flex flex-col items-center gap-2"
-        initial={{ y: "-50%", x: 100, opacity: 0 }}
+        initial={{ y: "-50%", x: 0, opacity: 1 }}
         animate={controls}
       >
         {/* The Drag Handle */}
