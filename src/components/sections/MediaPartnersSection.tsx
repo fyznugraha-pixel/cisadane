@@ -2,16 +2,35 @@ import React from "react";
 import Reveal from "../Reveal";
 import SectionOrnaments from "../SectionOrnaments";
 import RiverSectionDivider from "../RiverSectionDivider";
+import { assetPath } from "@/lib/asset-path";
 
 const mediaPartners = [
-  "KOMPAS",
-  "TRIBUN NEWS",
-  "TRANS 7",
-  "METRO TV",
-  "ANTARA",
-  "BANTEN TV",
-  "TANGERANG HITS",
-  "RADIO KIS FM"
+  { name: "TNG TV", image: "/media-patner/tng-tv.png" },
+  { name: "KONSER FYP" },
+  { name: "Konser Raya" },
+  { name: "GAC MUSIC" },
+  { name: "KONSER MUSIK FEST" },
+  { name: "MEDIA PARTNER EVENT" },
+  { name: "BIANG KONSER" },
+  { name: "KONSER DAILY" },
+  { name: "KONSER TNG RAYA" },
+  { name: "KONSER MY MUSIK" },
+  { name: "DR DIGITAL MEDIA" },
+  { name: "KONSERAN BANTEN" },
+  { name: "WARTA TANGERANG" },
+  { name: "FOMO EVENT" },
+  { name: "SUPPORT KONSER" },
+  { name: "TANGKAS AMEBARA" },
+  { name: "EVENT TERUS.ID" },
+  { name: "PARTNER KONSER" },
+  { name: "SOUND DIVISION" },
+  { name: "SOUL OF JAKARTA" },
+  { name: "KISIKISI.CO" },
+  { name: "PRIOK PRIDE KONSER" },
+  { name: "JAKARTA MUSIC FEST" },
+  { name: "EventHubID" },
+  { name: "Tangsel Partim" },
+  { name: "WANI KONSERAN BARENG" },
 ];
 
 export default function MediaPartnersSection() {
@@ -45,9 +64,17 @@ export default function MediaPartnersSection() {
                   key={index}
                   className="flex items-center justify-center min-w-[160px] h-20 px-6 bg-white border border-[#2654A4]/10 rounded-xl transition-all duration-300 hover:border-[#2654A4]/30 hover:shadow-[0_4px_20px_rgba(38,84,164,0.08)] group/logo cursor-default"
                 >
-                  <span className="font-display font-bold text-lg md:text-xl text-[#041020]/40 tracking-wider group-hover/logo:text-[#2654A4] transition-colors duration-300">
-                    {partner}
-                  </span>
+                  {partner.image ? (
+                    <img 
+                      src={assetPath(partner.image)} 
+                      alt={partner.name} 
+                      className="h-12 w-auto object-contain transition-transform duration-300 group-hover/logo:scale-105" 
+                    />
+                  ) : (
+                    <span className="font-display font-bold text-lg md:text-xl text-[#041020]/40 tracking-wider group-hover/logo:text-[#2654A4] transition-colors duration-300 whitespace-nowrap">
+                      {partner.name}
+                    </span>
+                  )}
                 </div>
               ))}
             </div>
