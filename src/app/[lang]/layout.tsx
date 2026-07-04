@@ -49,6 +49,8 @@ export const metadata: Metadata = {
   },
 };
 
+import GlobalMusicPlayer from "@/components/GlobalMusicPlayer";
+
 export default async function RootLayout(props: Readonly<{
   children: React.ReactNode;
   params: Promise<{ lang: string }>;
@@ -57,6 +59,7 @@ export default async function RootLayout(props: Readonly<{
   return (
     <html lang={params.lang} suppressHydrationWarning>
       <body className={`${poppinsDisplay.variable} ${poppinsBody.variable}`} suppressHydrationWarning>
+        <GlobalMusicPlayer />
         {props.children}
         <Analytics />
       </body>
