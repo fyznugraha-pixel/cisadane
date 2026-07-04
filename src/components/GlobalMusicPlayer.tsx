@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { motion, useDragControls } from "motion/react";
+import { motion, useDragControls, useAnimation } from "motion/react";
 import { Music, Volume2, VolumeX, GripHorizontal } from "lucide-react";
 import { assetPath } from "@/lib/asset-path";
 
@@ -11,10 +11,12 @@ export default function GlobalMusicPlayer() {
   const [isMounted, setIsMounted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const dragControls = useDragControls();
+  const controls = useAnimation();
 
   useEffect(() => {
     setIsMounted(true);
-  }, []);
+    controls.start({ x: 0, opacity: 1, transition: { type: "spring", damping: 20, stiffness: 100, delay: 1 } });
+  }, [controls]);
 
   const togglePlay = () => {
     if (audioRef.current) {
@@ -25,6 +27,18 @@ export default function GlobalMusicPlayer() {
       }
       setIsPlaying(!isPlaying);
       if (!hasInteracted) setHasInteracted(true);
+    }
+  };
+
+  const handleDragEnd = (e: any, info: any) => {
+    const halfWidth = window.innerWidth / 2;
+    if (info.point.x > halfWidth) {
+      // Snap to right edge (original position because of right-6 class)
+      controls.start({ x: 0, transition: { type: "spring", stiffness: 300, damping: 25 } });
+    } else {
+      // Snap to left edge: move negative x by window width minus offset
+      // Offset: 24px (right-6) + 56px (w-14) = 80px + some padding
+      controls.start({ x: -(window.innerWidth - 80), transition: { type: "spring", stiffness: 300, damping: 25 } });
     }
   };
 
@@ -44,10 +58,10 @@ export default function GlobalMusicPlayer() {
         dragControls={dragControls}
         dragMomentum={false}
         dragElastic={0.1}
+        onDragEnd={handleDragEnd}
         className="fixed top-1/2 right-6 z-[9999] flex flex-col items-center gap-2"
         initial={{ y: "-50%", x: 100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ type: "spring", damping: 20, stiffness: 100, delay: 1 }}
+        animate={controls}
       >
         {/* The Drag Handle */}
         <div 
