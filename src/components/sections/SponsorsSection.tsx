@@ -7,14 +7,14 @@ import WaterBubbles from "../WaterBubbles";
 
 // Using placeholders for now since actual sponsor images aren't available
 const sponsors = [
-  "BANK JABAR BANTEN",
-  "TELKOMSEL",
-  "PERTAMINA",
-  "GARUDA INDONESIA",
-  "BANK MANDIRI",
-  "ANGKASA PURA",
-  "PLN",
-  "TELKOM INDONESIA"
+  "SPONSOR 1",
+  "SPONSOR 2",
+  "SPONSOR 3",
+  "SPONSOR 4",
+  "SPONSOR 5",
+  "SPONSOR 6",
+  "SPONSOR 7",
+  "SPONSOR 8"
 ];
 
 export default function SponsorsSection({ dict }: { dict?: any }) {
