@@ -82,7 +82,7 @@ export const id: Dictionary = {
     title: "Gema Melodi\nDari Tepian",
     previewPrefix: "Lineup",
     talent: [
-      { name: "TBA" },
+      { name: "Feel Koplo", image: "/artis/feel-koplo.jpeg" },
       { name: "Samsaka" },
       { name: "ziepross" },
       { name: "VOC" },

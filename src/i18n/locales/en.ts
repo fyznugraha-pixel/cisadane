@@ -80,7 +80,7 @@ export const en = {
     title: "Upcoming\nPerformances",
     previewPrefix: "Lineup",
     talent: [
-      { name: "TBA" },
+      { name: "Feel Koplo", image: "/artis/feel-koplo.jpeg" },
       { name: "Samsaka" },
       { name: "ziepross" },
       { name: "VOC" },
