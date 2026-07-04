@@ -255,5 +255,16 @@ export const id: Dictionary = {
         ]
       }
     ]
+  },
+  impact: {
+    eyebrow: "Dampak Festival",
+    title: "Jejak Prestasi\nFestival Cisadane",
+    description: "Festival Cisadane bukan sekadar perayaan, melainkan motor penggerak ekonomi, pelestarian budaya, dan pemberdayaan masyarakat.",
+    stats: [
+      { value: "50.000+", label: "Total Pengunjung", suffix: "" },
+      { value: "200+", label: "UMKM Lokal Terlibat", suffix: "" },
+      { value: "15", label: "Perputaran Ekonomi", suffix: " Miliar" },
+      { value: "125", label: "Top Event Nasional KEN", suffix: "" },
+    ]
   }
 };

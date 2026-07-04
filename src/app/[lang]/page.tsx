@@ -25,6 +25,7 @@ const accentMap: Record<"red" | "gold" | "teal" | "orange", string> = {
 
 import SponsorsSection from "@/components/sections/SponsorsSection";
 import MediaPartnersSection from "@/components/sections/MediaPartnersSection";
+import ImpactSection from "@/components/sections/ImpactSection";
 
 export default async function Home(props: { params: Promise<{ lang: string }> }) {
   const params = await props.params;
@@ -231,6 +232,8 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
         {/* Organic river transition into the blue section */}
         <RiverSectionDivider className="text-[#2654A4]" />
       </section>
+
+      <ImpactSection dict={dict} />
 
       <SmartInnovationsSection dict={dict} />
 

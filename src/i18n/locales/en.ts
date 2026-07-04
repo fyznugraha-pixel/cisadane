@@ -253,6 +253,17 @@ export const en = {
         ]
       }
     ]
+  },
+  impact: {
+    eyebrow: "Festival Impact",
+    title: "Cisadane Festival's\nTrack Record",
+    description: "The Cisadane Festival is more than a celebration; it's an engine for economic growth, cultural preservation, and community empowerment.",
+    stats: [
+      { value: "50,000+", label: "Total Visitors", suffix: "" },
+      { value: "200+", label: "Local SMEs Involved", suffix: "" },
+      { value: "15", label: "Economic Turnover", suffix: " Billion" },
+      { value: "125", label: "Top National KEN Events", suffix: "" },
+    ]
   }
 };
 
