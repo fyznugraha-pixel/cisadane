@@ -314,7 +314,7 @@ export default function HeroSection({
               {/* TOP: Full-width KEN Nomination Banner */}
               <div className="relative flex items-center justify-between border-b border-[#2654A4]/10 bg-gradient-to-r from-white to-[#FDFBF7] px-6 py-5">
                 <div className="flex items-center gap-4">
-                  <div className="relative h-12 w-12 shrink-0">
+                  <div className="relative h-14 w-14 shrink-0 drop-shadow-sm">
                     <Image
                       src={assetPath("/logo/ken.png")}
                       alt="Karisma Event Nusantara"
@@ -323,10 +323,10 @@ export default function HeroSection({
                     />
                   </div>
                   <div>
-                    <p className="text-[10px] font-black uppercase tracking-[0.15em] text-[#2654A4]">
+                    <p className="text-xs md:text-sm font-black uppercase tracking-[0.15em] text-[#2654A4]">
                       {dict.badge}
                     </p>
-                    <p className="mt-0.5 text-[10px] font-bold uppercase tracking-[0.1em] text-[#041020]/80">
+                    <p className="mt-1 text-[10px] md:text-xs font-black uppercase tracking-[0.15em] text-[#EC3A24] bg-[#EC3A24]/10 inline-block px-2 py-0.5 rounded-sm">
                       {dict.recognition}
                     </p>
                   </div>
