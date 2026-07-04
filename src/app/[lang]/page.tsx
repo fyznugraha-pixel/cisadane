@@ -23,6 +23,9 @@ const accentMap: Record<"red" | "gold" | "teal" | "orange", string> = {
   orange: "from-[#E8823A]/70",
 };
 
+import SponsorsSection from "@/components/sections/SponsorsSection";
+import MediaPartnersSection from "@/components/sections/MediaPartnersSection";
+
 export default async function Home(props: { params: Promise<{ lang: string }> }) {
   const params = await props.params;
   const lang = params.lang;
@@ -270,6 +273,9 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
         <RiverSectionDivider className="text-[#2654A4]" theme="dark" />
       </section>
 
+      <SponsorsSection />
+      <MediaPartnersSection />
+      
       <TactlinkSupportSection />
       
 
