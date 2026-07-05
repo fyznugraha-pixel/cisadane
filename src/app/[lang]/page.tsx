@@ -8,6 +8,8 @@ import SectionHeading from "@/components/SectionHeading";
 import SectionOrnaments from "@/components/SectionOrnaments";
 import ObjectivesSection from "@/components/sections/ObjectivesSection";
 import SmartInnovationsSection from "@/components/sections/SmartInnovationsSection";
+import SponsorsSection from "@/components/sections/SponsorsSection";
+import TiltCard from "@/components/TiltCard";
 import StickyRegisterBar from "@/components/StickyRegisterBar";
 import MapWrapper from "@/components/MapWrapper";
 import TactlinkSupportSection from "@/components/TactlinkSupportSection";
@@ -205,21 +207,23 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
           />
 
           <div className="mt-14 flex snap-x snap-mandatory overflow-x-auto pb-8 gap-4 md:grid md:grid-cols-2 md:overflow-visible md:pb-0 hide-scrollbar">
-            {dict.whyVisit.reasons.map((item, index) => (
+            {dict.whyVisit.reasons.map((item: any, index: number) => (
               <Reveal key={item.title} delay={index * 0.08} y={0} className="w-[85vw] shrink-0 snap-center md:w-auto md:shrink h-full">
-                <div className="section-card flex flex-col h-full hover-rise bg-white border border-[#2654A4]/10 shadow-sm p-7">
-                  <p className="text-xs font-black uppercase tracking-[0.24em] text-[#EC3A24]">
-                    {dict.whyVisit.reasonPrefix} {String(index + 1).padStart(2, "0")}
-                  </p>
+                <TiltCard>
+                  <div className="section-card flex flex-col h-full hover-rise bg-white border border-[#2654A4]/10 shadow-sm p-7 rounded-2xl transition-all duration-300 hover:shadow-lg">
+                    <p className="text-xs font-black uppercase tracking-[0.24em] text-[#EC3A24]">
+                      {dict.whyVisit.reasonPrefix} {String(index + 1).padStart(2, "0")}
+                    </p>
 
-                  <h3 className="font-display mt-4 text-[26px] md:text-3xl font-black uppercase leading-tight text-[#2654A4]">
-                    {item.title}
-                  </h3>
+                    <h3 className="font-display mt-4 text-[26px] md:text-3xl font-black uppercase leading-tight text-[#2654A4]">
+                      {item.title}
+                    </h3>
 
-                  <p className="mt-5 leading-relaxed text-[#041020]/80">
-                    {item.description}
-                  </p>
-                </div>
+                    <p className="mt-5 leading-relaxed text-[#041020]/80">
+                      {item.description}
+                    </p>
+                  </div>
+                </TiltCard>
               </Reveal>
             ))}
           </div>

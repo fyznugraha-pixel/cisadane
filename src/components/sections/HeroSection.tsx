@@ -5,6 +5,7 @@ import Image from "next/image";
 import { assetPath } from "@/lib/asset-path";
 import Link from "next/link";
 import { ArrowRight, CalendarDays, MapPin, Sparkles, Volume2, VolumeX } from "lucide-react";
+import MagneticButton from "@/components/MagneticButton";
 
 declare global {
   interface Window {
@@ -252,13 +253,15 @@ export default function HeroSection({
           </p>
 
           <div className="mt-12 flex flex-wrap gap-5">
-            <Link
-              href={`/${lang}/register`}
-              className="group flex items-center gap-3 bg-[#FDB715] px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#041020] shadow-[6px_6px_0_rgba(56,187,202,0.75)] transition hover:-translate-y-0.5 hover:bg-white md:text-sm"
-            >
-              <span>{dict.cta.primary}</span>
-              <ArrowRight size={18} className="transition group-hover:translate-x-1" />
-            </Link>
+            <MagneticButton>
+              <Link
+                href={`/${lang}/register`}
+                className="group flex items-center gap-3 bg-[#FDB715] px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#041020] shadow-[6px_6px_0_rgba(56,187,202,0.75)] transition hover:-translate-y-0.5 hover:bg-white md:text-sm"
+              >
+                <span>{dict.cta.primary}</span>
+                <ArrowRight size={18} className="transition group-hover:translate-x-1" />
+              </Link>
+            </MagneticButton>
 
             <Link
               href={`/${lang}#about`}
