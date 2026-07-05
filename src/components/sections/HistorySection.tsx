@@ -5,15 +5,17 @@ import SectionHeading from "../SectionHeading";
 import RiverSectionDivider from "../RiverSectionDivider";
 import SectionOrnaments from "../SectionOrnaments";
 import { MoveRight } from "lucide-react";
+import WaterBubbles from "../WaterBubbles";
 import { assetPath } from "@/lib/asset-path";
 
 export default function HistorySection({ dict }: { dict: any }) {
   return (
     <section
       id="history"
-      className="section-shell relative bg-[#F9F7F1] text-[#041020] px-5 pb-36 pt-20 overflow-hidden"
+      className="section-shell relative bg-[#FDFBF7] text-[#041020] px-5 pb-36 pt-20 overflow-hidden"
     >
-      <SectionOrnaments dragonScale="soft" batik shapes="squares" lights="left" theme="light" />
+      <WaterBubbles theme="light" hasWaveBottom={true} hasWaveTop={true} />
+      <SectionOrnaments dragonScale="strong" shapes="sparkles" lights="right" theme="light" />
 
       <div className="section-inner">
         <Reveal>
@@ -65,7 +67,7 @@ export default function HistorySection({ dict }: { dict: any }) {
       </div>
 
       {/* Organic river transition into the next section */}
-      <RiverSectionDivider className="text-[#F9F7F1]" theme="dark" />
+      <RiverSectionDivider className="text-[#2654A4]" />
     </section>
   );
 }

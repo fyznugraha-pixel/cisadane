@@ -3,6 +3,8 @@ import { User, Scroll, Store, Waves } from "lucide-react";
 import SectionHeading from "../SectionHeading";
 import Reveal from "../Reveal";
 import RiverSectionDivider from "../RiverSectionDivider";
+import WaterBubbles from "../WaterBubbles";
+import SectionOrnaments from "../SectionOrnaments";
 import { Dictionary } from "@/i18n/dictionaries";
 
 export default function ObjectivesSection({ dict }: { dict: Dictionary }) {
@@ -10,6 +12,8 @@ export default function ObjectivesSection({ dict }: { dict: Dictionary }) {
 
   return (
     <section className="section-shell relative px-5 pb-36 pt-20 bg-[#2654A4] text-[#FDFBF7]">
+      <WaterBubbles theme="dark" hasWaveBottom={true} hasWaveTop={true} />
+      <SectionOrnaments dragonScale="strong" shapes="sparkles" lights="right" theme="dark" />
       <div className="section-inner">
         <SectionHeading
           eyebrow={dict.objectives.eyebrow}

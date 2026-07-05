@@ -41,6 +41,8 @@ export default function MediaPartnersSection() {
       id="media-partners"
       className="section-shell relative bg-[#FDFBF7] text-[#041020] px-5 pb-36 pt-20 overflow-hidden"
     >
+      <WaterBubbles theme="light" hasWaveBottom={true} hasWaveTop={true} />
+      <SectionOrnaments dragonScale="strong" shapes="sparkles" lights="right" theme="light" />
 
       <div className="section-inner">
         <Reveal>

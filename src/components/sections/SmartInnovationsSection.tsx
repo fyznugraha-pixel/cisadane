@@ -3,6 +3,8 @@ import { Leaf, Camera, TrendingUp, BarChart, QrCode } from "lucide-react";
 import SectionHeading from "../SectionHeading";
 import Reveal from "../Reveal";
 import RiverSectionDivider from "../RiverSectionDivider";
+import SectionOrnaments from "../SectionOrnaments";
+import WaterBubbles from "../WaterBubbles";
 import { Dictionary } from "@/i18n/dictionaries";
 import { assetPath } from "@/lib/asset-path";
 import Image from "next/image";
@@ -20,24 +22,26 @@ export default function SmartInnovationsSection({ dict }: { dict: Dictionary }) 
       icon: Leaf,
       iconColor: "text-green-600",
       iconBg: "bg-green-100",
-      image: "/smart-green/zero_carbon.png",
+      image: "/images/highlights/cs3.jpg",
     },
     {
       icon: Camera,
       iconColor: "text-blue-600",
       iconBg: "bg-blue-100",
-      image: "/smart-green/cctv_crowd.png",
+      image: "/images/highlights/cs8.jpg",
     },
     {
       icon: TrendingUp,
       iconColor: "text-emerald-600",
       iconBg: "bg-emerald-100",
-      image: "/smart-green/economic_dashboard.png",
+      image: "/images/highlights/cs4.jpg",
     }
   ];
 
   return (
     <section className="section-shell relative px-5 pb-36 pt-20 bg-[#2654A4] text-[#FDFBF7]">
+      <WaterBubbles theme="dark" hasWaveBottom={true} hasWaveTop={true} />
+      <SectionOrnaments dragonScale="strong" shapes="sparkles" lights="right" theme="dark" />
       <div className="section-inner">
         <SectionHeading
           eyebrow={dict.smartGreen.eyebrow}

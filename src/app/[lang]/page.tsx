@@ -45,7 +45,7 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
         className="section-shell relative px-5 pb-36 pt-28"
       >
         <WaterBubbles theme="light" hasWaveBottom={true} hasWaveTop={true} />
-        <SectionOrnaments dragonScale="soft" dragonTopRight shapes="mixed" lights="left" />
+        <SectionOrnaments dragonScale="strong" shapes="sparkles" lights="right" theme="light" />
 
         <div className="section-inner grid gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div>
@@ -71,8 +71,6 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
         {/* Organic river transition into the blue section */}
         <RiverSectionDivider className="text-[#2654A4]" />
       </section>
-
-      <HistorySection dict={dict} />
 
       <ObjectivesSection dict={dict} />
 
@@ -139,7 +137,7 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
         className="section-shell relative bg-[#2654A4] text-[#FDFBF7] px-5 pb-36 pt-20"
       >
         <WaterBubbles theme="dark" hasWaveBottom={true} hasWaveTop={true} />
-        <SectionOrnaments dragonTopRight dragonBottomLeft shapes="petals" lights="both" theme="dark" />
+        <SectionOrnaments dragonScale="strong" shapes="sparkles" lights="right" theme="dark" />
 
         <div className="section-inner">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-center text-center">
@@ -191,12 +189,16 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
         <RiverSectionDivider className="text-[#FDFBF7]" theme="light" />
       </section>
 
+      <HistorySection dict={dict} />
+
+      <ImpactSection dict={dict} />
+
       <section
         id="why-visit"
         className="section-shell relative bg-[#FDFBF7] text-[#041020] px-5 pb-36 pt-20"
       >
         <WaterBubbles theme="light" hasWaveBottom={true} hasWaveTop={true} />
-        <SectionOrnaments dragonCenterRight shapes="mixed" lights="center" theme="light" />
+        <SectionOrnaments dragonScale="strong" shapes="sparkles" lights="right" theme="light" />
 
         <div className="section-inner">
           <SectionHeading
@@ -236,8 +238,6 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
         <RiverSectionDivider className="text-[#2654A4]" />
       </section>
 
-      <ImpactSection dict={dict} />
-
       <SmartInnovationsSection dict={dict} />
 
       {/* <EditorialGallery dict={dict.gallery} /> */}
@@ -247,7 +247,7 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
         className="section-shell relative bg-[#FDFBF7] text-[#041020] px-5 pb-36 pt-20"
       >
         <WaterBubbles theme="light" hasWaveBottom={true} hasWaveTop={true} />
-        <SectionOrnaments dragonScale="soft" tenun dragonBottomLeft shapes="sparkles" lights="right" theme="light" />
+        <SectionOrnaments dragonScale="strong" shapes="sparkles" lights="right" theme="light" />
 
         <div className="section-inner grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <Reveal className="h-full">

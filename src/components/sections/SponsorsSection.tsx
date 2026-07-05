@@ -27,7 +27,7 @@ export default function SponsorsSection({ dict }: { dict?: any }) {
       className="section-shell relative bg-[#2654A4] text-[#FDFBF7] px-5 pb-36 pt-20 overflow-hidden"
     >
       <WaterBubbles theme="dark" hasWaveBottom={true} hasWaveTop={true} />
-      <SectionOrnaments dragonScale="soft" tenun shapes="squares" lights="left" theme="dark" />
+      <SectionOrnaments dragonScale="strong" shapes="sparkles" lights="right" theme="dark" />
 
       <div className="section-inner">
         <Reveal>
