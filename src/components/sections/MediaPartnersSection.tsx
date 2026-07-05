@@ -28,7 +28,7 @@ const mediaPartners = [
   { name: "KISIKISI.CO", image: "/media-patner/kisi-kisi.png" },
   { name: "PRIOK PRIDE KONSER", image: "/media-patner/priokpride.webp" },
   { name: "JAKARTA MUSIC FEST", image: "/media-patner/jakarta-musicfest.PNG" },
-  { name: "EventHubID", image: "/media-patner/eventhubid.webp" },
+  { name: "EventHubID", image: "/media-patner/eventhubid.jpg" },
   { name: "Tangsel Partim", image: "/media-patner/tangsel-partim.jpg" },
   { name: "WANI KONSERAN BARENG", image: "/media-patner/Wanikonseranbareng.png" },
 ];
