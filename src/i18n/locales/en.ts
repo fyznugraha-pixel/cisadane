@@ -273,22 +273,22 @@ export const en = {
       {
         title: "The Pulse of Civilization",
         description: "Stretching 126 kilometers, Cisadane was an ancient trade route and a meeting point for Sundanese, Betawi, Chinese, and Arab cultures. If Tangerang has a pulse, it is the Cisadane.",
-        image: "/images/highlights/cs3.jpg"
+        image: "/images/history/history_1.jpeg"
       },
       {
         title: "The Origin of 'Benteng'",
         description: "In the 17th century, the VOC built a fortress by the river to guard against the Banten Sultanate. This gave birth to the identity 'Tangerang Benteng' that remains to this day.",
-        image: "/images/highlights/cs8.jpg"
+        image: "/images/history/history_3.jpeg"
       },
       {
         title: "The Philosophy of Berendeng",
         description: "The Berendeng Glass Bridge is named after 'Benteng' Makassar and Ger'endeng'. It doesn't just connect land, but unites two areas that historically experienced friction.",
-        image: "/images/highlights/cs6.jpg"
+        image: "/images/history/history_4.jpeg"
       },
       {
         title: "The Peh Cun Tradition",
         description: "Dating back to the 19th century, this tradition features dragon boat races and prayers for safety, serving as a pillar of cultural preservation for the Tionghoa Benteng community.",
-        image: "/images/highlights/cs2.jpg"
+        image: "/images/history/history_2.jpeg"
       }
     ]
   }

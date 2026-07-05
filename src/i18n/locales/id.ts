@@ -275,22 +275,22 @@ export const id: Dictionary = {
       {
         title: "Nadi Peradaban",
         description: "Membentang 126 kilometer, Cisadane adalah jalur perdagangan purba dan titik temu budaya Sunda, Betawi, Tionghoa, hingga Arab. Jika Tangerang memiliki denyut nadi, denyut itu adalah Cisadane.",
-        image: "/images/highlights/cs3.jpg"
+        image: "/images/history/history_1.jpeg"
       },
       {
         title: "Asal Usul 'Benteng'",
         description: "Pada abad ke-17, VOC membangun benteng pertahanan di tepi Cisadane. Dari sinilah nama 'Tangerang Benteng' lahir dan menjadi identitas multikultural yang melekat hingga kini.",
-        image: "/images/highlights/cs8.jpg"
+        image: "/images/history/history_3.jpeg"
       },
       {
         title: "Filosofi Berendeng",
         description: "Nama Jembatan Berendeng berasal dari gabungan 'Benteng' Makassar dan Ger'endeng'. Kehadirannya bukan sekadar menyambungkan daratan, melainkan menyatukan manusia di dua wilayah.",
-        image: "/images/highlights/cs6.jpg"
+        image: "/images/history/history_4.jpeg"
       },
       {
         title: "Tradisi Peh Cun",
         description: "Telah berlangsung sejak abad ke-19, tradisi Peh Cun yang identik dengan lomba perahu naga menjadi simbol pelestarian budaya Tionghoa Benteng yang sangat berharga.",
-        image: "/images/highlights/cs2.jpg"
+        image: "/images/history/history_2.jpeg"
       }
     ]
   }
