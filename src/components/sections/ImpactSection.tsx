@@ -4,6 +4,7 @@ import SectionHeading from "../SectionHeading";
 import RiverSectionDivider from "../RiverSectionDivider";
 import SectionOrnaments from "../SectionOrnaments";
 import WaterBubbles from "../WaterBubbles";
+import CountUp from "../CountUp";
 
 export default function ImpactSection({ dict }: { dict: any }) {
   return (
@@ -34,8 +35,8 @@ export default function ImpactSection({ dict }: { dict: any }) {
                 <div className="mb-4 h-12 w-12 rounded-full bg-gradient-to-br from-[#FDB715] to-[#F7951E] opacity-20 transition-transform duration-500 group-hover:scale-110 group-hover:opacity-30 absolute top-4 left-4" />
                 
                 <div className="relative z-10">
-                  <h3 className="font-display text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-[#FDB715] drop-shadow-sm">
-                    {stat.value}
+                  <h3 className="font-display text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-[#FDB715] drop-shadow-sm flex items-center justify-center">
+                    <CountUp value={stat.value} duration={2.5} />
                     {stat.suffix && <span className="text-xl md:text-2xl tracking-normal opacity-80">{stat.suffix}</span>}
                   </h3>
                   <p className="mt-3 text-sm md:text-base font-bold uppercase tracking-wider text-white/80">

@@ -4,6 +4,7 @@ import SectionOrnaments from "../SectionOrnaments";
 import RiverSectionDivider from "../RiverSectionDivider";
 import WaterBubbles from "../WaterBubbles";
 import { assetPath } from "@/lib/asset-path";
+import Image from "next/image";
 
 const mediaPartners = [
   { name: "TNG TV", image: "/media-patner/tng-tv.png" },
@@ -71,11 +72,14 @@ export default function MediaPartnersSection() {
                   className="flex items-center justify-center min-w-[160px] h-20 px-6 bg-white border border-[#2654A4]/10 rounded-xl transition-all duration-300 hover:border-[#2654A4]/30 hover:shadow-[0_4px_20px_rgba(38,84,164,0.08)] group/logo cursor-default"
                 >
                   {partner.image ? (
-                    <img 
-                      src={assetPath(partner.image)} 
-                      alt={partner.name} 
-                      className="h-12 w-auto object-contain transition-transform duration-300 group-hover/logo:scale-105" 
-                    />
+                    <div className="relative h-12 w-32">
+                      <Image 
+                        src={partner.image} 
+                        alt={partner.name}
+                        fill
+                        className="object-contain transition-transform duration-300 group-hover/logo:scale-105" 
+                      />
+                    </div>
                   ) : (
                     <span className="font-display font-bold text-lg md:text-xl text-[#041020]/40 tracking-wider group-hover/logo:text-[#2654A4] transition-colors duration-300 whitespace-nowrap">
                       {partner.name}

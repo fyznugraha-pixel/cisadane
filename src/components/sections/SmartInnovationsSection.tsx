@@ -67,7 +67,7 @@ export default function SmartInnovationsSection({ dict }: { dict: Dictionary }) 
                     </div>
                     <div className="relative h-48 md:h-64 w-full bg-slate-100">
                       <Image 
-                        src={assetPath(asset.image)}
+                        src={asset.image}
                         alt={item.title}
                         fill
                         className="object-cover"
@@ -110,7 +110,7 @@ export default function SmartInnovationsSection({ dict }: { dict: Dictionary }) 
                           <div className="mt-1 flex-shrink-0">
                             {idx === 0 ? (
                               <Image 
-                                src={assetPath("/logo/qris.png")} 
+                                src="/logo/qris.png" 
                                 alt="QRIS" 
                                 width={48} 
                                 height={20} 
@@ -132,7 +132,7 @@ export default function SmartInnovationsSection({ dict }: { dict: Dictionary }) 
                   {/* Dashboard Image Side */}
                   <div className="relative h-64 lg:h-auto bg-slate-100 hidden md:block">
                      <Image 
-                        src={assetPath(visualAssets[2].image)}
+                        src={visualAssets[2].image}
                         alt={innovations[2].title}
                         fill
                         className="object-cover"

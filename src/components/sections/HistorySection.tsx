@@ -37,7 +37,7 @@ export default function HistorySection({ dict }: { dict: any }) {
                 <div className="relative h-48 w-full overflow-hidden">
                   <div className="absolute inset-0 bg-[#2654A4]/20 mix-blend-multiply z-10 group-hover:bg-transparent transition-colors duration-500" />
                   <Image
-                    src={assetPath(item.image)}
+                    src={item.image}
                     alt={item.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
