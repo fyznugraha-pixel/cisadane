@@ -17,7 +17,7 @@ const mediaPartners = [
   { name: "KONSER MY MUSIK", image: "/media-patner/konser-myusik.png" },
   { name: "DR DIGITAL MEDIA", image: "/media-patner/digital-media.png" },
   { name: "KONSERAN BESTIE", image: "/media-patner/konseran-bestie.jpg" },
-  { name: "WARTA TANGERANG", image: "/media-patner/warta.webp" },
+  { name: "WARTA TANGERANG", image: "/media-patner/warta.jpg" },
   { name: "FOMO EVENT", image: "/media-patner/fomo-event.png" },
   { name: "SUPPORT KONSER", image: "/media-patner/support-konser.png" },
   { name: "TANGKAB AMBYAR", image: "/media-patner/tangkab_ambyar.png" },
