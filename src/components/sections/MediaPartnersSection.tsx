@@ -2,6 +2,7 @@ import React from "react";
 import Reveal from "../Reveal";
 import SectionOrnaments from "../SectionOrnaments";
 import RiverSectionDivider from "../RiverSectionDivider";
+import WaterBubbles from "../WaterBubbles";
 import { assetPath } from "@/lib/asset-path";
 
 const mediaPartners = [
