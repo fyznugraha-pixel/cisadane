@@ -25,7 +25,7 @@ const accentMap: Record<"red" | "gold" | "teal" | "orange", string> = {
   orange: "from-[#E8823A]/70",
 };
 
-import SponsorsSection from "@/components/sections/SponsorsSection";
+
 import MediaPartnersSection from "@/components/sections/MediaPartnersSection";
 import ImpactSection from "@/components/sections/ImpactSection";
 import HistorySection from "@/components/sections/HistorySection";
