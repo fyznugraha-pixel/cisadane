@@ -18,7 +18,6 @@ export default function ObjectivesSection({ dict }: { dict: Dictionary }) {
         <SectionHeading
           eyebrow={dict.objectives.eyebrow}
           title={dict.objectives.title}
-          description={dict.objectives.description}
           align="center"
           theme="light"
         />
