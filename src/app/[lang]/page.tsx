@@ -72,7 +72,7 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
         <RiverSectionDivider className="text-[#2654A4]" />
       </section>
 
-      <ObjectivesSection dict={dict} />
+      <HistorySection dict={dict} />
 
       <section
         id="highlights"
@@ -189,10 +189,6 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
         <RiverSectionDivider className="text-[#FDFBF7]" theme="light" />
       </section>
 
-      <HistorySection dict={dict} />
-
-      <ImpactSection dict={dict} />
-
       <section
         id="why-visit"
         className="section-shell relative bg-[#FDFBF7] text-[#041020] px-5 pb-36 pt-20"
@@ -237,6 +233,10 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
         {/* Organic river transition into the blue section */}
         <RiverSectionDivider className="text-[#2654A4]" />
       </section>
+
+      <ImpactSection dict={dict} />
+
+      <ObjectivesSection dict={dict} />
 
       <SmartInnovationsSection dict={dict} />
 

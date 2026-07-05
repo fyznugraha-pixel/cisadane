@@ -11,30 +11,33 @@ export default function ObjectivesSection({ dict }: { dict: Dictionary }) {
   const icons = [User, Scroll, Store, Waves];
 
   return (
-    <section className="section-shell relative px-5 pb-36 pt-20 bg-[#2654A4] text-[#FDFBF7]">
-      <WaterBubbles theme="dark" hasWaveBottom={true} hasWaveTop={true} />
-      <SectionOrnaments dragonScale="strong" shapes="sparkles" lights="right" theme="dark" />
+    <section className="section-shell relative px-5 pb-36 pt-20 bg-[#FDFBF7] text-[#041020]">
+      <WaterBubbles theme="light" hasWaveBottom={true} hasWaveTop={true} />
+      <SectionOrnaments dragonScale="strong" shapes="sparkles" lights="right" theme="light" />
       <div className="section-inner">
         <SectionHeading
           eyebrow={dict.objectives.eyebrow}
           title={dict.objectives.title}
-          align="left"
-          theme="dark"
+          description={dict.objectives.description}
+          align="center"
+          theme="light"
         />
 
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-6">
-          {dict.objectives.items.map((item, index) => {
+        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4 relative z-10">
+          {dict.objectives.items.map((item: any, index: number) => {
             const Icon = icons[index % icons.length];
             return (
-              <Reveal key={index} delay={index * 0.1}>
-                <div className="bg-[#FDFBF7] p-8 rounded-xl border border-[#2654A4]/10 h-full flex flex-col hover-rise transition-all duration-300 shadow-sm hover:shadow-md">
-                  <div className="bg-[#2654A4] w-12 h-12 rounded-full flex items-center justify-center mb-6 shadow-sm">
-                    <Icon className="text-white" size={24} strokeWidth={1.5} />
+              <Reveal key={item.title} delay={index * 0.1} y={20} className="h-full">
+                <div className="group relative flex h-full flex-col items-center text-center overflow-hidden rounded-2xl bg-white p-8 shadow-[0_8px_30px_rgba(4,16,32,0.06)] border border-[#2654A4]/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_15px_40px_rgba(38,84,164,0.12)]">
+                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#2654A4] to-[#1a3f7a] text-white shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+                    <Icon size={32} strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-2xl font-bold text-[#2654A4] mb-3 leading-snug">
+                  
+                  <h3 className="font-display text-xl font-bold uppercase tracking-wide text-[#2654A4] mb-4">
                     {item.title}
                   </h3>
-                  <p className="text-[#041020]/80 leading-relaxed">
+                  
+                  <p className="text-sm leading-relaxed text-[#041020]/80">
                     {item.description}
                   </p>
                 </div>
@@ -44,8 +47,8 @@ export default function ObjectivesSection({ dict }: { dict: Dictionary }) {
         </div>
       </div>
 
-      {/* Organic river transition into the light section */}
-      <RiverSectionDivider className="text-[#FDFBF7]" theme="light" />
+      {/* Organic river transition into the next section */}
+      <RiverSectionDivider className="text-[#2654A4]" />
     </section>
   );
 }

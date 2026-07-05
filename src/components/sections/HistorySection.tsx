@@ -12,10 +12,10 @@ export default function HistorySection({ dict }: { dict: any }) {
   return (
     <section
       id="history"
-      className="section-shell relative bg-[#FDFBF7] text-[#041020] px-5 pb-36 pt-20 overflow-hidden"
+      className="section-shell relative bg-[#2654A4] text-[#FDFBF7] px-5 pb-36 pt-20 overflow-hidden"
     >
-      <WaterBubbles theme="light" hasWaveBottom={true} hasWaveTop={true} />
-      <SectionOrnaments dragonScale="strong" shapes="sparkles" lights="right" theme="light" />
+      <WaterBubbles theme="dark" hasWaveBottom={true} hasWaveTop={true} />
+      <SectionOrnaments dragonScale="strong" shapes="sparkles" lights="right" theme="dark" />
 
       <div className="section-inner">
         <Reveal>
@@ -24,7 +24,7 @@ export default function HistorySection({ dict }: { dict: any }) {
               eyebrow={dict.history.eyebrow}
               title={dict.history.title}
               description={dict.history.description}
-              theme="light"
+              theme="dark"
             />
           </div>
         </Reveal>
@@ -60,14 +60,14 @@ export default function HistorySection({ dict }: { dict: any }) {
           ))}
         </div>
 
-        <div className="mt-6 flex items-center justify-center gap-3 text-[#2654A4]/60 md:hidden animate-pulse">
+        <div className="mt-6 flex items-center justify-center gap-3 text-[#FDFBF7]/60 md:hidden animate-pulse">
           <span className="text-[10px] font-black uppercase tracking-[0.2em]">Geser</span>
           <MoveRight size={16} />
         </div>
       </div>
 
       {/* Organic river transition into the next section */}
-      <RiverSectionDivider className="text-[#2654A4]" />
+      <RiverSectionDivider className="text-[#FDFBF7]" theme="light" />
     </section>
   );
 }
