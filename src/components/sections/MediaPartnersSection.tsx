@@ -74,7 +74,7 @@ export default function MediaPartnersSection() {
                   {partner.image ? (
                     <div className="relative h-12 w-32">
                       <Image 
-                        src={partner.image} 
+                        src={assetPath(partner.image)} 
                         alt={partner.name}
                         fill
                         className="object-contain transition-transform duration-300 group-hover/logo:scale-105" 
