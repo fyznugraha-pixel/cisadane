@@ -80,6 +80,7 @@ export const id: Dictionary = {
   performers: {
     eyebrow: "Penampil Panggung Malam",
     title: "Gema Melodi\nDari Tepian",
+    description: "Saksikan penampilan spektakuler dari deretan musisi dan bintang tamu yang siap memeriahkan malam festival di atas panggung terapung Sungai Cisadane.",
     previewPrefix: "Lineup",
     tapToReveal: "Ketuk untuk Membuka",
     talent: [

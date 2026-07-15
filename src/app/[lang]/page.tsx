@@ -138,8 +138,8 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
 
         <div className="section-inner">
           <ParallaxSection speed={0.1}>
-            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-center text-center">
-              <SectionHeading eyebrow={dict.performers.eyebrow} title={dict.performers.title} align="center" theme="dark" />
+            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-center text-center max-w-2xl mx-auto">
+              <SectionHeading eyebrow={dict.performers.eyebrow} title={dict.performers.title} description={dict.performers.description} align="center" theme="dark" />
             </div>
           </ParallaxSection>
 

@@ -78,6 +78,7 @@ export const en = {
   performers: {
     eyebrow: "Night Stage Lineup",
     title: "Melody Echoes\nFrom the Edge",
+    description: "Experience spectacular performances from a curated lineup of musicians and guest stars ready to light up the night stage on the Cisadane River.",
     previewPrefix: "Lineup",
     tapToReveal: "Tap to Reveal",
     talent: [

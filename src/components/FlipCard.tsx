@@ -30,7 +30,7 @@ export default function FlipCard({
         {/* Front Face (Initial mystery side) */}
         <div
           className="absolute inset-0 w-full h-full"
-          style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
+          style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden", transform: "translateZ(1px)" }}
         >
           {backContent}
         </div>
@@ -41,7 +41,7 @@ export default function FlipCard({
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
-            transform: "rotateY(180deg)",
+            transform: "rotateY(180deg) translateZ(1px)",
           }}
         >
           {frontContent}
