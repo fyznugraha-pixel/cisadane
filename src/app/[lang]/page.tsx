@@ -10,6 +10,7 @@ import ObjectivesSection from "@/components/sections/ObjectivesSection";
 import SmartInnovationsSection from "@/components/sections/SmartInnovationsSection";
 import SponsorsSection from "@/components/sections/SponsorsSection";
 import TiltCard from "@/components/TiltCard";
+import FlipCard from "@/components/FlipCard";
 import StickyRegisterBar from "@/components/StickyRegisterBar";
 import MapWrapper from "@/components/MapWrapper";
 import TactlinkSupportSection from "@/components/TactlinkSupportSection";
@@ -148,29 +149,42 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
                 <ParallaxSection 
                   key={talentItem.name} 
                   speed={index % 2 === 0 ? 0.3 : 0.6}
-                  className={`w-[calc(50%-8px)] md:w-[calc(33.333%-11px)] lg:w-[calc(25%-12px)]`}
+                  className={`w-[calc(50%-8px)] md:w-[calc(33.333%-11px)] lg:w-[calc(25%-12px)] min-h-[300px] md:min-h-[360px]`}
                 >
-                  <div className={`card card-b h-full ${!talentItem.image ? 'card-b--pending' : ''}`}>
-                    <div className={`card-b__image-wrap ${!talentItem.image ? 'card-image-skeleton' : ''}`}>
-                      {talentItem.image && (
-                        <img 
-                          src={assetPath(talentItem.image)} 
-                          alt={`Foto penampil ${talentItem.name}`} 
-                          loading="lazy" 
-                        />
-                      )}
-                    </div>
-                    <svg className="ripple-divider" viewBox="0 0 300 16" aria-hidden="true">
-                      <path d="M0,8 Q15,0 30,8 T60,8 T90,8 T120,8 T150,8 T180,8 T210,8 T240,8 T270,8 T300,8"
-                            fill="none" stroke="#EC3A24" strokeWidth="2"/>
-                    </svg>
-                    <div className="card-b__body">
-                      <p className="card-b__meta">{dict.performers.previewPrefix}</p>
-                      <h3 className="card-b__title" style={!talentItem.image ? { color: '#888780' } : {}}>
-                        {!talentItem.image ? 'Segera diumumkan' : talentItem.name}
-                      </h3>
-                    </div>
-                  </div>
+                  <FlipCard 
+                    className="h-full w-full"
+                    frontContent={
+                      <div className={`card card-b h-full w-full ${!talentItem.image ? 'card-b--pending' : ''}`}>
+                        <div className={`card-b__image-wrap ${!talentItem.image ? 'card-image-skeleton' : ''}`}>
+                          {talentItem.image && (
+                            <img 
+                              src={assetPath(talentItem.image)} 
+                              alt={`Foto penampil ${talentItem.name}`} 
+                              loading="lazy" 
+                            />
+                          )}
+                        </div>
+                        <svg className="ripple-divider" viewBox="0 0 300 16" aria-hidden="true">
+                          <path d="M0,8 Q15,0 30,8 T60,8 T90,8 T120,8 T150,8 T180,8 T210,8 T240,8 T270,8 T300,8"
+                                fill="none" stroke="#EC3A24" strokeWidth="2"/>
+                        </svg>
+                        <div className="card-b__body">
+                          <p className="card-b__meta">{dict.performers.previewPrefix}</p>
+                          <h3 className="card-b__title" style={!talentItem.image ? { color: '#888780' } : {}}>
+                            {!talentItem.image ? 'Segera diumumkan' : talentItem.name}
+                          </h3>
+                        </div>
+                      </div>
+                    }
+                    backContent={
+                      <div className="card card-b h-full w-full flex flex-col items-center justify-center bg-gradient-to-br from-[#FDFBF7] to-white border-[2px] border-[#2654A4]/10 shadow-sm transition-shadow hover:shadow-md">
+                        <div className="w-16 h-16 rounded-full bg-[#FDB715]/20 flex items-center justify-center mb-4">
+                          <span className="text-3xl font-black text-[#FDB715]">?</span>
+                        </div>
+                        <h3 className="text-xs font-black uppercase tracking-[0.2em] text-[#2654A4]">Tap to Reveal</h3>
+                      </div>
+                    }
+                  />
                 </ParallaxSection>
               );
             })}
