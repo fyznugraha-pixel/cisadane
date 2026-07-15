@@ -222,88 +222,101 @@ export default function HeroSection({
 
       <div className="relative z-10 mx-auto grid flex-1 max-w-7xl items-center gap-12 px-5 pb-40 pt-16 md:pt-20 lg:grid-cols-[0.95fr_0.85fr] lg:pt-16">
         {/* LEFT CONTENT */}
-        <ParallaxSection speed={0.2}>
         <div className="max-w-4xl">
+          <ParallaxSection speed={0.1}>
+            <p className="text-xs font-black uppercase tracking-[0.42em] text-[#041020]/70 md:text-sm">
+              {dict.eyebrow}
+            </p>
+          </ParallaxSection>
 
-          <p className="text-xs font-black uppercase tracking-[0.42em] text-[#041020]/70 md:text-sm">
-            {dict.eyebrow}
-          </p>
+          <ParallaxSection speed={0.15}>
+            <h1 className="mt-4 max-w-5xl text-balance text-5xl font-black uppercase leading-[0.88] tracking-[-0.06em] text-[#2654A4] md:text-7xl lg:text-[104px]">
+              Festival
+              <br />
+              <span
+                className="text-[#FDB715]"
+                style={{
+                  textShadow:
+                    "5px 5px 0 #38BBCA, 9px 9px 0 rgba(38,84,164,0.85)",
+                }}
+              >
+                Cisadane
+              </span>
+            </h1>
+          </ParallaxSection>
 
-          <h1 className="mt-4 max-w-5xl text-balance text-5xl font-black uppercase leading-[0.88] tracking-[-0.06em] text-[#2654A4] md:text-7xl lg:text-[104px]">
-            Festival
-            <br />
-            <span
-              className="text-[#FDB715]"
-              style={{
-                textShadow:
-                  "5px 5px 0 #38BBCA, 9px 9px 0 rgba(38,84,164,0.85)",
-              }}
-            >
-              Cisadane
-            </span>
-          </h1>
+          <ParallaxSection speed={0.2}>
+            <div className="mt-7 h-[3px] w-full max-w-2xl bg-gradient-to-r from-[#2654A4] via-[#FDB715] to-[#EC3A24]" />
+          </ParallaxSection>
 
-          <div className="mt-7 h-[3px] w-full max-w-2xl bg-gradient-to-r from-[#2654A4] via-[#FDB715] to-[#EC3A24]" />
+          <ParallaxSection speed={0.25}>
+            <p className="mt-7 max-w-3xl text-2xl font-black italic leading-tight text-[#041020] md:text-4xl lg:text-[42px]">
+              <span className="text-[#2654A4]">Flowing Heritage,</span>{" "}
+              <span className="text-[#EC3A24]">Growing Courage</span>
+            </p>
+          </ParallaxSection>
 
-          <p className="mt-7 max-w-3xl text-2xl font-black italic leading-tight text-[#041020] md:text-4xl lg:text-[42px]">
-            <span className="text-[#2654A4]">Flowing Heritage,</span>{" "}
-            <span className="text-[#EC3A24]">Growing Courage</span>
-          </p>
+          <ParallaxSection speed={0.3}>
+            <p className="mt-5 max-w-2xl text-base font-medium leading-8 text-[#041020]/80 md:text-lg">
+              {dict.description}
+            </p>
+          </ParallaxSection>
 
-          <p className="mt-5 max-w-2xl text-base font-medium leading-8 text-[#041020]/80 md:text-lg">
-            {dict.description}
-          </p>
+          <ParallaxSection speed={0.35}>
+            <div className="mt-12 flex flex-wrap gap-5">
+              <MagneticButton>
+                <Link
+                  href={`/${lang}/register`}
+                  className="group flex items-center gap-3 bg-[#FDB715] px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#041020] shadow-hard transition hover:-translate-y-0.5 hover:bg-white md:text-sm"
+                >
+                  <span>{dict.cta.primary}</span>
+                  <ArrowRight size={18} className="transition group-hover:translate-x-1" />
+                </Link>
+              </MagneticButton>
 
-          <div className="mt-12 flex flex-wrap gap-5">
-            <MagneticButton>
               <Link
-                href={`/${lang}/register`}
-                className="group flex items-center gap-3 bg-[#FDB715] px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#041020] shadow-hard transition hover:-translate-y-0.5 hover:bg-white md:text-sm"
+                href={`/${lang}#about`}
+                className="group flex items-center gap-3 border border-[#2654A4]/30 bg-[#2654A4]/5 px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#2654A4] backdrop-blur-sm transition hover:bg-[#2654A4]/10 md:text-sm"
               >
-                <span>{dict.cta.primary}</span>
-                <ArrowRight size={18} className="transition group-hover:translate-x-1" />
+                <span>{dict.cta.secondary}</span>
               </Link>
-            </MagneticButton>
-
-            <Link
-              href={`/${lang}#about`}
-              className="group flex items-center gap-3 border border-[#2654A4]/30 bg-[#2654A4]/5 px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#2654A4] backdrop-blur-sm transition hover:bg-[#2654A4]/10 md:text-sm"
-            >
-              <span>{dict.cta.secondary}</span>
-            </Link>
-          </div>
-
-          <div className="mt-16 flex flex-wrap items-center gap-x-8 gap-y-4">
-            <div className="flex items-center gap-3 text-[#041020]/80">
-              <CalendarDays size={20} className="text-[#FDB715]" />
-              <span className="text-sm font-bold tracking-wide">{dict.date}</span>
             </div>
-            <div className="flex items-center gap-3 text-[#041020]/80">
-              <MapPin size={20} className="text-[#EC3A24]" />
-              <span className="text-sm font-bold tracking-wide">{dict.location}</span>
-            </div>
-          </div>
+          </ParallaxSection>
 
-          <div className="mt-8 grid max-w-xl grid-cols-4 border border-[#2654A4]/15 bg-white/60 shadow-lg backdrop-blur-md">
-            {countdown.map((item) => (
-              <div
-                key={item.label}
-                className="border-r border-[#2654A4]/10 px-3 py-3 last:border-r-0 md:px-4 md:py-4"
-              >
-                <div className="text-2xl font-black text-[#2654A4] md:text-4xl">
-                  {item.value === undefined
-                    ? "--"
-                    : String(item.value).padStart(2, "0")}
-                </div>
-
-                <div className="mt-1 text-[10px] font-black uppercase tracking-[0.18em] text-[#041020]/50 md:text-xs">
-                  {item.label}
-                </div>
+          <ParallaxSection speed={0.4}>
+            <div className="mt-16 flex flex-wrap items-center gap-x-8 gap-y-4">
+              <div className="flex items-center gap-3 text-[#041020]/80">
+                <CalendarDays size={20} className="text-[#FDB715]" />
+                <span className="text-sm font-bold tracking-wide">{dict.date}</span>
               </div>
-            ))}
-          </div>
+              <div className="flex items-center gap-3 text-[#041020]/80">
+                <MapPin size={20} className="text-[#EC3A24]" />
+                <span className="text-sm font-bold tracking-wide">{dict.location}</span>
+              </div>
+            </div>
+          </ParallaxSection>
+
+          <ParallaxSection speed={0.45}>
+            <div className="mt-8 grid max-w-xl grid-cols-4 border border-[#2654A4]/15 bg-white/60 shadow-lg backdrop-blur-md">
+              {countdown.map((item) => (
+                <div
+                  key={item.label}
+                  className="border-r border-[#2654A4]/10 px-3 py-3 last:border-r-0 md:px-4 md:py-4"
+                >
+                  <div className="text-2xl font-black text-[#2654A4] md:text-4xl">
+                    {item.value === undefined
+                      ? "--"
+                      : String(item.value).padStart(2, "0")}
+                  </div>
+
+                  <div className="mt-1 text-[10px] font-black uppercase tracking-[0.18em] text-[#041020]/50 md:text-xs">
+                    {item.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </ParallaxSection>
         </div>
-        </ParallaxSection>
 
         {/* RIGHT KEY VISUAL CARD */}
         <div className="relative hidden lg:block">
