@@ -169,9 +169,9 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
                                 fill="none" stroke="#EC3A24" strokeWidth="2"/>
                         </svg>
                         <div className="card-b__body">
-                          <p className="card-b__meta">{dict.performers.previewPrefix}</p>
-                          <h3 className="card-b__title" style={!talentItem.image ? { color: '#888780' } : {}}>
-                            {!talentItem.image ? 'Segera diumumkan' : talentItem.name}
+                          <p className="card-b__meta">{dict.performers.previewPrefix} {String(index + 1).padStart(2, '0')}</p>
+                          <h3 className="card-b__title" style={!talentItem.image ? { color: '#2654A4' } : {}}>
+                            {talentItem.name}
                           </h3>
                         </div>
                       </div>
