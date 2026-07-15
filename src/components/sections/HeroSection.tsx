@@ -222,6 +222,7 @@ export default function HeroSection({
 
       <div className="relative z-10 mx-auto grid flex-1 max-w-7xl items-center gap-12 px-5 pb-40 pt-16 md:pt-20 lg:grid-cols-[0.95fr_0.85fr] lg:pt-16">
         {/* LEFT CONTENT */}
+        <ParallaxSection speed={0.2}>
         <div className="max-w-4xl">
 
           <p className="text-xs font-black uppercase tracking-[0.42em] text-[#041020]/70 md:text-sm">
@@ -302,6 +303,7 @@ export default function HeroSection({
             ))}
           </div>
         </div>
+        </ParallaxSection>
 
         {/* RIGHT KEY VISUAL CARD */}
         <div className="relative hidden lg:block">
@@ -402,14 +404,16 @@ export default function HeroSection({
           </div>
           </ParallaxSection>
 
-          <div className="absolute -bottom-14 left-10 border border-white/50 bg-white/90 px-5 py-4 shadow-lg backdrop-blur-sm">
-            <p className="text-[10px] font-black uppercase tracking-[0.24em] text-[#2654A4]">
-              {dict.atmosphere}
-            </p>
-            <p className="mt-1 text-sm font-bold text-[#041020]/80">
-              {dict.atmosphereDesc}
-            </p>
-          </div>
+          <ParallaxSection speed={0.5}>
+            <div className="absolute -bottom-14 left-10 border border-white/50 bg-white/90 px-5 py-4 shadow-lg backdrop-blur-sm">
+              <p className="text-[10px] font-black uppercase tracking-[0.24em] text-[#2654A4]">
+                {dict.atmosphere}
+              </p>
+              <p className="mt-1 text-sm font-bold text-[#041020]/80">
+                {dict.atmosphereDesc}
+              </p>
+            </div>
+          </ParallaxSection>
         </div>
       </div>
 
