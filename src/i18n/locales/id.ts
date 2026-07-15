@@ -24,7 +24,7 @@ export const id: Dictionary = {
       { label: "Kisah", href: "#about" },
       { label: "Atraksi", href: "#highlights" },
       { label: "Penampil", href: "#lineup" },
-      { label: "Registrasi", href: "/register" },
+      { label: "Dampak", href: "#impact" },
       { label: "Akses", href: "#location" },
     ],
     registerBtn: "Hadir & Bergabung",

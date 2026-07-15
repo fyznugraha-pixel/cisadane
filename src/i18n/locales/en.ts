@@ -22,7 +22,7 @@ export const en = {
       { label: "The Story", href: "#about" },
       { label: "Highlights", href: "#highlights" },
       { label: "Performers", href: "#lineup" },
-      { label: "Registration", href: "/register" },
+      { label: "Impact", href: "#impact" },
       { label: "Getting Here", href: "#location" },
     ],
     registerBtn: "Join the Festival",

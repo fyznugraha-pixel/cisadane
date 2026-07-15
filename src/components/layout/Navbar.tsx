@@ -25,6 +25,7 @@ export default function Navbar({
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 24);
@@ -32,7 +33,25 @@ export default function Navbar({
     handleScroll();
     window.addEventListener("scroll", handleScroll);
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    // Track active section for navigation
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-30% 0px -70% 0px" } // trigger when section is around top 30% of viewport
+    );
+
+    const sections = document.querySelectorAll("section[id]");
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      sections.forEach((section) => observer.unobserve(section));
+    };
   }, []);
 
   const closeMenu = () => setIsOpen(false);
@@ -65,19 +84,25 @@ export default function Navbar({
 
         {/* CENTER NAV LINKS */}
         <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-6 xl:gap-10">
-          {dict.items.map((item) => (
-            <Link
-              key={item.href}
-              href={`/${lang}${item.href}`}
-              className="group relative px-2 py-4 text-[10px] font-black uppercase tracking-[0.2em] text-[#041020]/80 transition hover:text-[#2654A4] lg:text-[11px]"
-            >
-              <span>{item.label}</span>
-              {item.href === "/" && (
-                <span className="absolute bottom-3 left-2 h-1 w-6 bg-[#EC3A24]" />
-              )}
-              <span className="absolute bottom-3 left-2 h-1 w-0 bg-[#2654A4] transition-all duration-300 group-hover:w-6" />
-            </Link>
-          ))}
+          {dict.items.map((item) => {
+            const isActive = item.href.startsWith("#") && activeSection === item.href.substring(1);
+            return (
+              <Link
+                key={item.href}
+                href={`/${lang}${item.href}`}
+                className={`group relative px-2 py-4 text-[10px] font-black uppercase tracking-[0.2em] transition hover:text-[#2654A4] lg:text-[11px] ${
+                  isActive ? "text-[#2654A4]" : "text-[#041020]/80"
+                }`}
+              >
+                <span>{item.label}</span>
+                <span 
+                  className={`absolute bottom-3 left-2 h-1 bg-[#2654A4] transition-all duration-300 ${
+                    isActive ? "w-6" : "w-0 group-hover:w-6"
+                  }`} 
+                />
+              </Link>
+            );
+          })}
         </div>
 
         {/* RIGHT ACTIONS */}
@@ -140,16 +165,21 @@ export default function Navbar({
       >
         <div className="relative px-5 py-5">
           <div className="relative grid gap-2">
-            {dict.items.map((item) => (
-              <Link
-                key={item.href}
-                href={`/${lang}${item.href}`}
-                onClick={() => setIsOpen(false)}
-                className="group flex items-center justify-between border-b border-[#2654A4]/5 px-4 py-4 text-xs font-black uppercase tracking-[0.2em] text-[#041020]/80 transition hover:bg-[#2654A4]/5 hover:text-[#2654A4]"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {dict.items.map((item) => {
+              const isActive = item.href.startsWith("#") && activeSection === item.href.substring(1);
+              return (
+                <Link
+                  key={item.href}
+                  href={`/${lang}${item.href}`}
+                  onClick={() => setIsOpen(false)}
+                  className={`group flex items-center justify-between border-b border-[#2654A4]/5 px-4 py-4 text-xs font-black uppercase tracking-[0.2em] transition hover:bg-[#2654A4]/5 hover:text-[#2654A4] ${
+                    isActive ? "text-[#2654A4] bg-[#2654A4]/5" : "text-[#041020]/80"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
 
             <Link
               href={`/${lang}/register`}
