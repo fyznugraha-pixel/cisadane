@@ -20,8 +20,13 @@ export default function FlipCard({
       onClick={() => setIsFlipped(!isFlipped)}
       style={{ perspective: "1000px" }}
     >
+      {/* Invisible dummy content to give the container its natural height based on the front face */}
+      <div className="invisible opacity-0 w-full pointer-events-none" aria-hidden="true">
+        {frontContent}
+      </div>
+
       <motion.div
-        className="w-full h-full relative"
+        className="absolute inset-0 w-full h-full"
         initial={false}
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         transition={{ duration: 0.6, type: "spring", stiffness: 200, damping: 20 }}
