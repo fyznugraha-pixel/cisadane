@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 export default function MagneticButton({
   children,
@@ -12,6 +12,7 @@ export default function MagneticButton({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const shouldReduceMotion = useReducedMotion();
 
   const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
     const { clientX, clientY } = e;
@@ -27,7 +28,8 @@ export default function MagneticButton({
     setPosition({ x: 0, y: 0 });
   };
 
-  const { x, y } = position;
+  const x = shouldReduceMotion ? 0 : position.x;
+  const y = shouldReduceMotion ? 0 : position.y;
 
   return (
     <motion.div

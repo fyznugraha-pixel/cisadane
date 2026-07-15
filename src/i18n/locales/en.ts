@@ -80,13 +80,13 @@ export const en = {
     title: "Upcoming\nPerformances",
     previewPrefix: "Lineup",
     talent: [
-      { name: "Feel Koplo", image: "/artis/feel-koplo.jpeg" },
-      { name: "Samsaka" },
-      { name: "ziepross" },
-      { name: "VOC" },
-      { name: "The Mora" },
-      { name: "Star Koplo" },
-      { name: "pasmatik 18" }
+      { name: "Feel Koplo", image: "/artis/feel-koplo.jpeg", tier: "headliner" },
+      { name: "Samsaka", tier: "supporting" },
+      { name: "ziepross", tier: "supporting" },
+      { name: "VOC", tier: "supporting" },
+      { name: "The Mora", tier: "supporting" },
+      { name: "Star Koplo", tier: "supporting" },
+      { name: "pasmatik 18", tier: "supporting" }
     ]
   },
   whyVisit: {
@@ -245,11 +245,11 @@ export const en = {
         description: "Implementation of AI-based CCTV Crowd Counting technology to monitor and count the number of visitors in real-time. The generated data provides accurate analytical insights as a basis for event evaluation, performance measurement, and safer, more effective crowd management."
       },
       {
-        title: "Real-Time Economic Impact Tracking",
-        description: "Automation of Transaction Tracking and Event Economic Turnover. Replacing manual post-event survey methods with digital financial analytics integration to measure regional economic contributions instantaneously.",
+        title: "Waste Management Solutions",
+        description: "Integrated Waste Management for a Sustainable Festival. Cisadane Festival implements a three-category waste sorting system (organic, plastic, paper/can), managed together with WAHU, <b>Banksasuci</b> (Cisadane River Waste Bank), and DLH/Tangerang City Communities, supported by 50 trash bin points across the event area.",
         subItems: [
-          { title: "QRIS & POS System Integration", desc: "All MSME, culinary, merchandise, and ticket transactions are automatically recorded in a centralized system." },
-          { title: "Social Return on Investment (SROI)", desc: "Comprehensive measurement of social and economic impacts, including benefits for the community, MSMEs, tourism, and multiplier effects." }
+          { title: "3-Category Waste Sorting", desc: "Organic, plastic, and paper/can waste are sorted at the source, then forwarded to their respective management partners (WAHU for plastic, <b>Banksasuci</b> and DLH/Communities for organic and paper/can)." },
+          { title: "50 Integrated Trash Bin Points", desc: "Spread across the festival area, supported by the collaboration of mineral water producers, WAHU, <b>Banksasuci</b>, and DLH as partners providing and managing the trash bins." }
         ]
       }
     ]
@@ -271,23 +271,23 @@ export const en = {
     description: "Learn more about the civilization, unity, and harmonious diversity born on the banks of the Cisadane River.",
     items: [
       {
-        title: "The Pulse of Civilization",
-        description: "Stretching 126 kilometers, Cisadane was an ancient trade route and a meeting point for Sundanese, Betawi, Chinese, and Arab cultures. If Tangerang has a pulse, it is the Cisadane.",
+        title: "Jalan Benteng",
+        description: "The name Jalan Benteng did not appear without reason. Benteng Tangerang was the main VOC military post in Tangerang, located on the banks of the Tjisadane (Cisadane) River, marking the political border between the VOC territory in Batavia and the Banten Sultanate. From this fort, the area became known as Benteng, and the name endures as the identity of Tangerang society today.",
         image: "/images/history/history_1.jpeg"
       },
       {
-        title: "The Origin of 'Benteng'",
-        description: "In the 17th century, the VOC built a fortress by the river to guard against the Banten Sultanate. This gave birth to the identity 'Tangerang Benteng' that remains to this day.",
+        title: "Benteng Makassar",
+        description: "Despite the name \"Makassar\", the Benteng Makassar area does not originate from the city of Makassar in Sulawesi. VOC troops consisting of Bugis-Makassar forces under the ally Arung Palakka helped build this fort, living in garrison camps around the post and forming the toponym of Kampung Benteng Makassar today. The design of Benteng Tangerang is also suspected to adopt Fort Rotterdam, a VOC fort in Makassar.",
         image: "/images/history/history_3.jpeg"
       },
       {
-        title: "The Philosophy of Berendeng",
-        description: "The Berendeng Glass Bridge is named after 'Benteng' Makassar and Ger'endeng'. It doesn't just connect land, but unites two areas that historically experienced friction.",
+        title: "Traces of the Dutch Fort",
+        description: "In the Jalan Benteng Makassar area, there is a replica of a fort and cannons built to commemorate colonial defense history. The original location of this fort was in the center of present-day Tangerang city on Jalan Raya Pantura-Daan Mogot. This fort bore silent witness to major incidents, including the VOC-Banten war (1680-1684), the Chinese Massacre (1740), and the Kiyai Tapa rebellion (1750-1751).",
         image: "/images/history/history_4.jpeg"
       },
       {
         title: "The Peh Cun Tradition",
-        description: "Dating back to the 19th century, this tradition features dragon boat races and prayers for safety, serving as a pillar of cultural preservation for the Tionghoa Benteng community.",
+        description: "Peh Cun or the Duan Wu Jie celebration is a summer festival of Chinese tradition. The highlight of the Peh Cun tradition is the decorated boat race on the Cisadane River. Although this festival aims to commemorate ancestors, its implementation involves many people and is not limited to citizens of Chinese descent, but becomes a joint celebration with the citizens of Tangerang and its surroundings.",
         image: "/images/history/history_2.jpeg"
       }
     ]

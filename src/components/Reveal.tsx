@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { ReactNode } from "react";
 
 export default function Reveal({
@@ -14,9 +14,12 @@ export default function Reveal({
   y?: number;
   className?: string;
 }) {
+  const shouldReduceMotion = useReducedMotion();
+  const initialY = shouldReduceMotion ? 0 : y;
+
   return (
     <motion.div
-      initial={{ opacity: 0, y }}
+      initial={{ opacity: 0, y: initialY }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.75, delay, ease: "easeOut" }}

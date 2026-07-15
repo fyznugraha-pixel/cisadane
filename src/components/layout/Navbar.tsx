@@ -44,7 +44,6 @@ export default function Navbar({
           : "bg-transparent"
         }`}
     >
-      <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-[#2654A4] via-[#38BBCA] via-[#FDB715] to-[#EC3A24]" />
 
       <nav className="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-4 md:px-8">
         <Link
@@ -101,7 +100,7 @@ export default function Navbar({
 
           <Link
             href={`/${lang}/register`}
-            className="bg-[#FDB715] px-6 py-3.5 text-[11px] font-black uppercase tracking-[0.18em] text-[#041020] shadow-[5px_5px_0_rgba(38,84,164,0.3)] transition hover:-translate-y-0.5 hover:bg-[#2654A4] hover:text-white"
+            className="bg-[#FDB715] px-6 py-3.5 text-[11px] font-black uppercase tracking-[0.18em] text-[#041020] shadow-hard transition hover:-translate-y-0.5 hover:bg-[#2654A4] hover:text-white"
           >
             {dict.registerBtn}
           </Link>
@@ -155,7 +154,7 @@ export default function Navbar({
             <Link
               href={`/${lang}/register`}
               onClick={closeMenu}
-              className="mt-2 bg-[#FDB715] px-4 py-4 text-center text-sm font-black uppercase tracking-[0.18em] text-[#041020] shadow-[5px_5px_0_rgba(56,187,202,0.75)] transition hover:bg-white"
+              className="mt-2 bg-[#FDB715] px-4 py-4 text-center text-sm font-black uppercase tracking-[0.18em] text-[#041020] shadow-hard transition hover:bg-white"
             >
               {dict.registerBtn}
             </Link>

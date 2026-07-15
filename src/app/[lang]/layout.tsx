@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Fraunces, Work_Sans } from "next/font/google";
 import "../globals.css";
 import { Analytics } from "@vercel/analytics/next";
-const poppinsDisplay = Poppins({
+
+const frauncesDisplay = Fraunces({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["600", "700", "800", "900"],
   style: ["normal", "italic"],
 });
 
-const poppinsBody = Poppins({
+const workSansBody = Work_Sans({
   variable: "--font-body",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
 });
 
@@ -50,6 +51,8 @@ export const metadata: Metadata = {
 };
 
 import GlobalMusicPlayer from "@/components/GlobalMusicPlayer";
+import ScrollProgressBar from "@/components/ScrollProgressBar";
+import ScrollRevealObserver from "@/components/ScrollRevealObserver";
 
 export default async function RootLayout(props: Readonly<{
   children: React.ReactNode;
@@ -58,7 +61,9 @@ export default async function RootLayout(props: Readonly<{
   const params = await props.params;
   return (
     <html lang={params.lang} suppressHydrationWarning>
-      <body className={`${poppinsDisplay.variable} ${poppinsBody.variable}`} suppressHydrationWarning>
+      <body className={`${frauncesDisplay.variable} ${workSansBody.variable} antialiased`} suppressHydrationWarning>
+        <ScrollRevealObserver />
+        <ScrollProgressBar />
         <GlobalMusicPlayer />
         {props.children}
         <Analytics />

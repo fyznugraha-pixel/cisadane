@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { assetPath } from "@/lib/asset-path";
+import ParallaxSection from "@/components/ParallaxSection";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import type { Dictionary } from "@/i18n/dictionaries";
@@ -107,13 +108,15 @@ export default function EditorialGallery({ dict }: { dict: Dictionary["gallery"]
 function GalleryItem({ photo }: { photo: { src: string; caption: string } }) {
   return (
     <div className="group relative h-full w-full overflow-hidden rounded-[24px] bg-white border border-[#2654A4]/10 shadow-sm transition-shadow hover:shadow-xl">
-      <Image
-        src={assetPath(photo.src)}
-        alt={photo.caption}
-        fill
-        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-        sizes="(max-width: 768px) 100vw, 50vw"
-      />
+      <ParallaxSection speed={0.15} className="absolute inset-0 z-0 h-full w-full">
+        <Image
+          src={assetPath(photo.src)}
+          alt={photo.caption}
+          fill
+          className="object-cover scale-110 transition-transform duration-700 ease-out group-hover:scale-125"
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
+      </ParallaxSection>
       
       {/* Cinematic Overlay */}
       <div 

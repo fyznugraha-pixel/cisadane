@@ -17,6 +17,7 @@ import WaterBubbles from "@/components/WaterBubbles";
 import { getDictionary } from "@/i18n/dictionaries";
 import { assetPath } from "@/lib/asset-path";
 import { MoveRight } from "lucide-react";
+import ParallaxSection from "@/components/ParallaxSection";
 
 const accentMap: Record<"red" | "gold" | "teal" | "orange", string> = {
   red: "from-[#C8281E]/70",
@@ -50,24 +51,28 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
         <SectionOrnaments dragonScale="strong" shapes="sparkles" lights="right" theme="light" />
 
         <div className="section-inner grid gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-          <div>
-            <SectionHeading
-              eyebrow={dict.about.eyebrow}
-              title={dict.about.title}
-            />
-          </div>
-
-          <Reveal delay={0.16}>
-            <div className="border-l border-[#2654A4]/20 pl-8">
-              <p className="text-xl leading-10 text-[#041020]/80">
-                {dict.about.description}
-              </p>
-
-              <div className="mt-8 inline-flex border border-[#2654A4]/20 bg-[#2654A4]/5 px-5 py-3 text-sm font-bold uppercase tracking-[0.2em] text-[#2654A4]">
-                {dict.site.badge}
-              </div>
+          <ParallaxSection speed={0.1}>
+            <div>
+              <SectionHeading
+                eyebrow={dict.about.eyebrow}
+                title={dict.about.title}
+              />
             </div>
-          </Reveal>
+          </ParallaxSection>
+
+          <ParallaxSection speed={0.2}>
+            <Reveal delay={0.16}>
+              <div className="border-l border-[#2654A4]/20 pl-8">
+                <p className="text-xl leading-10 text-[#041020]/80">
+                  {dict.about.description}
+                </p>
+  
+                <div className="mt-8 inline-flex border border-[#2654A4]/20 bg-[#2654A4]/5 px-5 py-3 text-sm font-bold uppercase tracking-[0.2em] text-[#2654A4]">
+                  {dict.site.badge}
+                </div>
+              </div>
+            </Reveal>
+          </ParallaxSection>
         </div>
 
         {/* Organic river transition into the blue section */}
@@ -84,43 +89,32 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
         <SectionOrnaments dragonScale="strong" shapes="sparkles" lights="right" theme="light" />
 
         <div className="section-inner">
-          <SectionHeading
-            eyebrow={dict.highlights.eyebrow}
-            title={dict.highlights.title}
-            description={dict.highlights.description}
-            theme="light"
-          />
+          <ParallaxSection speed={0.1}>
+            <SectionHeading
+              eyebrow={dict.highlights.eyebrow}
+              title={dict.highlights.title}
+              description={dict.highlights.description}
+              theme="light"
+            />
+          </ParallaxSection>
 
-          <div className="mt-14 flex snap-x snap-mandatory overflow-x-auto pb-8 gap-4 lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0 hide-scrollbar">
-            {dict.highlights.items.map((item, index) => (
-              <Reveal key={item.title} delay={index * 0.06} y={0} className="w-[85vw] shrink-0 snap-center lg:w-auto lg:shrink h-full">
-                <article className="group flex flex-col h-full min-h-[460px] overflow-hidden bg-[#FDFBF7] shadow-lg rounded-2xl border border-[#2654A4]/15 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#FDFBF7]/10">
-                  {/* 60% Top Image Area */}
-                  <div className="relative h-[260px] w-full shrink-0 overflow-hidden bg-[#041020]">
-                    <div
-                      className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                      style={{ backgroundImage: `url('/festivalcisadane${item.image}')` }}
+          <div className="mt-14 stagger-grid pb-8 lg:pb-0">
+            {dict.highlights.items.map((item: any, index: number) => (
+              <ParallaxSection key={item.title} speed={index % 2 === 0 ? 0.3 : 0.6}>
+                <div className="card card-a h-full">
+                  <div className="card-a__image-wrap">
+                    <img 
+                      src={`/festivalcisadane${item.image}`} 
+                      alt={`Foto suasana ${item.title} di Festival Cisadane`} 
+                      loading="lazy" 
                     />
                   </div>
-
-                  {/* 40% Bottom Text Area */}
-                  <div className="relative flex flex-1 flex-col p-7 bg-[#FDFBF7]">
-                    <div
-                      className={`absolute top-0 left-0 h-1.5 w-full bg-gradient-to-r ${
-                        accentMap[item.accent]
-                      } to-[#2654A4]`}
-                    />
-                    
-                    <h3 className="font-display text-[22px] font-black uppercase leading-tight text-[#2654A4]">
-                      {item.title}
-                    </h3>
-
-                    <p className="mt-3 text-sm font-medium leading-relaxed text-[#041020]/80">
-                      {item.description}
-                    </p>
+                  <div className="card-a__body">
+                    <h3 className="card-a__title">{item.title}</h3>
+                    <p className="card-a__desc">{item.description}</p>
                   </div>
-                </article>
-              </Reveal>
+                </div>
+              </ParallaxSection>
             ))}
           </div>
 
@@ -142,43 +136,44 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
         <SectionOrnaments dragonScale="strong" shapes="sparkles" lights="right" theme="dark" />
 
         <div className="section-inner">
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-center text-center">
-            <SectionHeading eyebrow={dict.performers.eyebrow} title={dict.performers.title} align="center" theme="dark" />
-          </div>
+          <ParallaxSection speed={0.1}>
+            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-center text-center">
+              <SectionHeading eyebrow={dict.performers.eyebrow} title={dict.performers.title} align="center" theme="dark" />
+            </div>
+          </ParallaxSection>
 
-          <div className="mt-14 flex snap-x snap-mandatory overflow-x-auto pb-8 gap-4 sm:flex-wrap sm:justify-center sm:overflow-visible sm:pb-0 hide-scrollbar">
-            {dict.performers.talent.map((talentItem: any, index: number) => (
-              <Reveal key={talentItem.name} delay={index * 0.05} y={0} className="w-[85vw] shrink-0 snap-center sm:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]">
-                <div className="hover-rise relative h-full min-h-[220px] w-full overflow-hidden border border-[#2654A4]/10 bg-white shadow-sm">
-                  {talentItem.image ? (
-                    <div 
-                      className="absolute inset-0 bg-cover bg-center" 
-                      style={{ backgroundImage: `url('${assetPath(talentItem.image)}')` }}
-                    />
-                  ) : (
-                    <>
-                      <div className="absolute inset-0 bg-gradient-to-br from-[#38BBCA]/10 via-transparent to-[#EC3A24]/5" />
-                      <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-transparent via-[#2654A4]/5 to-transparent" />
-                    </>
-                  )}
-                  {talentItem.image && (
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#041020]/90 via-[#041020]/30 to-transparent" />
-                  )}
-
-                  <div className="relative flex h-full min-h-[220px] items-end p-6">
-                    <div>
-                      <p className={`text-xs font-bold uppercase tracking-[0.22em] ${talentItem.image ? "text-[#FDB715]" : "text-[#EC3A24]"}`}>
-                        {dict.performers.previewPrefix} {String(index + 1).padStart(2, "0")}
-                      </p>
-
-                      <h3 className={`mt-3 text-2xl font-extrabold ${talentItem.image ? "text-white" : "text-[#2654A4]"}`}>
-                        {talentItem.name}
+          <div className="mt-14 flex flex-wrap justify-center gap-[var(--space-md)]">
+            {dict.performers.talent.map((talentItem: any, index: number) => {
+              return (
+                <ParallaxSection 
+                  key={talentItem.name} 
+                  speed={index % 2 === 0 ? 0.3 : 0.6}
+                  className={`w-[calc(50%-8px)] md:w-[calc(33.333%-11px)] lg:w-[calc(25%-12px)]`}
+                >
+                  <div className={`card card-b h-full ${!talentItem.image ? 'card-b--pending' : ''}`}>
+                    <div className={`card-b__image-wrap ${!talentItem.image ? 'card-image-skeleton' : ''}`}>
+                      {talentItem.image && (
+                        <img 
+                          src={assetPath(talentItem.image)} 
+                          alt={`Foto penampil ${talentItem.name}`} 
+                          loading="lazy" 
+                        />
+                      )}
+                    </div>
+                    <svg className="ripple-divider" viewBox="0 0 300 16" aria-hidden="true">
+                      <path d="M0,8 Q15,0 30,8 T60,8 T90,8 T120,8 T150,8 T180,8 T210,8 T240,8 T270,8 T300,8"
+                            fill="none" stroke="#EC3A24" strokeWidth="2"/>
+                    </svg>
+                    <div className="card-b__body">
+                      <p className="card-b__meta">{dict.performers.previewPrefix}</p>
+                      <h3 className="card-b__title" style={!talentItem.image ? { color: '#888780' } : {}}>
+                        {!talentItem.image ? 'Segera diumumkan' : talentItem.name}
                       </h3>
                     </div>
                   </div>
-                </div>
-              </Reveal>
-            ))}
+                </ParallaxSection>
+              );
+            })}
           </div>
 
           <div className="mt-6 flex items-center justify-center gap-3 text-[#041020]/40 sm:hidden animate-pulse">
@@ -199,32 +194,36 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
         <SectionOrnaments dragonScale="strong" shapes="sparkles" lights="right" theme="light" />
 
         <div className="section-inner">
-          <SectionHeading
-            eyebrow={dict.whyVisit.eyebrow}
-            title={dict.whyVisit.title}
-            description={dict.whyVisit.description}
-            theme="light"
-          />
+          <ParallaxSection speed={0.1}>
+            <SectionHeading
+              eyebrow={dict.whyVisit.eyebrow}
+              title={dict.whyVisit.title}
+              description={dict.whyVisit.description}
+              theme="light"
+            />
+          </ParallaxSection>
 
           <div className="mt-14 flex snap-x snap-mandatory overflow-x-auto pb-8 gap-4 md:grid md:grid-cols-2 md:overflow-visible md:pb-0 hide-scrollbar">
             {dict.whyVisit.reasons.map((item: any, index: number) => (
-              <Reveal key={item.title} delay={index * 0.08} y={0} className="w-[85vw] shrink-0 snap-center md:w-auto md:shrink h-full">
-                <TiltCard>
-                  <div className="section-card flex flex-col h-full hover-rise bg-white border border-[#2654A4]/10 shadow-sm p-7 rounded-2xl transition-all duration-300 hover:shadow-lg">
-                    <p className="text-xs font-black uppercase tracking-[0.24em] text-[#EC3A24]">
-                      {dict.whyVisit.reasonPrefix} {String(index + 1).padStart(2, "0")}
-                    </p>
+              <ParallaxSection key={item.title} speed={index % 2 === 0 ? 0.3 : 0.6} className="w-[85vw] shrink-0 snap-center md:w-auto md:shrink h-full">
+                <Reveal delay={index * 0.08} y={0} className="h-full">
+                  <TiltCard>
+                    <div className="section-card flex flex-col h-full hover-rise bg-white border border-[#2654A4]/10 shadow-sm p-7 rounded-2xl transition-all duration-300 hover:shadow-lg">
+                      <p className="text-xs font-black uppercase tracking-[0.24em] text-[#EC3A24]">
+                        {dict.whyVisit.reasonPrefix} {String(index + 1).padStart(2, "0")}
+                      </p>
 
-                    <h3 className="font-display mt-4 text-[26px] md:text-3xl font-black uppercase leading-tight text-[#2654A4]">
-                      {item.title}
-                    </h3>
+                      <h3 className="font-display mt-4 text-[26px] md:text-3xl font-black uppercase leading-tight text-[#2654A4]">
+                        {item.title}
+                      </h3>
 
-                    <p className="mt-5 leading-relaxed text-[#041020]/80">
-                      {item.description}
-                    </p>
-                  </div>
-                </TiltCard>
-              </Reveal>
+                      <p className="mt-5 leading-relaxed text-[#041020]/80">
+                        {item.description}
+                      </p>
+                    </div>
+                  </TiltCard>
+                </Reveal>
+              </ParallaxSection>
             ))}
           </div>
 

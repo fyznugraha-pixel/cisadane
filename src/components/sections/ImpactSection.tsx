@@ -3,6 +3,7 @@ import Reveal from "../Reveal";
 import SectionHeading from "../SectionHeading";
 import RiverSectionDivider from "../RiverSectionDivider";
 import SectionOrnaments from "../SectionOrnaments";
+import ParallaxSection from "../ParallaxSection";
 import WaterBubbles from "../WaterBubbles";
 import CountUp from "../CountUp";
 
@@ -28,24 +29,32 @@ export default function ImpactSection({ dict }: { dict: any }) {
           </div>
         </Reveal>
 
-        <div className="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-4">
-          {dict.impact.stats.map((stat: any, index: number) => (
-            <Reveal key={stat.label} delay={index * 0.1}>
-              <div className="group relative flex h-full flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:shadow-[0_8px_30px_rgba(253,183,21,0.15)]">
-                <div className="mb-4 h-12 w-12 rounded-full bg-gradient-to-br from-[#FDB715] to-[#F7951E] opacity-20 transition-transform duration-500 group-hover:scale-110 group-hover:opacity-30 absolute top-4 left-4" />
-                
-                <div className="relative z-10">
-                  <h3 className="font-display text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-[#FDB715] drop-shadow-sm flex items-center justify-center">
-                    <CountUp value={stat.value} duration={2.5} />
-                    {stat.suffix && <span className="text-xl md:text-2xl tracking-normal opacity-80">{stat.suffix}</span>}
-                  </h3>
-                  <p className="mt-3 text-sm md:text-base font-bold uppercase tracking-wider text-white/80">
-                    {stat.label}
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-          ))}
+        <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none z-0 overflow-hidden">
+          <svg viewBox="0 0 100 100" fill="none" className="w-[150vw] h-[150vw] md:w-[100vw] md:h-[100vw] text-[#FDB715] animate-spin-slow" style={{ animationDuration: '60s' }}>
+            <path d="M50 0C77.6142 0 100 22.3858 100 50C100 77.6142 77.6142 100 50 100C22.3858 100 0 77.6142 0 50C0 22.3858 22.3858 0 50 0ZM50 10C27.9086 10 10 27.9086 10 50C10 72.0914 27.9086 90 50 90C72.0914 90 90 72.0914 90 50C90 27.9086 72.0914 10 50 10ZM50 20C66.5685 20 80 33.4315 80 50C80 66.5685 66.5685 80 50 80C33.4315 80 20 66.5685 20 50C20 33.4315 33.4315 20 50 20ZM50 30C38.9543 30 30 38.9543 30 50C30 61.0457 38.9543 70 50 70C61.0457 70 70 61.0457 70 50C70 38.9543 61.0457 30 50 30Z" fill="currentColor"/>
+          </svg>
+        </div>
+
+        <div className="grid grid-cols-2 gap-10 md:gap-16 lg:grid-cols-4 pt-12 pb-24 relative z-10">
+          {dict.impact.stats.map((stat: any, index: number) => {
+            const speed = (index % 2 === 0) ? 0.3 : 0.6;
+            return (
+              <ParallaxSection key={stat.label} speed={speed}>
+                <Reveal delay={index * 0.15}>
+                  <div className="relative flex flex-col items-center justify-center text-center transition-transform duration-700 hover:scale-105">
+                    <h3 className="font-display text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter text-[#FDB715] flex items-center justify-center">
+                      <CountUp value={stat.value} duration={2.5} />
+                      {stat.suffix && <span className="text-3xl md:text-4xl tracking-normal text-[#FDB715] ml-1">{stat.suffix}</span>}
+                    </h3>
+                    <div className="mt-4 h-1 w-12 bg-[#EC3A24] mx-auto rounded-full" />
+                    <p className="mt-4 text-sm md:text-base font-bold uppercase tracking-[0.2em] text-white">
+                      {stat.label}
+                    </p>
+                  </div>
+                </Reveal>
+              </ParallaxSection>
+            );
+          })}
         </div>
       </div>
 

@@ -6,6 +6,7 @@ import { assetPath } from "@/lib/asset-path";
 import Link from "next/link";
 import { ArrowRight, CalendarDays, MapPin, Sparkles, Volume2, VolumeX } from "lucide-react";
 import MagneticButton from "@/components/MagneticButton";
+import ParallaxSection from "@/components/ParallaxSection";
 
 declare global {
   interface Window {
@@ -256,7 +257,7 @@ export default function HeroSection({
             <MagneticButton>
               <Link
                 href={`/${lang}/register`}
-                className="group flex items-center gap-3 bg-[#FDB715] px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#041020] shadow-[6px_6px_0_rgba(56,187,202,0.75)] transition hover:-translate-y-0.5 hover:bg-white md:text-sm"
+                className="group flex items-center gap-3 bg-[#FDB715] px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#041020] shadow-hard transition hover:-translate-y-0.5 hover:bg-white md:text-sm"
               >
                 <span>{dict.cta.primary}</span>
                 <ArrowRight size={18} className="transition group-hover:translate-x-1" />
@@ -304,22 +305,23 @@ export default function HeroSection({
 
         {/* RIGHT KEY VISUAL CARD */}
         <div className="relative hidden lg:block">
+          <ParallaxSection speed={0.4}>
           <div className="absolute -left-10 top-10 h-72 w-72 rounded-full bg-[#38BBCA]/22 blur-3xl" />
           <div className="absolute -right-8 bottom-8 h-80 w-80 rounded-full bg-[#FDB715]/18 blur-3xl" />
           <div className="absolute right-12 top-24 h-56 w-56 rounded-full bg-[#EC3A24]/14 blur-3xl" />
 
-          <div className="relative border-4 border-[#2654A4] bg-[#2654A4] p-3 shadow-2xl backdrop-blur-sm">
-            <div className="absolute -left-5 -top-5 h-20 w-20 border-l-8 border-t-8 border-[#FDB715]" />
-            <div className="absolute -bottom-5 -right-5 h-20 w-20 border-b-8 border-r-8 border-[#38BBCA]" />
+          <div className="relative bg-white p-2 shadow-hard hover:shadow-hard-hover transition-all duration-300">
+            <div className="absolute -left-3 -top-3 h-10 w-10 border-l-[4px] border-t-[4px] border-[#2654A4] bg-[#FDFBF7]" />
+            <div className="absolute -bottom-3 -right-3 h-10 w-10 border-b-[4px] border-r-[4px] border-[#EC3A24] bg-[#FDFBF7]" />
 
-            <div className="group relative flex flex-col w-full overflow-hidden rounded-xl bg-white border border-[#2654A4]/10 shadow-inner">
+            <div className="group relative flex flex-col w-full overflow-hidden border-[2px] border-[#041020]/10 bg-white">
               
               {/* TOP: Full-width KEN Nomination Banner */}
               <a 
                 href="https://kemenpar.go.id/berita/ken-kembali-digelar-ini-dia-125-event-terpilih-unggulan-2026" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="relative flex items-center justify-between border-b border-[#2654A4]/10 bg-gradient-to-r from-white to-[#FDFBF7] px-6 py-5 transition-colors hover:from-[#FDFBF7] hover:to-[#F5F2EA] cursor-pointer group/ken"
+                className="relative flex items-center justify-between border-b-[2px] border-[#041020]/10 bg-gradient-to-r from-white to-[#FDFBF7] px-6 py-5 transition-colors hover:bg-[#F5F2EA] cursor-pointer group/ken"
               >
                 <div className="flex items-center gap-4">
                   <div className="relative h-14 w-14 shrink-0 drop-shadow-sm transition-transform group-hover/ken:scale-110">
@@ -398,8 +400,9 @@ export default function HeroSection({
               </div>
             </div>
           </div>
+          </ParallaxSection>
 
-          <div className="absolute -bottom-8 left-10 border border-white/50 bg-white/90 px-5 py-4 shadow-lg backdrop-blur-sm">
+          <div className="absolute -bottom-14 left-10 border border-white/50 bg-white/90 px-5 py-4 shadow-lg backdrop-blur-sm">
             <p className="text-[10px] font-black uppercase tracking-[0.24em] text-[#2654A4]">
               {dict.atmosphere}
             </p>

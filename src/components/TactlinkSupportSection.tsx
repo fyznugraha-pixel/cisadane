@@ -95,19 +95,16 @@ export default function TactlinkSupportSection() {
     <section className="relative px-5 pb-56 pt-20 bg-[#2654A4]">
       <WaterBubbles theme="dark" hasWaveBottom={true} hasWaveTop={true} />
       <div className="dragon-scale-overlay strong z-0" />
-      <div className="mx-auto max-w-[1140px] relative z-10 text-[#041020]">
-        <div className="relative overflow-hidden rounded-[2rem] border border-white/60 bg-white/60 backdrop-blur-xl px-8 py-8 shadow-[0_16px_40px_rgba(38,84,164,0.08)] md:px-10 md:py-10 lg:px-12 lg:py-10">
-          {/* Subtle liquid reflection */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-transparent to-white/20 pointer-events-none" />
-          
+      <div className="mx-auto max-w-[1140px] relative z-10 text-[#041020] px-4">
+        <div className="relative overflow-hidden rounded-3xl bg-[#FDFBF7] px-8 py-8 shadow-hard md:px-10 md:py-10 lg:px-12 lg:py-10 border-t-[4px] border-[#FDB715]">
           <div className="relative z-10 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <p className="mb-4 inline-flex rounded-full border border-[#2654A4]/20 bg-[#2654A4]/5 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.22em] text-[#2654A4]">
+              <p className="mb-4 inline-flex rounded-full border-[2px] border-[#2654A4] bg-[#2654A4]/5 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.22em] text-[#2654A4]">
                 Website Supported By
               </p>
 
               <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
-                <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-white p-3 shadow-xl sm:h-24 sm:w-24">
+                <div className="flex h-20 w-20 shrink-0 items-center justify-center bg-white p-3 shadow-hard rounded-2xl sm:h-24 sm:w-24 border border-[#2654A4]/10">
                   <Image
                     src={assetPath("/patnership/tactlink.png")}
                     alt="Tactlink Logo"
@@ -137,7 +134,7 @@ export default function TactlinkSupportSection() {
               href={tactlinkLinks.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-3 rounded-full border border-[#2654A4]/20 bg-white/80 px-6 py-4 font-black text-[#2654A4] transition hover:-translate-y-1 hover:bg-[#2654A4] hover:text-white shadow-sm"
+              className="inline-flex items-center justify-center gap-3 rounded-full border-[2px] border-[#2654A4] bg-white px-6 py-4 font-black text-[#2654A4] transition hover:-translate-y-1 hover:bg-[#2654A4] hover:text-white shadow-hard hover:shadow-hard-hover"
             >
               Visit Tactlink
               <ExternalLink size={18} />

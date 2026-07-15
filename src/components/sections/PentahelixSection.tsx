@@ -3,6 +3,8 @@ import { Bus, Utensils, Star, Building2, GraduationCap, Briefcase, Newspaper, Us
 import SectionHeading from "../SectionHeading";
 import Reveal from "../Reveal";
 import RiverSectionDivider from "../RiverSectionDivider";
+import SectionOrnaments from "../SectionOrnaments";
+import ParallaxSection from "../ParallaxSection";
 import { Dictionary } from "@/i18n/dictionaries";
 
 export default function PentahelixSection({ dict }: { dict: Dictionary }) {
@@ -28,36 +30,39 @@ export default function PentahelixSection({ dict }: { dict: Dictionary }) {
 
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Pendekatan 3A (Pillars) */}
-          <div>
-            <h3 className="text-2xl font-black text-[#2654A4] mb-8 uppercase tracking-wide">Pendekatan 3A</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              {dict.strategy.pillars.map((pillar, index) => {
-                const Icon = pillarIcons[index % pillarIcons.length];
-                return (
-                  <Reveal key={index} delay={index * 0.1}>
-                    <div className="flex flex-col items-center text-center bg-[#FDFBF7] p-6 rounded-2xl border-t-8 border-[#2654A4] shadow-sm h-full hover:-translate-y-2 transition-transform duration-300">
-                      <div className="w-16 h-16 rounded-full bg-[#E2E8F8] text-[#2654A4] flex items-center justify-center mb-4">
-                        <Icon size={28} strokeWidth={1.5} />
+          <ParallaxSection speed={0.4}>
+            <div>
+              <h3 className="text-2xl font-black text-[#2654A4] mb-8 uppercase tracking-wide">Pendekatan 3A</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                {dict.strategy.pillars.map((pillar, index) => {
+                  const Icon = pillarIcons[index % pillarIcons.length];
+                  return (
+                    <Reveal key={index} delay={index * 0.1}>
+                      <div className="flex flex-col items-center text-center bg-[#FDFBF7] p-6 rounded-2xl border-t-8 border-[#2654A4] shadow-sm h-full hover:-translate-y-2 transition-transform duration-300">
+                        <div className="w-16 h-16 rounded-full bg-[#E2E8F8] text-[#2654A4] flex items-center justify-center mb-4">
+                          <Icon size={28} strokeWidth={1.5} />
+                        </div>
+                        <h4 className="text-xl font-bold text-[#041020] mb-3">{pillar.title}</h4>
+                        <ul className="text-sm text-[#041020]/70 space-y-2">
+                          {pillar.items.map((item, i) => (
+                            <li key={i}>{item}</li>
+                          ))}
+                        </ul>
                       </div>
-                      <h4 className="text-xl font-bold text-[#041020] mb-3">{pillar.title}</h4>
-                      <ul className="text-sm text-[#041020]/70 space-y-2">
-                        {pillar.items.map((item, i) => (
-                          <li key={i}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </Reveal>
-                );
-              })}
+                    </Reveal>
+                  );
+                })}
+              </div>
             </div>
-          </div>
+          </ParallaxSection>
 
           {/* Kolaborasi Pentahelix */}
-          <div>
-            <h3 className="text-2xl font-black text-[#2654A4] mb-8 uppercase tracking-wide">Pentahelix</h3>
-            <div className="space-y-4">
-              {dict.strategy.helix.map((helix, index) => {
-                const Icon = helixIcons[index % helixIcons.length];
+          <ParallaxSection speed={-0.2}>
+            <div>
+              <h3 className="text-2xl font-black text-[#2654A4] mb-8 uppercase tracking-wide">Pentahelix</h3>
+              <div className="space-y-4">
+                {dict.strategy.helix.map((helix, index) => {
+                  const Icon = helixIcons[index % helixIcons.length];
                 const bgColor = helixColors[index % helixColors.length];
                 return (
                   <Reveal key={index} delay={index * 0.08} y={10}>
@@ -75,6 +80,7 @@ export default function PentahelixSection({ dict }: { dict: Dictionary }) {
               })}
             </div>
           </div>
+          </ParallaxSection>
         </div>
       </div>
       

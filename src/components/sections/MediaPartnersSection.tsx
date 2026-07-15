@@ -5,6 +5,7 @@ import RiverSectionDivider from "../RiverSectionDivider";
 import WaterBubbles from "../WaterBubbles";
 import { assetPath } from "@/lib/asset-path";
 import Image from "next/image";
+import ParallaxSection from "../ParallaxSection";
 
 const mediaPartners = [
   { name: "TNG TV", image: "/media-patner/tng-tv.png" },
@@ -36,7 +37,7 @@ const mediaPartners = [
 ];
 
 export default function MediaPartnersSection() {
-  const marqueeItems = [...mediaPartners, ...mediaPartners, ...mediaPartners];
+  const marqueeItems = [...mediaPartners, ...mediaPartners, ...mediaPartners, ...mediaPartners];
 
   return (
     <section
@@ -56,40 +57,42 @@ export default function MediaPartnersSection() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.2}>
-          <div className="relative flex overflow-hidden group mt-10">
-            {/* Left and Right Fade */}
-            <div className="absolute top-0 left-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#FDFBF7] to-transparent z-10 pointer-events-none" />
-            <div className="absolute top-0 right-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#FDFBF7] to-transparent z-10 pointer-events-none" />
+        <ParallaxSection speed={0.15}>
+          <Reveal delay={0.2}>
+            <div className="relative flex overflow-hidden group mt-10">
+              {/* Left and Right Fade */}
+              <div className="absolute top-0 left-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#FDFBF7] to-transparent z-10 pointer-events-none" />
+              <div className="absolute top-0 right-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#FDFBF7] to-transparent z-10 pointer-events-none" />
 
-            <div 
-              className="flex animate-marquee hover:[animation-play-state:paused] active:[animation-play-state:paused] whitespace-nowrap items-center gap-6 md:gap-10 py-2"
-              style={{ animationDuration: '115s' }}
-            >
-              {marqueeItems.map((partner, index) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-center min-w-[160px] h-20 px-6 bg-white border border-[#2654A4]/10 rounded-xl transition-all duration-300 hover:border-[#2654A4]/30 hover:shadow-[0_4px_20px_rgba(38,84,164,0.08)] group/logo cursor-default"
-                >
-                  {partner.image ? (
-                    <div className="relative h-12 w-32">
-                      <Image 
-                        src={assetPath(partner.image)} 
-                        alt={partner.name}
-                        fill
-                        className="object-contain transition-transform duration-300 group-hover/logo:scale-105" 
-                      />
-                    </div>
-                  ) : (
-                    <span className="font-display font-bold text-lg md:text-xl text-[#041020]/40 tracking-wider group-hover/logo:text-[#2654A4] transition-colors duration-300 whitespace-nowrap">
-                      {partner.name}
-                    </span>
-                  )}
-                </div>
-              ))}
+              <div 
+                className="flex animate-marquee hover:[animation-play-state:paused] active:[animation-play-state:paused] whitespace-nowrap items-center gap-6 md:gap-10 py-2"
+                style={{ animationDuration: '115s' }}
+              >
+                {marqueeItems.map((partner, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center justify-center min-w-[160px] h-20 px-6 bg-[#FDFBF7] rounded-2xl shadow-hard transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-hard-hover group/logo cursor-default"
+                  >
+                    {partner.image ? (
+                      <div className="relative h-12 w-32">
+                        <Image 
+                          src={assetPath(partner.image)} 
+                          alt={partner.name}
+                          fill
+                          className="object-contain transition-transform duration-300 group-hover/logo:scale-105" 
+                        />
+                      </div>
+                    ) : (
+                      <span className="font-display font-bold text-lg md:text-xl text-[#041020]/40 tracking-wider group-hover/logo:text-[#2654A4] transition-colors duration-300 whitespace-nowrap">
+                        {partner.name}
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
+        </ParallaxSection>
       </div>
 
       {/* Organic river transition into the Tactlink (Blue) section */}

@@ -82,13 +82,13 @@ export const id: Dictionary = {
     title: "Gema Melodi\nDari Tepian",
     previewPrefix: "Lineup",
     talent: [
-      { name: "Feel Koplo", image: "/artis/feel-koplo.jpeg" },
-      { name: "Samsaka" },
-      { name: "ziepross" },
-      { name: "VOC" },
-      { name: "The Mora" },
-      { name: "Star Koplo" },
-      { name: "pasmatik 18" }
+      { name: "Feel Koplo", image: "/artis/feel-koplo.jpeg", tier: "headliner" },
+      { name: "Samsaka", tier: "supporting" },
+      { name: "ziepross", tier: "supporting" },
+      { name: "VOC", tier: "supporting" },
+      { name: "The Mora", tier: "supporting" },
+      { name: "Star Koplo", tier: "supporting" },
+      { name: "pasmatik 18", tier: "supporting" }
     ]
   },
   whyVisit: {
@@ -247,11 +247,11 @@ export const id: Dictionary = {
         description: "Implementasi teknologi AI berbasis CCTV Crowd Counting pada Festival Cisadane 2026 untuk memantau dan menghitung jumlah pengunjung secara real-time. Data yang dihasilkan memberikan insight analitik yang akurat sebagai dasar evaluasi penyelenggaraan acara, pengukuran performa event, serta pengelolaan kerumunan yang lebih aman dan efektif."
       },
       {
-        title: "Real-Time Economic Impact Tracking",
-        description: "Automasi Pelacakan Transaksi dan Perputaran Ekonomi Event. Menggantikan metode survei manual pasca event dengan integrasi analitik keuangan digital untuk mengukur kontribusi ekonomi daerah secara seketika.",
+        title: "Waste Management Solutions",
+        description: "Pengelolaan Sampah Terpadu untuk Festival Berkelanjutan. Festival Cisadane menerapkan pemilahan sampah tiga kategori (organik, plastik, kertas/kaleng), dikelola bersama WAHU, <b>Banksasuci</b> (Bank Sampah Sungai Cisadane), dan DLH/Komunitas Kota Tangerang, didukung 50 titik trash bin di seluruh area acara.",
         subItems: [
-          { title: "Integrasi QRIS & POS System", desc: "Seluruh transaksi UMKM, kuliner, merchandise, hingga tiket tercatat otomatis dalam satu sistem terpusat melalui integrasi QRIS dan POS." },
-          { title: "Social Return on Investment (SROI)", desc: "Pengukuran dampak sosial dan ekonomi secara komprehensif, mencakup nilai manfaat bagi masyarakat, UMKM, pariwisata, serta multiplier effect terhadap ekonomi lokal." }
+          { title: "Pemilahan 3 Kategori Sampah", desc: "Sampah organik, plastik, dan kertas/kaleng dipilah sejak dari sumber, lalu diteruskan ke mitra pengelola masing-masing (WAHU untuk plastik, <b>Banksasuci</b> dan DLH/Komunitas untuk organik dan kertas/kaleng)." },
+          { title: "50 Titik Trash Bin Terpadu", desc: "Tersebar di seluruh area festival, didukung kolaborasi produsen air mineral, WAHU, <b>Banksasuci</b>, dan DLH sebagai mitra penyedia dan pengelola tempat sampah." }
         ]
       }
     ]
@@ -273,23 +273,23 @@ export const id: Dictionary = {
     description: "Ketahui lebih dalam kisah peradaban, persatuan, dan harmoni ragam budaya yang lahir di tepian Sungai Cisadane.",
     items: [
       {
-        title: "Nadi Peradaban",
-        description: "Membentang 126 kilometer, Cisadane adalah jalur perdagangan purba dan titik temu budaya Sunda, Betawi, Tionghoa, hingga Arab. Jika Tangerang memiliki denyut nadi, denyut itu adalah Cisadane.",
+        title: "Jalan Benteng",
+        description: "Nama Jalan Benteng bukanlah nama yang muncul tanpa alasan. Benteng Tangerang adalah pos militer utama VOC di Tangerang yang terletak di tepian Sungai Tjisadane (Cisadane), yang menandai perbatasan politik antara wilayah VOC di Batavia dan sekitarnya (Batavia Ommelanden) dan Kesultanan Banten. Dari benteng inilah kawasan tersebut kemudian dikenal sebagai Benteng, dan nama itu bertahan hingga menjadi identitas masyarakat Tangerang saat ini.",
         image: "/images/history/history_1.jpeg"
       },
       {
-        title: "Asal Usul 'Benteng'",
-        description: "Pada abad ke-17, VOC membangun benteng pertahanan di tepi Cisadane. Dari sinilah nama 'Tangerang Benteng' lahir dan menjadi identitas multikultural yang melekat hingga kini.",
+        title: "Benteng Makassar",
+        description: "Meskipun namanya \"Makassar\", kawasan Benteng Makassar tidak berasal dari Kota Makassar di Sulawesi. Pasukan VOC yang terdiri dari pasukan Bugis-Makassar bawahan sekutu Arung Palakka turut mendirikan benteng ini, bertinggal di kamp-kamp garnisun sekitar pos dan perlahan membentuk toponimi Kampung Benteng Makassar hari ini. Rancangan Benteng Tangerang juga diduga mengadopsi Fort Rotterdam, benteng VOC di Makassar.",
         image: "/images/history/history_3.jpeg"
       },
       {
-        title: "Filosofi Berendeng",
-        description: "Nama Jembatan Berendeng berasal dari gabungan 'Benteng' Makassar dan Ger'endeng'. Kehadirannya bukan sekadar menyambungkan daratan, melainkan menyatukan manusia di dua wilayah.",
+        title: "Jejak Benteng Belanda",
+        description: "Di kawasan Jalan Benteng Makassar terdapat replika benteng dan meriam yang dibangun untuk mengingat sejarah pertahanan kolonial. Lokasi asli benteng ini terletak di pusat kota Tangerang saat ini di Jalan Raya Pantura-Daan Mogot. Benteng ini menjadi saksi bisu terhadap insiden besar di Tangerang, antara lain perang VOC-Banten (1680-1684), Geger Pecinan (1740), dan pemberontakan Kiyai Tapa (1750-1751).",
         image: "/images/history/history_4.jpeg"
       },
       {
         title: "Tradisi Peh Cun",
-        description: "Telah berlangsung sejak abad ke-19, tradisi Peh Cun yang identik dengan lomba perahu naga menjadi simbol pelestarian budaya Tionghoa Benteng yang sangat berharga.",
+        description: "Peh Cun atau perayaan Duan Wu Jie adalah pesta musim panas tradisi Tionghoa. Puncak acara tradisi Peh Cun adalah lomba perahu berhias di Kali Cisadane. Festival ini kendatipun tujuannya sebagai peringatan kepada leluhur, dalam pelaksanaannya melibatkan orang banyak dan tidak terbatas di kalangan warga keturunan Cina saja, melainkan menjadi perayaan bersama warga Tangerang dan sekitarnya.",
         image: "/images/history/history_2.jpeg"
       }
     ]
