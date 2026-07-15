@@ -81,24 +81,25 @@ export default function RegisterForm({ dict }: { dict: any }) {
     <Reveal>
       <form
         onSubmit={handleSubmit}
-        className="mx-auto max-w-2xl overflow-hidden rounded-[2.5rem] border border-[#2654A4]/10 bg-white/80 shadow-[0_20px_60px_-15px_rgba(38,84,164,0.1)] backdrop-blur-xl transition-all duration-300 relative"
+        className="mx-auto max-w-2xl overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#041020] shadow-[0_30px_100px_-15px_rgba(4,16,32,0.5)] backdrop-blur-2xl transition-all duration-300 relative"
       >
         {/* Subtle decorative glow */}
-        <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-[#38BBCA]/10 blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-[#FDB715]/10 blur-3xl pointer-events-none" />
+        <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-[#38BBCA]/20 blur-[100px] pointer-events-none" />
+        <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-[#FDB715]/20 blur-[100px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[120%] w-full bg-[url('/images/texture-noise.png')] opacity-[0.03] pointer-events-none mix-blend-overlay" />
 
-        <div className="h-2 w-full bg-gradient-to-r from-[#2654A4] via-[#38BBCA] to-[#FDB715]" />
+        <div className="h-1.5 w-full bg-gradient-to-r from-[#2654A4] via-[#38BBCA] to-[#FDB715]" />
         
         <div className="p-8 sm:p-12 relative z-10">
           <div className="space-y-7">
             
             {/* Full Name */}
             <div>
-              <label htmlFor="fullName" className="mb-2.5 ml-1 block text-sm font-bold text-[#041020]/70">
-                {dict.fullName} <span className="text-[#EC3A24]">*</span>
+              <label htmlFor="fullName" className="mb-2.5 ml-1 block text-sm font-bold text-white/90">
+                {dict.fullName} <span className="text-[#FDB715]">*</span>
               </label>
               <div className="relative group">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#2654A4]/40 group-focus-within:text-[#2654A4] transition-colors">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-white/30 group-focus-within:text-[#FDB715] transition-colors">
                   <User className="h-5 w-5" />
                 </div>
                 <input
@@ -106,7 +107,7 @@ export default function RegisterForm({ dict }: { dict: any }) {
                   id="fullName"
                   name="fullName"
                   required
-                  className="w-full rounded-2xl border border-[#2654A4]/15 bg-[#FDFBF7]/60 py-4 pl-12 pr-4 text-[#041020] placeholder:text-[#041020]/30 transition-all hover:bg-[#FDFBF7] focus:border-[#2654A4] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#2654A4]/10"
+                  className="w-full rounded-2xl border border-white/10 bg-white/5 py-4 pl-12 pr-4 text-white placeholder:text-white/30 transition-all hover:bg-white/10 hover:border-white/20 focus:border-[#FDB715] focus:bg-white/10 focus:outline-none focus:ring-4 focus:ring-[#FDB715]/10 backdrop-blur-md"
                   placeholder="Mis. John Doe"
                 />
               </div>
@@ -114,11 +115,11 @@ export default function RegisterForm({ dict }: { dict: any }) {
 
             {/* Email */}
             <div>
-              <label htmlFor="email" className="mb-2.5 ml-1 block text-sm font-bold text-[#041020]/70">
-                {dict.email} <span className="text-[#EC3A24]">*</span>
+              <label htmlFor="email" className="mb-2.5 ml-1 block text-sm font-bold text-white/90">
+                {dict.email} <span className="text-[#FDB715]">*</span>
               </label>
               <div className="relative group">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#2654A4]/40 group-focus-within:text-[#2654A4] transition-colors">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-white/30 group-focus-within:text-[#38BBCA] transition-colors">
                   <Mail className="h-5 w-5" />
                 </div>
                 <input
@@ -126,7 +127,7 @@ export default function RegisterForm({ dict }: { dict: any }) {
                   id="email"
                   name="email"
                   required
-                  className="w-full rounded-2xl border border-[#2654A4]/15 bg-[#FDFBF7]/60 py-4 pl-12 pr-4 text-[#041020] placeholder:text-[#041020]/30 transition-all hover:bg-[#FDFBF7] focus:border-[#2654A4] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#2654A4]/10"
+                  className="w-full rounded-2xl border border-white/10 bg-white/5 py-4 pl-12 pr-4 text-white placeholder:text-white/30 transition-all hover:bg-white/10 hover:border-white/20 focus:border-[#38BBCA] focus:bg-white/10 focus:outline-none focus:ring-4 focus:ring-[#38BBCA]/10 backdrop-blur-md"
                   placeholder="email@example.com"
                 />
               </div>
@@ -134,11 +135,11 @@ export default function RegisterForm({ dict }: { dict: any }) {
 
             {/* Phone */}
             <div>
-              <label htmlFor="phone" className="mb-2.5 ml-1 block text-sm font-bold text-[#041020]/70">
-                {dict.phone} <span className="text-[#EC3A24]">*</span>
+              <label htmlFor="phone" className="mb-2.5 ml-1 block text-sm font-bold text-white/90">
+                {dict.phone} <span className="text-[#FDB715]">*</span>
               </label>
               <div className="relative group">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#2654A4]/40 group-focus-within:text-[#2654A4] transition-colors">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-white/30 group-focus-within:text-[#38BBCA] transition-colors">
                   <Phone className="h-5 w-5" />
                 </div>
                 <input
@@ -146,7 +147,7 @@ export default function RegisterForm({ dict }: { dict: any }) {
                   id="phone"
                   name="phone"
                   required
-                  className="w-full rounded-2xl border border-[#2654A4]/15 bg-[#FDFBF7]/60 py-4 pl-12 pr-4 text-[#041020] placeholder:text-[#041020]/30 transition-all hover:bg-[#FDFBF7] focus:border-[#2654A4] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#2654A4]/10"
+                  className="w-full rounded-2xl border border-white/10 bg-white/5 py-4 pl-12 pr-4 text-white placeholder:text-white/30 transition-all hover:bg-white/10 hover:border-white/20 focus:border-[#38BBCA] focus:bg-white/10 focus:outline-none focus:ring-4 focus:ring-[#38BBCA]/10 backdrop-blur-md"
                   placeholder="+62 812 3456 7890"
                 />
               </div>
@@ -154,11 +155,11 @@ export default function RegisterForm({ dict }: { dict: any }) {
 
             {/* Domicile */}
             <div>
-              <label htmlFor="domicile" className="mb-2.5 ml-1 block text-sm font-bold text-[#041020]/70">
-                {dict.domicile} <span className="text-[#EC3A24]">*</span>
+              <label htmlFor="domicile" className="mb-2.5 ml-1 block text-sm font-bold text-white/90">
+                {dict.domicile} <span className="text-[#FDB715]">*</span>
               </label>
               <div className="relative group">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#2654A4]/40 group-focus-within:text-[#2654A4] transition-colors">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-white/30 group-focus-within:text-[#FDB715] transition-colors">
                   <Hash className="h-5 w-5" />
                 </div>
                 <input
@@ -166,7 +167,7 @@ export default function RegisterForm({ dict }: { dict: any }) {
                   id="domicile"
                   name="domicile"
                   required
-                  className="w-full rounded-2xl border border-[#2654A4]/15 bg-[#FDFBF7]/60 py-4 pl-12 pr-4 text-[#041020] placeholder:text-[#041020]/30 transition-all hover:bg-[#FDFBF7] focus:border-[#2654A4] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#2654A4]/10"
+                  className="w-full rounded-2xl border border-white/10 bg-white/5 py-4 pl-12 pr-4 text-white placeholder:text-white/30 transition-all hover:bg-white/10 hover:border-white/20 focus:border-[#FDB715] focus:bg-white/10 focus:outline-none focus:ring-4 focus:ring-[#FDB715]/10 backdrop-blur-md"
                   placeholder={dict.domicilePlaceholder || "Kota tempat tinggal"}
                 />
               </div>
@@ -190,11 +191,11 @@ export default function RegisterForm({ dict }: { dict: any }) {
                   onClick={() => setTncAccepted(!tncAccepted)}
                   className={`flex h-6 w-6 items-center justify-center rounded-md border-2 transition-all duration-300 ${
                     tncAccepted
-                      ? "border-[#2654A4] bg-[#2654A4] shadow-[0_0_10px_rgba(38,84,164,0.4)] scale-105"
-                      : "border-[#2654A4]/30 bg-white hover:border-[#2654A4]/60"
+                      ? "border-[#FDB715] bg-[#FDB715] shadow-[0_0_15px_rgba(253,183,21,0.4)] scale-105"
+                      : "border-white/30 bg-white/5 hover:border-white/60 hover:bg-white/10"
                   }`}
                 >
-                  {tncAccepted && <Check size={16} strokeWidth={3} className="text-white" />}
+                  {tncAccepted && <Check size={16} strokeWidth={3} className="text-[#041020]" />}
                 </button>
                 <input 
                   type="checkbox" 
@@ -205,10 +206,10 @@ export default function RegisterForm({ dict }: { dict: any }) {
                 />
               </div>
               <label 
-                className="cursor-pointer text-sm leading-relaxed text-[#041020]/70 select-none hover:text-[#041020] transition-colors"
+                className="cursor-pointer text-sm leading-relaxed text-white/70 select-none hover:text-white transition-colors"
                 onClick={() => setTncAccepted(!tncAccepted)}
               >
-                {dict.tnc} <span className="text-[#EC3A24]">*</span>
+                {dict.tnc} <span className="text-[#FDB715]">*</span>
               </label>
             </div>
 
@@ -217,18 +218,18 @@ export default function RegisterForm({ dict }: { dict: any }) {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-[#2654A4] to-[#38BBCA] px-8 py-5 text-center font-bold text-white shadow-lg transition-all hover:shadow-[0_10px_40px_-10px_rgba(38,84,164,0.6)] hover:-translate-y-1 active:translate-y-0 disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:shadow-lg"
+                className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-[#FDB715] via-[#F7951E] to-[#FDB715] bg-[length:200%_auto] hover:bg-[100%_auto] px-8 py-5 text-center font-black uppercase text-[#041020] shadow-[0_10px_30px_-10px_rgba(253,183,21,0.5)] transition-all hover:shadow-[0_15px_40px_-5px_rgba(253,183,21,0.7)] hover:-translate-y-1 active:translate-y-0 disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:shadow-lg"
               >
                 <div className="absolute inset-0 bg-white/20 translate-y-full transition-transform duration-300 group-hover:translate-y-0" />
-                <div className="relative flex items-center justify-center gap-2">
+                <div className="relative flex items-center justify-center gap-3">
                   {isLoading ? (
                     <>
                       <Loader2 className="animate-spin" size={20} />
-                      <span className="tracking-widest uppercase text-sm">Memproses...</span>
+                      <span className="tracking-widest text-sm">Memproses...</span>
                     </>
                   ) : (
                     <>
-                      <span className="tracking-widest uppercase text-sm">{dict.submit}</span>
+                      <span className="tracking-[0.18em] text-[15px]">{dict.submit}</span>
                     </>
                   )}
                 </div>
