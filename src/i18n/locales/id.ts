@@ -125,14 +125,9 @@ export const id: Dictionary = {
     form: {
       fullName: "Nama Lengkap",
       email: "Alamat Email",
-      phone: "Nomor Handphone",
-      category: "Kategori Pengunjung",
-      categories: {
-        general: "Masyarakat Umum",
-        student: "Pelajar/Mahasiswa",
-        community: "Komunitas",
-        media: "Media/Pers"
-      },
+      phone: "Nomor WhatsApp",
+      domicile: "Domisili",
+      domicilePlaceholder: "Mis. Kota Tangerang",
       tnc: "Saya menyetujui bahwa data registrasi saya dapat digunakan untuk keperluan registrasi, verifikasi akses acara, dan komunikasi terkait Festival Cisadane 2026.",
       submit: "Daftar Sekarang",
       success: "Terima kasih! Registrasi Anda telah berhasil.",

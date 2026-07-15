@@ -123,14 +123,9 @@ export const en = {
     form: {
       fullName: "Full Name",
       email: "Email Address",
-      phone: "Phone Number",
-      category: "Visitor Category",
-      categories: {
-        general: "General Public",
-        student: "Student",
-        community: "Community",
-        media: "Media"
-      },
+      phone: "WhatsApp Number",
+      domicile: "Domicile",
+      domicilePlaceholder: "e.g. Tangerang City",
       tnc: "I agree that my registration data can be used for registration purposes, event access verification, and communications related to Festival Cisadane 2026.",
       submit: "Join Now",
       success: "Thank you! Your registration has been successful.",

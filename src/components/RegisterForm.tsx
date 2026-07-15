@@ -9,22 +9,9 @@ export default function RegisterForm({ dict }: { dict: any }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("");
   const [tncAccepted, setTncAccepted] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const isRegistrationOpen = false; // Set to true to open registration
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsCategoryOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -35,14 +22,14 @@ export default function RegisterForm({ dict }: { dict: any }) {
     const fullName = formData.get("fullName") as string;
     const email = formData.get("email") as string;
     const phone = formData.get("phone") as string;
-    const category = formData.get("category") as string;
+    const domicile = formData.get("domicile") as string;
 
     const { error } = await supabase.from("visitors").insert([
       {
         full_name: fullName,
         email: email,
         phone: phone,
-        category: category,
+        domicile: domicile,
       },
     ]);
 
@@ -165,70 +152,24 @@ export default function RegisterForm({ dict }: { dict: any }) {
               </div>
             </div>
 
-            {/* Category Dropdown */}
-            <div ref={dropdownRef} className="relative">
-              <label className="mb-2.5 ml-1 block text-sm font-bold text-[#041020]/70">
-                {dict.category} <span className="text-[#EC3A24]">*</span>
+            {/* Domicile */}
+            <div>
+              <label htmlFor="domicile" className="mb-2.5 ml-1 block text-sm font-bold text-[#041020]/70">
+                {dict.domicile} <span className="text-[#EC3A24]">*</span>
               </label>
-              
-              <input 
-                type="text" 
-                name="category" 
-                value={selectedCategory} 
-                onChange={() => {}} 
-                required 
-                className="absolute bottom-0 left-1/2 h-0 w-0 opacity-0 pointer-events-none" 
-              />
-              
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#2654A4]/40 group-focus-within:text-[#2654A4] transition-colors">
                   <Hash className="h-5 w-5" />
                 </div>
-                <button
-                  type="button"
-                  onClick={() => setIsCategoryOpen(!isCategoryOpen)}
-                  className={`flex w-full items-center justify-between rounded-2xl border border-[#2654A4]/15 py-4 pl-12 pr-4 text-left transition-all hover:bg-[#FDFBF7] focus:border-[#2654A4] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#2654A4]/10 ${
-                    isCategoryOpen ? "bg-white border-[#2654A4] ring-4 ring-[#2654A4]/10" : "bg-[#FDFBF7]/60"
-                  }`}
-                >
-                  <span className={selectedCategory ? "text-[#041020] font-medium" : "text-[#041020]/30"}>
-                    {selectedCategory 
-                      ? dict.categories[selectedCategory as keyof typeof dict.categories] 
-                      : `-- ${dict.category} --`}
-                  </span>
-                  <ChevronDown
-                    size={20}
-                    className={`text-[#2654A4]/50 transition-transform duration-300 ${isCategoryOpen ? "rotate-180 text-[#2654A4]" : ""}`}
-                  />
-                </button>
+                <input
+                  type="text"
+                  id="domicile"
+                  name="domicile"
+                  required
+                  className="w-full rounded-2xl border border-[#2654A4]/15 bg-[#FDFBF7]/60 py-4 pl-12 pr-4 text-[#041020] placeholder:text-[#041020]/30 transition-all hover:bg-[#FDFBF7] focus:border-[#2654A4] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#2654A4]/10"
+                  placeholder={dict.domicilePlaceholder || "Kota tempat tinggal"}
+                />
               </div>
-
-              {isCategoryOpen && (
-                <div className="absolute left-0 z-50 mt-2 w-full origin-top transform overflow-hidden rounded-2xl border border-[#2654A4]/10 bg-white/95 backdrop-blur-xl shadow-xl animate-in fade-in slide-in-from-top-2 duration-200">
-                  <div className="p-2 space-y-1">
-                    {["general", "student", "community", "media"].map((cat) => (
-                      <button
-                        key={cat}
-                        type="button"
-                        onClick={() => {
-                          setSelectedCategory(cat);
-                          setIsCategoryOpen(false);
-                        }}
-                        className={`flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm transition-all ${
-                          selectedCategory === cat 
-                            ? "bg-[#2654A4]/10 text-[#2654A4] font-bold" 
-                            : "text-[#041020]/80 hover:bg-[#FDFBF7] hover:text-[#2654A4]"
-                        }`}
-                      >
-                        {dict.categories[cat as keyof typeof dict.categories]}
-                        {selectedCategory === cat && (
-                          <Check size={18} className="text-[#2654A4]" />
-                        )}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
 
             {/* Error Message */}
