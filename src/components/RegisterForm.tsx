@@ -11,7 +11,7 @@ export default function RegisterForm({ dict }: { dict: any }) {
   const [errorMsg, setErrorMsg] = useState("");
   const [tncAccepted, setTncAccepted] = useState(false);
 
-  const isRegistrationOpen = false; // Set to true to open registration
+  const isRegistrationOpen = true; // Set to true to open registration
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
