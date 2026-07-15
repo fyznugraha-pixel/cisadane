@@ -81,6 +81,7 @@ export const id: Dictionary = {
     eyebrow: "Penampil Panggung Malam",
     title: "Gema Melodi\nDari Tepian",
     previewPrefix: "Lineup",
+    tapToReveal: "Ketuk untuk Membuka",
     talent: [
       { name: "Feel Koplo", image: "/artis/feel-koplo.jpeg", tier: "headliner" },
       { name: "Samsaka", tier: "supporting" },

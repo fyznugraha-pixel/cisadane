@@ -77,8 +77,9 @@ export const en = {
   },
   performers: {
     eyebrow: "Night Stage Lineup",
-    title: "Upcoming\nPerformances",
+    title: "Melody Echoes\nFrom the Edge",
     previewPrefix: "Lineup",
+    tapToReveal: "Tap to Reveal",
     talent: [
       { name: "Feel Koplo", image: "/artis/feel-koplo.jpeg", tier: "headliner" },
       { name: "Samsaka", tier: "supporting" },

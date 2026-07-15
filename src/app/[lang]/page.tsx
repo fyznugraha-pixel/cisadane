@@ -181,7 +181,7 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
                         <div className="w-16 h-16 rounded-full bg-[#FDB715]/20 flex items-center justify-center mb-4">
                           <span className="text-3xl font-black text-[#FDB715]">?</span>
                         </div>
-                        <h3 className="text-xs font-black uppercase tracking-[0.2em] text-[#2654A4]">Tap to Reveal</h3>
+                        <h3 className="text-xs font-black uppercase tracking-[0.2em] text-[#2654A4] text-center px-4">{dict.performers.tapToReveal}</h3>
                       </div>
                     }
                   />
