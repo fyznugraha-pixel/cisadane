@@ -1,0 +1,18 @@
+3. Jalan Benteng, Mengapa Namanya "Benteng"?
+Jalan Benteng
+Nama Jalan Benteng bukanlah nama yang muncul tanpa alasan.
+Benteng Tangerang adalah pos militer utama VOC di Tangerang yang terletak di tepian Sungai Tjisadane (Cisadane), yang menandai perbatasan politik antara wilayah VOC di Batavia dan sekitarnya (Batavia Ommelanden) dan Kesultanan Banten. Benteng Tangerang adalah pos militer utama VOC di Tangerang yang terletak di tepian Sungai Tjisadane (Cisadane), yang menandai perbatasan politik antara wilayah VOC di Batavia dan sekitarnya (Batavia Ommelanden) dan Kesultanan Banten.  
+Dari benteng inilah kawasan tersebut kemudian dikenal sebagai Benteng, dan nama itu bertahan hingga menjadi identitas masyarakat Tangerang saat ini.
+
+4. Benteng Makassar
+Benteng Makassar
+Meskipun namanya "Makassar", kawasan Benteng Makassar tidak berasal dari Kota Makassar di Sulawesi. Hal ini dikarenakan dua alasan. Pertama, pasukan VOC yang terdiri dari pasukan Bugis-Makassar bawahan sekutu Arung Palakka turut mendirikan benteng ini. Mereka bertinggal di kamp-kamp garnisun sekitar pos dan perlahan membentuk toponimi Kampung Benteng Makassar hari ini. Para pemegang pos, baik di tingkat opsir (opzier), kopral (corporaal), vandrig (vendrigh), kapten (capiteyn), hingga letnan, tidak hanya berasal dari bangsa Eropa namun juga orang Bali dan Mardijker, di mana 50 orang Melayu dan orang Bali pernah berjaga di Tangerang. Alasan kedua, rancangan Benteng Tangerang diduga mengadopsi Fort Rotterdam, benteng VOC lain di Makassar, Sulawesi yang denahnya bersudut segi lima (dalam versi lain, segi tujuh) dengan tiga di antaranya bastion. 
+
+7. Jejak Benteng Belanda di Tepi Cisadane
+Di kawasan Jalan Benteng Makassar terdapat replika benteng dan meriam yang dibangun untuk mengingat sejarah pertahanan kolonial.
+Menurut penuturan tokoh masyarakat, Lokasi asli benteng ini terletak pusat kota Tangerang saat ini di Jalan Raya Pantura-Daan Mogot, di atas lahan pusat perbelanjaan dan bank yang saat tidak jauh dari seberang Masjid Agung Al-Ittihad dan Pasar Anyar. Sewaktu dibangun, Pos atau Benteng Tangerang memiliki fungsi pertahanan, pengawasan, dan administrasi birokrasi kumpeni di tanah koloni. Benteng ini juga menjadi saksi bisu terhadap sekian insiden besar di Tangerang, antara lain perang antara VOC dan Banten (1680-1684), Geger Pecinan masyarakat Cina di Jawa termasuk Cina Benteng (1740), dan pemberontakan Kiyai Tapa dan Ratu Bagus Buang (1750-1751). 
+
+9. Tradisi Peh Cun di Sungai Cisadane
+Peh Cun
+Peh Cun atau perayaan Duan Wu Jie adalah pesta musim panas yang menjadi tradisi di Negeri Cina dan dirayakan juga oleh warga keturunan Cina di Tangerang. Secara etimologis, Peh Cun terdiri atas dua kata: peh yang artinya dayung atau mendayung; dan cun yang artinya perahu. Jadi secara harfiah Peh Cun artinya mendayung perahu. Dalam pelaksanaannya, memang puncak acara dari tradisi Peh Cun ini adalah adanya lomba perahu berhias dan di Kota Tangerang, lomba perahu ini dilakukan di Kali Cisadane, yang membelah Kota Tangerang. Adapun acara ritualnya adalah dilaksanakannya persembahyangan toan yang, yang dilakukan pada tengah hari di hari kelima bulan kelima (go gwee cee go) di tahun Imlek. Festival ini kendatipun tujuannya sebagai peringatan dan upacara persembahan kepada leluhur mereka di negeri Cina, akan tetapi dalam pelaksanaannya melibakan orang banyak, tidak terbatas hanya di kalangan warga keturunan Cina saja. Peserta festival ini adalah mereka yang memiliki keahlian dan keterampilan dalam mengemudikan perahu. Mereka tidak hanya berasal dari Kota Tangerang saja, akan tetapi juga banyak peserta dari luar Kota Tangerang, seperti Cirebon, Indramayu, Bekasi, dan kota-kota lainnya di Jawa Barat dan Banten. 
+

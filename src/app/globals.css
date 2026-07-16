@@ -172,7 +172,6 @@ body {
 .card-b { border-radius: var(--radius-md); overflow: hidden; background: #FFFFFF; }
 .card-b__image-wrap { aspect-ratio: 1 / 1; }
 .card-b__image-wrap img { width: 100%; height: 100%; object-fit: cover; }
-.ripple-divider { display: block; width: 100%; height: 12px; }
 .card-b__body { padding: var(--space-sm) var(--space-md) var(--space-md); }
 .card-b__meta { font: var(--text-card-meta); color: #A32D2D; margin: 0 0 4px; }
 .card-b__title { font: var(--text-card-title); color: #042C53; margin: 0; }

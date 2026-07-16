@@ -82,13 +82,19 @@ export const en = {
     previewPrefix: "Lineup",
     tapToReveal: "Tap to Reveal",
     talent: [
-      { name: "Feel Koplo", image: "/artis/feel-koplo.jpeg", tier: "headliner" },
-      { name: "Samsaka", tier: "supporting" },
-      { name: "ziepross", tier: "supporting" },
-      { name: "VOC", tier: "supporting" },
-      { name: "The Mora", tier: "supporting" },
-      { name: "Star Koplo", tier: "supporting" },
-      { name: "pasmatik 18", tier: "supporting" }
+      { name: "Feel Koplo", image: "/artis/feel-koplo.jpeg", tier: "headliner", imagePosition: "center" },
+      { name: "BJB Band", image: "/artis/bjb.png", tier: "supporting", imagePosition: "center 35%" },
+      { name: "D'Korp", image: "/artis/d korpp.png", tier: "supporting", imagePosition: "top" },
+      { name: "Dinda Alvian/ Screaming Hedgehog", image: "/artis/SCREAMING HEDGEHOG.jpg", tier: "supporting", imagePosition: "center" },
+      { name: "Go Tunes", image: "/artis/gotunes.png", tier: "supporting", imagePosition: "center" },
+      { name: "Pasmatik", image: "/artis/pasmatik.jpg", tier: "supporting", imagePosition: "center" },
+      { name: "Rico Ceper", image: "/artis/riko.jpg", tier: "supporting", imagePosition: "center" },
+      { name: "Samsaka", image: "/artis/samsaka.jpg", tier: "supporting", imagePosition: "center" },
+      { name: "Sikoe Band", image: "/artis/sikoe band.png", tier: "supporting", imagePosition: "center" },
+      { name: "Start Koplo", image: "/artis/start koplo.png", tier: "supporting", imagePosition: "bottom" },
+      { name: "The Mora", image: "/artis/the mora.png", tier: "supporting", imagePosition: "center" },
+      { name: "VOC", image: "/artis/VOC.png", tier: "supporting", imagePosition: "center" },
+      { name: "Zziepro'ss", image: "/artis/zziepro.jpg", tier: "supporting", imagePosition: "center" },
     ]
   },
   whyVisit: {

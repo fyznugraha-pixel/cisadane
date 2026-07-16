@@ -160,7 +160,8 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
                             <img 
                               src={assetPath(talentItem.image)} 
                               alt={`Foto penampil ${talentItem.name}`} 
-                              loading="lazy" 
+                              loading="lazy"
+                              style={{ objectPosition: talentItem.imagePosition || "center" }}
                             />
                           )}
                         </div>
