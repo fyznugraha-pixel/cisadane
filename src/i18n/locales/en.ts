@@ -86,7 +86,7 @@ export const en = {
       { name: "BJB Band", image: "/artis/bjb.png", tier: "supporting", imagePosition: "center 35%" },
       { name: "D'Korp", image: "/artis/d korpp.png", tier: "supporting", imagePosition: "top" },
       { name: "Dinda Alvian/ Screaming Hedgehog", image: "/artis/SCREAMING HEDGEHOG.jpg", tier: "supporting", imagePosition: "center" },
-      { name: "Go Tunes", image: "/artis/gotunes.png", tier: "supporting", imagePosition: "center" },
+      { name: "Go Tunes", image: "/artis/gotunes.jpg", tier: "supporting", imagePosition: "center" },
       { name: "Pasmatik", image: "/artis/pasmatik.jpg", tier: "supporting", imagePosition: "center" },
       { name: "Rico Ceper", image: "/artis/riko.jpg", tier: "supporting", imagePosition: "center" },
       { name: "Samsaka", image: "/artis/samsaka.jpg", tier: "supporting", imagePosition: "center" },
