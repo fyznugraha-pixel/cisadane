@@ -145,7 +145,11 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
               </div>
             </ParallaxSection>
 
-            <div className="mt-14 flex flex-wrap justify-center gap-[var(--space-md)]">
+            {/* 
+              On mobile: horizontal swipe (overflow-x-auto, snap-x)
+              On desktop: flex-wrap grid 
+            */}
+            <div className="mt-14 flex overflow-x-auto overflow-y-hidden snap-x snap-mandatory md:flex-wrap md:justify-center gap-[var(--space-md)] py-8 px-5 -mx-5 md:mx-0 md:px-0 md:py-0 md:overflow-visible hide-scrollbar">
               {dict.performers.talent.map((talentItem: any, index: number) => {
                 const rarity: "common" | "rare" | "epic" | "legendary" = talentItem.rarity ?? "rare";
 
@@ -153,7 +157,7 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
                   <Reveal
                     key={talentItem.name}
                     delay={(index % 4) * 0.1}
-                    className="w-[calc(50%-8px)] md:w-[calc(33.333%-11px)] lg:w-[calc(25%-12px)]"
+                    className="flex-none snap-center w-[75vw] sm:w-[45vw] md:w-[calc(33.333%-11px)] lg:w-[calc(25%-12px)]"
                   >
                     <FlipCard
                       className="w-full"

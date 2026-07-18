@@ -46,59 +46,60 @@ export default function SmartInnovationsSection({ dict }: { dict: Dictionary }) 
           theme="dark"
         />
 
-        <div className="mt-14 lg:mt-16 grid grid-cols-1 md:grid-cols-3 gap-[var(--space-lg)] relative z-20">
+        <div className="mt-14 lg:mt-16 flex overflow-x-auto overflow-y-hidden snap-x snap-mandatory md:grid md:grid-cols-3 md:overflow-visible gap-[var(--space-lg)] relative z-20 py-8 -mx-5 px-5 md:mx-0 md:px-0 md:py-0 hide-scrollbar">
           {innovations.map((item: any, index: number) => {
             const asset = visualAssets[index];
-            const speed = (index % 2 === 0) ? 0.3 : 0.6;
             return (
-              <ParallaxSection key={item.title} speed={speed}>
-                <div className="card card-a h-full">
-                  <div className="card-a__image-wrap">
-                    <img 
-                      src={assetPath(asset.image)}
-                      alt={item.title}
-                      loading="lazy" 
-                    />
-                  </div>
-                  <div className="card-a__body">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${asset.iconBg}`}>
-                        <asset.icon className={asset.iconColor} size={20} strokeWidth={2} />
-                      </div>
-                      <h3 className="card-a__title mb-0">{item.title}</h3>
+              <div key={item.title} className="flex-none snap-center w-[85vw] md:w-auto">
+                <Reveal delay={0.1 * index}>
+                  <div className="card card-a h-full">
+                    <div className="card-a__image-wrap">
+                      <img 
+                        src={assetPath(asset.image)}
+                        alt={item.title}
+                        loading="lazy" 
+                      />
                     </div>
-                    <p className="card-a__desc" dangerouslySetInnerHTML={{ __html: item.description }}></p>
-                  
-                  {item.subItems && (
-                    <div className="mt-4 space-y-3">
-                      {item.subItems.map((sub: any, idx: number) => (
-                        <div key={idx} className="flex gap-3">
-                          <div className="mt-1 flex-shrink-0">
-                            {index === 2 ? (
-                              <CheckCircle2 size={16} className="text-green-600" />
-                            ) : idx === 0 ? (
-                              <Image 
-                                src={assetPath("/logo/qris.webp")} 
-                                alt="QRIS" 
-                                width={48} 
-                                height={20} 
-                                className="object-contain h-4 w-auto" 
-                              />
-                            ) : (
-                              <BarChart size={16} className="text-[#FDB715]" />
-                            )}
-                          </div>
-                          <div>
-                            <h5 className="text-[12px] font-bold text-[#042C53] mb-0">{sub.title}</h5>
-                            <p className="text-[12px] text-[#5F5E5A] leading-relaxed" dangerouslySetInnerHTML={{ __html: sub.desc }}></p>
-                          </div>
+                    <div className="card-a__body">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${asset.iconBg}`}>
+                          <asset.icon className={asset.iconColor} size={20} strokeWidth={2} />
                         </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-                </div>
-              </ParallaxSection>
+                        <h3 className="card-a__title mb-0">{item.title}</h3>
+                      </div>
+                      <p className="card-a__desc" dangerouslySetInnerHTML={{ __html: item.description }}></p>
+                    
+                    {item.subItems && (
+                      <div className="mt-4 space-y-3">
+                        {item.subItems.map((sub: any, idx: number) => (
+                          <div key={idx} className="flex gap-3">
+                            <div className="mt-1 flex-shrink-0">
+                              {index === 2 ? (
+                                <CheckCircle2 size={16} className="text-green-600" />
+                              ) : idx === 0 ? (
+                                <Image 
+                                  src={assetPath("/logo/qris.webp")} 
+                                  alt="QRIS" 
+                                  width={48} 
+                                  height={20} 
+                                  className="object-contain h-4 w-auto" 
+                                />
+                              ) : (
+                                <BarChart size={16} className="text-[#FDB715]" />
+                              )}
+                            </div>
+                            <div>
+                              <h5 className="text-[12px] font-bold text-[#042C53] mb-0">{sub.title}</h5>
+                              <p className="text-[12px] text-[#5F5E5A] leading-relaxed" dangerouslySetInnerHTML={{ __html: sub.desc }}></p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  </div>
+                </Reveal>
+              </div>
             );
           })}
         </div>

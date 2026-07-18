@@ -48,12 +48,18 @@ export default function ObjectivesSection({ dict }: { dict: Dictionary }) {
       <WaterBubbles theme="light" hasWaveBottom={true} hasWaveTop={true} />
       <SectionOrnaments dragonScale="strong" shapes="sparkles" lights="right" theme="light" />
       <div className="section-inner">
-        <SectionHeading
-          eyebrow={dict.objectives.eyebrow}
-          title={dict.objectives.title}
-          align="center"
-          theme="light"
-        />
+        <ParallaxSection speed={0.1} className="relative z-10">
+          <Reveal scale={0.9}>
+            <div className="mx-auto max-w-3xl text-center mb-6">
+              <SectionHeading
+                eyebrow={dict.objectives.eyebrow}
+                title={dict.objectives.title}
+                align="center"
+                theme="light"
+              />
+            </div>
+          </Reveal>
+        </ParallaxSection>
 
         <div className="mt-14 grid gap-[var(--space-lg)] md:grid-cols-2 lg:grid-cols-4 relative z-10 lg:-mb-12">
           {dict.objectives.items.map((item: any, index: number) => {

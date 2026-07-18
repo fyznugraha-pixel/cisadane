@@ -17,17 +17,19 @@ export default function ImpactSection({ dict }: { dict: any }) {
       <SectionOrnaments dragonScale="strong" shapes="sparkles" lights="right" theme="dark" />
 
       <div className="section-inner">
-        <Reveal>
-          <div className="mx-auto max-w-3xl text-center mb-16">
-            <SectionHeading
-              eyebrow={dict.impact.eyebrow}
-              title={dict.impact.title}
-              description={dict.impact.description}
-              align="center"
-              theme="dark"
-            />
-          </div>
-        </Reveal>
+        <ParallaxSection speed={0.1} className="relative z-10">
+          <Reveal scale={0.9}>
+            <div className="mx-auto max-w-3xl text-center mb-16">
+              <SectionHeading
+                eyebrow={dict.impact.eyebrow}
+                title={dict.impact.title}
+                description={dict.impact.description}
+                align="center"
+                theme="dark"
+              />
+            </div>
+          </Reveal>
+        </ParallaxSection>
 
         <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none z-0 overflow-hidden">
           <svg viewBox="0 0 100 100" fill="none" className="w-[150vw] h-[150vw] md:w-[100vw] md:h-[100vw] text-[#FDB715] animate-spin-slow" style={{ animationDuration: '60s' }}>

@@ -252,11 +252,7 @@ export const id: Dictionary = {
       },
       {
         title: "Waste Management Solutions",
-        description: "Pengelolaan Sampah Terpadu untuk Festival Berkelanjutan. Festival Cisadane menerapkan pemilahan sampah tiga kategori (organik, plastik, kertas/kaleng), dikelola bersama WAHU, <b>Banksasuci</b> (Bank Sampah Sungai Cisadane), dan DLH/Komunitas Kota Tangerang, didukung 50 titik trash bin di seluruh area acara.",
-        subItems: [
-          { title: "Pemilahan 3 Kategori Sampah", desc: "Sampah organik, plastik, dan kertas/kaleng dipilah sejak dari sumber, lalu diteruskan ke mitra pengelola masing-masing (WAHU untuk plastik, <b>Banksasuci</b> dan DLH/Komunitas untuk organik dan kertas/kaleng)." },
-          { title: "50 Titik Trash Bin Terpadu", desc: "Tersebar di seluruh area festival, didukung kolaborasi produsen air mineral, WAHU, <b>Banksasuci</b>, dan DLH sebagai mitra penyedia dan pengelola tempat sampah." }
-        ]
+        description: "Festival Cisadane menerapkan pengelolaan sampah terpadu dengan sistem pemilahan tiga kategori: organik, plastik, dan kertas. Bekerja sama dengan WAHU, <b>Banksasuci</b>, dan Dinas Lingkungan Hidup, serta menyiapkan puluhan titik tempat sampah di seluruh area acara guna menjaga kebersihan lingkungan festival."
       }
     ]
   },

@@ -5,6 +5,7 @@ import RiverSectionDivider from "../RiverSectionDivider";
 import SectionOrnaments from "../SectionOrnaments";
 import WaterBubbles from "../WaterBubbles";
 import ParallaxSection from "../ParallaxSection";
+import VideoPlayerWithMute from "../VideoPlayerWithMute";
 
 export default function HistorySection({ dict }: { dict: any }) {
   return (
@@ -26,16 +27,32 @@ export default function HistorySection({ dict }: { dict: any }) {
                 theme="dark"
               />
             </div>
+            
+            {/* YouTube Video Embed with Premium Frame */}
+            <div className="max-w-4xl mx-auto w-full mb-16 relative z-20 px-4 md:px-0">
+              <div className="relative p-1 md:p-3 rounded-2xl md:rounded-3xl bg-white shadow-[0_0_40px_rgba(255,255,255,0.15)] hover:shadow-[0_0_60px_rgba(255,255,255,0.3)] transition-shadow duration-500 group">
+                {/* Inner border */}
+                <div className="absolute inset-0 rounded-2xl md:rounded-3xl border border-[#2654A4]/10 z-10 pointer-events-none"></div>
+                
+                {/* Decorator Dots */}
+                <div className="absolute -top-2 -left-2 w-4 h-4 rounded-full bg-white border-2 border-[#2654A4]/20 shadow-sm z-20"></div>
+                <div className="absolute -bottom-2 -right-2 w-4 h-4 rounded-full bg-white border-2 border-[#2654A4]/20 shadow-sm z-20"></div>
+                
+                {/* Content Container */}
+                <div className="relative rounded-xl md:rounded-2xl overflow-hidden bg-[#041020] aspect-video w-full transform transition-transform duration-500 group-hover:scale-[0.99]">
+                  <VideoPlayerWithMute url="https://www.youtube.com/watch?v=DHFRFqLWupE" />
+                </div>
+              </div>
+            </div>
           </Reveal>
         </ParallaxSection>
 
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-0 relative z-10 w-full">
+        <div className="mt-14 flex overflow-x-auto overflow-y-hidden snap-x snap-mandatory md:grid md:grid-cols-4 gap-12 md:gap-0 relative z-10 w-full py-8 -mx-5 px-5 md:mx-0 md:px-0 md:overflow-visible hide-scrollbar">
           {dict.history.items.map((item: any, index: number) => {
             const isLast = index === dict.history.items.length - 1;
-            const speed = (index % 2 === 0) ? 0.2 : 0.5;
             
             return (
-              <ParallaxSection key={item.title} speed={speed}>
+              <div key={item.title} className="flex-none snap-center w-[85vw] md:w-auto">
                 <Reveal delay={0.2 + index * 0.1}>
                   <div className="relative flex flex-col items-center text-center md:px-4">
                     
@@ -52,9 +69,14 @@ export default function HistorySection({ dict }: { dict: any }) {
                     {/* Node Circle */}
                     <span className="node-circle !bg-[#FDFBF7] relative z-10 mx-auto flex-shrink-0"></span>
                     
-                    {/* Vertical Connector (Mobile) */}
+                    {/* Horizontal Connector (Mobile - Swipe) */}
                     {!isLast && (
-                      <div className="md:hidden absolute top-[44px] bottom-[-3rem] left-[50%] w-[2px] -ml-[1px] border-l-2 border-dashed border-[#FDB715] z-0"></div>
+                      <div className="md:hidden absolute top-[22px] left-[50%] w-full z-0 px-8">
+                        <svg viewBox="0 0 300 20" aria-hidden="true" preserveAspectRatio="none" className="w-full h-[20px]">
+                          <path d="M0,10 Q150,-4 300,10" fill="none" stroke="#FDB715"
+                                strokeWidth="2" strokeDasharray="1 7" strokeLinecap="round"/>
+                        </svg>
+                      </div>
                     )}
 
                     {/* Card Content */}
@@ -75,7 +97,7 @@ export default function HistorySection({ dict }: { dict: any }) {
 
                   </div>
                 </Reveal>
-              </ParallaxSection>
+              </div>
             );
           })}
         </div>

@@ -250,11 +250,7 @@ export const en = {
       },
       {
         title: "Waste Management Solutions",
-        description: "Integrated Waste Management for a Sustainable Festival. Cisadane Festival implements a three-category waste sorting system (organic, plastic, paper/can), managed together with WAHU, <b>Banksasuci</b> (Cisadane River Waste Bank), and DLH/Tangerang City Communities, supported by 50 trash bin points across the event area.",
-        subItems: [
-          { title: "3-Category Waste Sorting", desc: "Organic, plastic, and paper/can waste are sorted at the source, then forwarded to their respective management partners (WAHU for plastic, <b>Banksasuci</b> and DLH/Communities for organic and paper/can)." },
-          { title: "50 Integrated Trash Bin Points", desc: "Spread across the festival area, supported by the collaboration of mineral water producers, WAHU, <b>Banksasuci</b>, and DLH as partners providing and managing the trash bins." }
-        ]
+        description: "Cisadane Festival implements integrated waste management with a three-category sorting system: organic, plastic, and paper. Collaborating with WAHU, <b>Banksasuci</b>, and the Environmental Agency, dozens of integrated trash bins are placed throughout the area to maintain the festival's cleanliness and sustainability."
       }
     ]
   },
