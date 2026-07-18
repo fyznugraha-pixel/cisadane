@@ -8,7 +8,7 @@ import SectionHeading from "@/components/SectionHeading";
 import SectionOrnaments from "@/components/SectionOrnaments";
 import ObjectivesSection from "@/components/sections/ObjectivesSection";
 import SmartInnovationsSection from "@/components/sections/SmartInnovationsSection";
-import SponsorsSection from "@/components/sections/SponsorsSection";
+import PartnersSection from "@/components/sections/PartnersSection";
 import TiltCard from "@/components/TiltCard";
 import FlipCard from "@/components/FlipCard";
 import StickyRegisterBar from "@/components/StickyRegisterBar";
@@ -295,7 +295,7 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
           <RiverSectionDivider className="text-[#2654A4]" theme="dark" />
         </section>
 
-        <SponsorsSection />
+        <PartnersSection />
         <MediaPartnersSection />
 
         <TactlinkSupportSection />
