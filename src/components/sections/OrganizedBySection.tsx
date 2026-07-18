@@ -41,7 +41,8 @@ export default function OrganizedBySection() {
         </Reveal>
       </div>
 
-      {/* Since Tactlink Support is also blue, we don't need a divider or we can just omit it so they merge seamlessly. But let's check if we want a divider. We will omit it for seamless blue background. */}
+      {/* Transition to Tactlink Support Section (Cream) */}
+      <RiverSectionDivider className="text-[#FDFBF7]" theme="light" />
     </section>
   );
 }

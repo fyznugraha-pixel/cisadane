@@ -3,6 +3,7 @@ import { ExternalLink, Globe2 } from "lucide-react";
 import { assetPath } from "@/lib/asset-path";
 import RiverSectionDivider from "@/components/RiverSectionDivider";
 import WaterBubbles from "@/components/WaterBubbles";
+import SectionOrnaments from "@/components/SectionOrnaments";
 
 const tactlinkLinks = {
   website: "https://tactlink.com",
@@ -92,11 +93,11 @@ function PlayStoreBadge() {
 
 export default function TactlinkSupportSection() {
   return (
-    <section className="relative px-5 pb-56 pt-20 bg-[#2654A4]">
-      <WaterBubbles theme="dark" hasWaveBottom={true} hasWaveTop={true} />
-      <div className="dragon-scale-overlay strong z-0" />
+    <section className="relative px-5 pb-56 pt-20 bg-[#FDFBF7]">
+      <WaterBubbles theme="light" hasWaveBottom={true} hasWaveTop={true} />
+      <SectionOrnaments dragonScale="strong" shapes="sparkles" lights="right" theme="light" />
       <div className="mx-auto max-w-[1140px] relative z-10 text-[#041020] px-4">
-        <div className="relative overflow-hidden rounded-3xl bg-[#FDFBF7] px-8 py-8 shadow-hard md:px-10 md:py-10 lg:px-12 lg:py-10 border-t-[4px] border-[#FDB715]">
+        <div className="relative overflow-hidden rounded-3xl bg-white px-8 py-8 shadow-hard md:px-10 md:py-10 lg:px-12 lg:py-10 border border-[#2654A4]/10 border-t-[4px] border-t-[#FDB715]">
           <div className="relative z-10 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <p className="mb-4 inline-flex rounded-full border-[2px] border-[#2654A4] bg-[#2654A4]/5 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.22em] text-[#2654A4]">
