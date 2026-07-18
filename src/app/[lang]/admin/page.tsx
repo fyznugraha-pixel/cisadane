@@ -12,6 +12,8 @@ export default function AdminDashboard() {
   const [errorMsg, setErrorMsg] = useState("");
   const [visitors, setVisitors] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [visitorToDelete, setVisitorToDelete] = useState<string | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   // Simple session persistence using sessionStorage
   useEffect(() => {
@@ -60,9 +62,14 @@ export default function AdminDashboard() {
     sessionStorage.removeItem("admin_password");
   };
 
-  const handleDeleteVisitor = async (id: string) => {
-    if (!window.confirm("Apakah Anda yakin ingin menghapus data ini?")) return;
+  const handleDeleteVisitor = (id: string) => {
+    setVisitorToDelete(id);
+  };
 
+  const confirmDeleteVisitor = async () => {
+    if (!visitorToDelete) return;
+    
+    setIsDeleting(true);
     try {
       const res = await fetch("/festivalcisadane/api/admin/visitors", {
         method: "DELETE",
@@ -70,16 +77,19 @@ export default function AdminDashboard() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${sessionStorage.getItem("admin_password")}`,
         },
-        body: JSON.stringify({ id }),
+        body: JSON.stringify({ id: visitorToDelete }),
       });
 
       if (!res.ok) {
         throw new Error("Gagal menghapus data");
       }
 
-      setVisitors((prev) => prev.filter((v) => v.id !== id));
+      setVisitors((prev) => prev.filter((v) => v.id !== visitorToDelete));
+      setVisitorToDelete(null);
     } catch (err: any) {
       alert(err.message || "Terjadi kesalahan saat menghapus data.");
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -373,6 +383,43 @@ export default function AdminDashboard() {
           </div>
         </div>
       </div>
+
+      {/* Custom Delete Confirmation Modal */}
+      {visitorToDelete && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm px-4">
+          <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl animate-in fade-in zoom-in duration-200">
+            <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-red-100 text-red-500 mx-auto">
+              <Trash2 size={28} strokeWidth={2.5} />
+            </div>
+            <h3 className="text-xl font-bold text-center text-[#041020] mb-2">
+              Hapus Data Pendaftar?
+            </h3>
+            <p className="text-center text-[#041020]/70 mb-8 text-sm">
+              Tindakan ini tidak dapat dibatalkan. Apakah Anda yakin ingin menghapus data ini?
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={() => setVisitorToDelete(null)}
+                disabled={isDeleting}
+                className="flex-1 rounded-xl bg-gray-100 px-4 py-2.5 font-semibold text-gray-700 transition hover:bg-gray-200 disabled:opacity-50"
+              >
+                Batal
+              </button>
+              <button
+                onClick={confirmDeleteVisitor}
+                disabled={isDeleting}
+                className="flex-1 flex items-center justify-center rounded-xl bg-red-500 px-4 py-2.5 font-semibold text-white transition hover:bg-red-600 shadow-sm shadow-red-500/30 disabled:opacity-50"
+              >
+                {isDeleting ? (
+                  <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                ) : (
+                  "Ya, Hapus"
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
