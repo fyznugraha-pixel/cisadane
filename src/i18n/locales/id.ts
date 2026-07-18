@@ -128,7 +128,7 @@ export const id: Dictionary = {
     eyebrow: "Informasi Registrasi",
     title: "Ambil Bagian Dalam\nSejarah Ini",
     description: "Perayaan agung ini tak akan utuh tanpa kehadiran Anda. Lengkapi informasi berikut untuk turut merajut benang sejarah di Festival Cisadane 2026 sebagai pengunjung.",
-    statusBox: "Pendaftaran pengunjung telah dibuka. Sampai jumpa di tepian Cisadane!",
+    statusBox: "Pendaftaran pengunjung telah dibuka. Sampai jumpa di Festival Cisadane 2026!",
     form: {
       fullName: "Nama Lengkap",
       email: "Alamat Email",

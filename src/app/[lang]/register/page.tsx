@@ -39,8 +39,23 @@ export default async function RegisterPage(props: { params: Promise<{ lang: stri
             </div>
 
             <Reveal delay={0.18}>
-              <div className="mt-8 border border-[#FDB715]/40 bg-[#FDB715]/10 p-6 text-[#041020]/80">
-                {dict.register.statusBox}
+              <div className="mt-12 relative overflow-hidden rounded-3xl border border-[#2654A4]/10 bg-gradient-to-br from-white to-[#FDFBF7] p-8 shadow-[0_20px_60px_-15px_rgba(38,84,164,0.05)] backdrop-blur-xl">
+                <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[#FDB715]/10 blur-3xl" />
+                <div className="absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-[#2654A4]/10 blur-3xl" />
+                
+                <div className="relative flex flex-col items-center text-center sm:flex-row sm:text-left gap-6">
+                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#2654A4] to-[#38BBCA] shadow-lg">
+                    <svg className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-[#2654A4] mb-1">Pendaftaran Resmi Dibuka</h4>
+                    <p className="text-[#041020]/70 leading-relaxed font-medium">
+                      {dict.register.statusBox}
+                    </p>
+                  </div>
+                </div>
               </div>
             </Reveal>
           </div>

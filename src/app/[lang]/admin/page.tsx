@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import * as XLSX from "xlsx";
-import { Download, Lock, Users, LogOut, Eye, EyeOff } from "lucide-react";
+import { Download, Lock, Users, LogOut, Eye, EyeOff, Store, User, Trophy, Trash2 } from "lucide-react";
 
 export default function AdminDashboard() {
   const [password, setPassword] = useState("");
@@ -11,6 +11,7 @@ export default function AdminDashboard() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [visitors, setVisitors] = useState<any[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   // Simple session persistence using sessionStorage
   useEffect(() => {
@@ -59,19 +60,39 @@ export default function AdminDashboard() {
     sessionStorage.removeItem("admin_password");
   };
 
+  const handleDeleteVisitor = async (id: string) => {
+    if (!window.confirm("Apakah Anda yakin ingin menghapus data ini?")) return;
+
+    try {
+      const res = await fetch("/festivalcisadane/api/admin/visitors", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${sessionStorage.getItem("admin_password")}`,
+        },
+        body: JSON.stringify({ id }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Gagal menghapus data");
+      }
+
+      setVisitors((prev) => prev.filter((v) => v.id !== id));
+    } catch (err: any) {
+      alert(err.message || "Terjadi kesalahan saat menghapus data.");
+    }
+  };
+
   const handleExportExcel = () => {
     if (visitors.length === 0) return;
 
-    // Prepare data for Excel
     const dataForExport = visitors.map((v, i) => ({
       No: i + 1,
       "Nama Lengkap": v.full_name,
       Email: v.email,
       "Nomor HP": v.phone,
-      "Tanggal Daftar": new Date(v.created_at).toLocaleString("id-ID", {
-        dateStyle: "medium",
-        timeStyle: "short",
-      }),
+      "Kategori": v.visitor_type === "booth" ? "Kunjungan Booth" : "Pengunjung Umum",
+      "Nama Booth": v.booth_name || "-",
     }));
 
     // Create a workbook and a worksheet
@@ -85,7 +106,8 @@ export default function AdminDashboard() {
       { wch: 30 }, // Nama
       { wch: 35 }, // Email
       { wch: 20 }, // Phone
-      { wch: 25 }, // Tanggal
+      { wch: 20 }, // Kategori
+      { wch: 30 }, // Booth
     ];
 
     // Download the file
@@ -173,6 +195,69 @@ export default function AdminDashboard() {
 
       {/* Content */}
       <div className="mx-auto mt-10 max-w-6xl px-6">
+        
+        {/* Metric Cards */}
+        <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          {/* Total Registrasi */}
+          <div className="rounded-2xl border border-[#2654A4]/10 bg-white p-6 shadow-sm">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#2654A4]/10 text-[#2654A4]">
+              <Users size={24} />
+            </div>
+            <p className="text-sm font-medium text-[#041020]/60">Total Registrasi</p>
+            <h3 className="mt-1 text-3xl font-black text-[#041020]">{visitors.length}</h3>
+          </div>
+
+          {/* Kategori Breakdown */}
+          <div className="rounded-2xl border border-[#2654A4]/10 bg-white p-6 shadow-sm">
+            <div className="mb-4 flex gap-2">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500/10 text-blue-500">
+                <User size={24} />
+              </div>
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-500/10 text-green-500">
+                <Store size={24} />
+              </div>
+            </div>
+            <p className="text-sm font-medium text-[#041020]/60">Umum vs Booth</p>
+            <div className="mt-1 flex items-baseline gap-2">
+              <h3 className="text-3xl font-black text-[#041020]">
+                {visitors.filter(v => v.visitor_type !== 'booth').length}
+              </h3>
+              <span className="text-[#041020]/40">/</span>
+              <h3 className="text-3xl font-black text-[#041020]">
+                {visitors.filter(v => v.visitor_type === 'booth').length}
+              </h3>
+            </div>
+          </div>
+
+          {/* Top Booth */}
+          <div className="rounded-2xl border border-[#2654A4]/10 bg-white p-6 shadow-sm">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#FDB715]/20 text-[#ECA705]">
+              <Trophy size={24} />
+            </div>
+            <p className="text-sm font-medium text-[#041020]/60">Top Booth</p>
+            <div className="mt-2 space-y-1">
+              {(() => {
+                const topBooths = Object.entries(
+                  visitors
+                    .filter(v => v.visitor_type === 'booth' && v.booth_name)
+                    .reduce((acc, v) => {
+                      acc[v.booth_name] = (acc[v.booth_name] || 0) + 1;
+                      return acc;
+                    }, {} as Record<string, number>)
+                ).sort((a, b) => b[1] - a[1]).slice(0, 3);
+
+                if (topBooths.length === 0) return <p className="text-sm text-[#041020]/40">-</p>;
+                return topBooths.map(([name, count], idx) => (
+                  <div key={name} className="flex justify-between items-center text-sm">
+                    <span className="truncate pr-2 font-medium text-[#041020]">{idx + 1}. {name}</span>
+                    <span className="font-bold text-[#2654A4] bg-[#2654A4]/10 px-2 py-0.5 rounded-full text-xs">{count}</span>
+                  </div>
+                ));
+              })()}
+            </div>
+          </div>
+        </div>
+
         <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 className="text-2xl font-black leading-tight text-[#041020]">
@@ -183,14 +268,23 @@ export default function AdminDashboard() {
             </p>
           </div>
 
-          <button
-            onClick={handleExportExcel}
-            disabled={visitors.length === 0}
-            className="flex items-center justify-center gap-2 rounded-xl bg-[#FDB715] px-6 py-3 font-bold text-[#041020] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#ECA705] hover:shadow-md disabled:opacity-50 disabled:hover:translate-y-0"
-          >
-            <Download size={18} />
-            Download Excel
-          </button>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <input
+              type="text"
+              placeholder="Cari nama, email, hp..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="rounded-xl border border-[#2654A4]/20 bg-white px-4 py-2.5 text-sm text-[#041020] placeholder:text-[#041020]/40 focus:border-[#FDB715] focus:outline-none focus:ring-2 focus:ring-[#FDB715]/50 min-w-[250px]"
+            />
+            <button
+              onClick={handleExportExcel}
+              disabled={visitors.length === 0}
+              className="flex items-center justify-center gap-2 rounded-xl bg-[#FDB715] px-6 py-2.5 font-bold text-[#041020] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#ECA705] hover:shadow-md disabled:opacity-50 disabled:hover:translate-y-0"
+            >
+              <Download size={18} />
+              Download Excel
+            </button>
+          </div>
         </div>
 
         {/* Table Container */}
@@ -201,38 +295,78 @@ export default function AdminDashboard() {
                 <tr>
                   <th className="px-6 py-4 font-black">No</th>
                   <th className="px-6 py-4 font-black">Nama Lengkap</th>
+                  <th className="px-6 py-4 font-black">Kategori</th>
+                  <th className="px-6 py-4 font-black">Nama Booth</th>
                   <th className="px-6 py-4 font-black">Email</th>
-                  <th className="px-6 py-4 font-black">Nomor HP</th>
-                  <th className="px-6 py-4 font-black">Tanggal Daftar</th>
+                  <th className="px-6 py-4 font-black">No HP</th>
+                  <th className="px-6 py-4 font-black text-right">Aksi</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#2654A4]/10">
                 {visitors.length === 0 ? (
                   <tr>
-                    <td colSpan={5} className="px-6 py-10 text-center text-gray-500">
+                    <td colSpan={6} className="px-6 py-10 text-center text-gray-500">
                       Belum ada pendaftar.
                     </td>
                   </tr>
                 ) : (
-                  visitors.map((v, i) => (
-                    <tr
-                      key={v.id}
-                      className="transition-colors hover:bg-[#FDFBF7]"
-                    >
-                      <td className="px-6 py-4 font-medium">{i + 1}</td>
-                      <td className="px-6 py-4 font-semibold text-[#041020]">
-                        {v.full_name}
-                      </td>
-                      <td className="px-6 py-4 text-[#041020]/80">{v.email}</td>
-                      <td className="px-6 py-4 text-[#041020]/80">{v.phone}</td>
-                      <td className="px-6 py-4 text-[#041020]/70">
-                        {new Date(v.created_at).toLocaleString("id-ID", {
-                          dateStyle: "medium",
-                          timeStyle: "short",
-                        })}
-                      </td>
-                    </tr>
-                  ))
+                  (() => {
+                    const filteredVisitors = visitors.filter(v => 
+                      v.full_name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                      v.email.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                      v.phone.includes(searchTerm) || 
+                      (v.booth_name && v.booth_name.toLowerCase().includes(searchTerm.toLowerCase()))
+                    );
+
+                    if (filteredVisitors.length === 0) {
+                      return (
+                        <tr>
+                          <td colSpan={6} className="px-6 py-10 text-center text-gray-500">
+                            Pendaftar tidak ditemukan.
+                          </td>
+                        </tr>
+                      );
+                    }
+
+                    return filteredVisitors.map((v, i) => (
+                      <tr
+                        key={v.id}
+                        className="transition-colors hover:bg-[#FDFBF7]"
+                      >
+                        <td className="px-6 py-4 font-medium">{i + 1}</td>
+                        <td className="px-6 py-4 font-semibold text-[#041020]">
+                          {v.full_name}
+                        </td>
+                        <td className="px-6 py-4">
+                          <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium ${
+                            v.visitor_type === 'booth' 
+                              ? 'bg-green-50 text-green-700 ring-1 ring-inset ring-green-600/20' 
+                              : 'bg-blue-50 text-blue-700 ring-1 ring-inset ring-blue-700/10'
+                          }`}>
+                            {v.visitor_type === 'booth' ? 'Booth' : 'Umum'}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-[#041020]/80 font-medium">
+                          {v.visitor_type === 'booth' ? (v.booth_name || "-") : "-"}
+                        </td>
+                        <td className="px-6 py-4 text-[#041020]/80 font-medium">
+                          {v.email}
+                        </td>
+                        <td className="px-6 py-4 text-[#041020]/80 font-medium">
+                          {v.phone}
+                        </td>
+                        <td className="px-6 py-4 text-right">
+                          <button
+                            onClick={() => handleDeleteVisitor(v.id)}
+                            className="text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded-lg transition-colors"
+                            title="Hapus Data"
+                          >
+                            <Trash2 size={18} />
+                          </button>
+                        </td>
+                      </tr>
+                    ));
+                  })()
                 )}
               </tbody>
             </table>

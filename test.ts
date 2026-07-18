@@ -1,0 +1,1 @@
+import { supabase } from "./src/lib/supabase.ts"; supabase.from("visitors").insert({ full_name: "Test", email: "test3@example.com", phone: "123", domicile: "Test", visitor_type: "general" }).then(console.log);

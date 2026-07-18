@@ -126,7 +126,7 @@ export const en = {
     eyebrow: "Registration Information",
     title: "Choose Your Path\nto Join",
     description: "Discover how you can be a part of Festival Cisadane 2026. Please fill out the information below to register as a visitor.",
-    statusBox: "Visitor registration is now open. See you at the Cisadane riverbanks!",
+    statusBox: "Visitor registration is now open. See you at Cisadane Festival 2026!",
     form: {
       fullName: "Full Name",
       email: "Email Address",
