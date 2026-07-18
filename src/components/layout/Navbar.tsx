@@ -72,7 +72,7 @@ export default function Navbar({
         >
           <div className="relative h-12 w-[190px] md:h-14 md:w-[230px]">
             <Image
-              src={assetPath("/logo/logo.png")}
+              src={assetPath("/logo/logo.webp")}
               alt="Festival Cisadane 2026"
               fill
               priority

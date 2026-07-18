@@ -146,7 +146,7 @@ export default function HeroSection({
       <div
         className="absolute inset-0 bg-cover bg-center opacity-30"
         style={{
-          backgroundImage: `url('${assetPath("/images/highlights/cs1.jpg")}')`,
+          backgroundImage: `url('${assetPath("/images/highlights/cs1.webp")}')`,
         }}
       />
 
@@ -187,7 +187,7 @@ export default function HeroSection({
         <div className="flex w-full md:hidden">
           <div className="flex w-max min-w-full animate-marquee items-center gap-8">
             <Image
-              src={assetPath("/patnership/all-logo.png")}
+              src={assetPath("/patnership/all-logo.webp")}
               alt="Partnership Logos"
               width={1200}
               height={160}
@@ -195,7 +195,7 @@ export default function HeroSection({
               priority
             />
             <Image
-              src={assetPath("/patnership/all-logo.png")}
+              src={assetPath("/patnership/all-logo.webp")}
               alt="Partnership Logos"
               width={1200}
               height={160}
@@ -209,7 +209,7 @@ export default function HeroSection({
         <div className="hidden md:block w-full px-12">
           <div className="flex w-full items-center justify-center">
             <Image
-              src={assetPath("/patnership/all-logo.png")}
+              src={assetPath("/patnership/all-logo.webp")}
               alt="Partnership Logos"
               width={1200}
               height={160}
@@ -341,7 +341,7 @@ export default function HeroSection({
                 <div className="flex items-center gap-4">
                   <div className="relative h-14 w-14 shrink-0 drop-shadow-sm transition-transform group-hover/ken:scale-110">
                     <Image
-                      src={assetPath("/logo/ken.png")}
+                      src={assetPath("/logo/ken.webp")}
                       alt="Karisma Event Nusantara"
                       fill
                       className="object-contain"

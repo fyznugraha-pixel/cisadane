@@ -107,7 +107,7 @@ export default function TactlinkSupportSection() {
               <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
                 <div className="flex h-20 w-20 shrink-0 items-center justify-center bg-white p-3 shadow-hard rounded-2xl sm:h-24 sm:w-24 border border-[#2654A4]/10">
                   <Image
-                    src={assetPath("/patnership/tactlink.png")}
+                    src={assetPath("/patnership/tactlink.webp")}
                     alt="Tactlink Logo"
                     width={180}
                     height={180}

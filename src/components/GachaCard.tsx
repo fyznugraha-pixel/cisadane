@@ -91,7 +91,7 @@ export function GachaCardBack({
 
         <div className="relative w-2/5 aspect-square flex items-center justify-center">
           <img
-            src={assetPath("/logo/logo.png")}
+            src={assetPath("/logo/logo.webp")}
             alt="Logo Festival Cisadane"
             className="w-full h-full object-contain drop-shadow-sm"
             loading="lazy"

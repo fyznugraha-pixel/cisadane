@@ -40,37 +40,37 @@ export const en = {
       {
         title: "Dragon Boat Racing",
         description: "Watch adrenaline-pumping traditional rowing competitions. Top teams from Makassar, Salatiga, Bone, and Bogor will battle for the championship on the river course.",
-        image: "/images/highlights/cs2.jpg",
+        image: "/images/highlights/cs2.webp",
         accent: "red" as const,
       },
       {
         title: "Floating Stage",
         description: "Enjoy nighttime art and music performances on a 15x20 meter floating stage, fully equipped with spectacular lighting.",
-        image: "/images/highlights/cs6.jpg",
+        image: "/images/highlights/cs6.webp",
         accent: "teal" as const,
       },
       {
         title: "Barongsai & Cultural Performances",
         description: "Appreciate Tangerang's multicultural wealth through dynamic Barongsai (Lion Dance) and various cross-cultural art forms.",
-        image: "/images/highlights/cs9.jpg",
+        image: "/images/highlights/cs9.webp",
         accent: "gold" as const,
       },
       {
         title: "Creative Dance & Traditional Choreography",
         description: "Experience the massive visual choreography of the Tifo Reveal and stunning creative dances that will captivate thousands of attendees.",
-        image: "/images/highlights/cs7.jpg",
+        image: "/images/highlights/cs7.webp",
         accent: "orange" as const,
       },
       {
         title: "Night Stage (Concert)",
         description: "End your day by singing along with your favorite musicians and bands across multiple genres on the festival's main stage.",
-        image: "/images/highlights/cs5.jpg",
+        image: "/images/highlights/cs5.webp",
         accent: "gold" as const,
       },
       {
         title: "Opening Ceremony",
         description: "A grand opening ceremony featuring acrobatic Water Flying Jet Dance and 3D Projection Mapping visuals directly on the water's surface.",
-        image: "/images/highlights/cs1.jpg",
+        image: "/images/highlights/cs1.webp",
         accent: "red" as const,
       },
     ]
@@ -82,20 +82,20 @@ export const en = {
     previewPrefix: "Lineup",
     tapToReveal: "Tap to Reveal",
     talent: [
-      { name: "Feel Koplo", image: "/artis/feel-koplo.jpeg", tier: "headliner", imagePosition: "center" },
-      { name: "BJB Band", image: "/artis/bjb.png", tier: "supporting", imagePosition: "center 35%" },
-      { name: "D'Korp", image: "/artis/d korpp.png", tier: "supporting", imagePosition: "center 30%" },
-      { name: "Screaming Hedgehog", image: "/artis/SCREAMING HEDGEHOG.jpg", tier: "supporting", imagePosition: "center" },
-      { name: "Om Abidin", image: "/artis/abidin.png", tier: "supporting", imagePosition: "center" },
-      { name: "Go Tunes", image: "/artis/gotunes.jpg", tier: "supporting", imagePosition: "center" },
-      { name: "Pasmatik", image: "/artis/pasmatik.jpg", tier: "supporting", imagePosition: "center" },
-      { name: "Rico Ceper", image: "/artis/riko.jpg", tier: "supporting", imagePosition: "center 20%" },
-      { name: "Samsaka", image: "/artis/samsaka.jpg", tier: "supporting", imagePosition: "center" },
-      { name: "Sikoe Band", image: "/artis/sikoe band.png", tier: "supporting", imagePosition: "center" },
-      { name: "Start Koplo", image: "/artis/start koplo.png", tier: "supporting", imagePosition: "center 70%" },
-      { name: "The Mora", image: "/artis/the mora.png", tier: "supporting", imagePosition: "center" },
-      { name: "VOC", image: "/artis/VOC.png", tier: "supporting", imagePosition: "center" },
-      { name: "Zziepro'ss", image: "/artis/zziepro.jpg", tier: "supporting", imagePosition: "center" },
+      { name: "Feel Koplo", image: "/artis/feel-koplo.webp", tier: "headliner", imagePosition: "center" },
+      { name: "BJB Band", image: "/artis/bjb.webp", tier: "supporting", imagePosition: "center 35%" },
+      { name: "D'Korp", image: "/artis/d korpp.webp", tier: "supporting", imagePosition: "center 30%" },
+      { name: "Screaming Hedgehog", image: "/artis/SCREAMING HEDGEHOG.webp", tier: "supporting", imagePosition: "center" },
+      { name: "Om Abidin", image: "/artis/abidin.webp", tier: "supporting", imagePosition: "center" },
+      { name: "Go Tunes", image: "/artis/gotunes.webp", tier: "supporting", imagePosition: "center" },
+      { name: "Pasmatik", image: "/artis/pasmatik.webp", tier: "supporting", imagePosition: "center" },
+      { name: "Rico Ceper", image: "/artis/riko.webp", tier: "supporting", imagePosition: "center 20%" },
+      { name: "Samsaka", image: "/artis/samsaka.webp", tier: "supporting", imagePosition: "center" },
+      { name: "Sikoe Band", image: "/artis/sikoe band.webp", tier: "supporting", imagePosition: "center" },
+      { name: "Start Koplo", image: "/artis/start koplo.webp", tier: "supporting", imagePosition: "center 70%" },
+      { name: "The Mora", image: "/artis/the mora.webp", tier: "supporting", imagePosition: "center" },
+      { name: "VOC", image: "/artis/VOC.webp", tier: "supporting", imagePosition: "center" },
+      { name: "Zziepro'ss", image: "/artis/zziepro.webp", tier: "supporting", imagePosition: "center" },
     ]
   },
   whyVisit: {
@@ -168,16 +168,16 @@ export const en = {
     title: "Feel The Energy\nBefore You Arrive",
     description: "Thousands of steps along the Cisadane riverbanks, the pounding of dragon boat drums, stage lights reflecting on the river's surface, and the spirit of togetherness that grows every night. This is the atmosphere that awaits you at Festival Cisadane.",
     photos: [
-      { src: "/images/highlights/cs1.jpg", caption: "A joyous opening ceremony, marking the beginning of Tangerang's grandest river heritage celebration." },
-      { src: "/images/highlights/cs2.jpg", caption: "A display of agility and communal fighting spirit in the legendary dragon boat race." },
-      { src: "/images/highlights/cs3.jpg", caption: "Slicing through the Cisadane currents, keeping ancestral traditions alive and flowing." },
-      { src: "/images/highlights/cs4.jpg", caption: "A space for dialogue and idea exchange, empowering local communities through digital literacy." },
-      { src: "/images/highlights/cs5.jpg", caption: "The vibrant night stage appreciating the works and dedication of the city's finest talents." },
-      { src: "/images/highlights/cs6.jpg", caption: "The inaugural moments upon the floating stage, illuminated by dazzling lights and city pride." },
-      { src: "/images/highlights/cs7.jpg", caption: "The harmony of traditional dance movements reflecting beautifully under laser lights on the water's surface." },
-      { src: "/images/highlights/cs8.jpg", caption: "A sea of people immersed in the euphoria of music and the energy of togetherness by the riverbanks." },
-      { src: "/images/highlights/cs9.jpg", caption: "The energetic leaps of the Lion Dance, a powerful symbol of multicultural convergence in the heart of Tangerang." },
-      { src: "/images/highlights/cs10.jpg", caption: "The warmth of greetings and handshakes that tightly weave the brotherhood between citizens and leaders." },
+      { src: "/images/highlights/cs1.webp", caption: "A joyous opening ceremony, marking the beginning of Tangerang's grandest river heritage celebration." },
+      { src: "/images/highlights/cs2.webp", caption: "A display of agility and communal fighting spirit in the legendary dragon boat race." },
+      { src: "/images/highlights/cs3.webp", caption: "Slicing through the Cisadane currents, keeping ancestral traditions alive and flowing." },
+      { src: "/images/highlights/cs4.webp", caption: "A space for dialogue and idea exchange, empowering local communities through digital literacy." },
+      { src: "/images/highlights/cs5.webp", caption: "The vibrant night stage appreciating the works and dedication of the city's finest talents." },
+      { src: "/images/highlights/cs6.webp", caption: "The inaugural moments upon the floating stage, illuminated by dazzling lights and city pride." },
+      { src: "/images/highlights/cs7.webp", caption: "The harmony of traditional dance movements reflecting beautifully under laser lights on the water's surface." },
+      { src: "/images/highlights/cs8.webp", caption: "A sea of people immersed in the euphoria of music and the energy of togetherness by the riverbanks." },
+      { src: "/images/highlights/cs9.webp", caption: "The energetic leaps of the Lion Dance, a powerful symbol of multicultural convergence in the heart of Tangerang." },
+      { src: "/images/highlights/cs10.webp", caption: "The warmth of greetings and handshakes that tightly weave the brotherhood between citizens and leaders." },
     ]
   },
   footer: {
@@ -277,22 +277,22 @@ export const en = {
       {
         title: "Jalan Benteng",
         description: "The name Jalan Benteng did not appear without reason. Benteng Tangerang was the main VOC military post in Tangerang, located on the banks of the Tjisadane (Cisadane) River, marking the political border between the VOC territory in Batavia and the Banten Sultanate. From this fort, the area became known as Benteng, and the name endures as the identity of Tangerang society today.",
-        image: "/images/history/history_1.jpeg"
+        image: "/images/history/history_1.webp"
       },
       {
         title: "Benteng Makassar",
         description: "Despite the name \"Makassar\", the Benteng Makassar area does not originate from the city of Makassar in Sulawesi. VOC troops consisting of Bugis-Makassar forces under the ally Arung Palakka helped build this fort, living in garrison camps around the post and forming the toponym of Kampung Benteng Makassar today. The design of Benteng Tangerang is also suspected to adopt Fort Rotterdam, a VOC fort in Makassar.",
-        image: "/images/history/history_3.jpeg"
+        image: "/images/history/history_3.webp"
       },
       {
         title: "Traces of the Dutch Fort",
         description: "In the Jalan Benteng Makassar area, there is a replica of a fort and cannons built to commemorate colonial defense history. The original location of this fort was in the center of present-day Tangerang city on Jalan Raya Pantura-Daan Mogot. This fort bore silent witness to major incidents, including the VOC-Banten war (1680-1684), the Chinese Massacre (1740), and the Kiyai Tapa rebellion (1750-1751).",
-        image: "/images/history/history_4.jpeg"
+        image: "/images/history/history_4.webp"
       },
       {
         title: "The Peh Cun Tradition",
         description: "Peh Cun or the Duan Wu Jie celebration is a summer festival of Chinese tradition. The highlight of the Peh Cun tradition is the decorated boat race on the Cisadane River. Although this festival aims to commemorate ancestors, its implementation involves many people and is not limited to citizens of Chinese descent, but becomes a joint celebration with the citizens of Tangerang and its surroundings.",
-        image: "/images/history/history_2.jpeg"
+        image: "/images/history/history_2.webp"
       }
     ]
   }

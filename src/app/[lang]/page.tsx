@@ -150,9 +150,9 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
                 const rarity: "common" | "rare" | "epic" | "legendary" = talentItem.rarity ?? "rare";
 
                 return (
-                  <ParallaxSection
+                  <Reveal
                     key={talentItem.name}
-                    speed={index % 2 === 0 ? 0.3 : 0.6}
+                    delay={(index % 4) * 0.1}
                     className="w-[calc(50%-8px)] md:w-[calc(33.333%-11px)] lg:w-[calc(25%-12px)]"
                   >
                     <FlipCard
@@ -185,7 +185,7 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
                         </GachaCardFront>
                       }
                     />
-                  </ParallaxSection>
+                  </Reveal>
                 );
               })}
             </div>

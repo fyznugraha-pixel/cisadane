@@ -6,7 +6,7 @@ const MAP_CENTER: [number, number] = [-6.173000, 106.628400];
 
 // CartoDB Voyager for a colored, vibrant, yet still elegant look
 function cartoVoyager(x: number, y: number, z: number, dpr?: number) {
-  return `https://cartodb-basemaps-a.global.ssl.fastly.net/rastertiles/voyager/${z}/${x}/${y}${dpr && dpr >= 2 ? '@2x' : ''}.png`;
+  return `https://cartodb-basemaps-a.global.ssl.fastly.net/rastertiles/voyager/${z}/${x}/${y}${dpr && dpr >= 2 ? '@2x' : ''}.webp`;
 }
 
 export default function MapWrapper() {

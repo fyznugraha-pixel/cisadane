@@ -15,19 +15,19 @@ export default function SmartInnovationsSection({ dict }: { dict: Dictionary }) 
   
   const visualAssets = [
     { 
-      image: "/smart-green/penanaman_pohon.jpg",
+      image: "/smart-green/penanaman_pohon.webp",
       icon: Leaf,
       iconColor: "text-green-600",
       iconBg: "bg-green-100"
     },
     { 
-      image: "/smart-green/cctv_crowd.png",
+      image: "/smart-green/cctv_crowd.webp",
       icon: Camera,
       iconColor: "text-blue-600",
       iconBg: "bg-blue-100"
     },
     { 
-      image: "/smart-green/Waste-Management.jpg",
+      image: "/smart-green/Waste-Management.webp",
       icon: Recycle,
       iconColor: "text-green-600",
       iconBg: "bg-green-100"
@@ -78,7 +78,7 @@ export default function SmartInnovationsSection({ dict }: { dict: Dictionary }) 
                               <CheckCircle2 size={16} className="text-green-600" />
                             ) : idx === 0 ? (
                               <Image 
-                                src={assetPath("/logo/qris.png")} 
+                                src={assetPath("/logo/qris.webp")} 
                                 alt="QRIS" 
                                 width={48} 
                                 height={20} 

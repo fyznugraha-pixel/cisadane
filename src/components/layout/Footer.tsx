@@ -32,7 +32,7 @@ export default function Footer({ dict }: { dict: Dictionary }) {
           <div className="max-w-md">
             <div className="relative h-14 w-[240px] md:h-16 md:w-[280px]">
               <Image
-                src={assetPath("/logo/logo.png")}
+                src={assetPath("/logo/logo.webp")}
                 alt="Festival Cisadane 2026 Logo"
                 fill
                 sizes="(max-width: 768px) 240px, 280px"
