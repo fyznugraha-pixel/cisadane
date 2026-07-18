@@ -12,6 +12,8 @@ export default function AdminDashboard() {
   const [errorMsg, setErrorMsg] = useState("");
   const [visitors, setVisitors] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [filterDate, setFilterDate] = useState("");
+  const [filterBooth, setFilterBooth] = useState("");
   const [visitorToDelete, setVisitorToDelete] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -278,13 +280,44 @@ export default function AdminDashboard() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap sm:justify-end">
+            <select
+              value={filterDate}
+              onChange={(e) => setFilterDate(e.target.value)}
+              className="rounded-xl border border-[#2654A4]/20 bg-white px-4 py-2.5 text-sm text-[#041020] focus:border-[#FDB715] focus:outline-none focus:ring-2 focus:ring-[#FDB715]/50"
+            >
+              <option value="">Semua Tanggal</option>
+              {Array.from(new Set(visitors.map(v => {
+                const d = new Date(v.created_at);
+                const wib = new Date(d.getTime() + (7 * 60 * 60 * 1000));
+                return wib.toISOString().split('T')[0];
+              }))).sort((a, b) => (b > a ? 1 : -1)).map(date => (
+                <option key={date} value={date}>
+                  {new Date(date).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
+                </option>
+              ))}
+            </select>
+
+            <select
+              value={filterBooth}
+              onChange={(e) => setFilterBooth(e.target.value)}
+              className="rounded-xl border border-[#2654A4]/20 bg-white px-4 py-2.5 text-sm text-[#041020] focus:border-[#FDB715] focus:outline-none focus:ring-2 focus:ring-[#FDB715]/50"
+            >
+              <option value="">Semua Kategori/Booth</option>
+              <option value="general">Pengunjung Umum (General)</option>
+              {Array.from(new Set(visitors.filter(v => v.visitor_type === 'booth' && v.booth_name).map(v => v.booth_name as string))).sort().map(booth => (
+                <option key={booth} value={booth}>
+                  Booth: {booth}
+                </option>
+              ))}
+            </select>
+
             <input
               type="text"
               placeholder="Cari nama, email, hp..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="rounded-xl border border-[#2654A4]/20 bg-white px-4 py-2.5 text-sm text-[#041020] placeholder:text-[#041020]/40 focus:border-[#FDB715] focus:outline-none focus:ring-2 focus:ring-[#FDB715]/50 min-w-[250px]"
+              className="rounded-xl border border-[#2654A4]/20 bg-white px-4 py-2.5 text-sm text-[#041020] placeholder:text-[#041020]/40 focus:border-[#FDB715] focus:outline-none focus:ring-2 focus:ring-[#FDB715]/50 min-w-[200px]"
             />
             <button
               onClick={handleExportExcel}
@@ -321,12 +354,29 @@ export default function AdminDashboard() {
                   </tr>
                 ) : (
                   (() => {
-                    const filteredVisitors = visitors.filter(v => 
-                      v.full_name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                      v.email.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                      v.phone.includes(searchTerm) || 
-                      (v.booth_name && v.booth_name.toLowerCase().includes(searchTerm.toLowerCase()))
-                    );
+                    const filteredVisitors = visitors.filter(v => {
+                      const matchesSearch = v.full_name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                                            v.email.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                                            v.phone.includes(searchTerm) || 
+                                            (v.booth_name && v.booth_name.toLowerCase().includes(searchTerm.toLowerCase()));
+                      
+                      let matchesBooth = true;
+                      if (filterBooth === "general") {
+                        matchesBooth = v.visitor_type === "general";
+                      } else if (filterBooth !== "") {
+                        matchesBooth = v.visitor_type === "booth" && v.booth_name === filterBooth;
+                      }
+
+                      let matchesDate = true;
+                      if (filterDate) {
+                        const d = new Date(v.created_at);
+                        const wib = new Date(d.getTime() + (7 * 60 * 60 * 1000));
+                        const vDate = wib.toISOString().split('T')[0];
+                        matchesDate = vDate === filterDate;
+                      }
+
+                      return matchesSearch && matchesBooth && matchesDate;
+                    });
 
                     if (filteredVisitors.length === 0) {
                       return (
