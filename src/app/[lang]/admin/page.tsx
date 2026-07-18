@@ -247,14 +247,14 @@ export default function AdminDashboard() {
             <p className="text-sm font-medium text-[#041020]/60">Top Booth</p>
             <div className="mt-2 space-y-1">
               {(() => {
-                const topBooths = Object.entries(
+                const topBooths = (Object.entries(
                   visitors
                     .filter(v => v.visitor_type === 'booth' && v.booth_name)
                     .reduce((acc, v) => {
                       acc[v.booth_name] = (acc[v.booth_name] || 0) + 1;
                       return acc;
                     }, {} as Record<string, number>)
-                ).sort((a, b) => b[1] - a[1]).slice(0, 3);
+                ) as [string, number][]).sort((a, b) => b[1] - a[1]).slice(0, 3);
 
                 if (topBooths.length === 0) return <p className="text-sm text-[#041020]/40">-</p>;
                 return topBooths.map(([name, count], idx) => (
