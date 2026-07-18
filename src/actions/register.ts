@@ -3,7 +3,7 @@
 import { supabase, supabaseAdmin } from "@/lib/supabase";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY?.replace(/\s/g, "") || "re_bZYnGuVG_PM4wCzcqfhwJv3tLSvM9rmHs");
+const resend = new Resend(process.env.RESEND_API_KEY?.replace(/\s/g, ""));
 
 export async function registerVisitor(formData: FormData) {
   try {
