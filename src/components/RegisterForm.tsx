@@ -77,56 +77,89 @@ export default function RegisterForm({ dict }: { dict: any }) {
 
   // SUCCESS SCREEN WITH QR CODE
   if (visitorData) {
+    const tickets = Array.isArray(visitorData) ? visitorData : [visitorData];
+
     return (
       <Reveal>
-        <div className="mx-auto max-w-md overflow-hidden rounded-[2.5rem] border border-[#2654A4]/10 bg-white p-8 text-center shadow-[0_20px_60px_-15px_rgba(38,84,164,0.1)] backdrop-blur-xl relative">
+        <div className="mx-auto max-w-3xl overflow-hidden rounded-[2.5rem] border border-[#2654A4]/10 bg-white/90 p-8 sm:p-10 text-center shadow-[0_20px_60px_-15px_rgba(38,84,164,0.1)] backdrop-blur-xl relative">
           <div className="relative mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-[#2654A4] to-[#38BBCA] shadow-xl">
             <div className="absolute inset-0 rounded-full bg-white opacity-20 animate-ping" />
             <Check className="h-10 w-10 text-white relative z-10" strokeWidth={3} />
           </div>
           
-          <h3 className="mb-2 text-2xl font-black text-[#2654A4] tracking-tight">{successMsg}</h3>
+          <h3 className="mb-2 text-2xl sm:text-3xl font-black text-[#2654A4] tracking-tight">{successMsg}</h3>
+          <p className="text-[#041020]/70 text-sm mb-8">
+            {tickets.length > 1 
+              ? `Anda memiliki ${tickets.length} tiket yang terdaftar pada email ini.`
+              : "Tunjukkan QR Code ini kepada panitia saat kedatangan. (Screenshot halaman ini)"
+            }
+          </p>
           
-          {visitorData.visitor_type === "booth" ? (
-            <>
-              <p className="text-[#041020]/70 text-sm mb-6">
-                Tunjukkan QR Code ini kepada panitia atau penjaga booth saat kedatangan. (Screenshot halaman ini)
-              </p>
-              
-              <div className="bg-[#FDFBF7] p-6 rounded-3xl border-2 dashed border-[#2654A4]/30 mb-6 flex flex-col items-center">
-                <div className="bg-white p-4 rounded-2xl shadow-sm mb-4">
-                  <QRCode value={visitorData.id} size={200} />
+          <div className={`grid gap-6 text-left ${tickets.length > 1 ? 'md:grid-cols-2' : 'max-w-md mx-auto'}`}>
+            {tickets.map((ticket, index) => (
+              <div key={ticket.id || index} className="flex flex-col bg-white border border-[#2654A4]/10 rounded-3xl p-6 shadow-sm relative overflow-hidden transition-all hover:shadow-md hover:border-[#2654A4]/30 group">
+                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[#38BBCA]/5 blur-2xl pointer-events-none group-hover:bg-[#38BBCA]/10 transition-colors" />
+                
+                {/* Header Ticket */}
+                <div className="flex items-center justify-between mb-4 border-b border-[#2654A4]/10 pb-4">
+                  <div className="flex items-center gap-2">
+                    <div className={`p-2 rounded-xl ${ticket.visitor_type === 'booth' ? 'bg-green-50 text-green-600' : 'bg-blue-50 text-blue-600'}`}>
+                      {ticket.visitor_type === 'booth' ? <Store size={18} /> : <User size={18} />}
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-[#041020]/50 uppercase tracking-wider">Kategori</p>
+                      <p className="font-bold text-[#041020] text-sm">
+                        {ticket.visitor_type === 'booth' ? 'Booth' : 'Umum'}
+                      </p>
+                    </div>
+                  </div>
+                  {ticket.visitor_type === 'booth' && ticket.booth_name && (
+                    <div className="text-right">
+                      <span className="inline-block bg-[#FDB715]/10 text-[#FDB715] px-3 py-1 rounded-full text-xs font-bold">
+                        {ticket.booth_name}
+                      </span>
+                    </div>
+                  )}
                 </div>
-                <p className="text-[#2654A4] font-mono font-bold text-sm tracking-wider">{visitorData.id}</p>
-              </div>
-            </>
-          ) : (
-            <div className="bg-[#FDFBF7] p-6 rounded-3xl border border-[#2654A4]/10 mb-6 mt-4">
-              <div className="flex items-center justify-center mb-4">
-                <div className="h-12 w-12 rounded-full bg-[#2654A4]/10 flex items-center justify-center">
-                  <Mail className="h-6 w-6 text-[#2654A4]" />
-                </div>
-              </div>
-              <p className="text-[#041020] font-medium mb-2">Pendaftaran Berhasil!</p>
-              <p className="text-[#041020]/70 text-sm">
-                Kami telah mengirimkan email konfirmasi ke <strong>{visitorData.email}</strong>. 
-                Silakan periksa kotak masuk (atau folder spam) Anda.
-              </p>
-            </div>
-          )}
 
-          <div className="bg-[#2654A4]/5 rounded-2xl p-4 text-left space-y-3 mb-6">
-            <div>
-              <p className="text-xs font-bold text-[#2654A4]/60 uppercase tracking-widest">Nama</p>
-              <p className="font-bold text-[#041020]">{visitorData.full_name}</p>
-            </div>
-            <div>
-              <p className="text-xs font-bold text-[#2654A4]/60 uppercase tracking-widest">Kategori</p>
-              <p className="font-bold text-[#041020]">
-                {visitorData.visitor_type === 'booth' ? 'Kunjungan Booth' : 'Pengunjung Umum'}
-                {visitorData.booth_name && ` - ${visitorData.booth_name}`}
-              </p>
-            </div>
+                {/* QR Code atau Pesan Email */}
+                <div className="flex-grow flex flex-col items-center justify-center mb-6">
+                  {ticket.visitor_type === "booth" ? (
+                    <div className="bg-[#FDFBF7] p-4 rounded-3xl border-2 dashed border-[#2654A4]/20 w-full flex flex-col items-center group-hover:border-[#2654A4]/40 transition-colors">
+                      <div className="bg-white p-3 rounded-2xl shadow-sm mb-3">
+                        <QRCode value={ticket.id} size={140} />
+                      </div>
+                      <p className="text-[#2654A4] font-mono font-bold text-xs tracking-wider">{ticket.id.split('-')[0]}</p>
+                    </div>
+                  ) : (
+                    <div className="bg-[#FDFBF7] p-6 rounded-3xl border border-[#2654A4]/5 w-full flex flex-col items-center text-center">
+                      <div className="h-12 w-12 rounded-full bg-[#2654A4]/10 flex items-center justify-center mb-3">
+                        <Mail className="h-6 w-6 text-[#2654A4]" />
+                      </div>
+                      <p className="text-[#041020]/70 text-xs leading-relaxed">
+                        Email konfirmasi telah dikirimkan ke kotak masuk Anda.
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Footer Ticket */}
+                <div className="bg-[#FDFBF7] rounded-2xl p-4 text-left space-y-2 mt-auto">
+                  <div className="flex justify-between items-end">
+                    <div>
+                      <p className="text-[10px] font-bold text-[#2654A4]/60 uppercase tracking-widest">Nama</p>
+                      <p className="font-bold text-[#041020] text-sm line-clamp-1">{ticket.full_name}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-[10px] font-bold text-[#2654A4]/60 uppercase tracking-widest">Tanggal</p>
+                      <p className="font-bold text-[#041020] text-xs">
+                        {new Date(ticket.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'short' })}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
 
           <button
@@ -134,8 +167,9 @@ export default function RegisterForm({ dict }: { dict: any }) {
               setVisitorData(null);
               setMode("register");
             }}
-            className="text-sm font-bold text-[#2654A4] hover:text-[#38BBCA] transition-colors"
+            className="mt-8 flex items-center justify-center gap-2 mx-auto text-sm font-bold text-[#2654A4] hover:text-[#38BBCA] transition-colors"
           >
+            <ArrowLeft size={16} />
             Kembali ke Beranda
           </button>
         </div>

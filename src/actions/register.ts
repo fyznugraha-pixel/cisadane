@@ -18,19 +18,44 @@ export async function registerVisitor(formData: FormData) {
       return { success: false, error: "Email wajib diisi" };
     }
 
-    // Cek apakah email sudah terdaftar
-    const { data: existingVisitor } = await supabaseAdmin
+    // Ambil semua riwayat pendaftaran untuk email ini
+    const { data: existingVisitors } = await supabaseAdmin
       .from("visitors")
       .select("*")
-      .eq("email", email)
-      .single();
+      .eq("email", email);
 
-    if (existingVisitor) {
-      return {
-        success: true,
-        message: "Email Anda sudah terdaftar! Berikut adalah tiket Anda.",
-        data: existingVisitor
-      };
+    if (existingVisitors && existingVisitors.length > 0) {
+      if (visitorType === "general") {
+        const existingGeneral = existingVisitors.find((v: any) => v.visitor_type === "general");
+        if (existingGeneral) {
+          return {
+            success: true,
+            message: "Email Anda sudah terdaftar sebagai Pengunjung Umum! Berikut adalah tiket Anda.",
+            data: existingGeneral
+          };
+        }
+      } else if (visitorType === "booth") {
+        const now = new Date();
+        const wibDate = new Date(now.getTime() + (7 * 60 * 60 * 1000));
+        const todayStr = wibDate.toISOString().split('T')[0];
+
+        const alreadyRegisteredToday = existingVisitors.find((v: any) => {
+          if (v.visitor_type === "booth" && v.booth_name === boothName) {
+            const vDate = new Date(v.created_at);
+            const vWibDate = new Date(vDate.getTime() + (7 * 60 * 60 * 1000));
+            const vTodayStr = vWibDate.toISOString().split('T')[0];
+            return vTodayStr === todayStr;
+          }
+          return false;
+        });
+
+        if (alreadyRegisteredToday) {
+          return {
+            success: false,
+            error: `Anda sudah mendaftar di booth ${boothName} hari ini. Silakan coba lagi besok atau daftar di booth lain.`
+          };
+        }
+      }
     }
 
     if (!fullName || !phone || !domicile) {
@@ -99,9 +124,13 @@ export async function findTicketByEmail(formData: FormData) {
     const email = formData.get("email") as string;
     if (!email) return { success: false, error: "Email wajib diisi" };
     
-    const { data, error } = await supabase.from("visitors").select("*").eq("email", email).single();
+    const { data, error } = await supabase
+      .from("visitors")
+      .select("*")
+      .eq("email", email)
+      .order("created_at", { ascending: false });
     
-    if (error || !data) {
+    if (error || !data || data.length === 0) {
        return { success: false, error: "Tiket dengan email tersebut tidak ditemukan." };
     }
     
