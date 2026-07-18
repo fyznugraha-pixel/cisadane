@@ -31,6 +31,7 @@ const accentMap: Record<"red" | "gold" | "teal" | "orange", string> = {
 
 import MediaPartnersSection from "@/components/sections/MediaPartnersSection";
 import ImpactSection from "@/components/sections/ImpactSection";
+import OrganizedBySection from "@/components/sections/OrganizedBySection";
 import HistorySection from "@/components/sections/HistorySection";
 
 export default async function Home(props: { params: Promise<{ lang: string }> }) {
@@ -297,6 +298,7 @@ export default async function Home(props: { params: Promise<{ lang: string }> })
 
         <PartnersSection />
         <MediaPartnersSection />
+        <OrganizedBySection />
 
         <TactlinkSupportSection />
 
