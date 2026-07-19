@@ -139,7 +139,7 @@ export default function PartnersSection() {
                   <div className="absolute top-0 right-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#2654A4] to-transparent z-10 pointer-events-none" />
 
                   <div 
-                    className="flex animate-marquee hover:[animation-play-state:paused] active:[animation-play-state:paused] whitespace-nowrap items-center gap-6 md:gap-8 py-4"
+                    className="flex animate-marquee-reverse hover:[animation-play-state:paused] active:[animation-play-state:paused] whitespace-nowrap items-center gap-6 md:gap-8 py-4"
                     style={{ animationDirection: 'normal', animationDuration: '60s' }}
                   >
                     {marqueeItems.map((collab, index) => (
