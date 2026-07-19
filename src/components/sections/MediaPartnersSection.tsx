@@ -34,6 +34,7 @@ const mediaPartners = [
   { name: "EventHubID", image: "/media-patner/eventhubid.webp" },
   { name: "Tangsel Partim", image: "/media-patner/tangsel-partim.webp" },
   { name: "WANI KONSERAN BARENG", image: "/media-patner/Wanikonseranbareng.webp" },
+  { name: "YRI", image: "/media-patner/Logo YRI.webp" },
 ];
 
 export default function MediaPartnersSection() {
