@@ -108,6 +108,7 @@ export const id: Dictionary = {
       { name: "Over Drive", image: "/artis/over drive.webp", tier: "supporting", imagePosition: "center" },
       { name: "Surfive", image: "/artis/surfive.webp", tier: "supporting", imagePosition: "center" },
       { name: "Univ Yatsi Madani", image: "/artis/UNIV YATSI MADANI.webp", tier: "supporting", imagePosition: "center" },
+      { name: "Koflow", image: "/artis/koflow.webp", tier: "supporting", imagePosition: "center" },
     ]
   },
   whyVisit: {
