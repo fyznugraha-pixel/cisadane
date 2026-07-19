@@ -72,15 +72,15 @@ export default function MediaPartnersSection() {
                 {marqueeItems.map((partner, index) => (
                   <div
                     key={index}
-                    className={`flex items-center justify-center ${partner.name === "YRI" ? "min-w-[200px] h-24" : "min-w-[160px] h-20"} px-6 bg-[#FDFBF7] rounded-2xl shadow-hard transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-hard-hover group/logo cursor-default`}
+                    className={`flex items-center justify-center ${partner.name === "YRI" ? "min-w-[280px] h-32" : "min-w-[160px] h-20"} px-6 bg-[#FDFBF7] rounded-2xl shadow-hard transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-hard-hover group/logo cursor-default`}
                   >
                     {partner.image ? (
-                      <div className={`relative ${partner.name === "YRI" ? "h-20 w-40" : "h-12 w-32"}`}>
+                      <div className={`relative ${partner.name === "YRI" ? "h-28 w-60" : "h-12 w-32"}`}>
                         <Image 
                           src={assetPath(partner.image)} 
                           alt={partner.name}
                           fill
-                          className={`object-contain transition-transform duration-300 group-hover/logo:scale-105 ${partner.name === "YRI" ? "scale-110" : ""}`} 
+                          className={`object-contain transition-transform duration-300 group-hover/logo:scale-105 ${partner.name === "YRI" ? "scale-125" : ""}`} 
                         />
                       </div>
                     ) : (
