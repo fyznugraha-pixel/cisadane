@@ -80,7 +80,7 @@ export default function MediaPartnersSection() {
                           src={assetPath(partner.image)} 
                           alt={partner.name}
                           fill
-                          className="object-contain transition-transform duration-300 group-hover/logo:scale-105" 
+                          className={`object-contain transition-transform duration-300 ${partner.name === "YRI" ? "scale-[1.7] group-hover/logo:scale-[1.8]" : "group-hover/logo:scale-105"}`} 
                         />
                       </div>
                     ) : (
