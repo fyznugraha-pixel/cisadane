@@ -35,6 +35,7 @@ const mediaPartners = [
   { name: "Tangsel Partim", image: "/media-patner/tangsel-partim.webp" },
   { name: "WANI KONSERAN BARENG", image: "/media-patner/Wanikonseranbareng.webp" },
   { name: "YRI", image: "/media-patner/Logo YRI.webp" },
+  { name: "Rumah BUMN", image: "/media-patner/rumahbumn.webp" },
 ];
 
 export default function MediaPartnersSection() {
