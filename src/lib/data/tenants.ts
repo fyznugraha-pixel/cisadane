@@ -7,8 +7,7 @@ export interface Tenant {
 const rawTenants: Tenant[] = [
   { id: "1", name: "Dinas Kebudayaan dan Pariwisata", type: "Custom Booth" },
   { id: "2", name: "Dinas Kebudayaan dan Pariwisata", type: "Custom Booth" },
-  { id: "3", name: "Sekretariat Dinas Kebudayaan dan Pariwisata", type: "Sarnavil Putih" },
-  { id: "4", name: "Sekretariat EO", type: "Sarnavil Putih" },
+
   { id: "5", name: "Dinas Kesehatan", type: "Custom Booth" },
   { id: "6", name: "Dinas Kesehatan", type: "Custom Booth" },
   { id: "7", name: "Dinas Sosial", type: "Sarnavil Putih" },
@@ -90,6 +89,7 @@ const rawTenants: Tenant[] = [
   { id: "93", name: "Extra Josss", type: "Space" },
   { id: "94", name: "BJB", type: "Sarnavil Putih" },
   { id: "95", name: "BJB", type: "Sarnavil Putih" },
+  { id: "96", name: "Almaz FriedChicken", type: "Sarnavil Putih" },
 ];
 
 export const tenants: Tenant[] = Array.from(
