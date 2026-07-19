@@ -28,15 +28,20 @@ export default function RegisterForm({ dict }: { dict: any }) {
     setErrorMsg("");
 
     const formData = new FormData(e.currentTarget);
-    const result = await registerVisitor(formData);
+    try {
+      const result = await registerVisitor(formData);
 
-    setIsLoading(false);
-
-    if (!result.success) {
-      setErrorMsg(result.error || "Terjadi kesalahan saat menyimpan data. Silakan coba lagi.");
-    } else {
-      setSuccessMsg(result.message || "Berhasil!");
-      setVisitorData(result.data);
+      if (!result.success) {
+        setErrorMsg(result.error || "Terjadi kesalahan saat menyimpan data. Silakan coba lagi.");
+      } else {
+        setSuccessMsg(result.message || "Berhasil!");
+        setVisitorData(result.data);
+      }
+    } catch (err) {
+      console.error(err);
+      setErrorMsg("Terjadi kesalahan pada server. Pastikan koneksi internet Anda stabil.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -46,15 +51,20 @@ export default function RegisterForm({ dict }: { dict: any }) {
     setErrorMsg("");
 
     const formData = new FormData(e.currentTarget);
-    const result = await findTicketByEmail(formData);
+    try {
+      const result = await findTicketByEmail(formData);
 
-    setIsLoading(false);
-
-    if (!result.success) {
-      setErrorMsg(result.error || "Tiket tidak ditemukan.");
-    } else {
-      setSuccessMsg(result.message || "Tiket ditemukan!");
-      setVisitorData(result.data);
+      if (!result.success) {
+        setErrorMsg(result.error || "Tiket tidak ditemukan.");
+      } else {
+        setSuccessMsg(result.message || "Tiket ditemukan!");
+        setVisitorData(result.data);
+      }
+    } catch (err) {
+      console.error(err);
+      setErrorMsg("Terjadi kesalahan pada server. Pastikan koneksi internet Anda stabil.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
