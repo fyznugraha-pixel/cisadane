@@ -81,7 +81,13 @@ export default function MediaPartnersSection() {
                           src={assetPath(partner.image)} 
                           alt={partner.name}
                           fill
-                          className={`object-contain transition-transform duration-300 ${partner.name === "YRI" ? "scale-[2.5] group-hover/logo:scale-[2.6]" : "group-hover/logo:scale-105"}`} 
+                          className={`object-contain transition-transform duration-300 ${
+                            partner.name === "YRI" 
+                              ? "scale-110 group-hover/logo:scale-125" 
+                              : partner.name === "Rumah BUMN"
+                                ? "scale-[2.2] group-hover/logo:scale-[2.3]"
+                                : "group-hover/logo:scale-105"
+                          }`} 
                         />
                       </div>
                     ) : (
