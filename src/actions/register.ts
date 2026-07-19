@@ -3,7 +3,8 @@
 import { supabase, supabaseAdmin } from "@/lib/supabase";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY?.replace(/\s/g, ""));
+const resendApiKey = process.env.RESEND_API_KEY?.replace(/\s/g, "");
+const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 export async function registerVisitor(formData: FormData) {
   try {
@@ -83,8 +84,9 @@ export async function registerVisitor(formData: FormData) {
     // Kirim email khusus untuk pengunjung umum
     if (visitorType === "general") {
       try {
-        await resend.emails.send({
-          from: "Festival Cisadane <onboarding@resend.dev>",
+        if (resend) {
+          await resend.emails.send({
+            from: "Festival Cisadane <onboarding@resend.dev>",
           to: email,
           subject: "Konfirmasi Registrasi - Festival Cisadane 2026",
           html: `
@@ -101,7 +103,10 @@ export async function registerVisitor(formData: FormData) {
               <p>Sampai jumpa di festival!</p>
             </div>
           `,
-        });
+          });
+        } else {
+          console.warn("Resend API key is missing. Skipping email confirmation.");
+        }
       } catch (emailErr) {
         console.error("Gagal mengirim email:", emailErr);
         // Jangan gagalkan registrasi hanya karena email gagal
