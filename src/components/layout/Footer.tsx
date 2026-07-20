@@ -63,17 +63,22 @@ export default function Footer({ dict }: { dict: Dictionary }) {
               {dict.site.tagline.split("Growing Courage").map((part, i, arr) => (
                 <span key={i}>
                   {part}
-                  {i < arr.length - 1 && <span className="text-[#EC3A24]">Growing Courage</span>}
+                  {i < arr.length - 1 && (
+                    <span className="text-[#EC3A24]">Growing Courage</span>
+                  )}
                 </span>
               ))}
             </h3>
-
           </div>
         </div>
 
         {/* Bottom Copyright */}
         <div className="mt-6 flex flex-col items-center justify-center border-t border-[#2654A4]/10 pt-8 text-center text-sm font-medium text-[#041020]/50 md:flex-row md:justify-between md:text-left">
           <p>{dict.footer.copyright}</p>
+
+          <p className="mt-2 md:mt-0">
+            Made by Fayiz Apriwansyah Nugraha
+          </p>
         </div>
       </div>
     </footer>

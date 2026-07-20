@@ -10,8 +10,6 @@ export async function GET(request: Request) {
   }
 
   try {
-    // We need to bypass RLS to read all visitors, so we try to use the Service Role Key if provided.
-    // Otherwise, we use the regular client (which will return empty array if RLS is on and blocks it).
     const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!;
     const adminSupabase = supabase; // Fallback to regular client
     
