@@ -2,11 +2,12 @@
 
 import { useState, useEffect } from "react";
 import Reveal from "@/components/Reveal";
-import { ChevronDown, Check, User, Mail, Phone, Hash, Loader2, AlertCircle, Store, Search, QrCode, ArrowLeft, Smartphone } from "lucide-react";
+import { ChevronDown, Check, User, Mail, Phone, Hash, Loader2, AlertCircle, Store, Search, QrCode, ArrowLeft, Smartphone, Download } from "lucide-react";
 import { registerVisitor, findTicketByEmail } from "@/actions/register";
 import { tenants } from "@/lib/data/tenants";
 import QRCode from "react-qr-code";
 import Image from "next/image";
+import html2canvas from "html2canvas";
 
 export default function RegisterForm({ dict, initialVisitorType = null }: { dict: any, initialVisitorType?: "general" | "booth" | "telkomsel" | null }) {
   const [mode, setMode] = useState<"register" | "search">("register");
@@ -44,6 +45,25 @@ export default function RegisterForm({ dict, initialVisitorType = null }: { dict
       setErrorMsg("Terjadi kesalahan pada server. Pastikan koneksi internet Anda stabil.");
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleDownloadTicket = async (ticketId: string) => {
+    const element = document.getElementById(`ticket-${ticketId}`);
+    if (!element) return;
+    
+    try {
+      const canvas = await html2canvas(element, {
+        scale: 2, // High resolution for printing/saving
+        backgroundColor: "#ffffff",
+      });
+      const dataUrl = canvas.toDataURL("image/png");
+      const link = document.createElement("a");
+      link.download = `E-Ticket-${ticketId.substring(0, 8)}.png`;
+      link.href = dataUrl;
+      link.click();
+    } catch (err) {
+      console.error("Failed to download ticket", err);
     }
   };
 
@@ -115,8 +135,10 @@ export default function RegisterForm({ dict, initialVisitorType = null }: { dict
           
           <div className={`grid gap-6 text-left ${tickets.length > 1 ? 'md:grid-cols-2' : 'max-w-md mx-auto'}`}>
             {tickets.map((ticket, index) => (
-              <div key={ticket.id || index} className={`flex flex-col bg-white border rounded-3xl p-6 shadow-sm relative overflow-hidden transition-all group ${isTelkomselTicket ? 'border-[#EC3A24]/10 hover:shadow-md hover:border-[#EC3A24]/30' : 'border-[#2654A4]/10 hover:shadow-md hover:border-[#2654A4]/30'}`}>
-                <div className={`absolute -right-10 -top-10 h-32 w-32 rounded-full blur-2xl pointer-events-none transition-colors ${isTelkomselTicket ? 'bg-[#EC3A24]/5 group-hover:bg-[#EC3A24]/10' : 'bg-[#38BBCA]/5 group-hover:bg-[#38BBCA]/10'}`} />
+              <div key={ticket.id || index} className="flex flex-col gap-3">
+                {/* The Ticket Itself */}
+                <div id={`ticket-${ticket.id}`} className={`flex flex-col bg-white border rounded-3xl p-6 shadow-sm relative overflow-hidden transition-all group ${isTelkomselTicket ? 'border-[#EC3A24]/10 hover:shadow-md hover:border-[#EC3A24]/30' : 'border-[#2654A4]/10 hover:shadow-md hover:border-[#2654A4]/30'}`}>
+                  <div className={`absolute -right-10 -top-10 h-32 w-32 rounded-full blur-2xl pointer-events-none transition-colors ${isTelkomselTicket ? 'bg-[#EC3A24]/5 group-hover:bg-[#EC3A24]/10' : 'bg-[#38BBCA]/5 group-hover:bg-[#38BBCA]/10'}`} />
                 
                 {/* Header Ticket */}
                 <div className={`flex items-center justify-between mb-4 border-b pb-4 ${isTelkomselTicket ? 'border-[#EC3A24]/10' : 'border-[#2654A4]/10'}`}>
@@ -165,6 +187,15 @@ export default function RegisterForm({ dict, initialVisitorType = null }: { dict
                     </div>
                   </div>
                 </div>
+                
+                {/* Download Button */}
+                <button
+                  onClick={() => handleDownloadTicket(ticket.id)}
+                  className={`w-full py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition-colors ${isTelkomselTicket ? 'bg-[#EC3A24]/10 text-[#EC3A24] hover:bg-[#EC3A24]/20' : 'bg-[#2654A4]/10 text-[#2654A4] hover:bg-[#2654A4]/20'}`}
+                >
+                  <Download size={18} />
+                  Download E-Ticket
+                </button>
               </div>
             ))}
           </div>
