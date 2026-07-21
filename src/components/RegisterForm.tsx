@@ -197,7 +197,7 @@ export default function RegisterForm({ dict }: { dict: any }) {
     <Reveal>
       <div className={`mx-auto overflow-hidden rounded-[2.5rem] border border-[#2654A4]/10 bg-white/80 shadow-[0_20px_60px_-15px_rgba(38,84,164,0.1)] backdrop-blur-xl transition-all duration-500 relative ${
         visitorType === "telkomsel" && mode === "register" && !visitorData 
-          ? "max-w-5xl" 
+          ? "w-full max-w-full" 
           : "max-w-4xl"
       }`}>
         {/* Subtle decorative glow */}
@@ -333,7 +333,7 @@ export default function RegisterForm({ dict }: { dict: any }) {
               
               {/* Poster Kiri untuk Telkomsel */}
               {visitorType === "telkomsel" && (
-                <div className="md:w-1/2 hidden md:flex flex-col rounded-3xl overflow-hidden border-2 border-[#EC3A24]/10 shadow-sm relative bg-[#FDFBF7]">
+                <div className="md:w-7/12 hidden md:flex flex-col rounded-3xl overflow-hidden border-2 border-[#EC3A24]/10 shadow-sm relative">
                   <Image 
                     src="/festivalcisadane/images/register/GIVE%20AWAY%20TELKOMSE.png" 
                     alt="Telkomsel Giveaway Poster" 
@@ -350,7 +350,7 @@ export default function RegisterForm({ dict }: { dict: any }) {
               )}
 
               {/* Kolom Kanan: Isi Form */}
-              <div className={`flex-1 space-y-7 ${visitorType === "telkomsel" ? "md:w-1/2 py-2" : ""}`}>
+              <div className={`flex-1 space-y-7 ${visitorType === "telkomsel" ? "md:w-5/12 py-2" : ""}`}>
               
               <div className="flex items-center justify-between mb-2">
                 <button
