@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Camera, CheckCircle2, XCircle, User, Store } from "lucide-react";
+import { Camera, CheckCircle2, XCircle, User, Store, Smartphone } from "lucide-react";
 import { Html5Qrcode } from "html5-qrcode";
 import { validateTicket } from "@/actions/validate";
 import Image from "next/image";
@@ -168,12 +168,18 @@ export default function ScannerPage() {
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-3 p-4 rounded-xl bg-[#FDFBF7] border border-[#2654A4]/5">
-                  <Store className="text-[#2654A4] w-5 h-5 flex-shrink-0" />
+                <div className={`flex items-center gap-3 p-4 rounded-xl border ${scanResult.data.visitor_type === 'telkomsel' ? 'bg-[#EC3A24]/5 border-[#EC3A24]/10' : 'bg-[#FDFBF7] border-[#2654A4]/5'}`}>
+                  {scanResult.data.visitor_type === 'telkomsel' ? (
+                    <Smartphone className="text-[#EC3A24] w-5 h-5 flex-shrink-0" />
+                  ) : scanResult.data.visitor_type === 'booth' ? (
+                    <Store className="text-[#2654A4] w-5 h-5 flex-shrink-0" />
+                  ) : (
+                    <User className="text-[#2654A4] w-5 h-5 flex-shrink-0" />
+                  )}
                   <div className="text-left">
                     <p className="text-xs text-[#041020]/50 font-medium">Kategori</p>
-                    <p className="font-bold text-[#041020]">
-                      {scanResult.data.visitor_type === 'booth' ? 'Kunjungan Booth' : 'Pengunjung Umum'}
+                    <p className={`font-bold ${scanResult.data.visitor_type === 'telkomsel' ? 'text-[#EC3A24]' : 'text-[#041020]'}`}>
+                      {scanResult.data.visitor_type === 'telkomsel' ? 'Telkomsel' : scanResult.data.visitor_type === 'booth' ? 'Kunjungan Booth' : 'Pengunjung Umum'}
                       {scanResult.data.booth_name ? ` - ${scanResult.data.booth_name}` : ''}
                     </p>
                   </div>
@@ -184,7 +190,7 @@ export default function ScannerPage() {
             <div className="p-6 pt-2">
               <button 
                 onClick={resetScanner}
-                className="w-full py-4 rounded-xl bg-[#2654A4] text-white font-black hover:bg-[#1c4285] transition-colors shadow-lg active:scale-95"
+                className={`w-full py-4 rounded-xl text-white font-black transition-colors shadow-lg active:scale-95 ${scanResult.data?.visitor_type === 'telkomsel' ? 'bg-[#EC3A24] hover:bg-[#d12a15]' : 'bg-[#2654A4] hover:bg-[#1c4285]'}`}
               >
                 Scan Tiket Berikutnya
               </button>

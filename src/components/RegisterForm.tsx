@@ -444,7 +444,7 @@ export default function RegisterForm({ dict, initialVisitorType = null }: { dict
                     <div className="p-5 rounded-2xl bg-[#EC3A24]/5 border border-[#EC3A24]/20 text-center relative overflow-hidden">
                       <div className="absolute top-0 right-0 w-24 h-24 bg-[#EC3A24]/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
                       <p className="text-[#041020]/70 text-sm mb-1">Terima kasih telah berpartisipasi!</p>
-                      <p className="text-[#EC3A24] font-black text-base sm:text-lg leading-tight">Pengisian ini untuk mendapatkan merchandise langsung berupa Trash Bin dan Phone Holder supported by Telkomsel JagaBumi</p>
+                      <p className="text-[#EC3A24] font-black text-base sm:text-lg leading-tight">Pengisian ini untuk mendapatkan merchandise langsung berupa Trash Bin dan Phone Holder supported by Telkomsel <span className="text-green-600">JagaBumi</span></p>
                       <div className="mt-4 text-left space-y-1.5 bg-white/60 p-3 rounded-xl border border-[#EC3A24]/10">
                         <p className="text-xs text-[#041020]/80 font-semibold flex items-start gap-1.5">
                           <span className="text-[#EC3A24] font-black">*</span> 
