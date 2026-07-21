@@ -5,7 +5,7 @@ export const id: Dictionary = {
     eventName: "Festival Cisadane 2026",
     tagline: "Flowing Heritage, Growing Courage",
     date: "22 - 26 Juli 2026",
-    startDate: "2026-07-22T00:00:00",
+    startDate: "2026-07-22T19:30:00",
     location: "Tepian Sungai Cisadane, Tangerang",
     badge: "Karisma Event Nusantara 2026",
     recognition: "Top 125 Event Nasional Terbaik",

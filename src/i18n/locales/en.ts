@@ -3,7 +3,7 @@ export const en = {
     eventName: "Festival Cisadane 2026",
     tagline: "Flowing Heritage, Growing Courage",
     date: "July 22 - 26, 2026",
-    startDate: "2026-07-22T00:00:00",
+    startDate: "2026-07-22T19:30:00",
     location: "The Banks of Cisadane River",
     badge: "Karisma Event Nusantara 2026",
     recognition: "Top 125 Best National Events",
