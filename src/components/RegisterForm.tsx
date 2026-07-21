@@ -187,7 +187,8 @@ export default function RegisterForm({ dict, initialVisitorType = null }: { dict
                     </div>
                   </div>
                 </div>
-                
+                </div>
+
                 {/* Download Button */}
                 <button
                   onClick={() => handleDownloadTicket(ticket.id)}
