@@ -8,14 +8,14 @@ import { tenants } from "@/lib/data/tenants";
 import QRCode from "react-qr-code";
 import Image from "next/image";
 
-export default function RegisterForm({ dict }: { dict: any }) {
+export default function RegisterForm({ dict, initialVisitorType = null }: { dict: any, initialVisitorType?: "general" | "booth" | "telkomsel" | null }) {
   const [mode, setMode] = useState<"register" | "search">("register");
   const [visitorData, setVisitorData] = useState<any>(null);
   const [successMsg, setSuccessMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [tncAccepted, setTncAccepted] = useState(false);
-  const [visitorType, setVisitorType] = useState<"general" | "booth" | "telkomsel" | null>(null);
+  const [visitorType, setVisitorType] = useState<"general" | "booth" | "telkomsel" | null>(initialVisitorType);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedBooth, setSelectedBooth] = useState("");
   const [searchQuery, setSearchQuery] = useState("");

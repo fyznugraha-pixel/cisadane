@@ -7,10 +7,15 @@ import SectionOrnaments from "@/components/SectionOrnaments";
 import { getDictionary } from "@/i18n/dictionaries";
 import RegisterForm from "@/components/RegisterForm";
 
-export default async function RegisterPage(props: { params: Promise<{ lang: string }> }) {
+export default async function RegisterPage(props: { 
+  params: Promise<{ lang: string }>,
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
   const params = await props.params;
   const lang = params.lang;
   const dict = getDictionary(lang);
+  const searchParams = await props.searchParams;
+  const initialType = searchParams.type as "general" | "booth" | "telkomsel" | undefined;
 
   return (
     <main className="relative min-h-screen bg-[#FDFBF7] selection:bg-[#2654A4]/20 selection:text-[#2654A4]">
@@ -35,7 +40,7 @@ export default async function RegisterPage(props: { params: Promise<{ lang: stri
             />
 
             <div className="mt-14">
-              <RegisterForm dict={dict.register.form} />
+              <RegisterForm dict={dict.register.form} initialVisitorType={initialType || null} />
             </div>
 
             <Reveal delay={0.18}>

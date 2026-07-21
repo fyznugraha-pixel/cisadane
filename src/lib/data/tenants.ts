@@ -89,6 +89,7 @@ const rawTenants: Tenant[] = [
   { id: "94", name: "BJB", type: "Sarnavil Putih" },
   { id: "95", name: "BJB", type: "Sarnavil Putih" },
   { id: "96", name: "Almaz FriedChicken", type: "Sarnavil Putih" },
+  { id: "97", name: "Dinas Indagkop UKM", type: "Custom Booth" },
 ];
 
 export const tenants: Tenant[] = Array.from(
