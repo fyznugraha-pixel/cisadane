@@ -254,7 +254,7 @@ export default function ScannerPage() {
 
         {/* Footer */}
         <div className="mt-8 text-center text-xs text-[#041020]/50 font-medium pb-8">
-          Made by Fayiz Apriwasnyah Nugraha
+          Made by <a href="https://www.byfayiz.web.id/portofolio" target="_blank" rel="noopener noreferrer" className="text-[#2654A4] hover:underline font-bold transition-colors hover:text-[#38BBCA]">Fayiz Apriwansyah Nugraha</a>
         </div>
 
       </div>

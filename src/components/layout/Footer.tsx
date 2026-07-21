@@ -77,7 +77,7 @@ export default function Footer({ dict }: { dict: Dictionary }) {
           <p>{dict.footer.copyright}</p>
 
           <p className="mt-2 md:mt-0">
-            Made by Fayiz Apriwansyah Nugraha
+            Made by <a href="https://www.byfayiz.web.id/portofolio" target="_blank" rel="noopener noreferrer" className="text-[#2654A4] hover:underline font-bold transition-colors hover:text-[#38BBCA]">Fayiz Apriwansyah Nugraha</a>
           </p>
         </div>
       </div>

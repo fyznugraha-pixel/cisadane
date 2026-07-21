@@ -1,8 +1,8 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import * as XLSX from "xlsx";
-import { Download, Lock, Users, LogOut, Eye, EyeOff, Store, User, Trophy, Trash2 } from "lucide-react";
+import { Download, Lock, Users, LogOut, Eye, EyeOff, Store, User, Trophy, Trash2, Settings, Save } from "lucide-react";
 
 export default function AdminDashboard() {
   const [password, setPassword] = useState("");
@@ -16,6 +16,10 @@ export default function AdminDashboard() {
   const [filterBooth, setFilterBooth] = useState("");
   const [visitorToDelete, setVisitorToDelete] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
+  
+  const [trashbinQuota, settrashbinQuota] = useState("300");
+  const [phoneHolderQuota, setPhoneHolderQuota] = useState("200");
+  const [isSavingQuota, setIsSavingQuota] = useState(false);
 
   // Simple session persistence using sessionStorage
   useEffect(() => {
@@ -46,6 +50,22 @@ export default function AdminDashboard() {
 
       const { data } = await res.json();
       setVisitors(data);
+
+      try {
+        const settingsRes = await fetch("/festivalcisadane/api/admin/settings", {
+          headers: { Authorization: `Bearer ${pwd}` },
+        });
+        if (settingsRes.ok) {
+          const { data: settingsData } = await settingsRes.json();
+          if (settingsData) {
+            settrashbinQuota(settingsData.doorprize_quota_trashbin || "300");
+            setPhoneHolderQuota(settingsData.doorprize_quota_phone_holder || "200");
+          }
+        }
+      } catch (e) {
+        console.error("Gagal mengambil pengaturan kuota");
+      }
+
       setIsAuthenticated(true);
       sessionStorage.setItem("admin_password", pwd);
     } catch (err: any) {
@@ -62,6 +82,29 @@ export default function AdminDashboard() {
     setPassword("");
     setVisitors([]);
     sessionStorage.removeItem("admin_password");
+  };
+
+  const handleSaveQuota = async () => {
+    setIsSavingQuota(true);
+    try {
+      const res = await fetch("/festivalcisadane/api/admin/settings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${sessionStorage.getItem("admin_password")}`,
+        },
+        body: JSON.stringify({
+          trashbin: trashbinQuota,
+          phoneHolder: phoneHolderQuota
+        })
+      });
+      if (!res.ok) throw new Error("Gagal menyimpan kuota");
+      alert("Pengaturan kuota berhasil disimpan!");
+    } catch (err: any) {
+      alert(err.message || "Terjadi kesalahan saat menyimpan pengaturan.");
+    } finally {
+      setIsSavingQuota(false);
+    }
   };
 
   const handleDeleteVisitor = (id: string) => {
@@ -103,8 +146,9 @@ export default function AdminDashboard() {
       "Nama Lengkap": v.full_name,
       Email: v.email,
       "Nomor HP": v.phone,
-      "Kategori": v.visitor_type === "booth" ? "Kunjungan Booth" : "Pengunjung Umum",
-      "Nama Booth": v.booth_name || "-",
+      "Kategori": v.visitor_type === "booth" ? "Kunjungan Booth" : v.visitor_type === "telkomsel" ? "Telkomsel" : "Pengunjung Umum",
+      "Nama Booth/Doorprize": v.booth_name || "-",
+      "Status Kehadiran": v.is_checked_in ? "Sudah Hadir/Klaim" : "Belum Hadir",
     }));
 
     // Create a workbook and a worksheet
@@ -120,6 +164,7 @@ export default function AdminDashboard() {
       { wch: 20 }, // Phone
       { wch: 20 }, // Kategori
       { wch: 30 }, // Booth
+      { wch: 20 }, // Status Kehadiran
     ];
 
     // Download the file
@@ -189,7 +234,7 @@ export default function AdminDashboard() {
     <main className="min-h-screen bg-[#FDFBF7] pb-20 text-[#041020]">
       {/* Header */}
       <header className="sticky top-0 z-10 border-b border-[#2654A4]/10 bg-white/80 px-6 py-4 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between">
+        <div className="mx-auto flex w-full items-center justify-between px-2 sm:px-4">
           <div className="flex items-center gap-3 text-[#2654A4]">
             <Users size={24} />
             <h1 className="text-xl font-black">Data Pengunjung</h1>
@@ -206,7 +251,7 @@ export default function AdminDashboard() {
       </header>
 
       {/* Content */}
-      <div className="mx-auto mt-10 max-w-6xl px-6">
+      <div className="mx-auto mt-10 w-full px-6 sm:px-10">
         
         {/* Metric Cards */}
         <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -267,6 +312,70 @@ export default function AdminDashboard() {
                 ));
               })()}
             </div>
+          </div>
+        </div>
+
+        {/* Settings Card */}
+        <div className="mb-10 rounded-2xl border border-[#2654A4]/10 bg-white p-6 shadow-sm">
+          <div className="mb-4 flex items-center gap-3">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#EC3A24]/10 text-[#EC3A24]">
+              <Settings size={24} />
+            </div>
+            <div>
+              <h2 className="text-xl font-black text-[#041020]">Pengaturan Kuota Doorprize Telkomsel</h2>
+              <p className="text-sm text-[#041020]/60">Atur batas maksimal stok hadiah untuk pengunjung jalur Telkomsel.</p>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="rounded-xl border border-gray-100 bg-gray-50 p-5">
+              <label className="block text-sm font-bold text-[#041020] mb-2">Kuota Trashbin</label>
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs text-gray-500">
+                  Telah Diklaim: {visitors.filter(v => v.visitor_type === "telkomsel" && v.booth_name === "Trashbin").length}
+                </span>
+                <span className="text-xs font-bold text-[#2654A4] bg-[#2654A4]/10 px-2 py-1 rounded-md">
+                  Sisa: {Math.max(0, parseInt(trashbinQuota) - visitors.filter(v => v.visitor_type === "telkomsel" && v.booth_name === "Trashbin").length)}
+                </span>
+              </div>
+              <input
+                type="number"
+                min="0"
+                value={trashbinQuota}
+                onChange={(e) => settrashbinQuota(e.target.value)}
+                className="w-full rounded-xl border border-[#2654A4]/20 bg-white px-4 py-2.5 text-[#041020] transition focus:border-[#EC3A24] focus:outline-none focus:ring-2 focus:ring-[#EC3A24]/50"
+              />
+            </div>
+            
+            <div className="rounded-xl border border-gray-100 bg-gray-50 p-5">
+              <label className="block text-sm font-bold text-[#041020] mb-2">Kuota Phone Holder</label>
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs text-gray-500">
+                  Telah Diklaim: {visitors.filter(v => v.visitor_type === "telkomsel" && v.booth_name === "Phone Holder").length}
+                </span>
+                <span className="text-xs font-bold text-[#2654A4] bg-[#2654A4]/10 px-2 py-1 rounded-md">
+                  Sisa: {Math.max(0, parseInt(phoneHolderQuota) - visitors.filter(v => v.visitor_type === "telkomsel" && v.booth_name === "Phone Holder").length)}
+                </span>
+              </div>
+              <input
+                type="number"
+                min="0"
+                value={phoneHolderQuota}
+                onChange={(e) => setPhoneHolderQuota(e.target.value)}
+                className="w-full rounded-xl border border-[#2654A4]/20 bg-white px-4 py-2.5 text-[#041020] transition focus:border-[#EC3A24] focus:outline-none focus:ring-2 focus:ring-[#EC3A24]/50"
+              />
+            </div>
+          </div>
+          
+          <div className="mt-6 flex justify-end">
+            <button
+              onClick={handleSaveQuota}
+              disabled={isSavingQuota}
+              className="flex items-center gap-2 rounded-xl bg-[#2654A4] px-6 py-2.5 font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#1E4384] hover:shadow-md disabled:opacity-50 disabled:hover:translate-y-0"
+            >
+              <Save size={18} />
+              {isSavingQuota ? "Menyimpan..." : "Simpan Pengaturan"}
+            </button>
           </div>
         </div>
 
@@ -339,7 +448,8 @@ export default function AdminDashboard() {
                   <th className="px-6 py-4 font-black">No</th>
                   <th className="px-6 py-4 font-black">Nama Lengkap</th>
                   <th className="px-6 py-4 font-black">Kategori</th>
-                  <th className="px-6 py-4 font-black">Nama Booth</th>
+                  <th className="px-6 py-4 font-black">Booth / Doorprize</th>
+                  <th className="px-6 py-4 font-black">Status</th>
                   <th className="px-6 py-4 font-black">Email</th>
                   <th className="px-6 py-4 font-black">No HP</th>
                   <th className="px-6 py-4 font-black text-right">Aksi</th>
@@ -348,7 +458,7 @@ export default function AdminDashboard() {
               <tbody className="divide-y divide-[#2654A4]/10">
                 {visitors.length === 0 ? (
                   <tr>
-                    <td colSpan={6} className="px-6 py-10 text-center text-gray-500">
+                    <td colSpan={8} className="px-6 py-10 text-center text-gray-500">
                       Belum ada pendaftar.
                     </td>
                   </tr>
@@ -381,7 +491,7 @@ export default function AdminDashboard() {
                     if (filteredVisitors.length === 0) {
                       return (
                         <tr>
-                          <td colSpan={6} className="px-6 py-10 text-center text-gray-500">
+                          <td colSpan={8} className="px-6 py-10 text-center text-gray-500">
                             Pendaftar tidak ditemukan.
                           </td>
                         </tr>
@@ -401,13 +511,26 @@ export default function AdminDashboard() {
                           <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium ${
                             v.visitor_type === 'booth' 
                               ? 'bg-green-50 text-green-700 ring-1 ring-inset ring-green-600/20' 
+                              : v.visitor_type === 'telkomsel'
+                              ? 'bg-red-50 text-red-700 ring-1 ring-inset ring-red-600/20'
                               : 'bg-blue-50 text-blue-700 ring-1 ring-inset ring-blue-700/10'
                           }`}>
-                            {v.visitor_type === 'booth' ? 'Booth' : 'Umum'}
+                            {v.visitor_type === 'booth' ? 'Booth' : v.visitor_type === 'telkomsel' ? 'Telkomsel' : 'Umum'}
                           </span>
                         </td>
                         <td className="px-6 py-4 text-[#041020]/80 font-medium">
-                          {v.visitor_type === 'booth' ? (v.booth_name || "-") : "-"}
+                          {v.visitor_type === 'booth' || v.visitor_type === 'telkomsel' ? (v.booth_name || "-") : "-"}
+                        </td>
+                        <td className="px-6 py-4">
+                          {v.is_checked_in ? (
+                            <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium bg-green-50 text-green-700 ring-1 ring-inset ring-green-600/20">
+                              Sudah Hadir/Klaim
+                            </span>
+                          ) : (
+                            <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium bg-gray-50 text-gray-600 ring-1 ring-inset ring-gray-500/20">
+                              Belum Hadir
+                            </span>
+                          )}
                         </td>
                         <td className="px-6 py-4 text-[#041020]/80 font-medium">
                           {v.email}

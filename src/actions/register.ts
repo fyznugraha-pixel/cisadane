@@ -6,6 +6,20 @@ import { Resend } from "resend";
 const resendApiKey = process.env.RESEND_API_KEY?.replace(/\s/g, "");
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
+async function fetchQuotaLimits() {
+  const { data, error } = await supabaseAdmin.from("settings").select("*");
+  let trashbinMax = 300;
+  let phoneHolderMax = 200;
+  
+  if (!error && data) {
+    data.forEach(row => {
+      if (row.key === "doorprize_quota_trashbin") trashbinMax = parseInt(row.value) || 300;
+      if (row.key === "doorprize_quota_phone_holder") phoneHolderMax = parseInt(row.value) || 200;
+    });
+  }
+  return { trashbinMax, phoneHolderMax };
+}
+
 export async function registerVisitor(formData: FormData) {
   try {
     const fullName = formData.get("fullName") as string;
@@ -56,6 +70,15 @@ export async function registerVisitor(formData: FormData) {
             error: `Anda sudah mendaftar di booth ${boothName} hari ini. Silakan coba lagi besok atau daftar di booth lain.`
           };
         }
+      } else if (visitorType === "telkomsel") {
+        const existingTelkomsel = existingVisitors.find((v: any) => v.visitor_type === "telkomsel");
+        if (existingTelkomsel) {
+          return {
+            success: true,
+            message: "Email Anda sudah terdaftar sebagai pengunjung khusus Telkomsel! Berikut adalah tiket Anda.",
+            data: existingTelkomsel
+          };
+        }
       }
     }
 
@@ -67,13 +90,39 @@ export async function registerVisitor(formData: FormData) {
       return { success: false, error: "Silakan pilih booth yang Anda kunjungi." };
     }
 
+    if (visitorType === "telkomsel") {
+      if (!boothName) {
+        return { success: false, error: "Silakan pilih doorprize Anda." };
+      }
+      
+      const [quotaDataRes, limits] = await Promise.all([
+        supabaseAdmin
+          .from("visitors")
+          .select("id")
+          .eq("visitor_type", "telkomsel")
+          .eq("booth_name", boothName),
+        fetchQuotaLimits()
+      ]);
+
+      if (quotaDataRes.error) {
+        return { success: false, error: "Gagal memvalidasi kuota." };
+      }
+
+      const currentCount = quotaDataRes.data.length;
+      const maxQuota = boothName === "Trashbin" ? limits.trashbinMax : limits.phoneHolderMax;
+
+      if (currentCount >= maxQuota) {
+        return { success: false, error: `Maaf, kuota untuk ${boothName} sudah habis. Silakan pilih opsi lain.` };
+      }
+    }
+
     const { data: insertedData, error } = await supabaseAdmin.from("visitors").insert({
       full_name: fullName,
       email,
       phone,
       domicile,
       visitor_type: visitorType,
-      booth_name: visitorType === "booth" ? boothName : null,
+      booth_name: (visitorType === "booth" || visitorType === "telkomsel") ? boothName : null,
     }).select("*").single();
 
     if (error) {
@@ -81,41 +130,9 @@ export async function registerVisitor(formData: FormData) {
       return { success: false, error: "Terjadi kesalahan saat menyimpan data." };
     }
 
-    // Kirim email khusus untuk pengunjung umum
-    if (visitorType === "general") {
-      try {
-        if (resend) {
-          await resend.emails.send({
-            from: "Festival Cisadane <onboarding@resend.dev>",
-          to: email,
-          subject: "Konfirmasi Registrasi - Festival Cisadane 2026",
-          html: `
-            <div style="font-family: sans-serif; padding: 20px;">
-              <h2>Halo, ${fullName}!</h2>
-              <p>Terima kasih telah mendaftar sebagai Pengunjung Umum di <strong>Festival Cisadane 2026</strong>.</p>
-              <p>Berikut adalah rincian registrasi Anda:</p>
-              <ul>
-                <li><strong>Nama:</strong> ${fullName}</li>
-                <li><strong>Email:</strong> ${email}</li>
-                <li><strong>Nomor HP:</strong> ${phone}</li>
-                <li><strong>Domisili:</strong> ${domicile}</li>
-              </ul>
-              <p>Sampai jumpa di festival!</p>
-            </div>
-          `,
-          });
-        } else {
-          console.warn("Resend API key is missing. Skipping email confirmation.");
-        }
-      } catch (emailErr) {
-        console.error("Gagal mengirim email:", emailErr);
-        // Jangan gagalkan registrasi hanya karena email gagal
-      }
-    }
-
     return { 
       success: true, 
-      message: visitorType === "general" ? "Registrasi berhasil! Silakan cek email Anda." : "Registrasi berhasil!",
+      message: "Registrasi berhasil!",
       data: insertedData 
     };
   } catch (err) {
@@ -129,7 +146,7 @@ export async function findTicketByEmail(formData: FormData) {
     const email = formData.get("email") as string;
     if (!email) return { success: false, error: "Email wajib diisi" };
     
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin
       .from("visitors")
       .select("*")
       .eq("email", email)
@@ -142,5 +159,41 @@ export async function findTicketByEmail(formData: FormData) {
     return { success: true, message: "Tiket ditemukan!", data };
   } catch (err) {
     return { success: false, error: "Terjadi kesalahan." };
+  }
+}
+
+export async function getDoorprizeQuota() {
+  try {
+    const [visitorsRes, limits] = await Promise.all([
+      supabaseAdmin
+        .from("visitors")
+        .select("booth_name")
+        .eq("visitor_type", "telkomsel"),
+      fetchQuotaLimits()
+    ]);
+
+    if (visitorsRes.error) {
+      console.error("Error fetching quota:", visitorsRes.error);
+      return { success: false, error: "Gagal mengambil kuota." };
+    }
+
+    let trashbinCount = 0;
+    let phoneHolderCount = 0;
+
+    visitorsRes.data.forEach(v => {
+      if (v.booth_name === "Trashbin") trashbinCount++;
+      if (v.booth_name === "Phone Holder") phoneHolderCount++;
+    });
+
+    return {
+      success: true,
+      data: {
+        trashbin: Math.max(0, limits.trashbinMax - trashbinCount),
+        phoneHolder: Math.max(0, limits.phoneHolderMax - phoneHolderCount)
+      }
+    };
+  } catch (err) {
+    console.error("Unexpected error fetching quota:", err);
+    return { success: false, error: "Terjadi kesalahan sistem." };
   }
 }

@@ -83,7 +83,6 @@ const rawTenants: Tenant[] = [
   { id: "87", name: "Fortuin", type: "Sarnavil Putih" },
   { id: "88", name: "Acc Danaku", type: "Sarnavil Putih" },
   { id: "89", name: "Yupi", type: "Space" },
-  { id: "90", name: "Telkomsel", type: "Custom Booth" },
   { id: "91", name: "Yamaha", type: "Sarnavil Putih" },
   { id: "92", name: "Bejo", type: "Sarnavil Putih" },
   { id: "93", name: "Extra Josss", type: "Space" },

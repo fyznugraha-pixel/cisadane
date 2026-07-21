@@ -1,6 +1,6 @@
 "use server";
 
-import { supabase } from "@/lib/supabase";
+import { supabaseAdmin } from "@/lib/supabase";
 
 export async function validateTicket(ticketId: string) {
   try {
@@ -9,7 +9,7 @@ export async function validateTicket(ticketId: string) {
     }
 
     // Cari tiket di database
-    const { data: visitor, error: fetchError } = await supabase
+    const { data: visitor, error: fetchError } = await supabaseAdmin
       .from("visitors")
       .select("*")
       .eq("id", ticketId)
@@ -29,7 +29,7 @@ export async function validateTicket(ticketId: string) {
     }
 
     // Tandai sebagai checked-in
-    const { error: updateError } = await supabase
+    const { error: updateError } = await supabaseAdmin
       .from("visitors")
       .update({
         is_checked_in: true,

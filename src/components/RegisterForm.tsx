@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Reveal from "@/components/Reveal";
-import { ChevronDown, Check, User, Mail, Phone, Hash, Loader2, AlertCircle, Store, Search, QrCode, ArrowLeft } from "lucide-react";
-import { registerVisitor, findTicketByEmail } from "@/actions/register";
+import { ChevronDown, Check, User, Mail, Phone, Hash, Loader2, AlertCircle, Store, Search, QrCode, ArrowLeft, Smartphone } from "lucide-react";
+import { registerVisitor, findTicketByEmail, getDoorprizeQuota } from "@/actions/register";
 import { tenants } from "@/lib/data/tenants";
 import QRCode from "react-qr-code";
+import Image from "next/image";
 
 export default function RegisterForm({ dict }: { dict: any }) {
   const [mode, setMode] = useState<"register" | "search">("register");
@@ -14,10 +15,25 @@ export default function RegisterForm({ dict }: { dict: any }) {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [tncAccepted, setTncAccepted] = useState(false);
-  const [visitorType, setVisitorType] = useState<"general" | "booth">("general");
+  const [visitorType, setVisitorType] = useState<"general" | "booth" | "telkomsel" | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedBooth, setSelectedBooth] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [doorprizeQuota, setDoorprizeQuota] = useState<{ trashbin: number, phoneHolder: number } | null>(null);
+  const [selectedDoorprize, setSelectedDoorprize] = useState("");
+  const [isLoadingQuota, setIsLoadingQuota] = useState(false);
+
+  useEffect(() => {
+    if (visitorType === "telkomsel") {
+      setIsLoadingQuota(true);
+      getDoorprizeQuota().then((res) => {
+        if (res.success && res.data) {
+          setDoorprizeQuota(res.data);
+        }
+        setIsLoadingQuota(false);
+      });
+    }
+  }, [visitorType]);
 
   const filteredTenants = tenants.filter(t => t.name.toLowerCase().includes(searchQuery.toLowerCase()));
   const isRegistrationOpen = true;
@@ -113,44 +129,33 @@ export default function RegisterForm({ dict }: { dict: any }) {
                 {/* Header Ticket */}
                 <div className="flex items-center justify-between mb-4 border-b border-[#2654A4]/10 pb-4">
                   <div className="flex items-center gap-2">
-                    <div className={`p-2 rounded-xl ${ticket.visitor_type === 'booth' ? 'bg-green-50 text-green-600' : 'bg-blue-50 text-blue-600'}`}>
-                      {ticket.visitor_type === 'booth' ? <Store size={18} /> : <User size={18} />}
+                    <div className={`p-2 rounded-xl ${ticket.visitor_type === 'booth' ? 'bg-green-50 text-green-600' : ticket.visitor_type === 'telkomsel' ? 'bg-red-50 text-red-600' : 'bg-blue-50 text-blue-600'}`}>
+                      {ticket.visitor_type === 'booth' ? <Store size={18} /> : ticket.visitor_type === 'telkomsel' ? <Smartphone size={18} /> : <User size={18} />}
                     </div>
                     <div>
                       <p className="text-xs font-bold text-[#041020]/50 uppercase tracking-wider">Kategori</p>
                       <p className="font-bold text-[#041020] text-sm">
-                        {ticket.visitor_type === 'booth' ? 'Booth' : 'Umum'}
+                        {ticket.visitor_type === 'booth' ? 'Booth' : ticket.visitor_type === 'telkomsel' ? 'Telkomsel' : 'Umum'}
                       </p>
                     </div>
                   </div>
-                  {ticket.visitor_type === 'booth' && ticket.booth_name && (
-                    <div className="text-right">
-                      <span className="inline-block bg-[#FDB715]/10 text-[#FDB715] px-3 py-1 rounded-full text-xs font-bold">
+                  {(ticket.visitor_type === 'booth' || ticket.visitor_type === 'telkomsel') && ticket.booth_name && (
+                    <div className="text-right flex-shrink-0 ml-2">
+                      <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold text-center ${ticket.visitor_type === 'telkomsel' ? 'bg-[#EC3A24]/10 text-[#EC3A24]' : 'bg-[#FDB715]/10 text-[#FDB715]'}`}>
                         {ticket.booth_name}
                       </span>
                     </div>
                   )}
                 </div>
 
-                {/* QR Code atau Pesan Email */}
+                {/* QR Code */}
                 <div className="flex-grow flex flex-col items-center justify-center mb-6">
-                  {ticket.visitor_type === "booth" ? (
-                    <div className="bg-[#FDFBF7] p-4 rounded-3xl border-2 dashed border-[#2654A4]/20 w-full flex flex-col items-center group-hover:border-[#2654A4]/40 transition-colors">
-                      <div className="bg-white p-3 rounded-2xl shadow-sm mb-3">
-                        <QRCode value={ticket.id} size={140} />
-                      </div>
-                      <p className="text-[#2654A4] font-mono font-bold text-xs tracking-wider">{ticket.id.split('-')[0]}</p>
+                  <div className="bg-[#FDFBF7] p-4 rounded-3xl border-2 dashed border-[#2654A4]/20 w-full flex flex-col items-center group-hover:border-[#2654A4]/40 transition-colors">
+                    <div className="bg-white p-4 rounded-3xl shadow-sm mb-3">
+                      <QRCode value={ticket.id} size={220} />
                     </div>
-                  ) : (
-                    <div className="bg-[#FDFBF7] p-6 rounded-3xl border border-[#2654A4]/5 w-full flex flex-col items-center text-center">
-                      <div className="h-12 w-12 rounded-full bg-[#2654A4]/10 flex items-center justify-center mb-3">
-                        <Mail className="h-6 w-6 text-[#2654A4]" />
-                      </div>
-                      <p className="text-[#041020]/70 text-xs leading-relaxed">
-                        Email konfirmasi telah dikirimkan ke kotak masuk Anda.
-                      </p>
-                    </div>
-                  )}
+                    <p className="text-[#2654A4] font-mono font-bold text-xs tracking-wider">{ticket.id.split('-')[0]}</p>
+                  </div>
                 </div>
 
                 {/* Footer Ticket */}
@@ -175,6 +180,7 @@ export default function RegisterForm({ dict }: { dict: any }) {
           <button
             onClick={() => {
               setVisitorData(null);
+              setVisitorType(null);
               setMode("register");
             }}
             className="mt-8 flex items-center justify-center gap-2 mx-auto text-sm font-bold text-[#2654A4] hover:text-[#38BBCA] transition-colors"
@@ -189,26 +195,15 @@ export default function RegisterForm({ dict }: { dict: any }) {
 
   return (
     <Reveal>
-      <div className="mx-auto max-w-2xl overflow-hidden rounded-[2.5rem] border border-[#2654A4]/10 bg-white/80 shadow-[0_20px_60px_-15px_rgba(38,84,164,0.1)] backdrop-blur-xl transition-all duration-300 relative">
+      <div className={`mx-auto overflow-hidden rounded-[2.5rem] border border-[#2654A4]/10 bg-white/80 shadow-[0_20px_60px_-15px_rgba(38,84,164,0.1)] backdrop-blur-xl transition-all duration-500 relative ${
+        visitorType === "telkomsel" && mode === "register" && !visitorData 
+          ? "max-w-5xl" 
+          : "max-w-4xl"
+      }`}>
         {/* Subtle decorative glow */}
         <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-[#38BBCA]/10 blur-3xl pointer-events-none" />
         <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-[#38BBCA]/10 blur-3xl pointer-events-none" />
 
-        <div className="flex bg-[#FDFBF7] border-b border-[#2654A4]/10 p-2 gap-2">
-          <button
-            onClick={() => setMode("register")}
-            className={`flex-1 py-3 px-4 rounded-2xl font-bold text-sm transition-all ${mode === "register" ? "bg-white text-[#2654A4] shadow-sm" : "text-[#041020]/50 hover:text-[#041020]"}`}
-          >
-            Daftar Baru
-          </button>
-          <button
-            onClick={() => setMode("search")}
-            className={`flex-1 py-3 px-4 rounded-2xl font-bold text-sm transition-all ${mode === "search" ? "bg-white text-[#2654A4] shadow-sm" : "text-[#041020]/50 hover:text-[#041020]"}`}
-          >
-            Cari Tiket Saya
-          </button>
-        </div>
-        
         <div className="p-8 sm:p-12 relative z-10">
           
           {mode === "search" ? (
@@ -266,42 +261,114 @@ export default function RegisterForm({ dict }: { dict: any }) {
                   )}
                 </div>
               </button>
+
+              <button
+                type="button"
+                onClick={() => setMode("register")}
+                className="w-full mt-4 flex items-center justify-center gap-2 text-sm font-bold text-[#2654A4] hover:text-[#38BBCA] transition-colors"
+              >
+                <ArrowLeft size={16} />
+                Kembali ke Pilihan Registrasi
+              </button>
             </form>
-          ) : (
-            <form onSubmit={handleRegisterSubmit} className="space-y-7">
-              {/* Category Selection */}
-              <div>
-                <label className="mb-3 ml-1 block text-sm font-bold text-[#041020]/70">
-                  Kategori Kunjungan <span className="text-[#EC3A24]">*</span>
-                </label>
-                <div className="grid grid-cols-2 gap-4">
-                  <button
-                    type="button"
-                    onClick={() => setVisitorType("general")}
-                    className={`flex flex-col items-center justify-center p-4 rounded-2xl border-2 transition-all ${
-                      visitorType === "general"
-                        ? "border-[#2654A4] bg-[#2654A4]/5 text-[#2654A4]"
-                        : "border-[#2654A4]/10 bg-transparent text-[#041020]/60 hover:bg-[#FDFBF7]"
-                    }`}
-                  >
-                    <User className="h-6 w-6 mb-2" />
-                    <span className="font-bold text-sm">Pengunjung Umum</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setVisitorType("booth")}
-                    className={`flex flex-col items-center justify-center p-4 rounded-2xl border-2 transition-all ${
-                      visitorType === "booth"
-                        ? "border-[#2654A4] bg-[#2654A4]/5 text-[#2654A4]"
-                        : "border-[#2654A4]/10 bg-transparent text-[#041020]/60 hover:bg-[#FDFBF7]"
-                    }`}
-                  >
-                    <Store className="h-6 w-6 mb-2" />
-                    <span className="font-bold text-sm">Kunjungan Booth</span>
-                  </button>
-                </div>
-                <input type="hidden" name="visitorType" value={visitorType} />
+          ) : visitorType === null ? (
+            <div className="space-y-6">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-black text-[#2654A4]">Pilih Kategori Registrasi</h3>
+                <p className="text-[#041020]/60 text-sm mt-2">Silakan pilih kategori kunjungan Anda untuk melanjutkan pendaftaran.</p>
               </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <button
+                  type="button"
+                  onClick={() => setVisitorType("general")}
+                  className="flex flex-col items-center justify-center p-6 rounded-3xl border-2 border-[#2654A4]/10 bg-white hover:border-[#2654A4] hover:bg-[#2654A4]/5 transition-all group h-full"
+                >
+                  <div className="w-16 h-16 rounded-full bg-[#2654A4]/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <User className="h-8 w-8 text-[#2654A4]" />
+                  </div>
+                  <span className="font-bold text-[#041020] group-hover:text-[#2654A4]">Pengunjung Umum</span>
+                  <span className="text-xs text-[#041020]/50 text-center mt-2">Akses festival gratis untuk umum</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setVisitorType("booth")}
+                  className="flex flex-col items-center justify-center p-6 rounded-3xl border-2 border-[#2654A4]/10 bg-white hover:border-[#2654A4] hover:bg-[#2654A4]/5 transition-all group h-full"
+                >
+                  <div className="w-16 h-16 rounded-full bg-[#2654A4]/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <Store className="h-8 w-8 text-[#2654A4]" />
+                  </div>
+                  <span className="font-bold text-[#041020] group-hover:text-[#2654A4]">Kunjungan Booth</span>
+                  <span className="text-xs text-[#041020]/50 text-center mt-2">Daftar pengunjung booth tenant</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setVisitorType("telkomsel")}
+                  className="flex flex-col items-center justify-center p-6 rounded-3xl border-2 border-[#EC3A24]/10 bg-white hover:border-[#EC3A24] hover:bg-[#EC3A24]/5 transition-all group h-full"
+                >
+                  <div className="h-16 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform mix-blend-multiply">
+                    <Image src="/festivalcisadane/partners/sponsored/sponsored_4.webp" alt="Telkomsel" width={80} height={40} className="object-contain" />
+                  </div>
+                  <span className="font-bold text-[#041020] group-hover:text-[#EC3A24]">Registrasi Telkomsel</span>
+                  <span className="text-xs text-[#041020]/50 text-center mt-2">Dapatkan kesempatan memenangkan doorprize menarik</span>
+                </button>
+              </div>
+
+              <div className="pt-6 border-t border-[#2654A4]/10 mt-6 text-center">
+                <button
+                  onClick={() => setMode("search")}
+                  className="inline-flex items-center justify-center gap-2 text-sm font-bold text-[#2654A4] hover:text-[#38BBCA] transition-colors bg-[#2654A4]/5 px-6 py-3 rounded-xl hover:bg-[#2654A4]/10"
+                >
+                  <Search size={16} />
+                  Cari Tiket Saya (Lupa Screenshot)
+                </button>
+              </div>
+            </div>
+          ) : (
+            <form onSubmit={handleRegisterSubmit} className={`animate-in fade-in slide-in-from-bottom-4 duration-300 ${
+              visitorType === "telkomsel" ? "flex flex-col md:flex-row gap-10" : "space-y-7"
+            }`}>
+              
+              {/* Poster Kiri untuk Telkomsel */}
+              {visitorType === "telkomsel" && (
+                <div className="md:w-1/2 hidden md:flex flex-col rounded-3xl overflow-hidden border-2 border-[#EC3A24]/10 shadow-sm relative bg-[#FDFBF7]">
+                  <Image 
+                    src="/festivalcisadane/images/register/GIVE%20AWAY%20TELKOMSE.png" 
+                    alt="Telkomsel Giveaway Poster" 
+                    width={800} 
+                    height={1000} 
+                    className="w-full h-full object-cover object-top" 
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#041020]/90 via-[#041020]/20 to-transparent pointer-events-none flex flex-col justify-end p-8">
+                    <p className="text-white font-black text-3xl tracking-tight leading-tight">Telkomsel<br/><span className="text-[#EC3A24]">Doorprize</span></p>
+                    <p className="text-white/80 text-sm mt-3 font-medium">Khusus pengunjung Festival Cisadane 2026. Pilih hadiah incaran Anda sekarang sebelum kehabisan!</p>
+                  </div>
+                </div>
+              )}
+
+              {/* Kolom Kanan: Isi Form */}
+              <div className={`flex-1 space-y-7 ${visitorType === "telkomsel" ? "md:w-1/2 py-2" : ""}`}>
+              
+              <div className="flex items-center justify-between mb-2">
+                <button
+                  type="button"
+                  onClick={() => setVisitorType(null)}
+                  className="flex items-center gap-2 text-sm font-bold text-[#041020]/50 hover:text-[#2654A4] transition-colors bg-[#FDFBF7] px-4 py-2 rounded-full border border-[#2654A4]/10 hover:border-[#2654A4]/30"
+                >
+                  <ArrowLeft size={16} />
+                  Kembali
+                </button>
+                <div className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider ${
+                  visitorType === "telkomsel" ? "bg-[#EC3A24]/10 text-[#EC3A24]" : "bg-[#2654A4]/10 text-[#2654A4]"
+                }`}>
+                  {visitorType === 'general' ? 'Pengunjung Umum' : visitorType === 'booth' ? 'Kunjungan Booth' : 'Khusus Telkomsel'}
+                </div>
+              </div>
+
+              <input type="hidden" name="visitorType" value={visitorType} />
 
               {/* Booth Selection (Only show if visitorType is booth) */}
               {visitorType === "booth" && (
@@ -378,6 +445,65 @@ export default function RegisterForm({ dict }: { dict: any }) {
                 </Reveal>
               )}
 
+              {/* Doorprize Selection (Only show if visitorType is telkomsel) */}
+              {visitorType === "telkomsel" && (
+                <Reveal delay={0.1}>
+                  <div className="flex flex-col justify-center">
+                    <label className="mb-3 ml-1 block text-sm font-bold text-[#041020]/70">
+                      Pilih Doorprize Anda <span className="text-[#EC3A24]">*</span>
+                    </label>
+                      {isLoadingQuota ? (
+                        <div className="flex justify-center items-center py-4 text-[#041020]/50 text-sm">
+                          <Loader2 className="animate-spin mr-2 h-4 w-4" /> Memuat kuota...
+                        </div>
+                      ) : (
+                        <div className="grid grid-cols-1 gap-4">
+                          <button
+                            type="button"
+                            disabled={!doorprizeQuota || doorprizeQuota.trashbin <= 0}
+                            onClick={() => setSelectedDoorprize("Trashbin")}
+                            className={`relative flex flex-col p-4 rounded-2xl border-2 transition-all text-left ${
+                              selectedDoorprize === "Trashbin" 
+                                ? "border-[#EC3A24] bg-[#EC3A24]/5" 
+                                : (!doorprizeQuota || doorprizeQuota.trashbin <= 0)
+                                  ? "border-gray-200 bg-gray-50 opacity-60 cursor-not-allowed"
+                                  : "border-[#2654A4]/15 bg-white hover:border-[#EC3A24]/50"
+                            }`}
+                          >
+                            <span className="font-bold text-[#041020]">Trashbin</span>
+                            <span className={`text-xs mt-1 font-semibold ${
+                              !doorprizeQuota || doorprizeQuota.trashbin <= 0 ? "text-red-500" : "text-[#EC3A24]"
+                            }`}>
+                              {!doorprizeQuota ? "Memuat..." : doorprizeQuota.trashbin <= 0 ? "Kuota Habis" : `Sisa Kuota: ${doorprizeQuota.trashbin}`}
+                            </span>
+                          </button>
+
+                          <button
+                            type="button"
+                            disabled={!doorprizeQuota || doorprizeQuota.phoneHolder <= 0}
+                            onClick={() => setSelectedDoorprize("Phone Holder")}
+                            className={`relative flex flex-col p-4 rounded-2xl border-2 transition-all text-left ${
+                              selectedDoorprize === "Phone Holder" 
+                                ? "border-[#EC3A24] bg-[#EC3A24]/5" 
+                                : (!doorprizeQuota || doorprizeQuota.phoneHolder <= 0)
+                                  ? "border-gray-200 bg-gray-50 opacity-60 cursor-not-allowed"
+                                  : "border-[#2654A4]/15 bg-white hover:border-[#EC3A24]/50"
+                            }`}
+                          >
+                            <span className="font-bold text-[#041020]">Phone Holder</span>
+                            <span className={`text-xs mt-1 font-semibold ${
+                              !doorprizeQuota || doorprizeQuota.phoneHolder <= 0 ? "text-red-500" : "text-[#EC3A24]"
+                            }`}>
+                              {!doorprizeQuota ? "Memuat..." : doorprizeQuota.phoneHolder <= 0 ? "Kuota Habis" : `Sisa Kuota: ${doorprizeQuota.phoneHolder}`}
+                            </span>
+                          </button>
+                        </div>
+                      )}
+                      <input type="hidden" name="boothName" value={selectedDoorprize} />
+                  </div>
+                </Reveal>
+              )}
+
               {/* Full Name */}
               <div>
                 <label htmlFor="fullName" className="mb-2.5 ml-1 block text-sm font-bold text-[#041020]/70">
@@ -392,7 +518,9 @@ export default function RegisterForm({ dict }: { dict: any }) {
                     id="fullName"
                     name="fullName"
                     required
-                    className="w-full rounded-2xl border border-[#2654A4]/15 bg-[#FDFBF7]/60 py-4 pl-12 pr-4 text-[#041020] placeholder:text-[#041020]/30 transition-all hover:bg-[#FDFBF7] focus:border-[#2654A4] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#2654A4]/10"
+                    className={`w-full rounded-2xl border bg-[#FDFBF7]/60 py-4 pl-12 pr-4 text-[#041020] placeholder:text-[#041020]/30 transition-all hover:bg-[#FDFBF7] focus:bg-white focus:outline-none focus:ring-4 ${
+                      visitorType === "telkomsel" ? "border-[#EC3A24]/15 focus:border-[#EC3A24] focus:ring-[#EC3A24]/10" : "border-[#2654A4]/15 focus:border-[#2654A4] focus:ring-[#2654A4]/10"
+                    }`}
                     placeholder="Mis. John Doe"
                   />
                 </div>
@@ -412,7 +540,9 @@ export default function RegisterForm({ dict }: { dict: any }) {
                     id="email"
                     name="email"
                     required
-                    className="w-full rounded-2xl border border-[#2654A4]/15 bg-[#FDFBF7]/60 py-4 pl-12 pr-4 text-[#041020] placeholder:text-[#041020]/30 transition-all hover:bg-[#FDFBF7] focus:border-[#2654A4] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#2654A4]/10"
+                    className={`w-full rounded-2xl border bg-[#FDFBF7]/60 py-4 pl-12 pr-4 text-[#041020] placeholder:text-[#041020]/30 transition-all hover:bg-[#FDFBF7] focus:bg-white focus:outline-none focus:ring-4 ${
+                      visitorType === "telkomsel" ? "border-[#EC3A24]/15 focus:border-[#EC3A24] focus:ring-[#EC3A24]/10" : "border-[#2654A4]/15 focus:border-[#2654A4] focus:ring-[#2654A4]/10"
+                    }`}
                     placeholder="email@example.com"
                   />
                 </div>
@@ -432,7 +562,9 @@ export default function RegisterForm({ dict }: { dict: any }) {
                     id="phone"
                     name="phone"
                     required
-                    className="w-full rounded-2xl border border-[#2654A4]/15 bg-[#FDFBF7]/60 py-4 pl-12 pr-4 text-[#041020] placeholder:text-[#041020]/30 transition-all hover:bg-[#FDFBF7] focus:border-[#2654A4] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#2654A4]/10"
+                    className={`w-full rounded-2xl border bg-[#FDFBF7]/60 py-4 pl-12 pr-4 text-[#041020] placeholder:text-[#041020]/30 transition-all hover:bg-[#FDFBF7] focus:bg-white focus:outline-none focus:ring-4 ${
+                      visitorType === "telkomsel" ? "border-[#EC3A24]/15 focus:border-[#EC3A24] focus:ring-[#EC3A24]/10" : "border-[#2654A4]/15 focus:border-[#2654A4] focus:ring-[#2654A4]/10"
+                    }`}
                     placeholder="+62 812 3456 7890"
                   />
                 </div>
@@ -452,7 +584,9 @@ export default function RegisterForm({ dict }: { dict: any }) {
                     id="domicile"
                     name="domicile"
                     required
-                    className="w-full rounded-2xl border border-[#2654A4]/15 bg-[#FDFBF7]/60 py-4 pl-12 pr-4 text-[#041020] placeholder:text-[#041020]/30 transition-all hover:bg-[#FDFBF7] focus:border-[#2654A4] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#2654A4]/10"
+                    className={`w-full rounded-2xl border bg-[#FDFBF7]/60 py-4 pl-12 pr-4 text-[#041020] placeholder:text-[#041020]/30 transition-all hover:bg-[#FDFBF7] focus:bg-white focus:outline-none focus:ring-4 ${
+                      visitorType === "telkomsel" ? "border-[#EC3A24]/15 focus:border-[#EC3A24] focus:ring-[#EC3A24]/10" : "border-[#2654A4]/15 focus:border-[#2654A4] focus:ring-[#2654A4]/10"
+                    }`}
                     placeholder={dict.domicilePlaceholder || "Kota tempat tinggal"}
                   />
                 </div>
@@ -476,7 +610,9 @@ export default function RegisterForm({ dict }: { dict: any }) {
                     onClick={() => setTncAccepted(!tncAccepted)}
                     className={`flex h-6 w-6 items-center justify-center rounded-md border-2 transition-all duration-300 ${
                       tncAccepted
-                        ? "border-[#2654A4] bg-[#2654A4] shadow-[0_0_10px_rgba(38,84,164,0.4)] scale-105"
+                        ? visitorType === "telkomsel" 
+                          ? "border-[#EC3A24] bg-[#EC3A24] shadow-[0_0_10px_rgba(236,58,36,0.4)] scale-105"
+                          : "border-[#2654A4] bg-[#2654A4] shadow-[0_0_10px_rgba(38,84,164,0.4)] scale-105"
                         : "border-[#2654A4]/30 bg-white hover:border-[#2654A4]/60"
                     }`}
                   >
@@ -503,7 +639,11 @@ export default function RegisterForm({ dict }: { dict: any }) {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-[#2654A4] to-[#38BBCA] px-8 py-5 text-center font-bold text-white shadow-lg transition-all hover:shadow-[0_10px_40px_-10px_rgba(38,84,164,0.6)] hover:-translate-y-1 active:translate-y-0 disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:shadow-lg"
+                  className={`group relative w-full overflow-hidden rounded-2xl px-8 py-5 text-center font-bold text-white shadow-lg transition-all hover:-translate-y-1 active:translate-y-0 disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:shadow-lg ${
+                    visitorType === "telkomsel" 
+                      ? "bg-gradient-to-r from-[#EC3A24] to-[#f56654] hover:shadow-[0_10px_40px_-10px_rgba(236,58,36,0.6)]" 
+                      : "bg-gradient-to-r from-[#2654A4] to-[#38BBCA] hover:shadow-[0_10px_40px_-10px_rgba(38,84,164,0.6)]"
+                  }`}
                 >
                   <div className="absolute inset-0 bg-white/20 translate-y-full transition-transform duration-300 group-hover:translate-y-0" />
                   <div className="relative flex items-center justify-center gap-2">
@@ -519,6 +659,7 @@ export default function RegisterForm({ dict }: { dict: any }) {
                     )}
                   </div>
                 </button>
+              </div>
               </div>
             </form>
           )}
