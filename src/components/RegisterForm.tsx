@@ -7,7 +7,7 @@ import { registerVisitor, findTicketByEmail } from "@/actions/register";
 import { tenants } from "@/lib/data/tenants";
 import QRCode from "react-qr-code";
 import Image from "next/image";
-import html2canvas from "html2canvas";
+import { toPng } from "html-to-image";
 
 export default function RegisterForm({ dict, initialVisitorType = null }: { dict: any, initialVisitorType?: "general" | "booth" | "telkomsel" | null }) {
   const [mode, setMode] = useState<"register" | "search">("register");
@@ -53,11 +53,11 @@ export default function RegisterForm({ dict, initialVisitorType = null }: { dict
     if (!element) return;
     
     try {
-      const canvas = await html2canvas(element, {
-        scale: 2, // High resolution for printing/saving
-        backgroundColor: "#ffffff",
+      const dataUrl = await toPng(element, {
+        cacheBust: true,
+        pixelRatio: 2,
+        backgroundColor: '#ffffff'
       });
-      const dataUrl = canvas.toDataURL("image/png");
       const link = document.createElement("a");
       link.download = `E-Ticket-${ticketId.substring(0, 8)}.png`;
       link.href = dataUrl;
