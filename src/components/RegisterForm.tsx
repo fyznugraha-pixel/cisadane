@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Reveal from "@/components/Reveal";
 import { ChevronDown, Check, User, Mail, Phone, Hash, Loader2, AlertCircle, Store, Search, QrCode, ArrowLeft, Smartphone } from "lucide-react";
-import { registerVisitor, findTicketByEmail, getDoorprizeQuota } from "@/actions/register";
+import { registerVisitor, findTicketByEmail } from "@/actions/register";
 import { tenants } from "@/lib/data/tenants";
 import QRCode from "react-qr-code";
 import Image from "next/image";
@@ -19,21 +19,7 @@ export default function RegisterForm({ dict, initialVisitorType = null }: { dict
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedBooth, setSelectedBooth] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-  const [doorprizeQuota, setDoorprizeQuota] = useState<{ trashbin: number, phoneHolder: number } | null>(null);
-  const [selectedDoorprize, setSelectedDoorprize] = useState("");
-  const [isLoadingQuota, setIsLoadingQuota] = useState(false);
 
-  useEffect(() => {
-    if (visitorType === "telkomsel") {
-      setIsLoadingQuota(true);
-      getDoorprizeQuota().then((res) => {
-        if (res.success && res.data) {
-          setDoorprizeQuota(res.data);
-        }
-        setIsLoadingQuota(false);
-      });
-    }
-  }, [visitorType]);
 
   const filteredTenants = tenants.filter(t => t.name.toLowerCase().includes(searchQuery.toLowerCase()));
   const isRegistrationOpen = true;
@@ -104,16 +90,22 @@ export default function RegisterForm({ dict, initialVisitorType = null }: { dict
   // SUCCESS SCREEN WITH QR CODE
   if (visitorData) {
     const tickets = Array.isArray(visitorData) ? visitorData : [visitorData];
+    const isTelkomselTicket = tickets[0]?.visitor_type === 'telkomsel';
 
     return (
       <Reveal>
-        <div className="mx-auto max-w-3xl overflow-hidden rounded-[2.5rem] border border-[#2654A4]/10 bg-white/90 p-8 sm:p-10 text-center shadow-[0_20px_60px_-15px_rgba(38,84,164,0.1)] backdrop-blur-xl relative">
-          <div className="relative mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-[#2654A4] to-[#38BBCA] shadow-xl">
+        <div className={`mx-auto max-w-3xl overflow-hidden rounded-[2.5rem] border bg-white/90 p-8 sm:p-10 text-center shadow-[0_20px_60px_-15px_rgba(38,84,164,0.1)] backdrop-blur-xl relative ${isTelkomselTicket ? 'border-[#EC3A24]/20' : 'border-[#2654A4]/10'}`}>
+          {isTelkomselTicket && (
+            <div className="mb-8 flex justify-center">
+              <Image src="/festivalcisadane/partners/sponsored/sponsored_4.webp" alt="Telkomsel Logo" width={120} height={60} className="object-contain" />
+            </div>
+          )}
+          <div className={`relative mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full shadow-xl ${isTelkomselTicket ? 'bg-gradient-to-br from-[#EC3A24] to-[#ff5238]' : 'bg-gradient-to-br from-[#2654A4] to-[#38BBCA]'}`}>
             <div className="absolute inset-0 rounded-full bg-white opacity-20 animate-ping" />
             <Check className="h-10 w-10 text-white relative z-10" strokeWidth={3} />
           </div>
           
-          <h3 className="mb-2 text-2xl sm:text-3xl font-black text-[#2654A4] tracking-tight">{successMsg}</h3>
+          <h3 className={`mb-2 text-2xl sm:text-3xl font-black tracking-tight ${isTelkomselTicket ? 'text-[#EC3A24]' : 'text-[#2654A4]'}`}>{successMsg}</h3>
           <p className="text-[#041020]/70 text-sm mb-8">
             {tickets.length > 1 
               ? `Anda memiliki ${tickets.length} tiket yang terdaftar pada email ini.`
@@ -123,11 +115,11 @@ export default function RegisterForm({ dict, initialVisitorType = null }: { dict
           
           <div className={`grid gap-6 text-left ${tickets.length > 1 ? 'md:grid-cols-2' : 'max-w-md mx-auto'}`}>
             {tickets.map((ticket, index) => (
-              <div key={ticket.id || index} className="flex flex-col bg-white border border-[#2654A4]/10 rounded-3xl p-6 shadow-sm relative overflow-hidden transition-all hover:shadow-md hover:border-[#2654A4]/30 group">
-                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[#38BBCA]/5 blur-2xl pointer-events-none group-hover:bg-[#38BBCA]/10 transition-colors" />
+              <div key={ticket.id || index} className={`flex flex-col bg-white border rounded-3xl p-6 shadow-sm relative overflow-hidden transition-all group ${isTelkomselTicket ? 'border-[#EC3A24]/10 hover:shadow-md hover:border-[#EC3A24]/30' : 'border-[#2654A4]/10 hover:shadow-md hover:border-[#2654A4]/30'}`}>
+                <div className={`absolute -right-10 -top-10 h-32 w-32 rounded-full blur-2xl pointer-events-none transition-colors ${isTelkomselTicket ? 'bg-[#EC3A24]/5 group-hover:bg-[#EC3A24]/10' : 'bg-[#38BBCA]/5 group-hover:bg-[#38BBCA]/10'}`} />
                 
                 {/* Header Ticket */}
-                <div className="flex items-center justify-between mb-4 border-b border-[#2654A4]/10 pb-4">
+                <div className={`flex items-center justify-between mb-4 border-b pb-4 ${isTelkomselTicket ? 'border-[#EC3A24]/10' : 'border-[#2654A4]/10'}`}>
                   <div className="flex items-center gap-2">
                     <div className={`p-2 rounded-xl ${ticket.visitor_type === 'booth' ? 'bg-green-50 text-green-600' : ticket.visitor_type === 'telkomsel' ? 'bg-red-50 text-red-600' : 'bg-blue-50 text-blue-600'}`}>
                       {ticket.visitor_type === 'booth' ? <Store size={18} /> : ticket.visitor_type === 'telkomsel' ? <Smartphone size={18} /> : <User size={18} />}
@@ -150,11 +142,11 @@ export default function RegisterForm({ dict, initialVisitorType = null }: { dict
 
                 {/* QR Code */}
                 <div className="flex-grow flex flex-col items-center justify-center mb-6">
-                  <div className="bg-[#FDFBF7] p-4 rounded-3xl border-2 dashed border-[#2654A4]/20 w-full flex flex-col items-center group-hover:border-[#2654A4]/40 transition-colors">
+                  <div className={`bg-[#FDFBF7] p-4 rounded-3xl border-2 dashed w-full flex flex-col items-center transition-colors ${isTelkomselTicket ? 'border-[#EC3A24]/20 group-hover:border-[#EC3A24]/40' : 'border-[#2654A4]/20 group-hover:border-[#2654A4]/40'}`}>
                     <div className="bg-white p-4 rounded-3xl shadow-sm mb-3">
                       <QRCode value={ticket.id} size={220} />
                     </div>
-                    <p className="text-[#2654A4] font-mono font-bold text-xs tracking-wider">{ticket.id.split('-')[0]}</p>
+                    <p className={`font-mono font-bold text-xs tracking-wider ${isTelkomselTicket ? 'text-[#EC3A24]' : 'text-[#2654A4]'}`}>{ticket.id.split('-')[0]}</p>
                   </div>
                 </div>
 
@@ -162,11 +154,11 @@ export default function RegisterForm({ dict, initialVisitorType = null }: { dict
                 <div className="bg-[#FDFBF7] rounded-2xl p-4 text-left space-y-2 mt-auto">
                   <div className="flex justify-between items-end">
                     <div>
-                      <p className="text-[10px] font-bold text-[#2654A4]/60 uppercase tracking-widest">Nama</p>
+                      <p className={`text-[10px] font-bold uppercase tracking-widest ${isTelkomselTicket ? 'text-[#EC3A24]/60' : 'text-[#2654A4]/60'}`}>Nama</p>
                       <p className="font-bold text-[#041020] text-sm line-clamp-1">{ticket.full_name}</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-[10px] font-bold text-[#2654A4]/60 uppercase tracking-widest">Tanggal</p>
+                      <p className={`text-[10px] font-bold uppercase tracking-widest ${isTelkomselTicket ? 'text-[#EC3A24]/60' : 'text-[#2654A4]/60'}`}>Tanggal</p>
                       <p className="font-bold text-[#041020] text-xs">
                         {new Date(ticket.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'short' })}
                       </p>
@@ -183,7 +175,7 @@ export default function RegisterForm({ dict, initialVisitorType = null }: { dict
               setVisitorType(null);
               setMode("register");
             }}
-            className="mt-8 flex items-center justify-center gap-2 mx-auto text-sm font-bold text-[#2654A4] hover:text-[#38BBCA] transition-colors"
+            className={`mt-8 flex items-center justify-center gap-2 mx-auto text-sm font-bold transition-colors ${isTelkomselTicket ? 'text-[#EC3A24] hover:text-[#d12a15]' : 'text-[#2654A4] hover:text-[#38BBCA]'}`}
           >
             <ArrowLeft size={16} />
             Kembali ke Beranda
@@ -311,8 +303,8 @@ export default function RegisterForm({ dict, initialVisitorType = null }: { dict
                   <div className="h-16 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform mix-blend-multiply">
                     <Image src="/festivalcisadane/partners/sponsored/sponsored_4.webp" alt="Telkomsel" width={80} height={40} className="object-contain" />
                   </div>
-                  <span className="font-bold text-[#041020] group-hover:text-[#EC3A24]">Registrasi Telkomsel</span>
-                  <span className="text-xs text-[#041020]/50 text-center mt-2">Dapatkan kesempatan memenangkan doorprize menarik</span>
+                  <span className="font-bold text-[#041020] group-hover:text-[#EC3A24]">Promo Telkomsel</span>
+                  <span className="text-xs text-[#041020]/50 text-center mt-2">Berkesempatan mendapatkan merchandise langsung</span>
                 </button>
               </div>
 
@@ -335,7 +327,7 @@ export default function RegisterForm({ dict, initialVisitorType = null }: { dict
               {visitorType === "telkomsel" && (
                 <div className="md:w-7/12 hidden md:flex flex-col rounded-3xl overflow-hidden border-2 border-[#EC3A24]/10 shadow-sm relative">
                   <Image 
-                    src="/festivalcisadane/images/register/GIVE%20AWAY%20TELKOMSE.png" 
+                    src="/festivalcisadane/images/register/telkom2.webp" 
                     alt="Telkomsel Giveaway Poster" 
                     width={800} 
                     height={1000} 
@@ -343,7 +335,7 @@ export default function RegisterForm({ dict, initialVisitorType = null }: { dict
                     priority
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#041020]/90 via-[#041020]/20 to-transparent pointer-events-none flex flex-col justify-end p-8">
-                    <p className="text-white font-black text-3xl tracking-tight leading-tight">Telkomsel<br/><span className="text-[#EC3A24]">Doorprize</span></p>
+                    <p className="text-white font-black text-3xl tracking-tight leading-tight">Telkomsel<br/><span className="text-[#EC3A24]">Merchandise</span></p>
                     <p className="text-white/80 text-sm mt-3 font-medium">Khusus pengunjung Festival Cisadane 2026. Pilih hadiah incaran Anda sekarang sebelum kehabisan!</p>
                   </div>
                 </div>
@@ -356,7 +348,7 @@ export default function RegisterForm({ dict, initialVisitorType = null }: { dict
                 <button
                   type="button"
                   onClick={() => setVisitorType(null)}
-                  className="flex items-center gap-2 text-sm font-bold text-[#041020]/50 hover:text-[#2654A4] transition-colors bg-[#FDFBF7] px-4 py-2 rounded-full border border-[#2654A4]/10 hover:border-[#2654A4]/30"
+                  className={`flex items-center gap-2 text-sm font-bold text-[#041020]/50 transition-colors bg-[#FDFBF7] px-4 py-2 rounded-full border ${visitorType === 'telkomsel' ? 'hover:text-[#EC3A24] border-[#EC3A24]/10 hover:border-[#EC3A24]/30' : 'hover:text-[#2654A4] border-[#2654A4]/10 hover:border-[#2654A4]/30'}`}
                 >
                   <ArrowLeft size={16} />
                   Kembali
@@ -364,7 +356,7 @@ export default function RegisterForm({ dict, initialVisitorType = null }: { dict
                 <div className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider ${
                   visitorType === "telkomsel" ? "bg-[#EC3A24]/10 text-[#EC3A24]" : "bg-[#2654A4]/10 text-[#2654A4]"
                 }`}>
-                  {visitorType === 'general' ? 'Pengunjung Umum' : visitorType === 'booth' ? 'Kunjungan Booth' : 'Khusus Telkomsel'}
+                  {visitorType === 'general' ? 'Pengunjung Umum' : visitorType === 'booth' ? 'Kunjungan Booth' : 'Promo Telkomsel'}
                 </div>
               </div>
 
@@ -445,61 +437,16 @@ export default function RegisterForm({ dict, initialVisitorType = null }: { dict
                 </Reveal>
               )}
 
-              {/* Doorprize Selection (Only show if visitorType is telkomsel) */}
+              {/* Merchandise Selection (Only show if visitorType is telkomsel) */}
               {visitorType === "telkomsel" && (
                 <Reveal delay={0.1}>
                   <div className="flex flex-col justify-center">
-                    <label className="mb-3 ml-1 block text-sm font-bold text-[#041020]/70">
-                      Pilih Doorprize Anda <span className="text-[#EC3A24]">*</span>
-                    </label>
-                      {isLoadingQuota ? (
-                        <div className="flex justify-center items-center py-4 text-[#041020]/50 text-sm">
-                          <Loader2 className="animate-spin mr-2 h-4 w-4" /> Memuat kuota...
-                        </div>
-                      ) : (
-                        <div className="grid grid-cols-1 gap-4">
-                          <button
-                            type="button"
-                            disabled={!doorprizeQuota || doorprizeQuota.trashbin <= 0}
-                            onClick={() => setSelectedDoorprize("Trashbin")}
-                            className={`relative flex flex-col p-4 rounded-2xl border-2 transition-all text-left ${
-                              selectedDoorprize === "Trashbin" 
-                                ? "border-[#EC3A24] bg-[#EC3A24]/5" 
-                                : (!doorprizeQuota || doorprizeQuota.trashbin <= 0)
-                                  ? "border-gray-200 bg-gray-50 opacity-60 cursor-not-allowed"
-                                  : "border-[#2654A4]/15 bg-white hover:border-[#EC3A24]/50"
-                            }`}
-                          >
-                            <span className="font-bold text-[#041020]">Trashbin</span>
-                            <span className={`text-xs mt-1 font-semibold ${
-                              !doorprizeQuota || doorprizeQuota.trashbin <= 0 ? "text-red-500" : "text-[#EC3A24]"
-                            }`}>
-                              {!doorprizeQuota ? "Memuat..." : doorprizeQuota.trashbin <= 0 ? "Kuota Habis" : `Sisa Kuota: ${doorprizeQuota.trashbin}`}
-                            </span>
-                          </button>
-
-                          <button
-                            type="button"
-                            disabled={!doorprizeQuota || doorprizeQuota.phoneHolder <= 0}
-                            onClick={() => setSelectedDoorprize("Phone Holder")}
-                            className={`relative flex flex-col p-4 rounded-2xl border-2 transition-all text-left ${
-                              selectedDoorprize === "Phone Holder" 
-                                ? "border-[#EC3A24] bg-[#EC3A24]/5" 
-                                : (!doorprizeQuota || doorprizeQuota.phoneHolder <= 0)
-                                  ? "border-gray-200 bg-gray-50 opacity-60 cursor-not-allowed"
-                                  : "border-[#2654A4]/15 bg-white hover:border-[#EC3A24]/50"
-                            }`}
-                          >
-                            <span className="font-bold text-[#041020]">Phone Holder</span>
-                            <span className={`text-xs mt-1 font-semibold ${
-                              !doorprizeQuota || doorprizeQuota.phoneHolder <= 0 ? "text-red-500" : "text-[#EC3A24]"
-                            }`}>
-                              {!doorprizeQuota ? "Memuat..." : doorprizeQuota.phoneHolder <= 0 ? "Kuota Habis" : `Sisa Kuota: ${doorprizeQuota.phoneHolder}`}
-                            </span>
-                          </button>
-                        </div>
-                      )}
-                      <input type="hidden" name="boothName" value={selectedDoorprize} />
+                    <div className="p-5 rounded-2xl bg-[#EC3A24]/5 border border-[#EC3A24]/20 text-center relative overflow-hidden">
+                      <div className="absolute top-0 right-0 w-24 h-24 bg-[#EC3A24]/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+                      <p className="text-[#041020]/70 text-sm mb-1">Terima kasih telah berpartisipasi!</p>
+                      <p className="text-[#EC3A24] font-black text-base sm:text-lg leading-tight">Pengisian ini untuk mendapatkan merchandise langsung berupa Trash Bin dan Phone Holder supported by Telkomsel JagaBumi</p>
+                    </div>
+                    <input type="hidden" name="boothName" value="Merchandise Jaga Bumi" />
                   </div>
                 </Reveal>
               )}
@@ -510,7 +457,7 @@ export default function RegisterForm({ dict, initialVisitorType = null }: { dict
                   {dict.fullName} <span className="text-[#EC3A24]">*</span>
                 </label>
                 <div className="relative group">
-                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#2654A4]/40 group-focus-within:text-[#2654A4] transition-colors">
+                  <div className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors ${visitorType === 'telkomsel' ? 'text-[#EC3A24]/40 group-focus-within:text-[#EC3A24]' : 'text-[#2654A4]/40 group-focus-within:text-[#2654A4]'}`}>
                     <User className="h-5 w-5" />
                   </div>
                   <input
@@ -532,7 +479,7 @@ export default function RegisterForm({ dict, initialVisitorType = null }: { dict
                   {dict.email} <span className="text-[#EC3A24]">*</span>
                 </label>
                 <div className="relative group">
-                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#2654A4]/40 group-focus-within:text-[#2654A4] transition-colors">
+                  <div className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors ${visitorType === 'telkomsel' ? 'text-[#EC3A24]/40 group-focus-within:text-[#EC3A24]' : 'text-[#2654A4]/40 group-focus-within:text-[#2654A4]'}`}>
                     <Mail className="h-5 w-5" />
                   </div>
                   <input
@@ -554,7 +501,7 @@ export default function RegisterForm({ dict, initialVisitorType = null }: { dict
                   {dict.phone} <span className="text-[#EC3A24]">*</span>
                 </label>
                 <div className="relative group">
-                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#2654A4]/40 group-focus-within:text-[#2654A4] transition-colors">
+                  <div className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors ${visitorType === 'telkomsel' ? 'text-[#EC3A24]/40 group-focus-within:text-[#EC3A24]' : 'text-[#2654A4]/40 group-focus-within:text-[#2654A4]'}`}>
                     <Phone className="h-5 w-5" />
                   </div>
                   <input
@@ -576,7 +523,7 @@ export default function RegisterForm({ dict, initialVisitorType = null }: { dict
                   {dict.domicile} <span className="text-[#EC3A24]">*</span>
                 </label>
                 <div className="relative group">
-                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#2654A4]/40 group-focus-within:text-[#2654A4] transition-colors">
+                  <div className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors ${visitorType === 'telkomsel' ? 'text-[#EC3A24]/40 group-focus-within:text-[#EC3A24]' : 'text-[#2654A4]/40 group-focus-within:text-[#2654A4]'}`}>
                     <Hash className="h-5 w-5" />
                   </div>
                   <input
@@ -613,7 +560,7 @@ export default function RegisterForm({ dict, initialVisitorType = null }: { dict
                         ? visitorType === "telkomsel" 
                           ? "border-[#EC3A24] bg-[#EC3A24] shadow-[0_0_10px_rgba(236,58,36,0.4)] scale-105"
                           : "border-[#2654A4] bg-[#2654A4] shadow-[0_0_10px_rgba(38,84,164,0.4)] scale-105"
-                        : "border-[#2654A4]/30 bg-white hover:border-[#2654A4]/60"
+                        : (visitorType === "telkomsel" ? "border-[#EC3A24]/30 bg-white hover:border-[#EC3A24]/60" : "border-[#2654A4]/30 bg-white hover:border-[#2654A4]/60")
                     }`}
                   >
                     {tncAccepted && <Check size={16} strokeWidth={3} className="text-white" />}

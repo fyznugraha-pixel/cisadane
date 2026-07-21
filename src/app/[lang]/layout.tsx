@@ -29,9 +29,16 @@ export const metadata: Metadata = {
     "Karisma Event Nusantara",
     "Festival Sungai",
     "Perahu Naga",
+    "Fayiz Apriwansyah Nugraha",
+    "Fayiz Nugraha",
+    "byfayiz",
+    "Web Developer Tangerang",
   ],
-  authors: [{ name: "Festival Cisadane 2026" }],
-  creator: "Festival Cisadane 2026",
+  authors: [
+    { name: "Festival Cisadane 2026" },
+    { name: "Fayiz Apriwansyah Nugraha", url: "https://www.byfayiz.web.id/portofolio" }
+  ],
+  creator: "Fayiz Apriwansyah Nugraha",
   publisher: "Festival Cisadane 2026",
   metadataBase: new URL("https://festivalcisadane.com"),
   openGraph: {

@@ -59,8 +59,21 @@ export default function ScannerPage() {
     }
   }, [isScanning, scanResult]);
 
+  const playBeep = () => {
+    try {
+      const audio = new Audio('/festivalcisadane/musik/beep.mp3');
+      audio.play().catch(e => console.log('Audio play failed:', e));
+    } catch (err) {
+      console.log('Audio not supported', err);
+    }
+  };
+
   const handleValidate = async (id: string) => {
     if (!id) return;
+    
+    // Play beep immediately upon successful QR decode
+    playBeep();
+    
     setIsChecking(true);
     try {
       const result = await validateTicket(id);

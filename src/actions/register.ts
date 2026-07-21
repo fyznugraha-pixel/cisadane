@@ -27,7 +27,7 @@ export async function registerVisitor(formData: FormData) {
     const phone = formData.get("phone") as string;
     const domicile = formData.get("domicile") as string;
     const visitorType = formData.get("visitorType") as string || "general";
-    const boothName = formData.get("boothName") as string;
+    let boothName = formData.get("boothName") as string;
 
     if (!email) {
       return { success: false, error: "Email wajib diisi" };
@@ -92,27 +92,7 @@ export async function registerVisitor(formData: FormData) {
 
     if (visitorType === "telkomsel") {
       if (!boothName) {
-        return { success: false, error: "Silakan pilih doorprize Anda." };
-      }
-      
-      const [quotaDataRes, limits] = await Promise.all([
-        supabaseAdmin
-          .from("visitors")
-          .select("id")
-          .eq("visitor_type", "telkomsel")
-          .eq("booth_name", boothName),
-        fetchQuotaLimits()
-      ]);
-
-      if (quotaDataRes.error) {
-        return { success: false, error: "Gagal memvalidasi kuota." };
-      }
-
-      const currentCount = quotaDataRes.data.length;
-      const maxQuota = boothName === "Trashbin" ? limits.trashbinMax : limits.phoneHolderMax;
-
-      if (currentCount >= maxQuota) {
-        return { success: false, error: `Maaf, kuota untuk ${boothName} sudah habis. Silakan pilih opsi lain.` };
+        boothName = "Merchandise Jaga Bumi"; // fallback just in case
       }
     }
 

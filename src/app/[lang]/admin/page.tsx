@@ -1,8 +1,9 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import * as XLSX from "xlsx";
 import { Download, Lock, Users, LogOut, Eye, EyeOff, Store, User, Trophy, Trash2, Settings, Save } from "lucide-react";
+import CustomDropdown from "@/components/CustomDropdown";
 
 export default function AdminDashboard() {
   const [password, setPassword] = useState("");
@@ -147,7 +148,7 @@ export default function AdminDashboard() {
       Email: v.email,
       "Nomor HP": v.phone,
       "Kategori": v.visitor_type === "booth" ? "Kunjungan Booth" : v.visitor_type === "telkomsel" ? "Telkomsel" : "Pengunjung Umum",
-      "Nama Booth/Doorprize": v.booth_name || "-",
+      "Nama Booth/Merchandise": v.booth_name || "-",
       "Status Kehadiran": v.is_checked_in ? "Sudah Hadir/Klaim" : "Belum Hadir",
     }));
 
@@ -322,7 +323,7 @@ export default function AdminDashboard() {
               <Settings size={24} />
             </div>
             <div>
-              <h2 className="text-xl font-black text-[#041020]">Pengaturan Kuota Doorprize Telkomsel</h2>
+              <h2 className="text-xl font-black text-[#041020]">Pengaturan Kuota Merchandise Telkomsel</h2>
               <p className="text-sm text-[#041020]/60">Atur batas maksimal stok hadiah untuk pengunjung jalur Telkomsel.</p>
             </div>
           </div>
@@ -390,36 +391,36 @@ export default function AdminDashboard() {
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap sm:justify-end">
-            <select
+            <CustomDropdown
               value={filterDate}
-              onChange={(e) => setFilterDate(e.target.value)}
-              className="rounded-xl border border-[#2654A4]/20 bg-white px-4 py-2.5 text-sm text-[#041020] focus:border-[#FDB715] focus:outline-none focus:ring-2 focus:ring-[#FDB715]/50"
-            >
-              <option value="">Semua Tanggal</option>
-              {Array.from(new Set(visitors.map(v => {
-                const d = new Date(v.created_at);
-                const wib = new Date(d.getTime() + (7 * 60 * 60 * 1000));
-                return wib.toISOString().split('T')[0];
-              }))).sort((a, b) => (b > a ? 1 : -1)).map(date => (
-                <option key={date} value={date}>
-                  {new Date(date).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
-                </option>
-              ))}
-            </select>
+              onChange={setFilterDate}
+              placeholder="Semua Tanggal"
+              options={[
+                { value: "", label: "Semua Tanggal" },
+                ...Array.from(new Set(visitors.map(v => {
+                  const d = new Date(v.created_at);
+                  const wib = new Date(d.getTime() + (7 * 60 * 60 * 1000));
+                  return wib.toISOString().split('T')[0];
+                }))).sort((a, b) => (b > a ? 1 : -1)).map(date => ({
+                  value: date,
+                  label: new Date(date).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })
+                }))
+              ]}
+            />
 
-            <select
+            <CustomDropdown
               value={filterBooth}
-              onChange={(e) => setFilterBooth(e.target.value)}
-              className="rounded-xl border border-[#2654A4]/20 bg-white px-4 py-2.5 text-sm text-[#041020] focus:border-[#FDB715] focus:outline-none focus:ring-2 focus:ring-[#FDB715]/50"
-            >
-              <option value="">Semua Kategori/Booth</option>
-              <option value="general">Pengunjung Umum (General)</option>
-              {Array.from(new Set(visitors.filter(v => v.visitor_type === 'booth' && v.booth_name).map(v => v.booth_name as string))).sort().map(booth => (
-                <option key={booth} value={booth}>
-                  Booth: {booth}
-                </option>
-              ))}
-            </select>
+              onChange={setFilterBooth}
+              placeholder="Semua Kategori/Booth"
+              options={[
+                { value: "", label: "Semua Kategori/Booth" },
+                { value: "general", label: "Pengunjung Umum (General)" },
+                ...Array.from(new Set(visitors.filter(v => v.visitor_type === 'booth' && v.booth_name).map(v => v.booth_name as string))).sort().map(booth => ({
+                  value: booth,
+                  label: `Booth: ${booth}`
+                }))
+              ]}
+            />
 
             <input
               type="text"
@@ -448,7 +449,7 @@ export default function AdminDashboard() {
                   <th className="px-6 py-4 font-black">No</th>
                   <th className="px-6 py-4 font-black">Nama Lengkap</th>
                   <th className="px-6 py-4 font-black">Kategori</th>
-                  <th className="px-6 py-4 font-black">Booth / Doorprize</th>
+                  <th className="px-6 py-4 font-black">Booth / Merchandise</th>
                   <th className="px-6 py-4 font-black">Status</th>
                   <th className="px-6 py-4 font-black">Email</th>
                   <th className="px-6 py-4 font-black">No HP</th>
