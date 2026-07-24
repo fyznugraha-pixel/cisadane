@@ -14,6 +14,8 @@ export default function AdminDashboard() {
   const [visitors, setVisitors] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterDate, setFilterDate] = useState("");
+  const [filterTime, setFilterTime] = useState("");
+  const [filterCategory, setFilterCategory] = useState("");
   const [filterBooth, setFilterBooth] = useState("");
   const [visitorToDelete, setVisitorToDelete] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -409,18 +411,44 @@ export default function AdminDashboard() {
             />
 
             <CustomDropdown
-              value={filterBooth}
-              onChange={setFilterBooth}
-              placeholder="Semua Kategori/Booth"
+              value={filterTime}
+              onChange={setFilterTime}
+              placeholder="Rentang Waktu"
               options={[
-                { value: "", label: "Semua Kategori/Booth" },
-                { value: "general", label: "Pengunjung Umum (General)" },
-                ...Array.from(new Set(visitors.filter(v => v.visitor_type === 'booth' && v.booth_name).map(v => v.booth_name as string))).sort().map(booth => ({
-                  value: booth,
-                  label: `Booth: ${booth}`
-                }))
+                { value: "", label: "Semua Waktu" },
+                { value: "3h", label: "3 Jam Terakhir" },
+                { value: "7h", label: "7 Jam Terakhir" },
+                { value: "24h", label: "24 Jam Terakhir" },
+                { value: "3d", label: "3 Hari Terakhir" },
               ]}
             />
+
+            <CustomDropdown
+              value={filterCategory}
+              onChange={setFilterCategory}
+              placeholder="Semua Kategori"
+              options={[
+                { value: "", label: "Semua Kategori" },
+                { value: "general", label: "Umum" },
+                { value: "booth", label: "Booth" },
+                { value: "telkomsel", label: "Telkomsel" },
+              ]}
+            />
+
+            {filterCategory === "booth" && (
+              <CustomDropdown
+                value={filterBooth}
+                onChange={setFilterBooth}
+                placeholder="Semua Booth"
+                options={[
+                  { value: "", label: "Semua Booth" },
+                  ...Array.from(new Set(visitors.filter(v => v.visitor_type === 'booth' && v.booth_name).map(v => v.booth_name as string))).sort().map(booth => ({
+                    value: booth,
+                    label: `Booth: ${booth}`
+                  }))
+                ]}
+              />
+            )}
 
             <input
               type="text"
@@ -471,10 +499,13 @@ export default function AdminDashboard() {
                                             v.phone.includes(searchTerm) || 
                                             (v.booth_name && v.booth_name.toLowerCase().includes(searchTerm.toLowerCase()));
                       
+                      let matchesCategory = true;
+                      if (filterCategory) {
+                        matchesCategory = v.visitor_type === filterCategory;
+                      }
+
                       let matchesBooth = true;
-                      if (filterBooth === "general") {
-                        matchesBooth = v.visitor_type === "general";
-                      } else if (filterBooth !== "") {
+                      if (filterCategory === "booth" && filterBooth !== "") {
                         matchesBooth = v.visitor_type === "booth" && v.booth_name === filterBooth;
                       }
 
@@ -486,7 +517,19 @@ export default function AdminDashboard() {
                         matchesDate = vDate === filterDate;
                       }
 
-                      return matchesSearch && matchesBooth && matchesDate;
+                      let matchesTime = true;
+                      if (filterTime) {
+                        const vTime = new Date(v.created_at).getTime();
+                        const now = new Date().getTime();
+                        const diffHours = (now - vTime) / (1000 * 60 * 60);
+
+                        if (filterTime === "3h") matchesTime = diffHours <= 3;
+                        else if (filterTime === "7h") matchesTime = diffHours <= 7;
+                        else if (filterTime === "24h") matchesTime = diffHours <= 24;
+                        else if (filterTime === "3d") matchesTime = diffHours <= (24 * 3);
+                      }
+
+                      return matchesSearch && matchesCategory && matchesBooth && matchesDate && matchesTime;
                     });
 
                     if (filteredVisitors.length === 0) {
