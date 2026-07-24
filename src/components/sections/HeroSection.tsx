@@ -16,7 +16,7 @@ declare global {
 }
 import type { Dictionary } from "@/i18n/dictionaries";
 import RiverSectionDivider from "@/components/RiverSectionDivider";
-import Fireworks from "@/components/Fireworks";
+
 
 type TimeLeft = {
   days: number;
@@ -141,7 +141,7 @@ export default function HeroSection({
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-[#FDFBF7]">
-      <Fireworks isExpired={isExpired} />
+
       {/* Real image */}
       <div
         className="absolute inset-0 bg-cover bg-center opacity-30"
