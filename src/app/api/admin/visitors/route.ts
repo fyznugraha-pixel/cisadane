@@ -20,18 +20,36 @@ export async function GET(request: Request) {
       ? createClient(supabaseUrl, process.env.SUPABASE_SERVICE_ROLE_KEY) 
       : supabase;
 
-    // Fetch visitors data, ordered by created_at descending
-    const { data, error } = await db
-      .from("visitors")
-      .select("*")
-      .order("created_at", { ascending: false });
+    // Fetch visitors data, ordered by created_at descending (Paginated to bypass 1000 limit)
+    let allData: any[] = [];
+    let hasMore = true;
+    let start = 0;
+    const limit = 1000;
 
-    if (error) {
-      console.error("Supabase fetch error:", error);
-      return NextResponse.json({ error: "Failed to fetch data" }, { status: 500 });
+    while (hasMore) {
+      const { data, error } = await db
+        .from("visitors")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .range(start, start + limit - 1);
+
+      if (error) {
+        console.error("Supabase fetch error:", error);
+        return NextResponse.json({ error: "Failed to fetch data" }, { status: 500 });
+      }
+
+      if (data && data.length > 0) {
+        allData = allData.concat(data);
+      }
+
+      if (!data || data.length < limit) {
+        hasMore = false;
+      } else {
+        start += limit;
+      }
     }
 
-    return NextResponse.json({ data });
+    return NextResponse.json({ data: allData });
   } catch (err) {
     console.error("Unexpected error:", err);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });

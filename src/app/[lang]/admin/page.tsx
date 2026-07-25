@@ -20,7 +20,15 @@ export default function AdminDashboard() {
   const [filterBooth, setFilterBooth] = useState("");
   const [visitorToDelete, setVisitorToDelete] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isExporting, setIsExporting] = useState(false);
   
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 50;
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, filterDate, filterTime, filterCategory, filterBooth]);
+
   const [trashbinQuota, settrashbinQuota] = useState("300");
   const [phoneHolderQuota, setPhoneHolderQuota] = useState("200");
   const [isSavingQuota, setIsSavingQuota] = useState(false);
@@ -143,13 +151,69 @@ export default function AdminDashboard() {
   };
 
   const handleExportExcel = async () => {
-    if (visitors.length === 0) return;
+    setIsExporting(true);
+    try {
+      const res = await fetch("/festivalcisadane/api/admin/visitors", {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("admin_password")}`,
+        },
+      });
 
-    const workbook = new ExcelJS.Workbook();
+      if (!res.ok) {
+        throw new Error("Gagal mengambil data terbaru.");
+      }
+
+      const { data: freshData } = await res.json();
+      
+      const exportVisitors = (freshData || []).filter((v: any) => {
+        const matchesSearch = v.full_name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                              v.email.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                              v.phone.includes(searchTerm) || 
+                              (v.booth_name && v.booth_name.toLowerCase().includes(searchTerm.toLowerCase()));
+        
+        let matchesCategory = true;
+        if (filterCategory) {
+          matchesCategory = v.visitor_type === filterCategory;
+        }
+
+        let matchesBooth = true;
+        if (filterCategory === "booth" && filterBooth !== "") {
+          matchesBooth = v.visitor_type === "booth" && v.booth_name === filterBooth;
+        }
+
+        let matchesDate = true;
+        if (filterDate) {
+          const d = new Date(v.created_at);
+          const wib = new Date(d.getTime() + (7 * 60 * 60 * 1000));
+          const vDate = wib.toISOString().split('T')[0];
+          matchesDate = vDate === filterDate;
+        }
+
+        let matchesTime = true;
+        if (filterTime) {
+          const vTime = new Date(v.created_at).getTime();
+          const now = new Date().getTime();
+          const diffHours = (now - vTime) / (1000 * 60 * 60);
+
+          if (filterTime === "3h") matchesTime = diffHours <= 3;
+          else if (filterTime === "7h") matchesTime = diffHours <= 7;
+          else if (filterTime === "24h") matchesTime = diffHours <= 24;
+          else if (filterTime === "3d") matchesTime = diffHours <= (24 * 3);
+        }
+
+        return matchesSearch && matchesCategory && matchesBooth && matchesDate && matchesTime;
+      });
+
+      if (exportVisitors.length === 0) {
+        alert("Tidak ada data untuk diekspor.");
+        return;
+      }
+
+      const workbook = new ExcelJS.Workbook();
 
     // Calculate Rankings
     const boothCounts: Record<string, number> = {};
-    visitors.forEach(v => {
+    exportVisitors.forEach((v: any) => {
       if (v.visitor_type === 'booth' && v.booth_name) {
         boothCounts[v.booth_name] = (boothCounts[v.booth_name] || 0) + 1;
       }
@@ -170,7 +234,7 @@ export default function AdminDashboard() {
     });
 
     // Sort Visitors to group by Booth -> then Rank -> then Date
-    const sortedVisitors = [...visitors].sort((a, b) => {
+    const sortedVisitors = [...exportVisitors].sort((a: any, b: any) => {
       if (a.visitor_type === 'booth' && b.visitor_type !== 'booth') return -1;
       if (a.visitor_type !== 'booth' && b.visitor_type === 'booth') return 1;
       
@@ -295,16 +359,85 @@ export default function AdminDashboard() {
     // Create Master Sheet
     createWorksheet("Semua Data", sortedVisitors, true);
 
+    // Create Ranking Booth Sheet
+    if (sortedBooths.length > 0) {
+      const rankWorksheet = workbook.addWorksheet("Ranking Booth");
+      
+      // Define columns FIRST so headers go to row 1
+      rankWorksheet.columns = [
+        { header: "Peringkat", key: "rank", width: 15 },
+        { header: "Nama Booth / Merchandise", key: "booth", width: 50 },
+        { header: "Total Pendaftar", key: "total", width: 25 },
+      ];
+
+      // THEN insert title rows before the headers (shifting headers to row 4)
+      rankWorksheet.spliceRows(1, 0,
+        ["PERINGKAT TOTAL BOOTH"],
+        [`Total Booth: ${sortedBooths.length}`],
+        []
+      );
+
+      // Style Title
+      rankWorksheet.mergeCells(1, 1, 1, 3);
+      const titleCell = rankWorksheet.getCell(1, 1);
+      titleCell.font = { bold: true, size: 16, color: { argb: "FF2654A4" } };
+      titleCell.alignment = { horizontal: 'center', vertical: 'middle' };
+      
+      // Style Subtitle
+      rankWorksheet.mergeCells(2, 1, 2, 3);
+      const totalCell = rankWorksheet.getCell(2, 1);
+      totalCell.font = { italic: true, bold: true, color: { argb: "FF555555" } };
+      totalCell.alignment = { horizontal: 'center', vertical: 'middle' };
+
+      // Style Table Headers (Now at Row 4)
+      rankWorksheet.getRow(4).eachCell((cell) => {
+        cell.font = { bold: true, color: { argb: "FFFFFFFF" } };
+        cell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: "FF2654A4" } };
+        cell.alignment = { vertical: 'middle', horizontal: 'center' };
+        cell.border = {
+          top: {style:'thin'}, left: {style:'thin'}, bottom: {style:'thin'}, right: {style:'thin'}
+        };
+      });
+
+      // Add Data Rows
+      sortedBooths.forEach(([boothName, count], index) => {
+        const row = rankWorksheet.addRow({
+          rank: boothRankings[boothName],
+          booth: boothName,
+          total: count
+        });
+        
+        row.getCell('rank').alignment = { horizontal: 'center', vertical: 'middle' };
+        row.getCell('booth').alignment = { vertical: 'middle', horizontal: 'left' };
+        row.getCell('total').alignment = { horizontal: 'center', vertical: 'middle' };
+        
+        // Use alternate light gray striping for readability, instead of flashy rainbow colors
+        const isEven = index % 2 === 0;
+        
+        row.eachCell((cell) => {
+          if (!isEven) {
+            cell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: "FFF9F9F9" } };
+          }
+          cell.border = {
+            top: {style:'thin', color: {argb:'FFDDDDDD'}}, 
+            left: {style:'thin', color: {argb:'FFDDDDDD'}}, 
+            bottom: {style:'thin', color: {argb:'FFDDDDDD'}}, 
+            right: {style:'thin', color: {argb:'FFDDDDDD'}}
+          };
+        });
+      });
+    }
+
     // Create Individual Sheets
-    const generalVisitors = visitors.filter(v => v.visitor_type === 'general');
+    const generalVisitors = exportVisitors.filter((v: any) => v.visitor_type === 'general');
     if (generalVisitors.length > 0) createWorksheet("Pengunjung Umum", generalVisitors);
 
-    const telkomselVisitors = visitors.filter(v => v.visitor_type === 'telkomsel');
+    const telkomselVisitors = exportVisitors.filter((v: any) => v.visitor_type === 'telkomsel');
     if (telkomselVisitors.length > 0) createWorksheet("Telkomsel", telkomselVisitors);
 
     // Create sheets for each booth, ordered by ranking
     sortedBooths.forEach(([boothName]) => {
-      const bVisitors = visitors.filter(v => v.visitor_type === 'booth' && v.booth_name === boothName);
+      const bVisitors = exportVisitors.filter((v: any) => v.visitor_type === 'booth' && v.booth_name === boothName);
       if (bVisitors.length > 0) {
         createWorksheet(boothName, bVisitors);
       }
@@ -312,6 +445,14 @@ export default function AdminDashboard() {
 
     const buffer = await workbook.xlsx.writeBuffer();
     saveAs(new Blob([buffer]), "Data_Pengunjung_Cisadane.xlsx");
+    
+    // Also update the UI state so admin sees the latest data
+    setVisitors(exportVisitors);
+    } catch (err: any) {
+      alert(err.message || "Terjadi kesalahan saat meng-export data.");
+    } finally {
+      setIsExporting(false);
+    }
   };
 
   // If not authenticated, show login screen
@@ -373,6 +514,51 @@ export default function AdminDashboard() {
   }
 
   // Authenticated Dashboard
+  const filteredVisitors = visitors.filter(v => {
+    const matchesSearch = v.full_name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                          v.email.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                          v.phone.includes(searchTerm) || 
+                          (v.booth_name && v.booth_name.toLowerCase().includes(searchTerm.toLowerCase()));
+    
+    let matchesCategory = true;
+    if (filterCategory) {
+      matchesCategory = v.visitor_type === filterCategory;
+    }
+
+    let matchesBooth = true;
+    if (filterCategory === "booth" && filterBooth !== "") {
+      matchesBooth = v.visitor_type === "booth" && v.booth_name === filterBooth;
+    }
+
+    let matchesDate = true;
+    if (filterDate) {
+      const d = new Date(v.created_at);
+      const wib = new Date(d.getTime() + (7 * 60 * 60 * 1000));
+      const vDate = wib.toISOString().split('T')[0];
+      matchesDate = vDate === filterDate;
+    }
+
+    let matchesTime = true;
+    if (filterTime) {
+      const vTime = new Date(v.created_at).getTime();
+      const now = new Date().getTime();
+      const diffHours = (now - vTime) / (1000 * 60 * 60);
+
+      if (filterTime === "3h") matchesTime = diffHours <= 3;
+      else if (filterTime === "7h") matchesTime = diffHours <= 7;
+      else if (filterTime === "24h") matchesTime = diffHours <= 24;
+      else if (filterTime === "3d") matchesTime = diffHours <= (24 * 3);
+    }
+
+    return matchesSearch && matchesCategory && matchesBooth && matchesDate && matchesTime;
+  });
+
+  const totalPages = Math.ceil(filteredVisitors.length / itemsPerPage);
+  const currentVisitors = filteredVisitors.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
   return (
     <main className="min-h-screen bg-[#FDFBF7] pb-20 text-[#041020]">
       {/* Header */}
@@ -403,8 +589,8 @@ export default function AdminDashboard() {
             <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#2654A4]/10 text-[#2654A4]">
               <Users size={24} />
             </div>
-            <p className="text-sm font-medium text-[#041020]/60">Total Registrasi</p>
-            <h3 className="mt-1 text-3xl font-black text-[#041020]">{visitors.length}</h3>
+            <p className="text-sm font-medium text-[#041020]/60">Total (Sesuai Filter)</p>
+            <h3 className="mt-1 text-3xl font-black text-[#041020]">{filteredVisitors.length}</h3>
           </div>
 
           {/* Kategori Breakdown */}
@@ -417,14 +603,14 @@ export default function AdminDashboard() {
                 <Store size={24} />
               </div>
             </div>
-            <p className="text-sm font-medium text-[#041020]/60">Umum vs Booth</p>
+            <p className="text-sm font-medium text-[#041020]/60">Umum vs Booth (Sesuai Filter)</p>
             <div className="mt-1 flex items-baseline gap-2">
               <h3 className="text-3xl font-black text-[#041020]">
-                {visitors.filter(v => v.visitor_type !== 'booth').length}
+                {filteredVisitors.filter(v => v.visitor_type !== 'booth').length}
               </h3>
               <span className="text-[#041020]/40">/</span>
               <h3 className="text-3xl font-black text-[#041020]">
-                {visitors.filter(v => v.visitor_type === 'booth').length}
+                {filteredVisitors.filter(v => v.visitor_type === 'booth').length}
               </h3>
             </div>
           </div>
@@ -528,7 +714,7 @@ export default function AdminDashboard() {
               Daftar Pendaftar Festival
             </h2>
             <p className="mt-1 text-[#041020]/60">
-              Total {visitors.length} orang telah mendaftar.
+              Total {filteredVisitors.length} orang telah mendaftar (berdasarkan filter saat ini).
             </p>
           </div>
 
@@ -631,64 +817,20 @@ export default function AdminDashboard() {
                       Belum ada pendaftar.
                     </td>
                   </tr>
+                ) : filteredVisitors.length === 0 ? (
+                  <tr>
+                    <td colSpan={8} className="px-6 py-10 text-center text-gray-500">
+                      Pendaftar tidak ditemukan.
+                    </td>
+                  </tr>
                 ) : (
-                  (() => {
-                    const filteredVisitors = visitors.filter(v => {
-                      const matchesSearch = v.full_name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                                            v.email.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                                            v.phone.includes(searchTerm) || 
-                                            (v.booth_name && v.booth_name.toLowerCase().includes(searchTerm.toLowerCase()));
-                      
-                      let matchesCategory = true;
-                      if (filterCategory) {
-                        matchesCategory = v.visitor_type === filterCategory;
-                      }
-
-                      let matchesBooth = true;
-                      if (filterCategory === "booth" && filterBooth !== "") {
-                        matchesBooth = v.visitor_type === "booth" && v.booth_name === filterBooth;
-                      }
-
-                      let matchesDate = true;
-                      if (filterDate) {
-                        const d = new Date(v.created_at);
-                        const wib = new Date(d.getTime() + (7 * 60 * 60 * 1000));
-                        const vDate = wib.toISOString().split('T')[0];
-                        matchesDate = vDate === filterDate;
-                      }
-
-                      let matchesTime = true;
-                      if (filterTime) {
-                        const vTime = new Date(v.created_at).getTime();
-                        const now = new Date().getTime();
-                        const diffHours = (now - vTime) / (1000 * 60 * 60);
-
-                        if (filterTime === "3h") matchesTime = diffHours <= 3;
-                        else if (filterTime === "7h") matchesTime = diffHours <= 7;
-                        else if (filterTime === "24h") matchesTime = diffHours <= 24;
-                        else if (filterTime === "3d") matchesTime = diffHours <= (24 * 3);
-                      }
-
-                      return matchesSearch && matchesCategory && matchesBooth && matchesDate && matchesTime;
-                    });
-
-                    if (filteredVisitors.length === 0) {
-                      return (
-                        <tr>
-                          <td colSpan={8} className="px-6 py-10 text-center text-gray-500">
-                            Pendaftar tidak ditemukan.
-                          </td>
-                        </tr>
-                      );
-                    }
-
-                    return filteredVisitors.map((v, i) => (
-                      <tr
-                        key={v.id}
-                        className="transition-colors hover:bg-[#FDFBF7]"
-                      >
-                        <td className="px-6 py-4 font-medium">{i + 1}</td>
-                        <td className="px-6 py-4 font-semibold text-[#041020]">
+                  currentVisitors.map((v, i) => (
+                    <tr
+                      key={v.id}
+                      className="transition-colors hover:bg-[#FDFBF7]"
+                    >
+                      <td className="px-6 py-4 font-medium">{(currentPage - 1) * itemsPerPage + i + 1}</td>
+                      <td className="px-6 py-4 font-semibold text-[#041020]">
                           {v.full_name}
                         </td>
                         <td className="px-6 py-4">
@@ -732,13 +874,37 @@ export default function AdminDashboard() {
                           </button>
                         </td>
                       </tr>
-                    ));
-                  })()
+                    ))
                 )}
               </tbody>
             </table>
           </div>
         </div>
+
+        {/* Pagination Controls */}
+        {filteredVisitors.length > 0 && (
+          <div className="mt-6 flex flex-col items-center justify-between gap-4 sm:flex-row">
+            <p className="text-sm font-medium text-[#041020]/60">
+              Menampilkan <span className="font-bold text-[#041020]">{(currentPage - 1) * itemsPerPage + 1}</span> - <span className="font-bold text-[#041020]">{Math.min(currentPage * itemsPerPage, filteredVisitors.length)}</span> dari <span className="font-bold text-[#041020]">{filteredVisitors.length}</span> pendaftar
+            </p>
+            <div className="flex gap-2">
+              <button 
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage(p => p - 1)}
+                className="rounded-xl border border-[#2654A4]/20 bg-white px-4 py-2 text-sm font-bold text-[#2654A4] transition hover:bg-[#2654A4]/5 disabled:opacity-50"
+              >
+                Sebelumnya
+              </button>
+              <button 
+                disabled={currentPage === totalPages || totalPages === 0}
+                onClick={() => setCurrentPage(p => p + 1)}
+                className="rounded-xl border border-[#2654A4]/20 bg-white px-4 py-2 text-sm font-bold text-[#2654A4] transition hover:bg-[#2654A4]/5 disabled:opacity-50"
+              >
+                Selanjutnya
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Custom Delete Confirmation Modal */}
