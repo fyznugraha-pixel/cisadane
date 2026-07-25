@@ -36,6 +36,7 @@ const mediaPartners = [
   { name: "WANI KONSERAN BARENG", image: "/media-patner/Wanikonseranbareng.webp" },
   { name: "YRI", image: "/media-patner/Logo YRI.webp" },
   { name: "Rumah BUMN", image: "/media-patner/rumahbumn.webp" },
+  { name: "Akademi UMKM", image: "/media-patner/akademiUMKM.webp" },
 ];
 
 export default function MediaPartnersSection() {

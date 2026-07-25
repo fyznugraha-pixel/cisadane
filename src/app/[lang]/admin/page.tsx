@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import * as XLSX from "xlsx";
+import ExcelJS from "exceljs";
+import { saveAs } from "file-saver";
 import { Download, Lock, Users, LogOut, Eye, EyeOff, Store, User, Trophy, Trash2, Settings, Save } from "lucide-react";
 import CustomDropdown from "@/components/CustomDropdown";
 
@@ -141,37 +142,176 @@ export default function AdminDashboard() {
     }
   };
 
-  const handleExportExcel = () => {
+  const handleExportExcel = async () => {
     if (visitors.length === 0) return;
 
-    const dataForExport = visitors.map((v, i) => ({
-      No: i + 1,
-      "Nama Lengkap": v.full_name,
-      Email: v.email,
-      "Nomor HP": v.phone,
-      "Kategori": v.visitor_type === "booth" ? "Kunjungan Booth" : v.visitor_type === "telkomsel" ? "Telkomsel" : "Pengunjung Umum",
-      "Nama Booth/Merchandise": v.booth_name || "-",
-      "Status Kehadiran": v.is_checked_in ? "Sudah Hadir/Klaim" : "Belum Hadir",
-    }));
+    const workbook = new ExcelJS.Workbook();
 
-    // Create a workbook and a worksheet
-    const worksheet = XLSX.utils.json_to_sheet(dataForExport);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Visitors");
+    // Calculate Rankings
+    const boothCounts: Record<string, number> = {};
+    visitors.forEach(v => {
+      if (v.visitor_type === 'booth' && v.booth_name) {
+        boothCounts[v.booth_name] = (boothCounts[v.booth_name] || 0) + 1;
+      }
+    });
 
-    // Adjust column widths
-    worksheet["!cols"] = [
-      { wch: 5 }, // No
-      { wch: 30 }, // Nama
-      { wch: 35 }, // Email
-      { wch: 20 }, // Phone
-      { wch: 20 }, // Kategori
-      { wch: 30 }, // Booth
-      { wch: 20 }, // Status Kehadiran
-    ];
+    const sortedBooths = Object.entries(boothCounts).sort((a, b) => b[1] - a[1]);
+    const boothRankings: Record<string, number> = {};
+    let currentRank = 1;
+    let previousCount = -1;
+    let actualRank = 1;
+    sortedBooths.forEach(([boothName, count]) => {
+      if (count !== previousCount) {
+        currentRank = actualRank;
+        previousCount = count;
+      }
+      boothRankings[boothName] = currentRank;
+      actualRank++;
+    });
 
-    // Download the file
-    XLSX.writeFile(workbook, "Data_Pengunjung_Cisadane.xlsx");
+    // Sort Visitors to group by Booth -> then Rank -> then Date
+    const sortedVisitors = [...visitors].sort((a, b) => {
+      if (a.visitor_type === 'booth' && b.visitor_type !== 'booth') return -1;
+      if (a.visitor_type !== 'booth' && b.visitor_type === 'booth') return 1;
+      
+      if (a.visitor_type === 'booth' && b.visitor_type === 'booth') {
+        const rankA = boothRankings[a.booth_name || ""] || 999;
+        const rankB = boothRankings[b.booth_name || ""] || 999;
+        if (rankA !== rankB) return rankA - rankB; 
+        
+        const nameA = a.booth_name || "";
+        const nameB = b.booth_name || "";
+        if (nameA !== nameB) return nameA.localeCompare(nameB);
+      }
+
+      if (a.visitor_type !== b.visitor_type) {
+         return a.visitor_type.localeCompare(b.visitor_type);
+      }
+
+      return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
+    });
+
+
+
+    // Generate pastel color based on string hash
+    const getBoothColor = (boothName: string) => {
+      if (!boothName || boothName === "-") return null;
+      let hash = 0;
+      for (let i = 0; i < boothName.length; i++) {
+        hash = boothName.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      const colors = [
+        "FFFFCDD2", "FFF8BBD0", "FFE1BEE7", "FFD1C4E9", "FFC5CAE9", 
+        "FFBBDEFB", "FFB3E5FC", "FFB2EBF2", "FFB2DFDB", "FFC8E6C9", 
+        "FFDCEDC8", "FFF0F4C3", "FFFFF9C4", "FFFFE0B2", "FFFFCCBC"
+      ];
+      return colors[Math.abs(hash) % colors.length];
+    };
+
+    // Helper to create a worksheet
+    const createWorksheet = (sheetName: string, data: any[], isMaster: boolean = false) => {
+      // Excel sheet names max 31 chars, forbidden chars: \ / ? * [ ] :
+      let safeName = sheetName.replace(/[\\/?*[\]:]/g, "").substring(0, 31);
+      
+      // Ensure unique sheet name
+      let finalName = safeName;
+      let counter = 1;
+      while (workbook.getWorksheet(finalName)) {
+        finalName = `${safeName.substring(0, 28)} ${counter}`;
+        counter++;
+      }
+      
+      const worksheet = workbook.addWorksheet(finalName);
+      
+      worksheet.columns = [
+        { header: "No", key: "no", width: 5 },
+        { header: "Nama Lengkap", key: "nama", width: 30 },
+        { header: "Email", key: "email", width: 35 },
+        { header: "Nomor HP", key: "phone", width: 20 },
+        { header: "Kategori", key: "kategori", width: 20 },
+        ...(isMaster ? [{ header: "Peringkat Booth", key: "rank", width: 18 }] : []),
+        { header: "Nama Booth/Merchandise", key: "booth", width: 35 },
+        { header: "Jam Daftar", key: "jam", width: 22 },
+        { header: "Status Kehadiran", key: "status", width: 20 },
+      ];
+
+      // Add Title and Total Rows at the top
+      const titleText = isMaster ? "DATA PENDAFTAR KESELURUHAN" : `DATA PENDAFTAR - ${sheetName.toUpperCase()}`;
+      worksheet.spliceRows(1, 0,
+        [titleText],
+        [`Total Data: ${data.length}`],
+        [] // Empty spacing row
+      );
+
+      // Style Title
+      worksheet.mergeCells(1, 1, 1, isMaster ? 9 : 8);
+      const titleCell = worksheet.getCell(1, 1);
+      titleCell.font = { bold: true, size: 14 };
+
+      // Style Total
+      worksheet.mergeCells(2, 1, 2, isMaster ? 9 : 8);
+      const totalCell = worksheet.getCell(2, 1);
+      totalCell.font = { italic: true, bold: true };
+
+      // Style Table Header (which is now on Row 4)
+      worksheet.getRow(4).eachCell((cell) => {
+        cell.font = { bold: true, color: { argb: "FFFFFFFF" } };
+        cell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: "FF2654A4" } };
+        cell.alignment = { vertical: 'middle', horizontal: 'center' };
+      });
+
+      data.forEach((v, i) => {
+        const d = new Date(v.created_at);
+        const wib = new Date(d.getTime() + (7 * 60 * 60 * 1000));
+        const jamDaftar = wib.toISOString().replace('T', ' ').substring(0, 19) + ' WIB';
+
+        const rowData: any = {
+          no: i + 1,
+          nama: v.full_name,
+          email: v.email,
+          phone: v.phone,
+          kategori: v.visitor_type === "booth" ? "Kunjungan Booth" : v.visitor_type === "telkomsel" ? "Telkomsel" : "Pengunjung Umum",
+          booth: v.booth_name || "-",
+          jam: jamDaftar,
+          status: v.is_checked_in ? "Sudah Hadir/Klaim" : "Belum Hadir",
+        };
+
+        if (isMaster) {
+           rowData.rank = v.visitor_type === "booth" && v.booth_name && boothRankings[v.booth_name] ? `Peringkat ${boothRankings[v.booth_name]}` : "-";
+        }
+
+        const row = worksheet.addRow(rowData);
+
+        if (isMaster) {
+          const boothColor = getBoothColor(v.booth_name);
+          if (boothColor) {
+            row.getCell("booth").fill = { type: "pattern", pattern: "solid", fgColor: { argb: boothColor } };
+            row.getCell("rank").fill = { type: "pattern", pattern: "solid", fgColor: { argb: boothColor } };
+          }
+        }
+      });
+    };
+
+    // Create Master Sheet
+    createWorksheet("Semua Data", sortedVisitors, true);
+
+    // Create Individual Sheets
+    const generalVisitors = visitors.filter(v => v.visitor_type === 'general');
+    if (generalVisitors.length > 0) createWorksheet("Pengunjung Umum", generalVisitors);
+
+    const telkomselVisitors = visitors.filter(v => v.visitor_type === 'telkomsel');
+    if (telkomselVisitors.length > 0) createWorksheet("Telkomsel", telkomselVisitors);
+
+    // Create sheets for each booth, ordered by ranking
+    sortedBooths.forEach(([boothName]) => {
+      const bVisitors = visitors.filter(v => v.visitor_type === 'booth' && v.booth_name === boothName);
+      if (bVisitors.length > 0) {
+        createWorksheet(boothName, bVisitors);
+      }
+    });
+
+    const buffer = await workbook.xlsx.writeBuffer();
+    saveAs(new Blob([buffer]), "Data_Pengunjung_Cisadane.xlsx");
   };
 
   // If not authenticated, show login screen
